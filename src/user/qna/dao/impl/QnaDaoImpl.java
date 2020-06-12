@@ -42,15 +42,13 @@ public class QnaDaoImpl implements QnaDao {
 					while(rs.next()) {
 						QNA list = new QNA(); //결과값 저장 객체
 						
-						//결과값 한 행 처리
-						list.setQnaNO( rs.getInt(1) );
-						list.setQnaTitle( rs.getString(2) );
-						list.setQnaContent( rs.getString(3) );
-						list.setQnaHit( rs.getInt(4) );
-						list.setQnaDate( rs.getDate(5) );
-						list.setQnaImg( rs.getString(6) );
-						list.setQnaWriter( rs.getString(7) );
-						
+						list.setQnaNO( rs.getInt("qnano") );
+						list.setQnaTitle( rs.getString("qnatitle") );
+						list.setQnaContent( rs.getString("qnacount") );
+						list.setQnaHit( rs.getInt("qnahit"));
+						list.setQnaDate( rs.getDate("qnadate") );
+						list.setQnaImg( rs.getString("qnaimg") );
+						list.setQnaWriter( rs.getString("qnawriter") );
 						
 						
 						
