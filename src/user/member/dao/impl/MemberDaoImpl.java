@@ -1,6 +1,7 @@
 package user.member.dao.impl;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -53,18 +54,21 @@ public class MemberDaoImpl implements MemberDao{
    public int insert(MemberDTO member) {
       
       conn=JDBCTemplate.getConnection();
-      String sql="insert into member(userno, userid, userpw,username,useraddress) values(?,?,?,?,?)";
+      String sql="insert into member(userid, userpw,username,useremail, useraddress,usertel,userbirth) values(?,?,?,?,?,?,?)";
       int result = 0 ;
       
       try {
          ps=conn.prepareStatement(sql);
          
-         ps.setInt(1, member.getUserno());
-         ps.setString(2, member.getUserid());
-         ps.setString(3, member.getUserpw());
-         ps.setString(4, member.getUsername());
+         ps.setString(1, member.getUserid());
+         ps.setString(2, member.getUserpw());
+         ps.setString(3, member.getUsername());
+         ps.setString(4, member.getUseremail());
          ps.setString(5, member.getUseraddress());
-         
+         ps.setInt(6,member.getUsertel());
+         ps.setString(7, member.getUserbirth());
+
+
          result = ps.executeUpdate();
          
       } catch (SQLException e) {
@@ -78,14 +82,9 @@ public class MemberDaoImpl implements MemberDao{
             e.printStackTrace();
          }
       }
-      
       return result;
-      
    }
-   
-
 }
-
 
 
 
