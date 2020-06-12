@@ -49,7 +49,7 @@ public class QnaDaoImpl implements QnaDao {
 						qna.setQnaDate( rs.getDate("qnadate") );
 						qna.setQnaImg( rs.getString("qnaimg") );
 						qna.setQnaWriter( rs.getString("qnawriter") );
-																		
+					
 						//리스트에 결과값 저장
 						qnaList.add(qna);
 					}
