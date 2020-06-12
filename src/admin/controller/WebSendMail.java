@@ -27,6 +27,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import admin.dao.face.AdminMemberListDao;
+import admin.dao.impl.AdminMemberListDaoImpl;
 import util.ByteArrayDataSource;
 
 //회원들에게 메일보내기 기능 구현(do-post)
@@ -34,13 +36,13 @@ import util.ByteArrayDataSource;
 public class WebSendMail extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	//받는사람
-	//테스트 -상옥이 아이디
-	private String to = "/admin/mailwrite";
-	
+	private String to = "";
+	private AdminMemberListDao adminMemberListDao = AdminMemberListDaoImpl.getInstance();
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		if (req.getContentType().startsWith("multipart/form-data")) {
 	            try {
+	            	to=adminMemberListDao.selectID(req.getParameter("memberid")).getUseraddress();	            	
 	                HashMap data = getMailData(req, resp);
 	                sendMail(data);
 	 

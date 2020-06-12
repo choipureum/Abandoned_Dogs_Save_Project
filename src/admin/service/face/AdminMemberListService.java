@@ -31,4 +31,11 @@ public interface AdminMemberListService {
 	 * @return int - 정수값
 	 */
 	public int memberCount(HashMap<String,Object> listOpt);
+	
+	/**
+	 * 회원  전체 조회
+	 * @return - List<MemberDTO>
+	 * @param
+	 */
+	public List<MemberDTO> memberSelectAll();
 }

@@ -4,77 +4,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri ="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri ="http://java.sun.com/jsp/jstl/fmt" %>    
+<%@ taglib prefix="fmt" uri ="http://java.sun.com/jsp/jstl/fmt" %>   
+<%List<MemberDTO>all =(List)request.getAttribute("memberAll"); %> 
 <%	List<MemberDTO> m = (List) request.getAttribute("list"); %> 
-<% int membercnt= (int)request.getAttribute("membercnt"); %>   
+<% int membercnt= (int)request.getAttribute("membercnt"); %> 
+
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <title>관리자 페이지[회원관리]</title>
  	<style type="text/css">
-		body{
-			margin:0;
-			padding:0px;
-			font-size:14px;
-			font-family: helvetica,sans-serif;
-			}
+		body{margin:0;padding:0px;font-size:14px;font-family: helvetica,sans-serif;}
 		/*기준날짜 적어주는 작은 글씨*/
-		span{
-			position:relative;
-			font-size:10px;
-			float:right;
-			padding-right:40px;
-			
-		}
+		span{position:relative;font-size:10px;float:right;padding-right:40px;}
 		/*방문통계 버튼지표*/
-		button[id~=visitor_detail]{
-			float:right;
-			margin-right:30px;
-			margin-top:30px;
-			border:1px solid gray;
-			border-radius:20px;
-			width:80px;
-			height:80px;
-			
-		}
+		button[id~=visitor_detail]{float:right;margin-right:30px;margin-top:30px;border:1px solid gray;width:80px;height:80px;}
 		/*버튼 호버*/
-		button[id~=visitor_detail]:hover{
-			background:gray;
-			color:white;
-			transition:all 0.3s;
-		}
+		button[id~=visitor_detail]:hover{background:gray;color:white;transition:all 0.3s;}
 		/*방문자수 맨위 div상자*/
- 		.member_top, #Line_Controls_Chart, #myMember{
-			postion:absolute;
- 			border:1px solid gray;	
- 			text-align:center;	
- 			margin:30px;
- 		}
- 	
+ 		.member_top, #Line_Controls_Chart, #myMember{postion:absolute;border:1px solid gray;text-align:center;	margin:30px;}	
  		/*방문자수 어제 오늘 작은 글씨 - 한줄로 표시*/
- 		dl{
- 			display:inline-block;
- 			padding:10px 30px 20px 10px;
- 		}
+ 		dl{display:inline-block;padding:10px 30px 20px 10px;}
  		/*방문자수 실제 나타내는 숫자 글씨*/
- 		dl>dd{			
- 			text-align:center;
- 			font-size:2em;
- 			font-weight: bold;
- 			padding:10px 50px 20px 10px;
- 		}
+ 		dl>dd{text-align:center;font-size:2em;font-weight: bold;padding:10px 50px 20px 10px;}
  		
  	
- 	</style>
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+ 	</style>    
     <!-- google charts import -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  </head>
-  
-  
-  
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+  </head> 
   <body>
   
   <div id="container">
@@ -87,19 +48,14 @@
 	  <div class="member_top">
 	  
 	  	<div class= "box_visitor">
-	  	<!-- 오늘 회원 가입 수 -->
-	  		<dl class="count_visitor">
-	  			<dt>오늘 가입 회원 수</dt>
-	  			<dd>100</dd>
-	  		</dl>
-	  	<!-- 오늘 회원 가입 수 -->
+	  	<!-- 오늘 회원 가입 수 -->	  			  
 	  	<dl class="count_visitor">
-	  		<dt>어제 가입 회원 수</dt>
-	  		<dd>80</dd>
+	  		<dt>검색 회원 수</dt>
+	  		<dd><%=m.size() %></dd>
 	  	</dl>
 	  	<!-- 오늘 회원 가입 수 -->
 	  	<dl class="count_visitor">
-	  		<dt>누적 회원가입 회원 수</dt>
+	  		<dt>전체 회원 수</dt>
 	  		<dd><%=membercnt %></dd>
 	  	</dl>
 	  	</div>	  	
@@ -108,18 +64,23 @@
 	   <!-- 회원 수 그래프 표시 -->
 	   <div id="Line_Controls_Chart">
 	      <!-- 라인 차트 생성할 영역 -->
-	      <div id="lineChartArea" style="padding:0px 20px 0px 0px;"></div>
+	      <div id="lineChartArea" style="padding:40px 40px 0px 40px;"></div>
 	      <!-- 컨트롤바를 생성할 영역 -->
-	      <div id="controlsArea" style="padding:0px 20px 0px 0px;"></div>
+	      <div id="controlsArea" style="padding:40px 40px 0px 40px;"></div>
 	    </div>
 	    
-	 
+	 <div id="btnall" style="padding:40px 40px 0px 40px">
+	 	<button id="chk_All" onclick="chk_All();">전체선택</button>
+	 	<button id="chk_All" onclick="chk_All_Del();">선택해제</button>
+	 	<button class="member_delete" onclick="chk_delete();" >선택삭제</button>
+	 	<button class="mailsend" onclick="chk_sendmail();">메일보내기</button>	
+	 </div>
 	 <!-- 회원 목록 View -->
 	 <div id="myMember">
 	 	<div>
 	 		 <table id="bList" width="100%" border="3" bordercolor="lightgray">
             <tr heigh="30">
-            	<th>전체선택<input type="checkbox" class="member_chk_All" /></th>
+            	<th><input type="checkbox" class="member_chk_All" /></th>
                 <th>번호</th>
                 <th>아이디</th>
                 <th>회원이름</th>
@@ -132,16 +93,17 @@
              for(int i=0;i<m.size();i++){
              		cnt+=1; %>
             <tr>
-            	<td><input type="checkbox" class="member_chk"/></td>
+            	<td><input type="checkbox" class="member_chk" data-memberid=<%=m.get(i).getUserid() %>/></td>            	
                 <td><%=cnt %></td>
                 <td><%=m.get(i).getUserid() %></td>
                 <td><%=m.get(i).getUsername() %></td>
                 <td><%=m.get(i).getUsertel() %></td>
                 <td><%=m.get(i).getUseremail() %></td>
                 <td><%=m.get(i).getUsergrade() %></td>               
-            </tr>
+            </tr>       
             <% } %>
-        </table> 	
+        </table> 
+	
 	 	</div> 
 	 </div>
 	
@@ -169,12 +131,10 @@
     </div>
 
    </div><!-- container 끝 -->
+   <div id="resultLayout">
+	  	
+   </div>
   </body>
- 
- 
- 
- 
- 
 
   <script type="text/javascript">
   var chartDrowFun = {
@@ -199,9 +159,9 @@
           //그래프에 표시할 데이터
           var dataRow = [];
  			
-          //데이터 삽입예시 (더미데이터)
-          for(var i = 0; i <= 29; i++){ //랜덤 데이터 생성
-            var total   = Math.floor(Math.random() * 100) + 1;         
+          //데이터 삽입 (더미데이터)
+          for(var i = 0; i <= ${all }.size(); i++){ //랜덤 데이터 생성
+            ${all }.get(i)  
  
             dataRow = [new Date('2020', '06', i , '10'), total];
             data.addRow(dataRow);
@@ -277,7 +237,8 @@
 $(document).ready(function(){
   google.charts.load('current', {'packages':['line','controls']});
   chartDrowFun.chartDrow(); //chartDrow() 실행
-  
+	 
+ 
   // 방문통계 이동
   $("#visitor_detail").on("click", function(){
 				location.href="/admin/visitor";
@@ -285,10 +246,60 @@ $(document).ready(function(){
   //멤버 전체선택
   $(".member_chk_All").click(function(){
 	  $(".member_chk").prop("checked",this.checked);
-  });
+  });	
   
-			
+ 
 });
+  //선택해제
+    function chk_All_Del(){	  
+	  $(".member_chk").prop("checked",false);
+  }
+  //전체선택 
+  function chk_All(){		
+	  	$(".member_chk").prop("checked",true);
+  	
+  }
+  //선택회원 삭제(삭제)
+  function chk_delete(){
+	  var agree=confirm("선택 회원들을 삭제하시겠습니까?");
+	  //선택사항 삭제-확인 클릭시 
+	  if(agree){
+		 var checkArr = new Array();
+		 
+		 $("input[class='member_chk']:checked").each(function(){
+			 checkArr.push($(this).attr("data-memberid"));
+		 });
+		 $.ajax({
+			 url:"/admin/delete",
+			 type:"post",
+			 data:{member_chk : checkArr},
+			 success:function(){
+				 location.href ="/admin/memberlist";
+			 }
+		 });
+	  }
+  };	
+  //체크메일보내기(삭제)
+  function chk_sendmail(){
+	  var agree=confirm("선택 회원들에게 메일을 보내시겠습니까?");
+	  if(agree){
+		  $.ajax({
+		         type: "POST" //요청메소드
+		         , url: "/admin/AdminMailForm.jsp" //요청 url
+		         , data: { //요청파라미터
+		           mamberid : $("input[class='member_chk']:checked").attr("data-memberid")
+		         }
+		         , dataType : "html"
+		         , success : function(res) {
+		            console.log("AJAX 성공")		            
+		            $("#resultLayout").html(res)		            
+		         }
+		         
+	  })
+  }
+  }
+  
+ 
   </script>
 </html>
 

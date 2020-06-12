@@ -30,6 +30,12 @@ public class AdminMemberListServiceImpl implements AdminMemberListService{
 	public int memberDelete(MemberDTO member) {
 		return 0;
 	}
+	@Override
+	public List<MemberDTO> memberSelectAll() {
+		List<MemberDTO>list = adminMemberListDao.selectAll();
+		return list;
+	}
+	
 	
 
 

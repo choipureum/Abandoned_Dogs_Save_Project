@@ -2,7 +2,11 @@ package admin.dao.impl;
 
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 
@@ -89,9 +93,6 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 		    	ps=conn.prepareStatement(sql.toString());
 		    	rs=ps.executeQuery(sql.toString());
 		    	
-		    	System.out.println(sql.toString());
-		    	System.out.println(rs.next());
-		    	
 		    	while(rs.next()) {
 		    		//멤버객체 생성
 			    	MemberDTO member =new MemberDTO();
@@ -141,8 +142,7 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 		    	if(grade.equals("5")) {
 			    	//회원 전체 조회(검색 디폴트값)
 		    		if(opt.equals("0")) {	
-			    	  ps = conn.prepareStatement(sql.toString());	             			             			             
-			          sql.delete(0, sql.toString().length());
+			    	 	             			             			             
 			    	}
 			    	// 정렬조건 - 아이디로 검색
 			    	else if(opt.equals("1")) {
@@ -168,9 +168,7 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 			    		search=" where userid like %"+condition+"% and userGrade like %"+grade+"%";		    				    		
 			    	}
 		    	} 
-		    	sql.append(search);
-		    	
-		    	System.out.println(sql.toString());
+		    	sql.append(search);		    		    	
 		    	ps = conn.prepareStatement(sql.toString());
 		    	//sql 완성	-> 실행	    	
 		    	rs=ps.executeQuery();
@@ -213,7 +211,108 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 			return res;
 	    	
 	    }
+	    @Override
+	    public MemberDTO selectID(String userid) {
+	    	MemberDTO member = new MemberDTO();
+	    	conn = JDBCTemplate.getConnection();
+	    	
+	    	sql=new StringBuffer();	    	
+	    	sql.append("select * from where userid=?");
+	    	
+	    	try {
+				ps=conn.prepareStatement(sql.toString());
+				rs=ps.executeQuery();
+				if(rs.next()) {
+					member.setUserid(rs.getString("userid"));
+			    	member.setUsername(rs.getString("username"));
+			    	member.setUsertel(rs.getInt("userTel"));
+			    	member.setUseremail(rs.getString("userEmail"));
+			    	member.setUserbirth(rs.getString("userBirth"));
+			    	member.setUseraddress(rs.getString("userAddress"));	
+			    	member.setUsergrade(rs.getInt("userGrade"));
+			    	member.setUserregdate(rs.getDate("userRegDate"));
+				}								
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}    	finally {
+				JDBCTemplate.close(rs);
+				JDBCTemplate.close(ps);
+			}
+	    	return member;
+	    }
 	    
+	    @Override
+	    public List<MemberDTO> selectAll() {
+	    	conn = JDBCTemplate.getConnection();
+	    	sql=new StringBuffer();
+	    	
+	    	sql.append("SELECT * FROM member order by userid");
+	    	List<MemberDTO> list = new ArrayList<>();
+	    	
+	    	
+	    	try {
+				ps= conn.prepareStatement(sql.toString());
+				rs=ps.executeQuery();
+				
+				while(rs.next()) {
+					MemberDTO member = new MemberDTO();
+					member.setUserid(rs.getString("userid"));
+			    	member.setUsername(rs.getString("username"));
+			    	member.setUsertel(rs.getInt("userTel"));
+			    	member.setUseremail(rs.getString("userEmail"));
+			    	member.setUserbirth(rs.getString("userBirth"));
+			    	member.setUseraddress(rs.getString("userAddress"));	
+			    	member.setUsergrade(rs.getInt("userGrade"));
+			    	member.setUserregdate(rs.getDate("userRegDate"));
+			    	list.add(member);			    						
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}   	finally {
+				JDBCTemplate.close(rs);
+				JDBCTemplate.close(ps);
+			}	
+	    	return list;
+	    }
+	    // 그래프용
+	    @Override
+	    public HashMap<Date, Integer> graphMember() {
+	    	HashMap<Date,Integer> DateMap = new HashMap<Date, Integer>();
+	    	Calendar calc = Calendar.getInstance();
+	    	SimpleDateFormat sb = new SimpleDateFormat("yyyy-MM-dd");
+	    	conn = JDBCTemplate.getConnection();
+	    	sql=new StringBuffer();
+	    	calc.setTime(new Date());
+	    	
+	    	calc.add(Calendar.DATE, -15);	    	
+	    	String minDate = sb.format(calc.getTime()) ;
+	    	System.out.println(minDate);
+	    	calc.add(Calendar.DATE, 30);
+	    	String maxDate = sb.format(calc.getTime());
+	    	System.out.println(maxDate);
+	    	
+	    	sql.append("select * from (select * from member where userregDate<? and userRegDate>?) ");
+	    	sql.append(" order by userregDate");
+	    	
+	    	try {
+				ps =conn.prepareStatement(sql.toString());				
+				ps.setString(1,maxDate);
+				ps.setString(2,minDate);
+				rs = ps.executeQuery();
+				
+				while(rs.next()) {
+					
+					
+				}
+				
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+	    	
+	    	
+	    	return DateMap;
+	    }
 	    
 }
 

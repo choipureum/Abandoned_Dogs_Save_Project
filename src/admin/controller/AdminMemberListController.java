@@ -32,12 +32,10 @@ public class AdminMemberListController extends HttpServlet {
 		//멤버 수 세기
 		int membercnt=0;
 		membercnt= adminMemberListService.memberCount(listOpt);
+		//멤버 조회하기
 		List<MemberDTO> memberList = adminMemberListService.memberSelect(listOpt);
-		
-		for(MemberDTO m : memberList) {
-			System.out.println("멤버");
-			System.out.println(m);
-		}
+		List<MemberDTO>memberAll = adminMemberListService.memberSelectAll();
+		req.setAttribute("memberAll", memberAll);
 		req.setAttribute("list", memberList);	
 		req.setAttribute("membercnt", membercnt);
 		req.getRequestDispatcher("/WEB-INF/views/admin/AdminMemberListView.jsp").forward(req, resp);
@@ -56,10 +54,11 @@ public class AdminMemberListController extends HttpServlet {
              
         int listCount = adminMemberListService.memberCount(listOpt);
         List<MemberDTO> list =  adminMemberListService.memberSelect(listOpt);
+       
+        req.setAttribute("list", list);
         
-//        req.setAttribute("list", list);
-        
-//        //포워딩(맞나? 확인좀...)
+
+//        포워딩(맞나? 확인좀...)
 //        req.getRequestDispatcher("/WEB-INF/views/admin/AdminMemberListView.jsp").forward(req, resp);
 	}
 }
