@@ -9,7 +9,7 @@
       <address class="addr">
         상호명:다솜 │ 대표:4조 │ 개인정보관리자:4조
       </address>
-      <p class="copy">Copyright &copy; 2020-2020 by 다솜. All rights reserved.</p>
+      <p class="copy">Copyright 2020-2020 by 다솜. All rights reserved.</p>
        <ul class="social"> 
          <li><a href="#"><img src="../resources/f_logo01.png" alt="카카오톡"></a></li> 
         <li><a href="#"><img src="../resources/f_logo02.png" alt="페이스북"></a></li> 

@@ -5,32 +5,28 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- 모든 페이지에 jQuery 라이브러리 추가됨 -->
-
 <style type="text/css">
-
+/* section 영역 */
 /* div전체 영역 */
 .section {
-	 line-height: 67px; 
-	 text-align: center;
-	 margin-top: 50px;
-	 margin-bottom: 0px;
-	 flex: 1;
+line-height: 67px;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 0px;
+    width: 80%;
+    margin-left: 10%;
 	 
 }
-
+	
 /* 입양안내 */ 
 .section_img { 
  	height: 600px;
  	width: 60%; 
  
  } 
-
-
 </style>
 </head>
 <body>
-
 <div class="section">
 <!-- 사이트소개글 start -->
 <section id="section-1">
@@ -54,7 +50,6 @@ Duis ut metus enim. Proin quis gravida purus, eget viverra felis. Interdum et ma
 <img alt="입양안내" src="../resources/section_01.jpg" class="section_img">
 </section>
 <!-- 입양안내 end  -->
-
 </div>
 </body>
 </html>

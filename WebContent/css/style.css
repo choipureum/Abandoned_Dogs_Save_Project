@@ -63,6 +63,7 @@ html, body {
 	border-bottom-style: solid;
 	padding-left: 150px;
 	background: white;
+	z-index: 9999;
 }
 /* .gnb영역 */
 .gnb {
@@ -112,7 +113,9 @@ header .gnb .gnb_group .gnb_box .gnb_title:hover {
 }
 
 
-/* 푸터전체 영역 */
+/* ---------------------------------------  */
+
+/* footer 영역 */
 #footer {
 	height: 140px;
 	background: #272424e8;
@@ -152,6 +155,8 @@ header .gnb .gnb_group .gnb_box .gnb_title:hover {
 	height: 38px;
 	width: 38px;
 }
+
+
 
 
 
