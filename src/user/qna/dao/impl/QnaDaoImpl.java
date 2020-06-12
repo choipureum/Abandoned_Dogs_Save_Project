@@ -40,20 +40,18 @@ public class QnaDaoImpl implements QnaDao {
 					
 					//조회 결과 처리
 					while(rs.next()) {
-						QNA list = new QNA(); //결과값 저장 객체
+						QNA qna = new QNA(); //결과값 저장 객체
 						
-						list.setQnaNO( rs.getInt("qnano") );
-						list.setQnaTitle( rs.getString("qnatitle") );
-						list.setQnaContent( rs.getString("qnacount") );
-						list.setQnaHit( rs.getInt("qnahit"));
-						list.setQnaDate( rs.getDate("qnadate") );
-						list.setQnaImg( rs.getString("qnaimg") );
-						list.setQnaWriter( rs.getString("qnawriter") );
-						
-						
-						
+						qna.setQnaNO( rs.getInt("qnano") );
+						qna.setQnaTitle( rs.getString("qnatitle") );
+						qna.setQnaContent( rs.getString("qnacontent") );
+						qna.setQnaHit( rs.getInt("qnahit"));
+						qna.setQnaDate( rs.getDate("qnadate") );
+						qna.setQnaImg( rs.getString("qnaimg") );
+						qna.setQnaWriter( rs.getString("qnawriter") );
+																		
 						//리스트에 결과값 저장
-						qnaList.add(list);
+						qnaList.add(qna);
 					}
 					
 				} catch (SQLException e) {

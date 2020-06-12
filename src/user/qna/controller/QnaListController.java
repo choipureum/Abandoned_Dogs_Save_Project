@@ -26,14 +26,11 @@ public class QnaListController extends HttpServlet {
 		
 		//게시글 전체 조회
 		List<QNA> qnaList = qnaService.getList();
-		
-		
-		
+	
 		//List<Board> boardList = boardService.getList(paging);
 		
 		//조회결과 MODEL값 전달
-		request.setAttribute("qnaList", qnaList);
-		
+		request.setAttribute("qnaList", qnaList);		
 		
 		request.getRequestDispatcher("/WEB-INF/views/user/qna/list.jsp").forward(request, response);
 		
