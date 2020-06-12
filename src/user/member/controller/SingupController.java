@@ -25,6 +25,7 @@ public class SingupController extends HttpServlet {
    @Override
    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
       
+//     확인 콘솔
       System.out.println("g확인");
       req.getRequestDispatcher("/WEB-INF/views/user/member/singup.jsp")
          .forward(req, resp);
@@ -37,36 +38,35 @@ public class SingupController extends HttpServlet {
    @Override
    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
       //생성
-      MemberDTO member=new MemberDTO();
+//      MemberDTO member=new MemberDTO();
 //      인코딩
       req.setCharacterEncoding("UTF-8");
       
 //      파라미터 저장 - service 이용
-      MemberDTO memberDTO = memberService.getParam(req);
+      MemberDTO member = memberService.getParam(req);
       
-//      MemberDTO result= memberService.join(member);
+      //확인
+      System.out.println(member);
       
-      int result = memberService.insert(member);
+//    MemberDTO result= memberService.join(member);
+      
+      //데이터베이스 입력
+      int res=memberService.insert(member);
       //결과반환
       
       
-//      //결과 값 반환 확인
-//      
-//      if(result ==1 ) {
-//         
-//         req.setAttribute("result", result);
-//         HttpSession session=req.getSession();
-//         session.setAttribute("sessionID", "userId");
-////         메인으로 이동
-//         RequestDispatcher rd=req.getRequestDispatcher("/WEB-INF/views/user/member/main.jsp");
-//         rd.forward(req, resp);
-//      
-//      } else {
-//         req.setAttribute("result", 0);
-//         RequestDispatcher rd= req.getRequestDispatcher("/WEB-INF/views/user/member/singup.jsp");
-//         rd.forward(req, resp);
-//      }
-
+      
+      if(res>0) {
+         req.setAttribute("res", res);
+      }else {
+         System.out.println("입력실패");
+      }
+      
+      
+      
+      //view 전달
+      req.getRequestDispatcher("/WEB-INF/views/user/member/result.jsp")
+         .forward(req, resp);
 
    }
 

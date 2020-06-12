@@ -16,7 +16,7 @@ public interface MemberService {
    /**
     * 회원가입 하는 부분
     * 
-    * @param member - 회원정보있고
+    * @param member - 회원정보 
     * @return - db
     */
    public int insert(MemberDTO member);
