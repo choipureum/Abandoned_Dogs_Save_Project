@@ -44,7 +44,7 @@ public class QnaDaoImpl implements QnaDao {
 						
 						list.setQnaNO( rs.getInt("qnano") );
 						list.setQnaTitle( rs.getString("qnatitle") );
-						list.setQnaContent( rs.getString("qnacount") );
+						list.setQnaContent( rs.getString("qnacontent") );
 						list.setQnaHit( rs.getInt("qnahit"));
 						list.setQnaDate( rs.getDate("qnadate") );
 						list.setQnaImg( rs.getString("qnaimg") );
