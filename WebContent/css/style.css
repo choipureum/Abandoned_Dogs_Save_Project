@@ -93,7 +93,7 @@ header .gnb .gnb_group .gnb_box {
 
 /* 헤더메뉴 메뉴항목 텍스트*/
 header .gnb .gnb_group .gnb_box .gnb_title {
-	font-size: 1.6vw;
+	font-size: 1.5vw;
 	font-weight: bold;
 	font-family: "돋움", dotum, sans-serif;
 	color: #333;

@@ -54,33 +54,6 @@ height:110px; overflow:hidden; transform:translateY(-50%); color:#ccc; font-weig
  .bx-pager div a.active{ background: #000;}
  </style> 
 
-<style type="text/css">
-/* section 영역 */
-/* div전체 영역 */
-.section {
-line-height: 67px;
-    text-align: center;
-    margin-top: 50px;
-    margin-bottom: 0px;
-    width: 80%;
-    margin-left: 10%;
-	 
-}
-	
-/* 입양안내 */ 
-.section_img { 
- 	height: 600px;
- 	width: 60%; 
- 
- } 
-</style>
-
-
-
-
-
-
-
 </head>
 <body>
 

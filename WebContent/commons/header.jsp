@@ -16,18 +16,21 @@ src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script type="text/javascript">
 // 모든 페이지에 적용되는 공통 Javascript
 $(document).ready(function() {
-
-	var gnb = $(".gnb").offset().top;
 	$(window).scroll(function() { //스크롤하면 아래 코드 실행
-	  	var window = $(this).scrollTop();
+		var gnb = $(".gnb").offset().top;
+		$(window).scroll(function() { //스크롤하면 아래 코드 실행
+		  	var window = $(this).scrollTop();
 
-	    if(gnb <= window) {
-	      $(".gnb").addClass("fixed");
-	    } else {
-	      $(".gnb").removeClass("fixed");
-	    }
-	})
- });
+		    if(gnb <= window) {
+		      $(".gnb").addClass("fixed");
+		    } else {
+		      $(".gnb").removeClass("fixed");
+		    }
+		})
+	 });
+})
+
+
 </script>
 </head>
 <body>
