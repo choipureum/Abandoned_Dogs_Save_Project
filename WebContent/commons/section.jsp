@@ -14,65 +14,50 @@
 <!-- bx 슬라이더 function -->
 <script>
     $(document).ready(function(){
-    	
     	//사이트 소개 슬라이더
 	    $('.slider').bxSlider({
-	    
+	    	auto:true,
+	    	pause:2000,
+	    	autoHover: true
 	    });
     	//공고일 슬라이더
-    	$('.dog_slider').bxSlider({
-    		auto:true,
-	    	pause:2000,
-	    	auto:true,
-	    	autoHover: true 
+    	$('.dogslider').bxSlider({
+    		
+    		minSlides: 1,
+    		maxSlides: 5,
+    		slideWidth:200,
+    		slideMargin:30,
+    		moveSlides:1,
+    		pager:false,
+    		shrinkItems:true
     	});
     });
- </script>
+</script>
 
-<!-- bx 슬라이더 스타일 지정 -->
-<style type="text/css">
-.slider{text-align: center}/* 소개글 이미지 센터로 */
-.slider div img { width:960px; height:700px;}
 
-.dog_slider{text-align: center}/* 공고일 이미지 센터로 */
-.dog_slider div img{ width:800px; height:200px;}
- 
-.bx-wrapper{position: relative;} /* 부모 위치 */
-.bx-controls-direction{font-size:100px;}/* 이전,다음 버튼의 크기 */
-.bx-controls-direction a{position:absolute; top:50%; display:block; width:100px; 
-height:110px; overflow:hidden; transform:translateY(-50%); color:#ccc; font-weight:normal; }/* 이전,다음 버튼의 위치 */
-
-.bx-controls-direction .bx-prev{ left:200px;}/* 이전 버튼  위치*/
-.bx-controls-direction .bx-next{ right:200px;}/* 다음 버튼  위치*/
-
-.bx-controls-direction .bx-prev:before{ content:"\e93d";font-family:'xeicon';}/* 이전 버튼 */
-.bx-controls-direction .bx-next:before{ content:"\e940";font-family:'xeicon';}/* 다음 버튼 */
- 
- .bx-pager{position: absolute; left:0; bottom:-90px; width:100%; text-align: center;}/* 밑의 페이징 */
- .bx-pager div{ display: inline-block; padding: 0 5px;} /* 인라인블락요소라서 좌우로 5px */
- .bx-pager div a{ display:block; font-size: 0; color: transparent; width:24px; height:3px; background: #ccc;}
- .bx-pager div a.active{ background: #000;}
- </style> 
 
 </head>
 <body>
 
 <!-- bx슬라이더 -->
-<div class="bxsection">
-	<div class="slider">
+<div class="slider">
     <div><img alt="" src="/resources/dog1.jpg"></div>
     <div><img alt="" src="/resources/dog2.jpg"></div>
     <div><img alt="" src="/resources/hi.jpg"></div>
 	<div><img alt="" src="/resources/dog2.jpg"></div> 
-  </div>
+</div>
 <br><br><br><br><br>
-<div class="dog_slider">
-    <div><img alt="" src="/resources/dog1.jpg"></div>
-    <div><img alt="" src="/resources/dog2.jpg"></div>
-    <div><img alt="" src="/resources/hi.jpg"></div>
-	<div><img alt="" src="/resources/dog2.jpg"></div> 
-	
-  </div>
+
+<hr>
+<div class="dogslider">
+ 	<img alt="" src="/resources/dog1.jpg">
+	<img alt="" src="/resources/dog2.jpg">
+    <img alt="" src="/resources/hi.jpg">
+	<img alt="" src="/resources/dog2.jpg">
+  	<img alt="" src="/resources/dog1.jpg">
+  	<img alt="" src="/resources/dog2.jpg">
+   	<img alt="" src="/resources/hi.jpg">
+	<img alt="" src="/resources/dog2.jpg">
 </div>
 <br><br><br><br><br>
 <!-- 여기까지 -->
