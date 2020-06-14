@@ -48,6 +48,7 @@ $(document).ready(function() {
 				<li class="gnb_box"><a class="gnb_title" href="#section-1">사이트소개</a></li>
 				<li class="gnb_box"><a class="gnb_title" href="#section-2">입양안내</a></li>
 				<li class="gnb_box"><a class="gnb_title" href="#">가족찾기</a></li>
+				<li class="gnb_box"><a class="gnb_title" href="#">유기견 보호소</a></li>
 				<li class="gnb_box"><a class="gnb_title" href="#">분실신고</a></li>
 				<li class="gnb_box"><a class="gnb_title" href="#">커뮤니티</a>
 			</ul>

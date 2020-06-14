@@ -1,33 +1,9 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<<<<<<< HEAD
 
-<style>
-div {
-	width: 200px;
-	height: 100%;
-	background: orange;
-=======
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<style type="text/css">
-/* sidebar 영역 */
-#floatMenu {
-	position: absolute;
-    width: 10%;
-    height: 200px;
-    right: -50px;
-    top: 280px;
-    color: #fff;
-    z-index: -9999;
->>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
-}
-</style>    
-</head>
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+
 
 <script type="text/javascript"
 src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
@@ -58,20 +34,9 @@ $(document).ready(function() {
 
 </script>
 
-<body>
 <div id="floatMenu">
-<table>
-<tr>
-<td>
-<a href="#"><img alt="top" src="../resources/s_logo01.png"> </a>
-</td>
-</tr>
-<tr>
-<td>
-<a href="#"><img alt="상담문의" src="../resources/s_logo02.png"> </a>
-</td>
-</tr>
-</table>
+<ul class="floatCenter">
+	<li><a href="#"><img alt="top" src="../resources/s_logo01.png"> </a></li>
+	<li><a href="#"><img alt="상담문의" src="../resources/s_logo02.png"> </a></li>
+</ul>
 </div>
-</body>
-</html>

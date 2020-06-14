@@ -22,11 +22,11 @@ html, body {
 /* 헤더 로고 */
 #top_header .logo {
 	float: left;
-	width: 200px;
-	height: 118px;
+	width: 150px;
+	height: 100px;
 	display: inline-block;
-	margin-top: 4px;
-	margin-left: 5px;
+	margin-top: 15px;
+	margin-left: 2px;
 }
 
 /** 헤더영역 탑 메뉴**/
@@ -61,7 +61,7 @@ html, body {
 	border-bottom: 5px;
 	border-bottom-color: #32A5B4;
 	border-bottom-style: solid;
-	padding-left: 150px;
+	padding-left: 100px;
 	background: white;
 	z-index: 9999;
 }
@@ -86,15 +86,14 @@ header .gnb .gnb_group {
 header .gnb .gnb_group .gnb_box {
 	display: inline-block;
 	vertical-align: top;
-	width: 15%;
-	padding: 20px 0;
-	font-size: 25px;
+	width: 13%;
+	padding: 20px 0 20px 5px;
 	text-align: center;
 }
 
 /* 헤더메뉴 메뉴항목 텍스트*/
 header .gnb .gnb_group .gnb_box .gnb_title {
-	font-size: 20px;
+	font-size: 1.6vw;
 	font-weight: bold;
 	font-family: "돋움", dotum, sans-serif;
 	color: #333;
@@ -111,6 +110,46 @@ header .gnb .gnb_group .gnb_box .gnb_title:hover {
 	transition: all 1s;
 	color: #32A5B4;
 }
+
+/* ---------------------------------------  */
+/* sidebar 영역 */
+
+#floatMenu {
+	position: absolute;
+    width: 10%;
+    height: 200px;
+    right: 0;
+    top: 280px;
+    color: #fff;
+    z-index: -9999;
+}
+
+/* 테이블 logo 영역 */
+.floatCenter {
+	padding: 0px 35px;
+	list-style-type: none;
+}
+
+/* ---------------------------------------  */
+/* section 영역 */
+
+/* div전체 영역 */
+.section {
+	line-height: 67px;
+    text-align: center;
+    margin-top: 50px;
+    width: 80%;
+    margin-left: 10%;
+	 
+}
+	
+/* 입양안내 */ 
+.section_img { 
+ 	height: 700px;
+ 	width: 80%; 
+ 
+ } 
+
 
 
 /* ---------------------------------------  */
@@ -155,6 +194,7 @@ header .gnb .gnb_group .gnb_box .gnb_title:hover {
 	height: 38px;
 	width: 38px;
 }
+
 
 
 
