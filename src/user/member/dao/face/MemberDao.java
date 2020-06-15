@@ -20,5 +20,16 @@ public interface MemberDao {
 
    
    
+   /**
+    *  로그인 정보
+    * @param userid - 로그인 아이디
+    * @param userpw - ㅎ로그인 비밀번호
+    * @return
+    */
+   
+   public int login(String userid, String userpw);
+
+   
+   
    
 }

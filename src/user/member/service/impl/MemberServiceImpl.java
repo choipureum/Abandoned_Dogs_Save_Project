@@ -18,23 +18,27 @@ public class MemberServiceImpl implements MemberService{
      birth.append(req.getParameter("userbirth_yy"));
      birth.append(req.getParameter("userbirth_mm"));
      birth.append(req.getParameter("userbirth_dd"));
-   
+     //주소 하나로 합치기
+     StringBuffer address = new StringBuffer();
+     address.append(req.getParameter("mem_oaddress")+" ");
+     address.append(req.getParameter("mem_address")+" ");
+     address.append(req.getParameter("mem_detailaddress"));
       //객체생성
       MemberDTO member = new MemberDTO();
       
-      //userid, userpw, username, useremail, useraddress , usertel, userbirth
+      //userid, userpw, username, useremail, useraddress , usertel, userbirth , mem_oaddress, mem_address, mem_detailaddress
+  
       member.setUserid(req.getParameter("userid"));
       member.setUserpw(req.getParameter("userpw"));
       member.setUsername(req.getParameter("username"));
       member.setUseremail(req.getParameter("useremail"));
-      member.setUseraddress(req.getParameter("useraddress"));
+      member.setUseraddress(address.toString());
       member.setUserbirth(birth.toString());
-      member.setUsertel(Integer.parseInt(req.getParameter("usertel")));
+      member.setUsertel(req.getParameter("usertel"));
       
       return member;
       
    }
-
 
    @Override
    public int insert(MemberDTO member) {
@@ -49,6 +53,13 @@ public class MemberServiceImpl implements MemberService{
       //member 객체 db insert
    
       return memberDao.insert(member);
+   }
+
+
+   @Override
+	public boolean login(String userid, String userpw) {
+	   // TODO Auto-generated method stub
+	   return false;
    }
 
 }

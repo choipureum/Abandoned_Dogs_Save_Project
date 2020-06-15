@@ -62,8 +62,7 @@ public class SingupController extends HttpServlet {
          System.out.println("입력실패");
       }
       
-      
-      
+
       //view 전달
       req.getRequestDispatcher("/WEB-INF/views/user/member/result.jsp")
          .forward(req, resp);
