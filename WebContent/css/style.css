@@ -134,7 +134,7 @@ header .gnb .gnb_group .gnb_box .gnb_title:hover {
 /* section 영역 */
 /* bx 슬라이더 영역 */
 .slider{text-align: center}/* 소개글 이미지 센터로 */
-.slider div img { width:960px; height:700px;}
+.slider div img { width:100%; height:590px;}
 
 .dogslider{text-align: center; width:960px;}
  
@@ -146,22 +146,18 @@ header .gnb .gnb_group .gnb_box .gnb_title:hover {
 height:80px; overflow:hidden; transform:translateY(-50%); color:#ccc; font-weight:normal; }/* 이전,다음 버튼의 위치 */
 
 
-.bx-controls-direction .bx-prev{ left:10%;}/* 이전 버튼  위치*/
-.bx-controls-direction .bx-next{ right:10%;}/* 다음 버튼  위치*/
+.bx-controls-direction .bx-prev{ left:0%;}/* 이전 버튼  위치*/
+.bx-controls-direction .bx-next{ right:0%;}/* 다음 버튼  위치*/
 
 .bx-controls-direction .bx-prev:before{ content:"\e93d";font-family:'xeicon';}/* 이전 버튼 */
 .bx-controls-direction .bx-next:before{ content:"\e940";font-family:'xeicon';}/* 다음 버튼 */
  
  
- .bx-pager{position: absolute; left:0; bottom:-90px; width:100%; text-align: center;}/* 밑의 페이징 */
+ .bx-pager{position: absolute; left:0; bottom:-20px; width:100%; text-align: center;}/* 밑의 페이징 */
  .bx-pager div{ display: inline-block; padding: 0 5px;} /* 인라인블락요소라서 좌우로 5px */
  .bx-pager div a{ display:block; font-size: 0; color: transparent; width:24px; height:3px; background: #ccc;}
  .bx-pager div a.active{ background: #000;}
 /* 여기까지 bx슬라이더 */
-
-
-
-
 
 
 /* div전체 영역 */
@@ -171,6 +167,8 @@ height:80px; overflow:hidden; transform:translateY(-50%); color:#ccc; font-weigh
     margin-top: 50px;
     width: 80%;
     margin-left: 10%;
+    margin-top: 0;
+    
 	 
 }
 	
@@ -181,7 +179,16 @@ height:80px; overflow:hidden; transform:translateY(-50%); color:#ccc; font-weigh
  
  } 
 
-
+.dog_title01 {
+	position: relative;
+	display: inline-block;
+	left: -433px;
+	top: 20px;
+	
+}
+.dog_title01 h2{
+	margin: 0;
+}
 
 /* ---------------------------------------  */
 

@@ -26,7 +26,7 @@
     		
     		minSlides: 1,
     		maxSlides: 5,
-    		slideWidth:200,
+    		slideWidth:255,
     		slideMargin:30,
     		moveSlides:1,
     		pager:false,
@@ -39,6 +39,7 @@
 
 </head>
 <body>
+<div class="section">
 
 <!-- bx슬라이더 -->
 <div class="slider">
@@ -47,8 +48,11 @@
     <div><img alt="" src="/resources/hi.jpg"></div>
 	<div><img alt="" src="/resources/dog2.jpg"></div> 
 </div>
-<br><br><br><br><br>
+<br><br>
 
+<div class="dog_title01">
+<h2>가족찾기</h2>
+</div>
 <hr>
 <div class="dogslider">
  	<img alt="" src="/resources/dog1.jpg">
@@ -63,7 +67,6 @@
 <br><br><br><br><br>
 <!-- 여기까지 -->
 
-<div class="section">
 <!-- 사이트소개글 start -->
 <section id="section-1" >
 <h2>사이트 소개글</h2>
