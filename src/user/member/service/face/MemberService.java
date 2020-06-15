@@ -21,4 +21,14 @@ public interface MemberService {
     */
    public int insert(MemberDTO member);
 
+   /**
+    * 로그인 기능
+    * @param userid - 회원 아이디
+    * @param userpw - 회원 비밀번호
+    * @return
+    */
+   public boolean login(String userid, String userpw);
+
+
+   
 }

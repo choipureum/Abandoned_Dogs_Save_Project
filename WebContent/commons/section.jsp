@@ -5,35 +5,70 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- 모든 페이지에 jQuery 라이브러리 추가됨 -->
 
-<style type="text/css">
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<!-- ------------------ BX 슬라이더 라이브러리 ----------------------- -->
+	<link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 
-/* div전체 영역 */
-.section {
-	 line-height: 67px; 
-	 text-align: center;
-	 margin-top: 50px;
-	 margin-bottom: 0px;
-	 flex: 1;
-	 
-}
+<!-- bx 슬라이더 function -->
+<script>
+    $(document).ready(function(){
+    	//사이트 소개 슬라이더
+	    $('.slider').bxSlider({
+	    	auto:true,
+	    	pause:2000,
+	    	autoHover: true
+	    });
+    	//공고일 슬라이더
+    	$('.dogslider').bxSlider({
+    		
+    		minSlides: 1,
+    		maxSlides: 6,
+    		slideWidth:255,
+    		slideMargin:30,
+    		moveSlides:1,
+    		pager:false,
+    		shrinkItems:true
+    	});
+    });
+</script>
 
-/* 입양안내 */ 
-.section_img { 
- 	height: 600px;
- 	width: 60%; 
- 
- } 
 
 
-</style>
 </head>
 <body>
-
 <div class="section">
+
+<!-- bx슬라이더 -->
+<div class="slider">
+    <div><img alt="" src="/resources/dog1.jpg"></div>
+    <div><img alt="" src="/resources/dog2.jpg"></div>
+    <div><img alt="" src="/resources/hi.jpg"></div>
+	<div><img alt="" src="/resources/dog2.jpg"></div> 
+</div>
+<br><br>
+
+<div class="dog_title01">
+<h2>가족찾기</h2>
+</div>
+<hr>
+<div class="dogslider">
+ 	<img alt="" src="/resources/dog1.jpg">
+	<img alt="" src="/resources/dog2.jpg">
+    <img alt="" src="/resources/hi.jpg">
+	<img alt="" src="/resources/dog2.jpg">
+  	<img alt="" src="/resources/dog1.jpg">
+  	<img alt="" src="/resources/dog2.jpg">
+   	<img alt="" src="/resources/hi.jpg">
+	<img alt="" src="/resources/dog2.jpg">
+</div>
+<br><br><br><br><br>
+<!-- 여기까지 -->
+
 <!-- 사이트소개글 start -->
-<section id="section-1">
+<section id="section-1" >
 <h2>사이트 소개글</h2>
 <p class="padding-top10">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tempor felis arcu, eu varius arcu condimentum imperdiet. Praesent viverra lorem nec purus lobortis, at vehicula mauris accumsan. Nullam fringilla nulla sed rhoncus sollicitudin. Cras gravida tortor at dignissim dapibus. Phasellus quis dolor diam. Vivamus accumsan purus lectus, in scelerisque ex lacinia ut. Aenean mollis bibendum tortor, id luctus erat viverra in. Morbi arcu ligula, pulvinar in pharetra vitae, gravida vel nulla.
 
@@ -48,13 +83,13 @@ Duis ut metus enim. Proin quis gravida purus, eget viverra felis. Interdum et ma
 </section>
 <!-- 사이트소개 end -->
 
+
 <!-- 입양안내 start -->
 <section id="section-2">
 <h2>입양안내</h2>
 <img alt="입양안내" src="../resources/section_01.jpg" class="section_img">
 </section>
 <!-- 입양안내 end  -->
-
 </div>
 </body>
 </html>

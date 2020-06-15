@@ -16,18 +16,21 @@ src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script type="text/javascript">
 // 모든 페이지에 적용되는 공통 Javascript
 $(document).ready(function() {
-
-	var gnb = $(".gnb").offset().top;
 	$(window).scroll(function() { //스크롤하면 아래 코드 실행
-	  	var window = $(this).scrollTop();
+		var gnb = $(".gnb").offset().top;
+		$(window).scroll(function() { //스크롤하면 아래 코드 실행
+		  	var window = $(this).scrollTop();
 
-	    if(gnb <= window) {
-	      $(".gnb").addClass("fixed");
-	    } else {
-	      $(".gnb").removeClass("fixed");
-	    }
-	})
- });
+		    if(gnb <= window) {
+		      $(".gnb").addClass("fixed");
+		    } else {
+		      $(".gnb").removeClass("fixed");
+		    }
+		})
+	 });
+})
+
+
 </script>
 </head>
 <body>
@@ -48,6 +51,7 @@ $(document).ready(function() {
 				<li class="gnb_box"><a class="gnb_title" href="#section-1">사이트소개</a></li>
 				<li class="gnb_box"><a class="gnb_title" href="#section-2">입양안내</a></li>
 				<li class="gnb_box"><a class="gnb_title" href="#">가족찾기</a></li>
+				<li class="gnb_box"><a class="gnb_title" href="#">유기견 보호소</a></li>
 				<li class="gnb_box"><a class="gnb_title" href="#">분실신고</a></li>
 				<li class="gnb_box"><a class="gnb_title" href="#">커뮤니티</a>
 			</ul>
