@@ -110,7 +110,7 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 			    	MemberDTO member =new MemberDTO();
 			    	member.setUserid(rs.getString("userid"));
 			    	member.setUsername(rs.getString("username"));
-			    	member.setUsertel(rs.getInt("userTel"));
+			    	member.setUsertel(rs.getString("userTel"));
 			    	member.setUseremail(rs.getString("userEmail"));
 			    	member.setUserbirth(rs.getString("userBirth"));
 			    	member.setUseraddress(rs.getString("userAddress"));	
@@ -237,7 +237,7 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 				if(rs.next()) {
 					member.setUserid(rs.getString("userid"));
 			    	member.setUsername(rs.getString("username"));
-			    	member.setUsertel(rs.getInt("userTel"));
+			    	member.setUsertel(rs.getString("userTel"));
 			    	member.setUseremail(rs.getString("userEmail"));
 			    	member.setUserbirth(rs.getString("userBirth"));
 			    	member.setUseraddress(rs.getString("userAddress"));	
@@ -270,7 +270,7 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 					MemberDTO member = new MemberDTO();
 					member.setUserid(rs.getString("userid"));
 			    	member.setUsername(rs.getString("username"));
-			    	member.setUsertel(rs.getInt("userTel"));
+			    	member.setUsertel(rs.getString("userTel"));
 			    	member.setUseremail(rs.getString("userEmail"));
 			    	member.setUserbirth(rs.getString("userBirth"));
 			    	member.setUseraddress(rs.getString("userAddress"));	
