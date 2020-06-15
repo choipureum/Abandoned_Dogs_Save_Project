@@ -25,7 +25,7 @@
     	$('.dogslider').bxSlider({
     		
     		minSlides: 1,
-    		maxSlides: 5,
+    		maxSlides: 6,
     		slideWidth:255,
     		slideMargin:30,
     		moveSlides:1,

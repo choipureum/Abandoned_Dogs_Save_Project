@@ -136,7 +136,7 @@ header .gnb .gnb_group .gnb_box .gnb_title:hover {
 .slider{text-align: center}/* 소개글 이미지 센터로 */
 .slider div img { width:100%; height:590px;}
 
-.dogslider{text-align: center; width:960px;}
+.dogslider{text-align: center; width:100%;}
 .dogslider img:hover{ transform:scale(1.1);}/* 마우스 호버 시 크기 확장 */ 
  	
  																
