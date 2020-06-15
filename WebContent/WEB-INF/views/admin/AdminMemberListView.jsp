@@ -7,7 +7,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri ="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri ="http://java.sun.com/jsp/jstl/fmt" %>  
-
 <%List<Date>graphKey =(List)request.getAttribute("graphKey"); %> 
 <%List<Integer>graphVal =(List)request.getAttribute("graphVal"); %> 
 <%List<MemberDTO>all =(List)request.getAttribute("memberAll"); %> 
@@ -38,7 +37,6 @@
  		/*방문자수 실제 나타내는 숫자 글씨*/
  		dl>dd{text-align:center;font-size:2em;font-weight: bold;padding:10px 50px 20px 10px;}
  		
- 	
  	</style>    
     <!-- google charts import -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
