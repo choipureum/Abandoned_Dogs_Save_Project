@@ -3,6 +3,7 @@
         <%@ taglib prefix="c" uri ="http://java.sun.com/jsp/jstl/core" %>  
      <%@ taglib prefix="fmt" uri ="http://java.sun.com/jsp/jstl/fmt" %>  
 <c:set var="memberid" value="${param.memberid }"/>    
+
 <form action="/WebSendMail" method="post" enctype="multipart/form-data">
 <table border="1" >
 <tr>
@@ -20,6 +21,6 @@
 <tr>
    <td colspan="2"><input type="submit" value="Submit"></td>
 </tr>
-<tr><td><input type="hidden" name="${memberid} }"> </td></tr>
+<tr><td><input type="hidden" name="${memberid}" value="${memberid }"> </td></tr>
 </table>
 </form>

@@ -1,12 +1,16 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.TreeMap"%>
 <%@page import="java.util.List"%>
 <%@page import="user.member.dto.MemberDTO"%>
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri ="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri ="http://java.sun.com/jsp/jstl/fmt" %>   
+<%@ taglib prefix="fmt" uri ="http://java.sun.com/jsp/jstl/fmt" %>  
+
+<% TreeMap<Object,Integer>graph =(TreeMap<Object,Integer>)request.getAttribute("graph"); %> 
 <%List<MemberDTO>all =(List)request.getAttribute("memberAll"); %> 
-<%	List<MemberDTO> m = (List) request.getAttribute("list"); %> 
+<%List<MemberDTO> m = (List) request.getAttribute("list"); %> 
 <% int membercnt= (int)request.getAttribute("membercnt"); %> 
 
 <!DOCTYPE html>
@@ -14,6 +18,10 @@
   <head>
     <meta charset="utf-8">
     <title>관리자 페이지[회원관리]</title>
+    <!-- 부트스트랩 3.3.2 -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
  	<style type="text/css">
 		body{margin:0;padding:0px;font-size:14px;font-family: helvetica,sans-serif;}
 		/*기준날짜 적어주는 작은 글씨*/
@@ -34,7 +42,7 @@
     <!-- google charts import -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript"  src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
   </head> 
   <body>
   
@@ -43,7 +51,7 @@
   			<c:set var="now" value="<%=new Date() %>"/>
   			<fmt:formatDate value="${now }" type="date" dateStyle="medium"/> 기준  			
   		</span>
-  		<button id="visitor_detail" >방문통계</button>
+  		
 	  <!-- 방문자 수 박스 -->
 	  <div class="member_top">
 	  
@@ -71,10 +79,11 @@
 	    
 	 <div id="btnall" style="padding:40px 40px 0px 40px">
 	 	<button id="chk_All" onclick="chk_All();">전체선택</button>
-	 	<button id="chk_All" onclick="chk_All_Del();">선택해제</button>
+	 	<button id="chk_All_Die" onclick="chk_All_Del();">선택해제</button>
 	 	<button class="member_delete" onclick="chk_delete();" >선택삭제</button>
 	 	<button class="mailsend" onclick="chk_sendmail();">메일보내기</button>	
 	 </div>
+	 
 	 <!-- 회원 목록 View -->
 	 <div id="myMember">
 	 	<div>
@@ -86,33 +95,40 @@
                 <th>회원이름</th>
                 <th>휴대폰</th>
                 <th>이메일</th>
+                <th>가입일</th>
                 <th>회원등급</th>              
             </tr>  
             <!-- 번호 카운트 -->
             <% int cnt= 0;  
              for(int i=0;i<m.size();i++){
-             		cnt+=1; %>
+             		cnt+=1; 
+             		// 커스텀 속성에 유저 아이디 담아보기
+             		String userid= m.get(i).getUserid();
+             		%>
             <tr>
-            	<td><input type="checkbox" class="member_chk" data-memberid=<%=m.get(i).getUserid() %>/></td>            	
+            	<td><input type="checkbox" class="member_chk" data-memberid=<%=userid %>/></td>            	                                 
                 <td><%=cnt %></td>
                 <td><%=m.get(i).getUserid() %></td>
                 <td><%=m.get(i).getUsername() %></td>
                 <td><%=m.get(i).getUsertel() %></td>
                 <td><%=m.get(i).getUseremail() %></td>
+                <td><%=m.get(i).getUserregdate() %></td>
                 <td><%=m.get(i).getUsergrade() %></td>               
-            </tr>       
+            </tr>         
             <% } %>
         </table> 
 	
 	 	</div> 
+	 	
 	 </div>
 	
     <br>
  
     <!--  검색 부분 -->
     <br>
-    <div id="searchForm">
-        <form action="/admin/memberlist" method="post">
+    <div class="input-group">
+        <form action="/admin/memberlist" method="GET">
+        <ASIDE style='float: right;'>
         <select name="grade">
                 <option value="0" selected="selected">--등급선택--</option>
                 <option value="1">브론즈</option>
@@ -125,18 +141,21 @@
                 <option value="1">아이디</option>
                 <option value="2">회원명</option>
             </select>
-            <input type="text" size="20" name="condition"/>&nbsp;
-            <input type="submit" value="회원검색"/>
+            <input type="text" class="input-control" size="20" name="condition" placeholder="검색"/>&nbsp;
+           <input type="submit" value="검색">
+           </ASIDE>
         </form>    
     </div>
-
    </div><!-- container 끝 -->
+
    <div id="resultLayout">
 	  	
    </div>
+   	<c:import url="/WEB-INF/views/admin/util/paging.jsp" /> 
   </body>
 
   <script type="text/javascript">
+  
   var chartDrowFun = {
  
     chartDrow : function(){
@@ -158,14 +177,16 @@
  
           //그래프에 표시할 데이터
           var dataRow = [];
- 			
-          //데이터 삽입 (더미데이터)
-          for(var i = 0; i <= ${all }.size(); i++){ //랜덤 데이터 생성
-            ${all }.get(i)  
- 
-            dataRow = [new Date('2020', '06', i , '10'), total];
+		 
+         let map= new Map();
+          //데이터 삽입 (더미데이터)       
+		 for(var i = 0; i <=30; i++){ //랜덤 데이터 생성 --%>					 	
+            var total=0;
+            
+		 	dataRow = [];
             data.addRow(dataRow);
-          }
+         		 
+		 }
  
             var chart = new google.visualization.ChartWrapper({
               chartType   : 'LineChart',
@@ -237,12 +258,7 @@
 $(document).ready(function(){
   google.charts.load('current', {'packages':['line','controls']});
   chartDrowFun.chartDrow(); //chartDrow() 실행
-	 
- 
-  // 방문통계 이동
-  $("#visitor_detail").on("click", function(){
-				location.href="/admin/visitor";
-			});
+
   //멤버 전체선택
   $(".member_chk_All").click(function(){
 	  $(".member_chk").prop("checked",this.checked);
@@ -250,15 +266,44 @@ $(document).ready(function(){
   
  
 });
+  
   //선택해제
     function chk_All_Del(){	  
 	  $(".member_chk").prop("checked",false);
+	  $(".member_chk_All").prop("checked",false);
   }
   //전체선택 
   function chk_All(){		
 	  	$(".member_chk").prop("checked",true);
+	  	$(".member_chk_All").prop("checked",true);
   	
   }
+  //멤버선택하면 전체 선택 해제
+   $(".member_chk").click(function(){
+	   $(".member_chk_All").prop("checked",false);
+  });
+
+  
+  //체크메일보내기(삭제)
+  function chk_sendmail(){
+	  var agree=confirm("선택 회원들에게 메일을 보내시겠습니까?");
+	  if(agree){
+		  $.ajax({
+		         type: "POST" //요청메소드
+		         , url: "/WEB-INF/views/admin/AdminMailForm.jsp" //요청 url
+		         , data: { //요청파라미터
+		           mamberid : $("input[class='member_chk']:checked").attr("data-memberid")
+		         }
+		         , dataType : "html"
+		         , success : function(res) {
+		            console.log("AJAX 성공")		            
+		            $("#resultLayout").html(res)		            
+		         }
+		         
+	  });
+  }
+  }
+  
   //선택회원 삭제(삭제)
   function chk_delete(){
 	  var agree=confirm("선택 회원들을 삭제하시겠습니까?");
@@ -269,37 +314,19 @@ $(document).ready(function(){
 		 $("input[class='member_chk']:checked").each(function(){
 			 checkArr.push($(this).attr("data-memberid"));
 		 });
+		 console.log(checkArr);
 		 $.ajax({
 			 url:"/admin/delete",
 			 type:"post",
-			 data:{member_chk : checkArr},
-			 success:function(){
-				 location.href ="/admin/memberlist";
-			 }
+			 data:{member_chk : checkArr}
+		 //성공시 
+// 			 success:function(){
+// 				 location.href ="/admin/memberlist";
+// 			 }
 		 });
 	  }
-  };	
-  //체크메일보내기(삭제)
-  function chk_sendmail(){
-	  var agree=confirm("선택 회원들에게 메일을 보내시겠습니까?");
-	  if(agree){
-		  $.ajax({
-		         type: "POST" //요청메소드
-		         , url: "/admin/AdminMailForm.jsp" //요청 url
-		         , data: { //요청파라미터
-		           mamberid : $("input[class='member_chk']:checked").attr("data-memberid")
-		         }
-		         , dataType : "html"
-		         , success : function(res) {
-		            console.log("AJAX 성공")		            
-		            $("#resultLayout").html(res)		            
-		         }
-		         
-	  })
-  }
-  }
-  
- 
+  };  
+
   </script>
 </html>
 

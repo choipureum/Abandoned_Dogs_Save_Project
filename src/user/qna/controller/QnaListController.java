@@ -18,9 +18,8 @@ import user.qna.service.impl.QnaServiceImpl;
 @WebServlet("/qna/list")
 public class QnaListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    
-		QnaService qnaService = new QnaServiceImpl();
+   
+	QnaService qnaService = new QnaServiceImpl();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
