@@ -54,7 +54,7 @@ public class MemberDaoImpl implements MemberDao{
    public int insert(MemberDTO member) {
       
       conn=JDBCTemplate.getConnection();
-      String sql="insert into member(userid, userpw,username,useremail, useraddress,usertel,userbirth) values(?,?,?,?,?,?,?)";
+      String sql="insert into member(userid, userpw, username, useremail, useraddress, usertel, userbirth) values(?,?,?,?,?,?,?)";
       int result = 0 ;
       
       try {
@@ -65,7 +65,7 @@ public class MemberDaoImpl implements MemberDao{
          ps.setString(3, member.getUsername());
          ps.setString(4, member.getUseremail());
          ps.setString(5, member.getUseraddress());
-         ps.setInt(6,member.getUsertel());
+         ps.setString(6, member.getUsertel());
          ps.setString(7, member.getUserbirth());
 
 
@@ -84,12 +84,11 @@ public class MemberDaoImpl implements MemberDao{
       }
       return result;
    }
+
+
+   @Override
+   public int login(String userid, String userpw) {
+	   // TODO Auto-generated method stub
+	   return 0;
+   }
 }
-
-
-
-
-
-
-
-
