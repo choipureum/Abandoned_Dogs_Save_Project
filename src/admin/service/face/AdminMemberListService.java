@@ -26,7 +26,7 @@ public interface AdminMemberListService {
 	 * @param member
 	 * @return int - 정수값
 	 */
-	public int memberDelete(MemberDTO member);
+	public int memberDelete(String userid);
 	
 	/**
 	 * 회원수 카운트

@@ -8,7 +8,8 @@
 <%@ taglib prefix="c" uri ="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri ="http://java.sun.com/jsp/jstl/fmt" %>  
 
-<% TreeMap<Object,Integer>graph =(TreeMap<Object,Integer>)request.getAttribute("graph"); %> 
+<%List<Date>graphKey =(List)request.getAttribute("graphKey"); %> 
+<%List<Integer>graphVal =(List)request.getAttribute("graphVal"); %> 
 <%List<MemberDTO>all =(List)request.getAttribute("memberAll"); %> 
 <%List<MemberDTO> m = (List) request.getAttribute("list"); %> 
 <% int membercnt= (int)request.getAttribute("membercnt"); %> 
@@ -21,7 +22,7 @@
     <!-- 부트스트랩 3.3.2 -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstra	p/3.3.2/js/bootstrap.min.js"></script>
  	<style type="text/css">
 		body{margin:0;padding:0px;font-size:14px;font-family: helvetica,sans-serif;}
 		/*기준날짜 적어주는 작은 글씨*/
@@ -82,6 +83,28 @@
 	 	<button id="chk_All_Die" onclick="chk_All_Del();">선택해제</button>
 	 	<button class="member_delete" onclick="chk_delete();" >선택삭제</button>
 	 	<button class="mailsend" onclick="chk_sendmail();">메일보내기</button>	
+	 	 <!--  검색 부분 -->
+ 
+    <div class="input-group" style="float:right">
+        <form action="/admin/memberlist" method="GET">
+        <ASIDE style='float: right;'>
+        <select name="grade">
+                <option value="0" selected="selected">--등급선택--</option>
+                <option value="1">브론즈</option>
+                <option value="2">실버</option>
+                <option value="3">골드</option>
+                <option value="4">다이아</option>
+          </select>
+            <select name="opt">
+                <option value="0" selected="selected">--검색조건--</option>
+                <option value="1">아이디</option>
+                <option value="2">회원명</option>
+            </select>
+            <input type="text" class="input-control" size="20" name="condition" placeholder="검색"/>&nbsp;
+           <input type="submit" value="검색">
+           </ASIDE>
+        </form>    
+    </div>
 	 </div>
 	 
 	 <!-- 회원 목록 View -->
@@ -124,28 +147,7 @@
 	
     <br>
  
-    <!--  검색 부분 -->
-    <br>
-    <div class="input-group">
-        <form action="/admin/memberlist" method="GET">
-        <ASIDE style='float: right;'>
-        <select name="grade">
-                <option value="0" selected="selected">--등급선택--</option>
-                <option value="1">브론즈</option>
-                <option value="2">실버</option>
-                <option value="3">골드</option>
-                <option value="4">다이아</option>
-          </select>
-            <select name="opt">
-                <option value="0" selected="selected">--검색조건--</option>
-                <option value="1">아이디</option>
-                <option value="2">회원명</option>
-            </select>
-            <input type="text" class="input-control" size="20" name="condition" placeholder="검색"/>&nbsp;
-           <input type="submit" value="검색">
-           </ASIDE>
-        </form>    
-    </div>
+   
    </div><!-- container 끝 -->
 
    <div id="resultLayout">
@@ -178,16 +180,27 @@
           //그래프에 표시할 데이터
           var dataRow = [];
 		 
-         let map= new Map();
+        
           //데이터 삽입 (더미데이터)       
-		 for(var i = 0; i <=30; i++){ //랜덤 데이터 생성 --%>					 	
-            var total=0;
+// 		 for(var i = 0; i <=30; i++){ //랜덤 데이터 생성 --%>					 	
+//             var total=0;
             
-		 	dataRow = [];
-            data.addRow(dataRow);
+// 		 	dataRow = [];
+//             data.addRow(dataRow);
          		 
-		 }
- 
+// 		 }
+ 		<%  for(int i=0;i<graphKey.size();i++){ 
+ 				String year=String.valueOf(graphKey.get(i).getYear());
+ 				String month=String.valueOf(graphKey.get(i).getMonth());
+ 				String date = String.valueOf(graphKey.get(i).getDate());
+ 				int total=graphVal.get(i);
+ 		%>
+ 		
+			dataRow=[new Date(<%=year%>,<%=month%>,<%=date%>),<%=total%>];
+			data.addRow(dataRow); 		
+ 		<% }%>
+ 		
+ 		
             var chart = new google.visualization.ChartWrapper({
               chartType   : 'LineChart',
               containerId : 'lineChartArea', //라인 차트 생성할 영역
@@ -205,7 +218,7 @@
                                                                   days  : {format: ['dd일']},
                                                                   hours : {format: ['HH시']}}
                                                                 },textStyle: {fontSize:12}},
-                vAxis              : {minValue: 100,viewWindow:{min:0},gridlines:{count:-1},textStyle:{fontSize:12}},
+                vAxis              : {minValue: 10,viewWindow:{min:0},gridlines:{count:-1},textStyle:{fontSize:12}},
                 animation        : {startup: true,duration: 600,easing: 'in' },
                 annotations    : {pattern: chartDateformat,
                                 textStyle: {
@@ -286,23 +299,31 @@ $(document).ready(function(){
   
   //체크메일보내기(삭제)
   function chk_sendmail(){
-	  var agree=confirm("선택 회원들에게 메일을 보내시겠습니까?");
-	  if(agree){
-		  $.ajax({
-		         type: "POST" //요청메소드
-		         , url: "/WEB-INF/views/admin/AdminMailForm.jsp" //요청 url
-		         , data: { //요청파라미터
-		           mamberid : $("input[class='member_chk']:checked").attr("data-memberid")
-		         }
-		         , dataType : "html"
-		         , success : function(res) {
-		            console.log("AJAX 성공")		            
-		            $("#resultLayout").html(res)		            
-		         }
+	  var agree=confirm("선택 회원에게 메일을 보내시겠습니까?");
+	  //여러명일때 불가
+	  if($("input[class='member_chk']:checked").size()>1){
+		  alert("다중선택 불가");
+		  // 선택 모두 해제
+		  chk_All_Del();
+		  return;
+	  };
+	  //없을때 불가
+	  if($("input[class='member_chk']:checked").size()==0){
+		  alert("회원을 선택해주세요!");
+		  return;
+	  }
+	  //한명 선택 했다면 정상 코드시행
+	  if(agree){		 
+		  var id=  $("input[class='member_chk']:checked").attr("data-memberid");
+
+		  $.post("/resources/js/AdminMailForm.jsp",{"member_mail":id},function(res){
+			  var w=window.open("/resources/js/AdminMailForm.jsp", "", "width=800,height=600,left=250,right=150");
+			    
+		  });
 		         
-	  });
-  }
-  }
+	  };
+  };
+  
   
   //선택회원 삭제(삭제)
   function chk_delete(){
@@ -313,19 +334,13 @@ $(document).ready(function(){
 		 
 		 $("input[class='member_chk']:checked").each(function(){
 			 checkArr.push($(this).attr("data-memberid"));
-		 });
-		 console.log(checkArr);
-		 $.ajax({
-			 url:"/admin/delete",
-			 type:"post",
-			 data:{member_chk : checkArr}
-		 //성공시 
-// 			 success:function(){
-// 				 location.href ="/admin/memberlist";
-// 			 }
-		 });
-	  }
-  };  
+		 });	 
+		
+		 $.post("/admin/delete",{"member_chk":checkArr},function(res){
+			 location.href ="/admin/memberlist";
+		 });	  
+  }
+  };
 
   </script>
 </html>

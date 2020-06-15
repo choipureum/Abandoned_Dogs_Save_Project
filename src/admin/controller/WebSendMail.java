@@ -42,7 +42,7 @@ public class WebSendMail extends HttpServlet {
 		
 		if (req.getContentType().startsWith("multipart/form-data")) {
 	            try {
-	            	to=adminMemberListDao.selectID(req.getParameter("memberid")).getUseraddress();	            	
+	            	to=adminMemberListDao.selectID(req.getParameter("id")).getUseremail();	            	
 	                HashMap data = getMailData(req, resp);
 	                sendMail(data);
 	 

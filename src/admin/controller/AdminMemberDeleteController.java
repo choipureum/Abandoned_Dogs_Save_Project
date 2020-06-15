@@ -30,22 +30,21 @@ import user.member.dto.MemberDTO;
 public class AdminMemberDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	//서비스 객체생성
-		private AdminMemberListDao adminMemberListDao = AdminMemberListDaoImpl.getInstance();
+		private AdminMemberListService adminMemberListService = new AdminMemberListServiceImpl();
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("딜리트 post 출력");
-//		 data:{member_chk : checkArr}	
-		String [] arr=null; //이거 어케 받지?
-		System.out.println("딜리트 post 도착");
 		
+//		 data:{member_chk : checkArr}		
+		String[]arr=req.getParameterValues("member_chk[]"); 		
 		for(String e: arr) {
-			//유저 하나씩 삭제
-			MemberDTO m = new MemberDTO();
-			m.setUserid(e);
-			adminMemberListDao.delete(m);
+			//유저 하나씩 삭제			
+			String userid = e.trim().substring(0, e.length()-1);	
+			int res=adminMemberListService.memberDelete(userid);
+			
 		}		
-		//리 다이렉트
 		resp.sendRedirect("/admin/memberlist");
+			
+		
 	}
 
 }
