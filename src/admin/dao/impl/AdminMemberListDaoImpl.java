@@ -213,7 +213,9 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 	    		ps=conn.prepareStatement(sql.toString());
 	    		ps.setString(1, userid);
 	    		res=ps.executeUpdate();
-	    		
+	    		if(res>0) {
+	    			JDBCTemplate.commit(conn);
+	    		}
 	    	}catch(SQLException e) {
 	    		e.printStackTrace();
 	    	}finally{

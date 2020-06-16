@@ -1,27 +1,49 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" media="screen" href="css/thankyou.css" />
-    <link rel="icon" href="img/icon.png">
+ <script type="text/javascript">
+ 
+ var wintimer;
+ clearTimeout(wintimer);
+ wintimer= setTimeout("closewin()",3000); //5초후 닫힘
+
+ function closewin() {
+    window.close();
+ }
+
+ var cityCat = 4;
+	function countDown() {
+		if (cityCat != 0) {
+			div1.innerHTML = cityCat;
+			cityCat -= 1;
+		}
+		else {
+			div1.innerHTML = "종료";
+			clearInterval(repeat);
+		}
+	}
+	div1.innerHTML = cityCat + 1;
+	var repeat = setInterval(countDown, 1000);
+ </script>
     <title>MailSubmit :: Thank you!</title>
   </head>
   <body>
     <div class="wrap">
       <div class="container">
         <div class="heading">
-          <span class="big-message">THANK YOU!</span>
+          <span class="big-message">감사합니다!</span>
         </div>
         <div class="img-container">
           <img src="img/thankyou.png" alt="thankyou-image">
         </div>
-        <div class="content-div">
-            <p class="content">Your submission has been received. We will reply soon!</p>
-            <p class="content"><a href="/admin/memberlist">Back to previous page</a></p>
+        <div class="content-div" id="div1">
+            <p class="content">이메일 전송이 완료되었습니다!</p>
+            <button onclick="closewin();">종료하기</button>
         </div>
       </div>
     </div>

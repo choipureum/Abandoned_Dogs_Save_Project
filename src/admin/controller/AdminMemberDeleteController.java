@@ -7,8 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.jasper.tagplugins.jstl.core.Param;
-
 import java.util.*;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,6 +24,7 @@ import admin.dao.impl.AdminMemberListDaoImpl;
 import admin.service.face.AdminMemberListService;
 import admin.service.impl.AdminMemberListServiceImpl;
 import user.member.dto.MemberDTO;
+import util.JDBCTemplate;
 @WebServlet("/admin/delete")
 public class AdminMemberDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -38,12 +37,11 @@ public class AdminMemberDeleteController extends HttpServlet {
 		String[]arr=req.getParameterValues("member_chk[]"); 		
 		for(String e: arr) {
 			//유저 하나씩 삭제			
-			String userid = e.trim().substring(0, e.length()-1);	
-			int res=adminMemberListService.memberDelete(userid);
-			
+			String userid = e.trim().substring(0, e.length());	
+			int res=adminMemberListService.memberDelete(userid);		
+
 		}		
-		resp.sendRedirect("/admin/memberlist");
-			
+		resp.sendRedirect("/admin/memberlist");	
 		
 	}
 
