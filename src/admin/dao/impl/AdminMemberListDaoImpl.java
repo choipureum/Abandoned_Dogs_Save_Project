@@ -96,7 +96,7 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 		    	} 
 		    	//sql문 완성(정렬조건, 검색조건 충족)	    	
 		    	sql.append(search);	 
-		    	sql.append(" )B");
+		    	sql.append(" order by userRegDate)B");
 		    	sql.append(" )MEMBER");
 		    	sql.append(" WHERE rnum BETWEEN ? AND ?");	  		    	
 		    	ps=conn.prepareStatement(sql.toString());
@@ -110,7 +110,7 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 			    	MemberDTO member =new MemberDTO();
 			    	member.setUserid(rs.getString("userid"));
 			    	member.setUsername(rs.getString("username"));
-			    	member.setUsertel(rs.getInt("userTel"));
+			    	member.setUsertel(rs.getString("userTel"));
 			    	member.setUseremail(rs.getString("userEmail"));
 			    	member.setUserbirth(rs.getString("userBirth"));
 			    	member.setUseraddress(rs.getString("userAddress"));	
@@ -201,16 +201,17 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 	    /**
 	     * 회원 삭제
 	     */
-	    public int delete(MemberDTO member) {
+	    public int delete(String userid) {
 	    	//반환값 int생성
 	    	int res=0;
 	    	sql=new StringBuffer();
 	    	try {
 	    		conn=JDBCTemplate.getConnection();
 	    		sql.append("delete from member");
-	    		sql.append(" where uesrid=?");
+	    		sql.append(" where userid=?");
+	    		
 	    		ps=conn.prepareStatement(sql.toString());
-	    		ps.setString(1, member.getUserid());
+	    		ps.setString(1, userid);
 	    		res=ps.executeUpdate();
 	    		
 	    	}catch(SQLException e) {
@@ -236,7 +237,7 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 				if(rs.next()) {
 					member.setUserid(rs.getString("userid"));
 			    	member.setUsername(rs.getString("username"));
-			    	member.setUsertel(rs.getInt("userTel"));
+			    	member.setUsertel(rs.getString("userTel"));
 			    	member.setUseremail(rs.getString("userEmail"));
 			    	member.setUserbirth(rs.getString("userBirth"));
 			    	member.setUseraddress(rs.getString("userAddress"));	
@@ -269,7 +270,7 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 					MemberDTO member = new MemberDTO();
 					member.setUserid(rs.getString("userid"));
 			    	member.setUsername(rs.getString("username"));
-			    	member.setUsertel(rs.getInt("userTel"));
+			    	member.setUsertel(rs.getString("userTel"));
 			    	member.setUseremail(rs.getString("userEmail"));
 			    	member.setUserbirth(rs.getString("userBirth"));
 			    	member.setUseraddress(rs.getString("userAddress"));	

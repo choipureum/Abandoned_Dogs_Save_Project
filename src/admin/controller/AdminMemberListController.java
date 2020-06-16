@@ -48,19 +48,25 @@ public class AdminMemberListController extends HttpServlet {
 		}
 		//페이징
 		Paging paging = adminMemberListService.getPaging(req, listOpt); //기본값
-		System.out.println(listOpt);		
+		
 		//멤버 수 세기
 		int membercnt=0;
 		membercnt= adminMemberListService.memberCount(listOpt);
-		//그래프 멤버 정보 보내기
+		//그래프 멤버 리스트에 담기
 		TreeMap<Date,Integer> graphMember=adminMemberListService.getGraphMember();
-		System.out.println(graphMember.toString());
-	
+		List<Date>graphKey = new ArrayList<>();
+		List<Integer>graphVal = new ArrayList<>();
+		for(Date key:graphMember.keySet()) {
+			graphKey.add(key);
+			graphVal.add(graphMember.get(key));
+		}
+		
 		//멤버 조회하기
 		List<MemberDTO> memberList = adminMemberListService.memberSelect(listOpt,paging);
 		List<MemberDTO>memberAll = adminMemberListService.memberSelectAll();
 		
-		req.setAttribute("graph", graphMember);	
+		req.setAttribute("graphKey", graphKey);	
+		req.setAttribute("graphVal", graphVal);
 		req.setAttribute("paging", paging);
 		req.setAttribute("memberAll", memberAll);
 		req.setAttribute("list", memberList);	

@@ -13,6 +13,7 @@ import admin.dao.impl.AdminMemberListDaoImpl;
 import admin.service.face.AdminMemberListService;
 import user.member.dto.MemberDTO;
 import admin.service.*;
+import util.JDBCTemplate;
 import util.Paging;
 
 public class AdminMemberListServiceImpl implements AdminMemberListService{
@@ -31,8 +32,10 @@ public class AdminMemberListServiceImpl implements AdminMemberListService{
 		return res;
 	}
 	@Override
-	public int memberDelete(MemberDTO member) {
-		return 0;
+	public int memberDelete(String userid) {
+		int res=adminMemberListDao.delete(userid);
+		
+		return res;
 	}
 	@Override
 	public List<MemberDTO> memberSelectAll() {

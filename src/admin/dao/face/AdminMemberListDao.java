@@ -34,7 +34,7 @@ public interface AdminMemberListDao {
 	 * @param MemberDTO - memberDTO.userId 를 통해서 삭제 대상 판단 파라미터
 	 * @return - int(1,0) -> 삭제유무 판단 int
 	 */
-	public int delete(MemberDTO member);
+	public int delete(String userid);
 	
 	/**
 	 * 유저 id 를 통한 멤버 전체 정보값 반환
