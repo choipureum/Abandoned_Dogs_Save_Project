@@ -8,8 +8,9 @@
 ### <다솜>프로젝트
 <hr>
 <ul>
-  <li>SpringFramework를 이용한 유기견 플랫폼 웹페이지</li>
+  <li>유기견 플랫폼 웹페이지 구현 프로젝트</li>
   <li>5인 팀프로젝트</li>
+  <li>SpringFramework, Mybatis </li>
 </ul> 
  
 ### 프로젝트 기간
@@ -29,7 +30,7 @@ Java, Oracle SQL, HTML/CSS, Jquery(JavaScript)
 
 ### 사용기술
 <hr>
-
+Ajax, 
 
 
 
