@@ -1,29 +1,49 @@
+<%@page import="user.qna.dto.QnaFile"%>
 <%@page import="user.qna.dto.QNA"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
     
 <!-- jQuery 2.2.4.min -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-<!-- ë¶€íŠ¸ìŠ¤íŠ¸ë© 3.3.2 -->
+<!-- ºÎÆ®½ºÆ®·¦ 3.3.2 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <% QNA viewqna = (QNA)request.getAttribute("viewqna");%>
+<%QnaFile qnafile = (QnaFile)request.getAttribute("qnaFile"); %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<script type="text/javascript">
+$(document).ready(function() {
+	//¸ñ·Ï¹öÆ° µ¿ÀÛ
+	$("#btnList").click(function() {
+		$(location).attr("href", "/qna/list");
+	});
+	
+	//¼öÁ¤¹öÆ° µ¿ÀÛ
+	$("#btnUpdate").click(function() {
+	});
+
+	//»èÁ¦¹öÆ° µ¿ÀÛ
+	$("#btnDelete").click(function() {
+	});
+	
+});
+</script>
+<meta charset="EUC-KR">
 <title>Insert title here</title>
 </head>
 <body>
 <div class="container">
 <table class="table table-condensed">
 	<tr>
-		<th>ë²ˆí˜¸</th>
-		<th>ì œëª©</th>
-		<th>ì‘ì„±ì¼</th>
-		<th>ì‘ì„±ì</th>
-		<th>ì¡°íšŒìˆ˜</th>
+		<th>¹øÈ£</th>
+		<th>Á¦¸ñ</th>
+		<th>ÀÛ¼ºÀÏ</th>
+		<th>ÀÛ¼ºÀÚ</th>
+		<th>³»¿ë</th>
+		<th>Á¶È¸¼ö</th>
 	</tr>
 	
 	
@@ -32,18 +52,24 @@
 		<td><%=viewqna.getQnaTitle()%></td>
 		<td><%=viewqna.getQnaDate()%></td>
 		<td><%=viewqna.getQnaWriter()%></td>
+		<td><%=viewqna.getQnaContent()%></td>
 		<td><%=viewqna.getQnaHit()%></td>
 	</tr>
 	
 </table>
 
 
-<div class="text-right" id="wrapped">
-	<button id="btnWrite" >ìˆ˜ì •</button>
-	<button id="btnWrite" >ì‚­ì œ</button>
-	<button id="btnWrite" >ëª©ë¡</button>
+<div>
+<a href="/upload/<%=qnafile.getQna_stored_FILR_NAME()%>"
+ download="<%=qnafile.getQna_org_FILE_NAME()%>"><%=qnafile.getQna_org_FILE_NAME()%></a>
 </div>
 
+
+<div class="text-right">	
+		<button id="btnList" class="btn btn-primary">¸ñ·Ï</button>
+		<button id="btnUpdate" class="btn btn-info">¼öÁ¤</button>
+		<button id="btnDelete" class="btn btn-danger">»èÁ¦</button>
+</div>
 </div>
 </body>
 </html>
