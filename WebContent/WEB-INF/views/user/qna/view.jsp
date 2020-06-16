@@ -1,10 +1,10 @@
 <%@page import="user.qna.dto.QNA"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     
 <!-- jQuery 2.2.4.min -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-<!-- ºÎÆ®½ºÆ®·¦ 3.3.2 -->
+<!-- ë¶€íŠ¸ìŠ¤íŠ¸ëž© 3.3.2 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
@@ -12,18 +12,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 <div class="container">
 <table class="table table-condensed">
 	<tr>
-		<th>¹øÈ£</th>
-		<th>Á¦¸ñ</th>
-		<th>ÀÛ¼ºÀÏ</th>
-		<th>ÀÛ¼ºÀÚ</th>
-		<th>Á¶È¸¼ö</th>
+		<th>ë²ˆí˜¸</th>
+		<th>ì œëª©</th>
+		<th>ìž‘ì„±ì¼</th>
+		<th>ìž‘ì„±ìž</th>
+		<th>ì¡°íšŒìˆ˜</th>
 	</tr>
 	
 	
@@ -39,9 +39,9 @@
 
 
 <div class="text-right" id="wrapped">
-	<button id="btnWrite" >¼öÁ¤</button>
-	<button id="btnWrite" >»èÁ¦</button>
-	<button id="btnWrite" >¸ñ·Ï</button>
+	<button id="btnWrite" >ìˆ˜ì •</button>
+	<button id="btnWrite" >ì‚­ì œ</button>
+	<button id="btnWrite" >ëª©ë¡</button>
 </div>
 
 </div>

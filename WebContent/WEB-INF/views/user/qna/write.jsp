@@ -1,29 +1,29 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!-- jQuery 2.2.4.min -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-<!-- ºÎÆ®½ºÆ®·¦ 3.3.2 -->
+<!-- ë¶€íŠ¸ìŠ¤íŠ¸ë© 3.3.2 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 
 <script type="text/javascript">
 var oEditors = [];
 nhn.husky.EZCreator.createInIFrame({
    oAppRef : oEditors
-   , elPlaceHolder: "content" // ¿¡µğÅÍ°¡ Àû¿ëµÉ <textarea>ÀÇ id
-   , sSkinURI: "/resources/se2/SmartEditor2Skin.html"//¿¡µğÅÍ ½ºÅ²Àû¿ë
+   , elPlaceHolder: "content" // ì—ë””í„°ê°€ ì ìš©ë  <textarea>ì˜ id
+   , sSkinURI: "/resources/se2/SmartEditor2Skin.html"//ì—ë””í„° ìŠ¤í‚¨ì ìš©
    ,fCreator: "createSEditor2"
 })
 </script>
 <script>
 function submitContents(elClickedObj){
-	//¿¡µğÅÍÀÇ ³»¿ëÀ» #content¿¡ ¹İ¿µÇÑ´Ù 
+	//ì—ë””í„°ì˜ ë‚´ìš©ì„ #contentì— ë°˜ì˜í•œë‹¤ 
 	oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD",[]);
 	
 	try{
@@ -34,9 +34,9 @@ function submitContents(elClickedObj){
 <script type="text/javascript">
 $(document).ready(function() {
 	
-	//ÀÛ¼º¹öÆ° µ¿ÀÛ
+	//ì‘ì„±ë²„íŠ¼ ë™ì‘
 	   $("#btnWrite").click(function() {
-		   //½º¸¶Æ®¿¡µğÅÍÀÇ ³»¿ëÀ» <textarea>¿¡ Àû¿ëÇÑ´Ù 
+		   //ìŠ¤ë§ˆíŠ¸ì—ë””í„°ì˜ ë‚´ìš©ì„ <textarea>ì— ì ìš©í•œë‹¤ 
 		   submitContents($("#btnWrite"));
 		   
 		   $("form").submit();
@@ -44,12 +44,12 @@ $(document).ready(function() {
 	  
 	
    
-   //ÀÛ¼º¹öÆ° µ¿ÀÛ
+   //ì‘ì„±ë²„íŠ¼ ë™ì‘
    $("#btnWrite").click(function() {
       $("form").submit();
    });
    
-   //Ãë¼Ò¹öÆ° µ¿ÀÛ
+   //ì·¨ì†Œë²„íŠ¼ ë™ì‘
    $("#btnCancel").click(function() {
       history.go(-1);
    });
@@ -61,26 +61,26 @@ $(document).ready(function() {
 <form action="/qna/write" method="post">
 	<table class="table table-hover table-condensed">
 		<tr>
-			<th>Á¦¸ñ</th>
-			<td><input type="text" placeholder="Á¦¸ñÀ» ÀÔ·ÂÇÏ¼¼¿ä" name="qnatitel"></td>
+			<th>ì œëª©</th>
+			<td><input type="text" placeholder="ì œëª©ì„ ì…ë ¥í•˜ì„¸ìš”" name="qnatitel"></td>
 		</tr>
 		<tr>
-			<th>ÀÛ¼ºÀÚ</th>
-			<td><input type="text" name="qnawriter"  placeholder="ÀÌ¸§"></td>
+			<th>ì‘ì„±ì</th>
+			<td><input type="text" name="qnawriter"  placeholder="ì´ë¦„"></td>
 		</tr>
 		<tr>
-			<th>Ã·ºÎÆÄÀÏ</th>
+			<th>ì²¨ë¶€íŒŒì¼</th>
 			<td><input type="file" name="qnafile" ></td>
 		</tr>
 		<tr>
-			<th>³»¿ë</th>
-			<td><textarea name="qnacontent" placeholder="³»¿ëÀ» ÀÔ·ÂÇÏ¼¼¿ä"></textarea></td>
+			<th>ë‚´ìš©</th>
+			<td><textarea name="qnacontent" placeholder="ë‚´ìš©ì„ ì…ë ¥í•˜ì„¸ìš”"></textarea></td>
 		</tr>
 </table>
 </form>	
 <div>			
-	<button id="btnWrite">µî·Ï</button>
-	<button id="btnCancel">Ãë¼Ò</button>
+	<button id="btnWrite">ë“±ë¡</button>
+	<button id="btnCancel">ì·¨ì†Œ</button>
 </div>			
 
 
