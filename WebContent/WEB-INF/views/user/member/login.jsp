@@ -99,10 +99,10 @@ h5 span{
 
 
 <!-- 로그인 되어있는 상태 -->
-<c:if test="${not empty login }">
-<input type ="button" value="로그아웃" onclick="location.href='/logout/logout'" />
+<%-- <c:if test="${not empty login }"> --%>
+<!-- <input type ="button" value="로그아웃" onclick="location.href='/logout/logout'" /> -->
 
-</c:if>
+<%-- </c:if> --%>
 
 
 </body>

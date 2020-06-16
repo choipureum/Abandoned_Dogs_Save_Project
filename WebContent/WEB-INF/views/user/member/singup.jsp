@@ -60,10 +60,22 @@ function execPostCode() {
 <!-- 비밀번호 확인 자바스크립트 -->
 <script type="text/javascript">
 $(document).ready(function(){
-	
+
 	//#userid검증
 	var uidReg = /^[A-Za-z0-9]{5,18}$/;
 	
+	//#userpassword 검증
+	var upwReg = /^[A-Za-z0-9]{6,18}$/;
+	
+	//#username 검증
+  	var unameReg = /^[가-힣]{2,5}$/;
+  	
+  	//출생년도 정규식 ( 생년월일 )
+  	var yearReg = /^(19|20)[0-9]{2}$/;
+  	var sw =true;
+  	
+  	
+  	//아이디 blur
 	$("#userid").blur(function(){
 		if(uidReg.test($('#userid').val())){
 			$("#id_check").text('');
@@ -73,34 +85,39 @@ $(document).ready(function(){
 		}
 	})
 	
-	//#userpassword 검증
-	var upwReg = /^[A-Za-z0-9]{6,18}$/;
-	
+
+	//비밀번호 blur
 	$('#userpw').blur(function(){
 		if(upwReg.test($('#userpw').val())){
 			$('#pw_check').text('');
-		
+			
 		} else{
+			
 			$("#pw_check").text('6자-12자 소문자, 숫자를 섞어서 입력하시오');
 			$("#pw_check").css('color','red');
 		}
 	});
+
 	
 	//#userpw  #userpw_ck 일치 확인
 	$('#userpw_ck').blur(function(){
-		if($('#userpw').val() != $(this).val()){
+		if($("#userpw").val() == '') {
+			$('#pw_check2').text('비밀번호를 입력하세요');
+			$('#pw_check2').css('color','green');
+			
+		} else if($('#userpw').val() != $(this).val()){		
 			$('#pw_check2').text('비밀번호가 일치하지 않습니다');
 			$('#pw_check2').css('color','red');
-		} else{
+		} else {
+		
 			$('#pw_check2').text('비밀번호가 일치합니다');
 			$('#pw_check2').css('color','blue');
-		}
+		} 
 	})
 	
 	
-	//#username 검증
-  	var unameReg = /^[가-힣]{2,5}$/;
 
+	//이름 blur
 	$('#username').blur(function(){
 		if(unameReg.test($('#username').val())){
 			$('#pw_check').text('');
@@ -109,7 +126,74 @@ $(document).ready(function(){
 			$("#name_check").text('2글자 이상  5글자 이하 한글로 작성하세요');
 			$("#name_check").css('color','red');
 		}
-	});
+	})
+	
+	
+	// 	userbirth_yy 출생년도
+	$('#userbirth_yy').blur(function(){
+		if(yearReg.test($('#userbirth_yy').val())){
+			$('#year_check').text('');
+		
+		} else{
+			$("#year_check").text('19__ - 20__ 형식에 맞게 입력하세요');
+			$("#year_check").css('color','red');
+		}
+	}) //blur
+	
+	
+	
+	$("#myForm").submit(function(){
+
+		   if(!uidReg.test($("#userid").val())){
+		      alert("아이디를 체크하세요");
+
+		      return false;
+		   }
+
+		   if(!upwReg.test($("#userpw").val())){
+		      alert("비밀번호는 6에서 18자리 소문자, 숫자를 ~");
+
+		      return false;
+		   }
+
+		   if(!unameReg.test($("#username").val())) {
+
+		      alert("이름한글로 2-5자");     
+		      return false;
+		   }
+		   
+		   
+		   //#userpw_ck
+		   if( $("#userpw").val() != $("#userpw_ck").val() ){
+		      
+		      alert("비밀번호가 달라요!")
+		      //다지우기
+	
+		      $("#userpw").focus();
+		      
+		      //select 이벤트발생
+		      $("#userpw_ck").select();
+		      return false;
+		   
+		   }
+
+		   if(!uidReg.test($("#userid").val())){
+			      alert("아이디를 체크하세요");
+
+			      return false;
+			   }
+		   
+		   if(!yearReg.test($("#userbirth_yy").val())){
+			   alert("년도를 확인하세요");
+			   
+			   return false;
+		   }
+		   
+
+		}) 
+		   
+
+		   return true;
 
 })
 
@@ -149,6 +233,14 @@ h5 span{
    padding: 6px 20px;
 
 }
+.id_Button{
+   background-color: rgb(220,220,220);
+   color:black;
+   border-radius: 2px;
+   border: 0;
+   padding: 6px 20px;
+
+}
 input {
     border: 1px solid lightgray;
     border-radius: 3px;
@@ -179,7 +271,7 @@ select{
    
    <h6><label>아이디<span id="red">(필수)</span><br>
       <input type="text" placeholder="아이디" name="userid" id="userid" class="username_input" required style="height:30px; width: 380px" />
-      <button type ="button" value="ID중복확인" class="idButton" onclick="idCheck()">ID중복확인</button>
+      <button type ="button" value="ID중복확인" class="id_Button" onclick="idCheck()">ID중복확인</button>
       </label><div id="id_check"></div></h6>
  
  
@@ -193,9 +285,10 @@ select{
    
    <h6><label>이름<span id="red">(필수)</span>
       <input type="text" placeholder="이름" name="username" id="username" required style="height:30px; width: 495px"/></label>
-      <div id="name_check"></h6>
+      <div id="name_check"></div></h6>
+      
   <h6><label>핸드폰<span id="red">(필수)</span>
-      <input type="tel" placeholder="핸드폰번호입력" name="usertel" id="usertel" required style="height:30px; width: 495px"/></label></h6>
+      <input type="tel" placeholder="핸드폰번호입력" name="usertel" maxlength="11" id="usertel" required style="height:30px; width: 495px"/></label></h6>
   
   
   <h6><label>생년월일<span id="red">(필수)</span><br>
@@ -215,8 +308,43 @@ select{
          <option value="11">11</option>
          <option value="12">12</option>   
       </select>
-     <input type="text" name="userbirth_dd" id="userbirth_dd" maxlength="2" placeholder="일" size="10" required style="height:30px">
-     </label></h6>
+      <select name="userbirth_dd" >
+         <option value="">일</option>
+         <option value="01">1</option>
+         <option value="02">2</option>
+         <option value="03">3</option>
+         <option value="04">4</option>
+         <option value="05">5</option>
+         <option value="06">6</option>
+         <option value="07">7</option>
+         <option value="08">8</option>
+         <option value="09">9</option>
+         <option value="10">10</option>
+         <option value="11">11</option>
+         <option value="12">12</option>
+         <option value="13">13</option>
+         <option value="14">14</option>
+         <option value="15">15</option>
+         <option value="16">16</option>
+         <option value="17">17</option>
+         <option value="18">18</option>
+         <option value="19">19</option>
+         <option value="20">20</option>
+         <option value="21">21</option>
+         <option value="22">22</option>
+         <option value="23">23</option>
+         <option value="24">24</option>
+         <option value="25">25</option>
+         <option value="26">26</option>
+         <option value="27">27</option>
+         <option value="28">28</option>
+         <option value="29">29</option>
+         <option value="30">30</option>
+         <option value="31">31</option>
+
+      </select>
+<!--      <input type="text" name="userbirth_dd" id="userbirth_dd" maxlength="2" placeholder="일" size="10" required style="height:30px"> -->
+     <div id="year_check"></div></label></h6>
      
         
   

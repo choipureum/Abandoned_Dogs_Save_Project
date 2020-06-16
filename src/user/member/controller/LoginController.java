@@ -7,6 +7,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import user.member.dto.MemberDTO;
 import user.member.service.face.MemberService;
 import user.member.service.impl.MemberServiceImpl;
 
@@ -24,7 +27,7 @@ public class LoginController extends HttpServlet {
       
       
       //접속 테스트
-//      System.out.println("접속테스트입니다 아ㅏ아ㅏㅏ");
+      System.out.println("접속테스트입니다 아ㅏ아ㅏㅏ");
       
       //포워딩
       req.getRequestDispatcher("/WEB-INF/views/user/member/login.jsp")
@@ -34,31 +37,34 @@ public class LoginController extends HttpServlet {
    
    @Override
    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-      
-	   //인코딩
-	   req.setCharacterEncoding("UTF-8");
-	   
-	   //id/ pw 가져오기
-	   String userid = req.getParameter("userid");
-	   String userpw = req.getParameter("userpw");
 
+	  
+	   //전달 파라미터 얻기 - 로그인 정보
+	   MemberDTO member = memberService.getLoginMember(req);
 	   
-	   //if 문
-	   if(memberService.login(userid,userpw)) {
+	   
+	   //로그인 인증
+	   boolean login = memberService.login(member);
+
+	   if(login) {
+		   //로그인 사용자 정보 얻기
+		   member=memberService.info(member);
 		   
+		   //세션 정보 저장하기
+		   HttpSession session = req.getSession();
+		   session.setAttribute("login", login);
+		   session.setAttribute("userid", member.getUserid());
+		   session.setAttribute("userpw", member.getUserpw());
+		   System.out.println("됀");
+	   } else {
 		   
+		   resp.sendRedirect("/login/login");
 	   }
-
 	   
+//	   //메인 리다이렉트
+//	   resp.sendRedirect("/");
+	
 
-      
-
-      
-      
    }
-   
-   
-   
-   
 
 }
