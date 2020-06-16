@@ -61,6 +61,18 @@ function execPostCode() {
 <script type="text/javascript">
 $(document).ready(function(){
 	
+	//#userid검증
+	var uidReg = /^[A-Za-z0-9]{5,18}$/;
+	
+	$("#userid").blur(function(){
+		if(uidReg.test($('#userid').val())){
+			$("#id_check").text('');
+		} else{
+			$("#id_check").text('5자이상 18자이하 영문자, 숫자를 섞어서 입력하시오');
+			$("#id_check").css('color','red');
+		}
+	})
+	
 	//#userpassword 검증
 	var upwReg = /^[A-Za-z0-9]{6,18}$/;
 	
@@ -69,69 +81,36 @@ $(document).ready(function(){
 			$('#pw_check').text('');
 		
 		} else{
-			$("#pw_check").text('6자-12자 영숫자');
+			$("#pw_check").text('6자-12자 소문자, 숫자를 섞어서 입력하시오');
 			$("#pw_check").css('color','red');
 		}
 	});
 	
+	//#userpw  #userpw_ck 일치 확인
+	$('#userpw_ck').blur(function(){
+		if($('#userpw').val() != $(this).val()){
+			$('#pw_check2').text('비밀번호가 일치하지 않습니다');
+			$('#pw_check2').css('color','red');
+		} else{
+			$('#pw_check2').text('비밀번호가 일치합니다');
+			$('#pw_check2').css('color','blue');
+		}
+	})
+	
+	
+	//#username 검증
+  	var unameReg = /^[가-힣]{2,5}$/;
 
-	
-	
-	
-	
-	
-   
+	$('#username').blur(function(){
+		if(unameReg.test($('#username').val())){
+			$('#pw_check').text('');
+		
+		} else{
+			$("#name_check").text('2글자 이상  5글자 이하 한글로 작성하세요');
+			$("#name_check").css('color','red');
+		}
+	});
 
-// 	$("#myForm").submit(function(){
-   
-// 	   //#userid검증
-// 	   var uidReg = /^[A-Za-z0-9]{5,}$/;
-   
-// 	   if(!uidReg.test($("#userid").val())){
-// 	      alert("아이디를 체크하세요");
-// //  	     ${"#userid"}.val("");
-//    		   return false;
-//    		}
-   
-//    		//#userpw 검증
-   
-//    		var upwReg = /^[A-Za-z0-9]{6,18}$/;
-//    		if(!upwReg.test($("#userpw").val())){
-	   
-//     		  alert("비밀번호는 6에서 18자리 대소문자숫자를 ~");
-// //  	     ${"#userpw"}.val("");
-//    		   return false;
-//    		}
-   
-//   		 //#username 검증
-//   		 var unameReg = /^[가-힣]{2,4}$/;
-//    		if(!unameReg.test($("#username").val())) {
-// //      	 ${"#username"}.val("");
-//       		alert("이름한글로 2-4자");     
-//      	 	return false;
-//    		}
-   	
-   
-//   		 //#userpw_ck
-//   		 if( $("#userpw").val() != $("#userpw_ck").val() ){
-// // 	 		 innerHTML="비밀번호가 일치하지 않습니다";
-      
-//   			  alert("비밀번호가 달라요!")
-//       		//다지우기
-// //      	 $("#userpw_ck").val("");
-//       		$("#userpw").focus();
-      
-//       		//select 이벤트발생
-//       		$("#userpw_ck").select();
-//       		return false;
-   
-//    		}
-//    		return true; 
-
-// 	});
-
-	
-	
 })
 
 
@@ -201,7 +180,7 @@ select{
    <h6><label>아이디<span id="red">(필수)</span><br>
       <input type="text" placeholder="아이디" name="userid" id="userid" class="username_input" required style="height:30px; width: 380px" />
       <button type ="button" value="ID중복확인" class="idButton" onclick="idCheck()">ID중복확인</button>
-      </label></h6>
+      </label><div id="id_check"></div></h6>
  
  
    <h6><label>비밀번호<span id="red">(필수)</span>
@@ -209,11 +188,12 @@ select{
   	<div id="pw_check"></div></h6>
   
    <h6><label>비밀번호확인<span id="red">(필수)</span>
-      <input type="password" placeholder="비밀번호확인" name="userpw_ck" id="userpw_ck" class="pw" required style="height:30px; width: 495px"/></label></h6>
-   <span id="alert-success" style="display: none;">비밀번호가 일치합니다.</span>
-   <span id="alert-danger" style="display: none; color: #d92742; font-weight: bold; ">비밀번호가 일치하지 않습니다.</span>
+      <input type="password" placeholder="비밀번호확인" name="userpw_ck" id="userpw_ck" class="pw" required style="height:30px; width: 495px"/></label>
+   	<div id="pw_check2"></div></h6>
+   
    <h6><label>이름<span id="red">(필수)</span>
-      <input type="text" placeholder="이름" name="username" id="username" required style="height:30px; width: 495px"/></label></h6>
+      <input type="text" placeholder="이름" name="username" id="username" required style="height:30px; width: 495px"/></label>
+      <div id="name_check"></h6>
   <h6><label>핸드폰<span id="red">(필수)</span>
       <input type="tel" placeholder="핸드폰번호입력" name="usertel" id="usertel" required style="height:30px; width: 495px"/></label></h6>
   
