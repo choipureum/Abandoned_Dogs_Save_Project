@@ -37,7 +37,9 @@
  		/*방문자수 실제 나타내는 숫자 글씨*/
  		dl>dd{text-align:center;font-size:2em;font-weight: bold;padding:10px 50px 20px 10px;}
  		
- 	</style>    
+ 	</style>  
+ 	<!-- httpRequest.js 임포트 --> 
+ 	<script type="text/javascript" src="/resources/js/httpRequest.js"></script> 
     <!-- google charts import -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <!-- jQuery -->
@@ -125,9 +127,10 @@
              		cnt+=1; 
              		// 커스텀 속성에 유저 아이디 담아보기
              		String userid= m.get(i).getUserid();
+             		String userEmail=m.get(i).getUseremail();
              		%>
             <tr>
-            	<td><input type="checkbox" class="member_chk" data-memberid=<%=userid %>/></td>            	                                 
+            	<td><input type="checkbox" class="member_chk" data-memberid=<%=userid %> data-memberEmail=<%=userEmail %> /></td>            	                                 
                 <td><%=cnt %></td>
                 <td><%=m.get(i).getUserid() %></td>
                 <td><%=m.get(i).getUsername() %></td>
@@ -137,8 +140,11 @@
                 <td><%=m.get(i).getUsergrade() %></td>               
             </tr>         
             <% } %>
-        </table> 
-	
+        </table>
+        <!-- 메일 보내기 폼 메소드(히든) --> 
+		<form id="MailPostForm"action="/resources/js/AdminMailForm.jsp" method="post" target="MailForm">
+			<input type="hidden" id="Email" name="Email"/>	
+		</form>
 	 	</div> 
 	 	
 	 </div>
@@ -148,9 +154,6 @@
    
    </div><!-- container 끝 -->
 
-   <div id="resultLayout">
-	  	
-   </div>
    	<c:import url="/WEB-INF/views/admin/util/paging.jsp" /> 
   </body>
 
@@ -277,7 +280,7 @@ $(document).ready(function(){
   
  
 });
-  
+ 
   //선택해제
     function chk_All_Del(){	  
 	  $(".member_chk").prop("checked",false);
@@ -299,26 +302,27 @@ $(document).ready(function(){
   function chk_sendmail(){
 	  var agree=confirm("선택 회원에게 메일을 보내시겠습니까?");
 	  //여러명일때 불가
-	  if($("input[class='member_chk']:checked").size()>1){
+	  if($("input[class='member_chk']:checked").size()>1 && agree){
 		  alert("다중선택 불가");
 		  // 선택 모두 해제
 		  chk_All_Del();
 		  return;
 	  };
 	  //없을때 불가
-	  if($("input[class='member_chk']:checked").size()==0){
+	  if($("input[class='member_chk']:checked").size()==0 && agree){
 		  alert("회원을 선택해주세요!");
 		  return;
 	  }
 	  //한명 선택 했다면 정상 코드시행
 	  if(agree){		 
-		  var id=  $("input[class='member_chk']:checked").attr("data-memberid");
-
-		  $.post("/resources/js/AdminMailForm.jsp",{"member_mail":id},function(res){
-			  var w=window.open("/resources/js/AdminMailForm.jsp", "", "width=800,height=600,left=250,right=150");
-			    
-		  });
-		         
+		  var Email=  $("input[class='member_chk']:checked").attr("data-memberEmail");
+		  //문자열 정돈
+		  Email=Email.substring(0, Email.length).trim();
+		  var f = document.getElementById("MailPostForm");
+		  window.open("","MailForm","width=800,height=630,left=250,right=150");				  
+		  f.Email.value= Email;	
+		  f.target="MailForm";
+		  f.submit();	   
 	  };
   };
   
@@ -333,7 +337,7 @@ $(document).ready(function(){
 		 $("input[class='member_chk']:checked").each(function(){
 			 checkArr.push($(this).attr("data-memberid"));
 		 });	 
-		
+		 
 		 $.post("/admin/delete",{"member_chk":checkArr},function(res){
 			 location.href ="/admin/memberlist";
 		 });	  

@@ -86,9 +86,119 @@ public class MemberDaoImpl implements MemberDao{
    }
 
 
+
+   //userid 와 userpw 
    @Override
-   public int login(String userid, String userpw) {
-	   // TODO Auto-generated method stub
-	   return 0;
+   public int selectCntMemberByUseridUserpw(MemberDTO member) {
+	   
+	   //db연결객체
+	   conn = JDBCTemplate.getConnection();
+	   
+		//SQL 작성
+		String sql = "";
+		sql += "SELECT count(*) FROM member";
+		sql += " WHERE 1=1";
+		sql += "	AND userid = ?";
+		sql += "	AND userpw = ?";
+		
+		//결과 저장 변수
+		int cnt = -1;
+		
+		try {
+			ps=conn.prepareStatement(sql);
+			
+			ps.setString(1, member.getUserid());
+			ps.setString(2, member.getUserpw());
+			
+			rs=ps.executeQuery(); //sql 수행
+			
+			while(rs.next()) {
+				cnt=rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			//DB객체 닫기
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		//결과 반환
+		return cnt;
    }
+
+
+   @Override
+   public MemberDTO selectMemberByUserid(MemberDTO member) {
+
+	   //db 연결 객체
+	   conn = JDBCTemplate.getConnection();
+	   
+	   String sql ="select * from member where 1=1 and userid=?";
+	   
+	   MemberDTO result = null;
+	   
+	   try {
+		ps=conn.prepareStatement(sql);
+		
+		ps.setString(1, member.getUserid());
+		
+		rs=ps.executeQuery(); //결과 집합
+		
+		while(rs.next()) {
+			result=new MemberDTO();
+			
+			result.setUserid(rs.getString("userid"));
+			result.setUserpw(rs.getString("userpw"));
+			
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally {
+		//DB객체 닫기
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(ps);
+	}
+	   return result;
+   }
+   
+   
+   //중복체크 할때 
+   public int registerCheck(String userid) {
+	   //db 연결 객체
+	   conn = JDBCTemplate.getConnection();
+	   
+	   String sql = "select * from member where userid=?";
+	   
+	   try {
+		   ps=conn.prepareStatement(sql);
+		   ps.setString(1, userid);
+		   
+		   rs=ps.executeQuery();
+		   if(!userid.equals("")) {
+			   if(rs.next()) {
+				   return 0; // 이미 존재하는 회원
+			   } else {
+				   return 1; //가입 가능한 회원 아이디 
+		   } 
+		  
+		   }else {
+			   return 2;
+		   }
+			   
+		   
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} finally {
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(ps);
+	}
+	   return -1; //데이터베이스 오류 발생
+	   
+   }
+  
+   
+   
 }
