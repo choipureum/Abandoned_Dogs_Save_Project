@@ -37,12 +37,28 @@ h5 span{
 }
 /* 회원가입버튼 */
 .singup {
+
    background-color: rgb(255,80,90);
    color:white;
    border-radius: 5px;
    border: 0;
    padding: 10px 165px;
    
+}
+
+/* 아이디 비밀번호 찾기 */
+a {
+	position :relative;
+	left:25px;
+	
+	margin: 0px 3px; 
+	text-decoration: none;
+	font-family: "돋움", dotum, "굴림", gulim, arial, helvetica, sans-serif;
+	font-size: 13px;
+}
+a:hover{
+	text-decoration: underline;
+	
 }
 
 #icons {
@@ -52,17 +68,23 @@ h5 span{
    
 }
 
+/* 비밀번호 아이콘 */
 #lock {
    position: absolute;
    top: 180px;
    margin: 0 355px;
 
 }
+
+#lockfind {
+   position: absolute;
+   top: 10px;
+   margin: 320px 0px;
+
+}
 </style>
 </head>
 <body>
-
-
 
 <!-- 비로그인상태 -->
 <c:if test="${empty login }">
@@ -94,9 +116,17 @@ h5 span{
    </form>
    
    <input type="button" class="singup" value="회원가입" onclick="location.href='/singup/singup'" />
-   
-</div>
+	
+<!-- 	아이디 비밀번호 찾기 -->
+   <div id="lockfind">
+      <i class="material-icons">lock_outline</i>
+   </div>
 
+<!-- 	아이디비밀번호 찾기 -->
+	<a href="/id/find">아이디</a>
+	<a href="/pw/find">비밀번호찾기</a>
+
+</div>
 
 <!-- 로그인 되어있는 상태 -->
 <%-- <c:if test="${not empty login }"> --%>
