@@ -225,9 +225,29 @@ $(document).ready(function(){
 	
 </script>
 
+<!-- 이메일 인증버튼 -->
+<script type="text/javascript">
+
+function email(){
+	
+	if($('#emailcheckbox').css("display") =="none") {
+		$("#emailcheckbox").show();
+	} else{
+		$("#emailcheckbox").hide()
+	}
+	
+}
+
+
+
+
+</script>
 <!-- css -->
 <style type="text/css">
 
+#emailcheckbox{
+	display: none;
+}
 .container{
    width:500px;
    margin :40px auto;
@@ -373,12 +393,19 @@ select{
 <!--      <input type="text" name="userbirth_dd" id="userbirth_dd" maxlength="2" placeholder="일" size="10" required style="height:30px"> -->
      <div id="year_check"></div></label></h6>
 
-   <h6><label >이메일<span id="red">(필수)</span>
-      <input type="email" placeholder="이메일" name="useremail" id="useremail" required style="height:30px; width: 495px"/></label></h6>
-  
-
-
-<!-- 주소 api -->
+   <h6><label >이메일<span id="red">(필수)</span><br>
+      <input type="email" placeholder="이메일" name="useremail" id="useremail" required style="height:30px; width: 380px"/>
+      <button type ="button" value="이메일인증" class="id_Button" onclick="email()">이메일인증</button>
+      
+      </label></h6>
+      
+  	<div id="emailcheckbox">
+	<h6>이메일인증
+	<input type="email"  name="useremail" id="useremail" required style="height:30px; width: 200px" />
+	<button type ="button" value="인증 확인" class="id_Button" onclick="emailCheck()">인증 확인</button>
+	</h6></div>
+	
+	
 	<h6>주소<span id="red">(필수)</span>
 	
 	<div class="form-group">                   
