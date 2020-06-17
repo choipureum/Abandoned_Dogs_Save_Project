@@ -169,24 +169,24 @@ public class WebSendMail extends HttpServlet {
         InternetAddress[] tos = InternetAddress.parse((String)mailData.get("toEmail"));
         msg.setRecipients(Message.RecipientType.TO, tos);
         //한글을 위한 인코딩
-        msg.setHeader("Content-Type", "text/plain; charset=UTF-8");
+        msg.setHeader("Content-Type", "text/html;charset=UTF8");
         //제목
         msg.setSubject((String)mailData.get("subject"));
         msg.setSentDate(new Date());
  
         //첨부파일이 없으면 내용만 전송
         if(null == mailData.get("attachment")){
-                 msg.setText((String)mailData.get("body"));
+                 msg.setContent((String)mailData.get("body"), "text/html;charset=UTF8 ");             
                  
           } else {
             //첨부파일이 있으면
         	  BodyPart body = new MimeBodyPart();
               BodyPart attachment = (BodyPart)mailData.get("attachment");
-              body.setText((String)mailData.get("body"));
+              body.setContent(((String)mailData.get("body")),"text/html;charset=UTF8 ");
               MimeMultipart multipart = new MimeMultipart();
-              multipart.addBodyPart(body);
+              multipart.addBodyPart(body);              
               multipart.addBodyPart(attachment);
-              msg.setContent(multipart, "text/plain; charset=UTF-8");
+              msg.setContent(multipart, "text/html;charset=UTF-8");
            }
         //전송
         Transport.send(msg);
