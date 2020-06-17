@@ -298,10 +298,10 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 	    	sql=new StringBuffer();
 	    	calc.setTime(new Date());
 	    	
-	    	calc.add(Calendar.DATE, -15);	    	
+	    	calc.add(Calendar.DATE, -11);	    	
 	    	String minDate = sb.format(calc.getTime()) ;
 	    	
-	    	calc.add(Calendar.DATE, 30);
+	    	calc.add(Calendar.DATE, 11);
 	    	String maxDate = sb.format(calc.getTime());
 	    	
 	    	
