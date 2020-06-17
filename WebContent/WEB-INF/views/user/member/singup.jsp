@@ -54,10 +54,12 @@ function execPostCode() {
 }
 
 </script>
+<!-- 다음 주소 api끝 -->
 
+<!-- 자바스크립트 -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 
-<!-- 비밀번호 확인 자바스크립트 -->
+<!-- 유효성검사 코드 -->
 <script type="text/javascript">
 $(document).ready(function(){
 
@@ -115,8 +117,6 @@ $(document).ready(function(){
 		} 
 	})
 	
-	
-
 	//이름 blur
 	$('#username').blur(function(){
 		if(unameReg.test($('#username').val())){
@@ -128,7 +128,6 @@ $(document).ready(function(){
 		}
 	})
 	
-	
 	// 	userbirth_yy 출생년도
 	$('#userbirth_yy').blur(function(){
 		if(yearReg.test($('#userbirth_yy').val())){
@@ -139,8 +138,6 @@ $(document).ready(function(){
 			$("#year_check").css('color','red');
 		}
 	}) //blur
-	
-	
 	
 	$("#myForm").submit(function(){
 
@@ -188,18 +185,47 @@ $(document).ready(function(){
 			   
 			   return false;
 		   }
-		   
-
-		}) 
-		   
-
+		})   
 		   return true;
-
 })
 
 
 </script>
 
+<!-- 아이디 중복체크  -->
+<script type="text/javascript">
+
+	function idCheck(){
+		
+// 		ajax 활용
+		var userid=$("#userid").val();
+		$.ajax({
+			type: 'POST',
+			url: '/id/check',
+// 			파라미터 변수 이름 값(사용자아이디값)
+			data : {userid : userid},
+			success : function(result){
+				if(result==1){ // 아이다가 없규
+					
+					$("#id_check2").text('가입이 가능한 아이디입니다');
+					$("#id_check2").css('color','blue');
+					
+				} else if(result==0){
+					$("#id_check2").text('아이디가 존재합니다');
+					$("#id_check2").css('color','red');
+					
+				}else{
+					$("#id_check2").text('아이디를 입력하세요 ');
+					$("#id_check2").css('color','green');
+				}
+				
+			}
+		})
+	}
+	
+</script>
+
+<!-- css -->
 <style type="text/css">
 
 .container{
@@ -257,8 +283,6 @@ select{
 </style>
 </head>
 <body>
-
-
 <!-- 입력  -->
 <div class="container">
 
@@ -272,7 +296,8 @@ select{
    <h6><label>아이디<span id="red">(필수)</span><br>
       <input type="text" placeholder="아이디" name="userid" id="userid" class="username_input" required style="height:30px; width: 380px" />
       <button type ="button" value="ID중복확인" class="id_Button" onclick="idCheck()">ID중복확인</button>
-      </label><div id="id_check"></div></h6>
+      </label><div id="id_check"></div><div id="id_check2"></div>
+      </h6>
  
  
    <h6><label>비밀번호<span id="red">(필수)</span>
@@ -293,6 +318,7 @@ select{
   
   <h6><label>생년월일<span id="red">(필수)</span><br>
       <input type="text" name="userbirth_yy" id="userbirth_yy" maxlength="4" placeholder="년(4자)" size="10" required style="height:30px">
+<!--  	생년월일 월 -->
       <select name="userbirth_mm" >
          <option value="">월</option>
          <option value="01">1</option>
@@ -308,6 +334,7 @@ select{
          <option value="11">11</option>
          <option value="12">12</option>   
       </select>
+<!--   		생년월일 일 -->
       <select name="userbirth_dd" >
          <option value="">일</option>
          <option value="01">1</option>
@@ -345,9 +372,7 @@ select{
       </select>
 <!--      <input type="text" name="userbirth_dd" id="userbirth_dd" maxlength="2" placeholder="일" size="10" required style="height:30px"> -->
      <div id="year_check"></div></label></h6>
-     
-        
-  
+
    <h6><label >이메일<span id="red">(필수)</span>
       <input type="email" placeholder="이메일" name="useremail" id="useremail" required style="height:30px; width: 495px"/></label></h6>
   
@@ -363,22 +388,15 @@ select{
 
 	<div class="form-group">
     	<input type="text" class="form-control"  placeholder="도로명 주소" name="mem_address" id="mem_address" required style="height:30px; width: 254px" readonly="readonly" />
-
    	 	<input type="text" class="form-control" placeholder="상세주소" name="mem_detailaddress" id="mem_detailaddress" required style="height:30px; width: 230px"/>
-	
 	</div>
 	</h6>
+	
+	<hr>
+	<input type="submit" value="가입하기" class="singup" /><br>
 
-
-
-   <hr>
-      <input type="submit" value="가입하기" class="singup"/><br>
-      
+  
    </form>
-   
 </div>
-
-
-
 </body>
 </html>

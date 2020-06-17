@@ -1,5 +1,6 @@
 package user.member.dao.face;
 
+
 import user.member.dto.MemberDTO;
 
 public interface MemberDao {
@@ -33,7 +34,13 @@ public interface MemberDao {
     */
    public MemberDTO selectMemberByUserid(MemberDTO member);
 
-   
+
+   /**
+    *  userid를 통해서 회원 중복 확인
+    * @param member
+    * @return 1 ( 존재하는 회원, 0 존재하지 않는 회원 , -1 에러)
+    */
+   public int registerCheck(String userid);
    
    
 }

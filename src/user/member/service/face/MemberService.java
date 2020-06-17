@@ -43,6 +43,15 @@ public interface MemberService {
     */
    public MemberDTO info(MemberDTO member);
 
+   /**
+    *  userid 중복체크
+    * @param userid 
+    * @return 1 성공  0 실패 -1 에러
+    */
+   public int registerCheck(String userid);
+ 
+ 
+
 
    
 }

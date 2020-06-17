@@ -93,4 +93,10 @@ public class MemberServiceImpl implements MemberService{
 	   return memberDao.selectMemberByUserid(member);
    }
 
+   @Override
+	public int registerCheck(String userid) {
+	   // TODO Auto-generated method stub
+	   return memberDao.registerCheck(userid);
+   }
+
 }

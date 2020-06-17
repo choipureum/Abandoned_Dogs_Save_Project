@@ -87,6 +87,7 @@ public class MemberDaoImpl implements MemberDao{
 
 
 
+   //userid 와 userpw 
    @Override
    public int selectCntMemberByUseridUserpw(MemberDTO member) {
 	   
@@ -161,4 +162,43 @@ public class MemberDaoImpl implements MemberDao{
 	}
 	   return result;
    }
+   
+   
+   //중복체크 할때 
+   public int registerCheck(String userid) {
+	   //db 연결 객체
+	   conn = JDBCTemplate.getConnection();
+	   
+	   String sql = "select * from member where userid=?";
+	   
+	   try {
+		   ps=conn.prepareStatement(sql);
+		   ps.setString(1, userid);
+		   
+		   rs=ps.executeQuery();
+		   if(!userid.equals("")) {
+			   if(rs.next()) {
+				   return 0; // 이미 존재하는 회원
+			   } else {
+				   return 1; //가입 가능한 회원 아이디 
+		   } 
+		  
+		   }else {
+			   return 2;
+		   }
+			   
+		   
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} finally {
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(ps);
+	}
+	   return -1; //데이터베이스 오류 발생
+	   
+   }
+  
+   
+   
 }
