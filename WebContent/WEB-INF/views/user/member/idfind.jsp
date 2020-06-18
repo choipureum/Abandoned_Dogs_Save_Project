@@ -33,10 +33,10 @@ function idFind(event){
 		alert("이메일을 입력하세요");
 	} 
 
-	//배열에 유저정보 삽입
-	var userinfo=new Array;
-	userinfo.push(username);
-	userinfo.push(useremail);
+// 	//배열에 유저정보 삽입
+// 	var userinfo=new Array;
+// 	userinfo.push(username);
+// 	userinfo.push(useremail);
 	
 	//확인
 	console.log(userinfo);

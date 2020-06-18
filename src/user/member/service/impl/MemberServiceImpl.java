@@ -13,6 +13,7 @@ public class MemberServiceImpl implements MemberService{
 
    private MemberDao memberDao = new MemberDaoImpl();
    
+   //getparam
    @Override
    public MemberDTO getParam(HttpServletRequest req) {
       //생년월일 스트링버퍼 사용해서 넣을 수 있는 값으로 변경해주기
@@ -42,6 +43,7 @@ public class MemberServiceImpl implements MemberService{
       
    }
 
+   //멤버 다음 넘버 확인
    @Override
    public int insert(MemberDTO member) {
       // TODO Auto-generated method stub
@@ -58,7 +60,7 @@ public class MemberServiceImpl implements MemberService{
    }
 
 
-
+   //로그인
    @Override
    public MemberDTO getLoginMember(HttpServletRequest req) {
 	   
@@ -78,6 +80,7 @@ public class MemberServiceImpl implements MemberService{
 	   
    }
 
+   //로그인 성공 실패 확인
    @Override
    public boolean login(MemberDTO member) {
 	   // TODO Auto-generated method stub
@@ -93,16 +96,19 @@ public class MemberServiceImpl implements MemberService{
 	   return memberDao.selectMemberByUserid(member);
    }
 
+   //userid 확인 - 가입가능한지 안되는지 확인
    @Override
 	public int registerCheck(String userid) {
 	   // TODO Auto-generated method stub
 	   return memberDao.registerCheck(userid);
    }
 
+   //아이디 찾기 - username, useremail
 @Override
 	public String findid(String username, String useremail) {
 		// TODO Auto-generated method stub
 		return memberDao.findid(username,useremail);
 	}
+
 
 }

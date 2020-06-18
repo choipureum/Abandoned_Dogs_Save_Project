@@ -50,6 +50,8 @@ public interface MemberDao {
     */
    public String findid(String username, String useremail);
 
+ 
+
    
    
 }

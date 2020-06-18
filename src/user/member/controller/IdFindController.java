@@ -38,8 +38,10 @@ public class IdFindController extends HttpServlet {
 		String username = req.getParameter("username");
 		String useremail = req.getParameter("useremail");
 		
-		System.out.println(username);
-		System.out.println(useremail);
+		//확인
+//		System.out.println(username);
+//		System.out.println(useremail);
+		
 		String result = memberService.findid(username,useremail);
 		
 		String json = "{\"data\":\""+result+"\"}";

@@ -16,7 +16,7 @@ public class MemberDaoImpl implements MemberDao{
    private PreparedStatement ps= null; //sql 수행객체
    private ResultSet rs = null; //결과집합
    
-   //nextval
+   //nextval userno - 이제 안쓸거같은데
    @Override
    public int selectNextUserno() {
       conn= JDBCTemplate.getConnection();
@@ -49,7 +49,7 @@ public class MemberDaoImpl implements MemberDao{
       return nextval;
    }
 
-   
+   //회원가입
    @Override
    public int insert(MemberDTO member) {
       
@@ -127,7 +127,7 @@ public class MemberDaoImpl implements MemberDao{
 		return cnt;
    }
 
-
+   //로그인시 userid
    @Override
    public MemberDTO selectMemberByUserid(MemberDTO member) {
 
@@ -164,7 +164,7 @@ public class MemberDaoImpl implements MemberDao{
    }
    
    
-   //중복체크 할때 
+   //중복체크 할때 아이디 중복체크
    public int registerCheck(String userid) {
 	   //db 연결 객체
 	   conn = JDBCTemplate.getConnection();
@@ -233,5 +233,6 @@ public class MemberDaoImpl implements MemberDao{
 	}  
 	   return userid; //실패
    }
+
 
 }

@@ -227,7 +227,7 @@ $(document).ready(function(){
 
 <!-- 이메일 인증버튼 -->
 <script type="text/javascript">
-
+var ran=0;
 function email(){
 	
 	if($('#emailcheckbox').css("display") =="none") {
@@ -236,10 +236,37 @@ function email(){
 		$("#emailcheckbox").hide()
 	}
 	
+	
+	//ajax 이용
+	var useremail= $("#useremail");
+	
+	$.ajax({
+		type: 'POST',
+		url: '/id/check',
+//			파라미터 변수 이름 값(사용자아이디값)
+		data : {useremail : useremail},
+		success : function(random){			
+			alert("이메일을 보냈습니다")
+			ran=random;		
+		}
+	})
+	
 }
 
+// if (ran == 이메일인증.val()) emailCheck버튼
 
-
+function emailcheck(){
+	//랜덤이랑 이메일 체크
+	if(ran == $("#emailCheck").val()){
+		$("#email_check").text('이메일이 인증되었습니다');
+		$("#email_check").css('color','blue');
+		
+	} else{
+		$("#email_check").text('인증번호가 틀립니다  다시 확인해주세요!');
+		$("#email_check").css('color','red');
+		
+	}
+}
 
 </script>
 <!-- css -->
@@ -401,8 +428,13 @@ select{
       
   	<div id="emailcheckbox">
 	<h6>이메일인증
-	<input type="email"  name="useremail" id="useremail" required style="height:30px; width: 200px" />
-	<button type ="button" value="인증 확인" class="id_Button" onclick="emailCheck()">인증 확인</button>
+	<input type="text"  name="useremailcheck" id="useremailcheck" maxlength="4" style="height:30px; width: 200px" />
+	<button type ="button" value="인증 확인" class="id_Button" id="emailCheck" onclick="emailCheck()">인증 확인</button>
+	<div id="email_check"></div>
+<!-- 	//이메일 인증 컨트롤러 -->
+<!-- 		//이메일 인증 하는 코드 -->
+	
+	
 	</h6></div>
 	
 	
