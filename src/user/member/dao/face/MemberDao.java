@@ -41,6 +41,15 @@ public interface MemberDao {
     * @return 1 ( 존재하는 회원, 0 존재하지 않는 회원 , -1 에러)
     */
    public int registerCheck(String userid);
+
+   /**
+    * username과 useremail를 통해서 userid 찾기
+    * @param username
+    * @param useremail
+    * @return 1 있음 0없음 -1실패
+    */
+   public String findid(String username, String useremail);
+
    
    
 }

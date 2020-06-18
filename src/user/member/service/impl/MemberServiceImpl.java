@@ -99,4 +99,10 @@ public class MemberServiceImpl implements MemberService{
 	   return memberDao.registerCheck(userid);
    }
 
+@Override
+	public String findid(String username, String useremail) {
+		// TODO Auto-generated method stub
+		return memberDao.findid(username,useremail);
+	}
+
 }

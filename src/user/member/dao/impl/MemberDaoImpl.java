@@ -198,7 +198,40 @@ public class MemberDaoImpl implements MemberDao{
 	   return -1; //데이터베이스 오류 발생
 	   
    }
-  
+
    
+   //userid 찾기 / username과 useremail통해서 userid 찾기
    
+   @Override
+   public String findid(String username, String useremail) {
+	   
+	 //db 연결 객체
+	   conn = JDBCTemplate.getConnection();
+	   
+	   String sql = "select userid from member where username=? and useremail=?";
+
+	   String userid = "";
+	   try {
+		 //
+		ps=conn.prepareStatement(sql);
+		ps.setString(1, username);
+		ps.setString(2, useremail);
+		rs=ps.executeQuery();
+		
+		
+		while(rs.next()) {
+			userid = rs.getString("userid");
+		} 
+		
+
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} finally {
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(ps);
+	}  
+	   return userid; //실패
+   }
+
 }
