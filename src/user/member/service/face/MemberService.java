@@ -49,6 +49,15 @@ public interface MemberService {
     * @return 1 성공  0 실패 -1 에러
     */
    public int registerCheck(String userid);
+
+   /**
+    * id 찾기 기능
+    * @param username - 이름
+    * @param useremail - 이메일 
+    * @return 1 있음 0 없음 -1 실패
+    */
+   public String findid(String username, String useremail);
+
  
  
 
