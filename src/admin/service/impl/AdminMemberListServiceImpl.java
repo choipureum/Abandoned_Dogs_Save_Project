@@ -64,7 +64,15 @@ public class AdminMemberListServiceImpl implements AdminMemberListService{
 	public TreeMap<Date, Integer> getGraphMember() {		
 		return adminMemberListDao.graphMember();
 	}
-
-
-
+	@Override
+	public MemberDTO selectById(String userid) {
+		MemberDTO member=adminMemberListDao.selectID(userid);
+		return member;
+	}
 }
+
+
+
+
+
+

@@ -58,7 +58,13 @@ public interface AdminMemberListService {
 	 */
 	public TreeMap<Date,Integer> getGraphMember();
 	
-	
+	/**
+	 * 회원 아이디를 통한 유저 전체 정보 반환
+	 * 
+	 * @param - String userid
+	 * @return - MemberDTO
+	 */
+	public MemberDTO selectById(String userid);
 	
 	
 }

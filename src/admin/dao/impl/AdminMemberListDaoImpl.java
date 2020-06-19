@@ -231,10 +231,11 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 	    	conn = JDBCTemplate.getConnection();
 	    	
 	    	sql=new StringBuffer();	    	
-	    	sql.append("select * from where userid=?");
+	    	sql.append("select * from member where userid=?");
 	    	
 	    	try {
 				ps=conn.prepareStatement(sql.toString());
+				ps.setString(1, userid);
 				rs=ps.executeQuery();
 				if(rs.next()) {
 					member.setUserid(rs.getString("userid"));
