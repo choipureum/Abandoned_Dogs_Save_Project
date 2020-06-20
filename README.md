@@ -26,11 +26,11 @@
 
 ### 사용언어
 <hr>
-Java, Oracle SQL, HTML/CSS, Jquery(JavaScript) 
+Java, Oracle SQL, HTML/CSS,JavaScript(Jquery)
 
 ### 사용기술
 <hr>
-Ajax, 
+Apache Tomcat9.0
 
 
 

@@ -314,14 +314,14 @@ $(document).ready(function(){
   function chk_sendmail(){
 	  var agree=confirm("선택 회원에게 메일을 보내시겠습니까?");
 	  //여러명일때 불가
-	  if($("input[class='member_chk']:checked").size()>1 && agree){
+	  if($("input[class='member_chk']:checked").length>1 && agree){
 		  alert("다중선택 불가");
 		  // 선택 모두 해제
 		  chk_All_Del();
 		  return;
 	  };
 	  //없을때 불가
-	  if($("input[class='member_chk']:checked").size()==0 && agree){
+	  if($("input[class='member_chk']:checked").length==0 && agree){
 		  alert("회원을 선택해주세요!");
 		  return;
 	  }

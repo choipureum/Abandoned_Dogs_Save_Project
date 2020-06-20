@@ -54,11 +54,21 @@ public interface MemberService {
     * id 찾기 기능
     * @param username - 이름
     * @param useremail - 이메일 
-    * @return 1 있음 0 없음 -1 실패
+    * @return string 맞으면 userid 
     */
    public String findid(String username, String useremail);
 
- 
+   /**
+    * 비밀번호 체크 전에 이름 아이디 이메일 확인기능
+    * @param username
+    * @param userid
+    * @param useremail
+    * @return (int)로 할껀뎅..
+    */
+   public int findpw(String username, String userid, String useremail);
+
+
+
  
 
 

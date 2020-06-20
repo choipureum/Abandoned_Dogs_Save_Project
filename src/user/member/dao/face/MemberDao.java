@@ -50,6 +50,20 @@ public interface MemberDao {
     */
    public String findid(String username, String useremail);
 
+   /**
+    * 비밀번호 체크 - 이름 아이디 이메일 있는지 확인
+    * @param username
+    * @param userid
+    * @param useremail
+    * @return 1 있으면 비밀번호 재설정 페이지 없으면 alert 후 메인페이지
+    */
+   
+   public int findpw(String username, String userid, String useremail);
+
+
+
+ 
+
    
    
 }

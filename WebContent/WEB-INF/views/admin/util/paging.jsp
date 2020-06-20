@@ -3,29 +3,30 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<div class="text-center">
-<ul class="pagination">
+
+<nav aria-label="Page navigation example">
+<ul class="pagination" style="float:right; float-right:20px;">
 	
 	<!-- 첫 페이지로 가기 -->
 	<c:if test="${paging.curPage ne 1 }">
 <%-- 	<c:if test="${paging.curPage gt paging.pageCount  }"> --%>
-	<li><a href="/admin/memberlist">&larr;</a></li>
+	<li class="page-item"><a href="/admin/memberlist" class="page-link">첫장</a></li>
 	</c:if>
 	
 	
 	<!-- 이전 페이징 리스트로 가기 -->
 	<c:if test="${paging.startPage gt paging.pageCount }">
-	<li><a href="/admin/memberlist?curPage=${paging.startPage - paging.pageCount }">&laquo;</a></li>
+	<li class="page-item"><a href="/admin/memberlist?curPage=${paging.startPage - paging.pageCount }" class="page-link">이전</a></li>
 	</c:if>
 	
-	<c:if test="${paging.startPage le paging.pageCount }">
-	<li class="disabled"><a>&laquo;</a></li>
-	</c:if>
+<%-- 	<c:if test="${paging.startPage le paging.pageCount }"> --%>
+<!-- 	<li class="disabled"><a class="page-link"></a></li> -->
+<%-- 	</c:if> --%>
 	
 	
 	<!-- 이전 페이지로 가기 -->
 	<c:if test="${paging.curPage ne 1 }">
-	<li><a href="/admin/memberlist?curPage=${paging.curPage - 1 }">&lt;</a>
+	<li  class="page-item"><a href="/admin/memberlist?curPage=${paging.curPage - 1 }" class="page-link">이전</a>
 	</c:if>
 	
 	
@@ -33,12 +34,12 @@
 	
 	<!-- 현재 페이지라면 강조(.active) -->
 	<c:if test="${paging.curPage eq i }">
-	<li class="active"><a href="/admin/memberlist?curPage=${i }">${i }</a></li>
+	<li  class="page-item"><a href="/admin/memberlist?curPage=${i }" class="page-link">${i }</a></li>
 	</c:if>
 	
 	<!-- 현재 페이지가 아니라면 평소 모습-->
 	<c:if test="${paging.curPage ne i }">
-	<li><a href="/admin/memberlist?curPage=${i }">${i }</a></li>
+	<li  class="page-item"><a href="/admin/memberlist?curPage=${i }"class="page-link">${i }</a></li>
 	</c:if>
 
 	</c:forEach>
@@ -46,24 +47,24 @@
 
 	<!-- 다음 페이지로 가기 -->
 	<c:if test="${paging.curPage ne paging.totalPage}">
-	<li><a href="/admin/memberlist?curPage=${paging.curPage + 1 }">&gt;</a>
+	<li  class="page-item"><a href="/admin/memberlist?curPage=${paging.curPage + 1 }"class="page-link">다음</a>
 	</c:if>
 	
 
-	<!-- 다음 페이징 리스트로 가기 -->
+	<!-- 다음 페이징 리스트로 가기 --> 
 	<c:if test="${paging.endPage ne paging.totalPage }">
-	<li><a href="/admin/memberlist?curPage=${paging.startPage + paging.pageCount }">&raquo;</a></li>
+	<li  class="page-item"><a href="/admin/memberlist?curPage=${paging.startPage + paging.pageCount }" class="page-link">다음</a></li>
 	</c:if>
 
-	<c:if test="${paging.endPage eq paging.totalPage }">
-	<li class="disabled"><a>&raquo;</a></li>
-	</c:if>
+<%-- 	<c:if test="${paging.endPage eq paging.totalPage }"> --%>
+<!-- 		<li class="disabled"><a class="page-link">&rarr;</a></li> -->
+<%-- 	</c:if> --%>
 
 
 	<!-- 마지막 페이지로 가기 -->
 	<c:if test="${paging.curPage ne paging.totalPage }">
-	<li><a href="/admin/memberlist?curPage=${paging.totalPage }">&rarr;</a></li>
+	<li class="page-item"><a href="/admin/memberlist?curPage=${paging.totalPage }" class="page-link">마지막</a></li>
 	</c:if>
 	
 </ul>
-</div>
+</nav>

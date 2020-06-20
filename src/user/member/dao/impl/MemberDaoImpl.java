@@ -16,7 +16,7 @@ public class MemberDaoImpl implements MemberDao{
    private PreparedStatement ps= null; //sql 수행객체
    private ResultSet rs = null; //결과집합
    
-   //nextval
+   //nextval userno - 이제 안쓸거같은데
    @Override
    public int selectNextUserno() {
       conn= JDBCTemplate.getConnection();
@@ -49,7 +49,7 @@ public class MemberDaoImpl implements MemberDao{
       return nextval;
    }
 
-   
+   //회원가입
    @Override
    public int insert(MemberDTO member) {
       
@@ -127,7 +127,7 @@ public class MemberDaoImpl implements MemberDao{
 		return cnt;
    }
 
-
+   //로그인시 userid
    @Override
    public MemberDTO selectMemberByUserid(MemberDTO member) {
 
@@ -164,7 +164,7 @@ public class MemberDaoImpl implements MemberDao{
    }
    
    
-   //중복체크 할때 
+   //중복체크 할때 아이디 중복체크
    public int registerCheck(String userid) {
 	   //db 연결 객체
 	   conn = JDBCTemplate.getConnection();
@@ -232,6 +232,46 @@ public class MemberDaoImpl implements MemberDao{
 		JDBCTemplate.close(ps);
 	}  
 	   return userid; //실패
+   }
+
+   //userpw 체크 확인 사항
+   @Override
+   public int findpw(String username, String userid, String useremail) {
+	   
+	   conn = JDBCTemplate.getConnection();
+	   
+	   String sql = "select count(*) from member where userid=? and username=? and useremail=?";
+	   
+	   try {
+		   
+		   ps=conn.prepareStatement(sql);
+		   
+		   ps.setString(1, userid);
+		   ps.setString(2, username);
+		   ps.setString(3, useremail);
+		   
+		   rs=ps.executeQuery();
+		   
+		   
+		   
+//		   여기 안걸려
+		   
+		   if(rs.next()) {
+			   return 1; // 존재하니깐 비밀번호 재설정 가능
+		   } else {
+			   return 0; //alert 할 부분 
+		   }
+
+		   
+	   } catch (SQLException e) {
+		// TODO Auto-generated catch block
+		   e.printStackTrace();
+	   } finally {
+		   JDBCTemplate.close(rs);
+		   JDBCTemplate.close(ps);
+	   }
+	   return -1; //데이터베이스 오류 발생
+
    }
 
 }
