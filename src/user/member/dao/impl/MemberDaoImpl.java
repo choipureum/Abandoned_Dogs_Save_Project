@@ -234,5 +234,44 @@ public class MemberDaoImpl implements MemberDao{
 	   return userid; //실패
    }
 
+   //userpw 체크 확인 사항
+   @Override
+   public int findpw(String username, String userid, String useremail) {
+	   
+	   conn = JDBCTemplate.getConnection();
+	   
+	   String sql = "select count(*) from member where userid=? and username=? and useremail=?";
+	   
+	   try {
+		   
+		   ps=conn.prepareStatement(sql);
+		   
+		   ps.setString(1, userid);
+		   ps.setString(2, username);
+		   ps.setString(3, useremail);
+		   
+		   rs=ps.executeQuery();
+		   
+		   
+		   
+//		   여기 안걸려
+		   
+		   if(rs.next()) {
+			   return 1; // 존재하니깐 비밀번호 재설정 가능
+		   } else {
+			   return 0; //alert 할 부분 
+		   }
+
+		   
+	   } catch (SQLException e) {
+		// TODO Auto-generated catch block
+		   e.printStackTrace();
+	   } finally {
+		   JDBCTemplate.close(rs);
+		   JDBCTemplate.close(ps);
+	   }
+	   return -1; //데이터베이스 오류 발생
+
+   }
 
 }

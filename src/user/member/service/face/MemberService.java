@@ -58,7 +58,17 @@ public interface MemberService {
     */
    public String findid(String username, String useremail);
 
- 
+   /**
+    * 비밀번호 체크 전에 이름 아이디 이메일 확인기능
+    * @param username
+    * @param userid
+    * @param useremail
+    * @return (int)로 할껀뎅..
+    */
+   public int findpw(String username, String userid, String useremail);
+
+
+
  
 
 
