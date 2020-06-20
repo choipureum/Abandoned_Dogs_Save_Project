@@ -6,9 +6,6 @@
 <meta charset="UTF-8">
 <title>아이디찾기</title>
 
-<!-- 다음 주소 api -->
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
 
 <!-- 자바스크립트 -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
@@ -34,9 +31,9 @@ function idFind(event){
 	} 
 
 // 	//배열에 유저정보 삽입
-// 	var userinfo=new Array;
-// 	userinfo.push(username);
-// 	userinfo.push(useremail);
+	var userinfo=new Array;
+	userinfo.push(username);
+	userinfo.push(useremail);
 	
 	//확인
 	console.log(userinfo);
@@ -70,17 +67,18 @@ function idFind(event){
 	
 
 }
-
-
-//controller전달 하는 부분
-
-
-
-
-
-//이름이ㅏㄹㅇ 이메일 보내서
-
 </script>
+
+
+<!-- controller전달 하는 부분 -->
+
+
+
+
+
+<!-- 이름이ㅏㄹㅇ 이메일 보내서 -->
+
+
 
 <!-- css -->
 <style type="text/css">
@@ -134,6 +132,19 @@ select{
    width: 100px;
 }
 
+.check_Button{
+   background-color: rgb(220,220,220);
+   color:black;
+   border-radius: 2px;
+   border: 0;
+   padding: 6px 20px;
+
+}
+
+/* 이메일인증시 나오게 */
+#emailcheckbox{
+	display: none;
+}
 </style>
 </head>
 <body>
@@ -152,9 +163,14 @@ select{
       <input type="text" placeholder="이름" name="username" id="username" required style="height:30px; width: 495px"/></label>
       <div id="name_check"></div></h6>
 
-   <h6><label >이메일<span id="red">(필수)</span>
-      <input type="email" placeholder="이메일" name="useremail" id="useremail" required style="height:30px; width: 495px"/></label></h6>
+   <h6><label >이메일<span id="red">(필수)</span><br>
+      <input type="email" placeholder="이메일" name="useremail" id="useremail" required style="height:30px; width: 495px"/></label>
+	
+	</h6>
 
+	
+	
+<!-- 	아이디찾기 로그인 버튼 -->
 	<hr>
 	<button type="button" value="아이디 찾기" id="findid" onclick="idFind()" value="아이디찾기">아이디찾기</button>
 	<button type="button" value="로그인" id="login" onclick="location.href='/login/login'" value="로그인">로그인</button>

@@ -39,8 +39,8 @@ public class IdFindController extends HttpServlet {
 		String useremail = req.getParameter("useremail");
 		
 		//확인
-//		System.out.println(username);
-//		System.out.println(useremail);
+		System.out.println(username);
+		System.out.println(useremail);
 		
 		String result = memberService.findid(username,useremail);
 		

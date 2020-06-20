@@ -4,10 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>아이디찾기</title>
-
-<!-- 다음 주소 api -->
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<title>비밀번호 찾기</title>
 
 
 <!-- 자바스크립트 -->
@@ -110,6 +107,15 @@ h5 span{
    
 }
 
+.id_Button{
+   background-color: rgb(220,220,220);
+   color:black;
+   border-radius: 2px;
+   border: 0;
+   padding: 6px 20px;
+
+}
+
 #login{
 
    	background-color: rgb(255,80,90);
@@ -156,9 +162,19 @@ select{
       <input type="email" placeholder="아이디" name="userid" id="userid" required style="height:30px; width: 495px"/></label></h6>
       
 
-   <h6><label >이메일<span id="red">(필수)</span>
-      <input type="email" placeholder="이메일" name="useremail" id="useremail" required style="height:30px; width: 495px"/></label></h6>
-
+   <h6><label >이메일<span id="red">(필수)</span><br>
+      <input type="email" placeholder="이메일" name="useremail" id="useremail" required style="height:30px; width: 380px"/>
+	  <button type ="button" value="이메일인증" class="id_Button" onclick="email()">이메일인증</button></label></h6>
+	  
+	  	<div id="emailcheckbox">
+	<h6>이메일인증
+	<input type="text"  name="useremailcheck" id="useremailcheck" maxlength="4" style="height:30px; width: 200px" />
+	<button type ="button" value="인증 확인" class="id_Button" id="emailCheck" onclick="emailCheck()">인증 확인</button>
+	<div id="email_check"></div>  
+	  
+	  
+	  
+	  
 	<hr>
 	<button type="button" value="비밀번호찾기" id="findpw" onclick="idFind()" >비밀번호찾기</button>
 	<button type="button" value="로그인" id="login" onclick="location.href='/login/login'" value="로그인">로그인</button>

@@ -232,31 +232,28 @@ function email(){
 	
 	if($('#emailcheckbox').css("display") =="none") {
 		$("#emailcheckbox").show();
-	} else{
-		$("#emailcheckbox").hide()
-	}
-	
-	
+	} 		
 	//ajax 이용
-	var useremail= $("#useremail");
-	
+	var useremail= $("#useremail").val();
+
 	$.ajax({
 		type: 'POST',
-		url: '/id/check',
+		url: '/email/check',
 //			파라미터 변수 이름 값(사용자아이디값)
-		data : {useremail : useremail},
+		data : {"useremail" : useremail},
 		success : function(random){			
-			alert("이메일을 보냈습니다")
+			alert("이메일을 보냈습니다"+random);
 			ran=random;		
 		}
-	})
+	});
 	
-}
+};
 
 // if (ran == 이메일인증.val()) emailCheck버튼
-
 function emailcheck(){
 	//랜덤이랑 이메일 체크
+	console.log(ran);
+	
 	if(ran == $("#emailCheck").val()){
 		$("#email_check").text('이메일이 인증되었습니다');
 		$("#email_check").css('color','blue');
@@ -457,5 +454,6 @@ select{
   
    </form>
 </div>
+
 </body>
 </html>
