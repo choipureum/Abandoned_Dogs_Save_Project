@@ -65,6 +65,19 @@ public interface AdminMemberListService {
 	 * @return - MemberDTO
 	 */
 	public MemberDTO selectById(String userid);
+	/**
+	 * 유저 등급 변화
+	 * @param id,grade
+	 * @return - void
+	 */
+	public void UpdateGrade(String id,String grade) ;
+		
 	
 	
 }
+
+
+
+
+
+

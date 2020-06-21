@@ -349,6 +349,25 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 	    	return DateMap;
 	    }
 	    
+	    
+	    @Override
+		public void updateGradeById(String id,String grade) {
+	    	conn = JDBCTemplate.getConnection();	    	
+	    	sql = new StringBuffer();	    	
+	    	sql.append("UPDATE member set usergrade=? where userid=?");
+	    	try {
+				ps= conn.prepareStatement(sql.toString());
+			 	ps.setString(1, grade);
+		    	ps.setString(2, id);
+		    	ps.executeQuery();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(ps);
+			}
+	
+	}
+	    
 }
 
 

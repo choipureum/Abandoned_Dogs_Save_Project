@@ -25,8 +25,10 @@ tr.member_row:hover {
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">회원 관리 보드</h1>
-          <p class="mb-4">회원에 대한 메일 발송, 삭제, 정보 열람등을 할 수 있습니다</p>
+          <p class="mb-4"><a href="/admin/dashboard" class="d-none d-sm-inline-block btn btn-sm text-gray-600">홈&nbsp;&nbsp;</a>
+          	<a href="#"class="d-none d-sm-inline-block btn btn-sm text-gray-600">>&nbsp;&nbsp;</a>
+          	<a href="/admin/memberlist"class="d-none d-sm-inline-block btn btn-sm text-gray-900">회원 관리</a>
+          </p>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
@@ -40,7 +42,9 @@ tr.member_row:hover {
                   <thead>                   
                     <tr>
                       <th>
-                      <input id="member_chk_All" type="checkbox" class="member_chk_All" /></th>                                  		  
+                      <input id="member_chk_All" type="checkbox" class="member_chk_All" />
+
+                      </th>                                  		  
               		  <th>아이디</th>
              		  <th>회원이름</th>
                 	  <th>휴대폰</th>
@@ -58,8 +62,9 @@ tr.member_row:hover {
              		String userEmail=m.get(i).getUseremail();
              		%>
             <tr class="member_row" onclick="location.href='/admin/memberView?userid=<%=userid%>'">										           
-            	<td>                	
-           		<input type="checkbox" id="member_chk"class="member_chk" data-memberid=<%=userid %> data-memberEmail=<%=userEmail %> /></td>            	                                                
+            	<td onclick='event.cancelBubble=true;'>                	
+           		<input type="checkbox" id="member_chk"class="member_chk" data-memberid=<%=userid %> data-memberEmail=<%=userEmail %> />           	                                                			
+					</td> 
                 <td><%=m.get(i).getUserid() %></td>
                 <td><%=m.get(i).getUsername() %></td>
                 <td><%=m.get(i).getUsertel() %></td>
@@ -87,7 +92,7 @@ tr.member_row:hover {
           
               </div>
             </div>
-           <!-- 페이지 위치 출력, 페이징처리 여긴데...-->
+           <!-- 페이지 위치 출력,-->
          	
           </div>
 
@@ -138,7 +143,7 @@ $(document).ready(function(){
 		        }
 		    }, "lengthChange" : false,
 		    	"paging" : false,
-		    	"info":false,
+		    	"info":false
 
 	    });
 
@@ -182,7 +187,7 @@ $(document).ready(function(){
 				  return;
 			  }
 			  var Email=  $("input[class='member_chk']:checked").attr("data-memberEmail");
-			  console.log(Email);
+			  
 			  //문자열 정돈
 			  Email=Email.substring(0, Email.length).trim();
 			  var f = document.getElementById("MailPostForm");
@@ -214,8 +219,6 @@ $(document).ready(function(){
 		  $(".member_chk_All").prop("checked",false);
 	  }
 </script>
-
-
 </html>
 
 

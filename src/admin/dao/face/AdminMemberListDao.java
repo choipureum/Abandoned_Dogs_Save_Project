@@ -58,5 +58,11 @@ public interface AdminMemberListDao {
 	 * @return - TreeMap<Date,Integer>
 	 */
 	public TreeMap<Date,Integer> graphMember();
-
+	
+	/**
+	 * 유저 아이디를 통한 등급 업데이트
+	 * 
+	 * @param id,grade
+	 */
+	public void updateGradeById(String id,String grade);
 }		

@@ -69,6 +69,10 @@ public class AdminMemberListServiceImpl implements AdminMemberListService{
 		MemberDTO member=adminMemberListDao.selectID(userid);
 		return member;
 	}
+	@Override
+	public void UpdateGrade(String id,String grade) {
+		adminMemberListDao.updateGradeById(id,grade);
+	}
 }
 
 

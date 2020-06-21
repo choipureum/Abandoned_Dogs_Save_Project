@@ -15,6 +15,8 @@
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css">
    <link href="https://cdn.datatables.net/1.10.21/css/dataTables.jqueryui.min.css" rel="stylesheet" type="text/css">
+   <!-- 체크박스, 라디오버튼 -->
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css">
   <!-- Custom styles for this template-->
   <link href="/resources/AdminTemplate/css/sb-admin-2.min.css" rel="stylesheet">
   <!-- httpRequest.js 임포트 --> 
@@ -36,7 +38,7 @@
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin/dashboard">
         <div class="sidebar-brand-icon ">
-          <i class="fas fa-dog"></i>
+          <i class="fas fa-paw"></i>
         </div>
         <div class="sidebar-brand-text mx-3">다솜 Admin <sup></sup></div>
       </a>
@@ -107,11 +109,10 @@
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">유기견관리</h6>
-            <a class="collapse-item" href="login.html">유기견 등록</a>
+            <a class="collapse-item" href="/admin/dogInsert">유기견 등록</a>
             <div class="collapse-divider"></div>
             <h6 class="collapse-header">아직 보류</h6>
-
-          </div>
+         </div>
         </div>
       </li>
        
