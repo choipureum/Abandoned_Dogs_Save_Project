@@ -11,6 +11,8 @@ public class DogShelterServiceImpl implements DogShelterService {
 
 	private DogShelterDao dogShelterDao = new DogShelterDaoImpl();
 	
+	//유기견 보호소 조회
+	 
 	@Override
 	public List<Dog_Shelter> list() {
 		
@@ -20,4 +22,15 @@ public class DogShelterServiceImpl implements DogShelterService {
 		return dogShelterList;
 	}
 
+	@Override
+	public List<Dog_Shelter> view(String sheltername, String shelteraddress, String sheltertel) {
+		
+		return dogShelterDao.view(sheltername, shelteraddress, sheltertel);
+	}
+
+	@Override
+	public Dog_Shelter detail(Dog_Shelter dogShelter) {
+		return dogShelterDao.selectBy(dogShelter);
+	}
+	
 }

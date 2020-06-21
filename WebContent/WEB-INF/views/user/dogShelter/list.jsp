@@ -7,6 +7,8 @@
 <%
 	List<Dog_Shelter> dogList = (List) request.getAttribute("list");
 %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,30 +17,56 @@
 <script type="text/javascript" src="/resources/js/httpRequest.js"></script>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-<script>
 
-// 자바 컬렉션에서의 Map은 키, 값 쌍인 것은 같으나 순서정보는 없음
-// 자바스크립트에서의 {}는 키, 값 쌍이면서 나열된 순서정보를 가짐.
-// {"name": "홍길동", "gender": "남자", "email": "aa@a.com"}
+<script type="text/javascript" src="/resources/js/httpRequest.js"></script>
 
-$(document).ready(function () {
-	$('button').click(function () {
-		// 버튼이 클릭되면 ajax 호출
-		$.ajax('dog_SgelterResult.jsp', {
-			success: function (result) {
-				//alert(result.name + ', ' + result.gender + ', ' + result.email);
-				// 배열이 아닌 일반객체를 처리할 대상으로 받았을 경우
-				// 두번째 인자의 매개변수의 의미가 달라진다.
-				$.each(result, function (key, value) {
-					$('div').append(key + ' : ' + value + '<br>');	
-				});
-			}
-		});
-	});
-});
+<script type="text/javascript">
+// window.onload = function() {
+
+// 	// button#btnAction 태그에 click 이벤트 리스너 등록하기
+// 	btnAction.onclick = function() {
+// // 		console.log("btnAction clicked")
+		
+// 		//AJAX요청 보내기
+// 		sendRequest("POST", "/dogshelter/list", "", callback);
+		
+// 	}
+	
+// };
+
+//AJAX 응답 처리 콜백함수
+function callback() {
+	
+	if( httpRequest.readyState == 4 ) { //XHR DONE.
+		if( httpRequest.status == 200 ) { //HTTP OK.
+			console.log("정상적인 AJAX 요청/응답 완료")
+			
+			//결과 처리 함수 호출
+			printData();
+			
+		} else {
+			console.log("AJAX 요청/응답 실패")
+			
+		}
+	}
+	
+}
+
+//응답 결과 처리 함수
+function printData() {
+	console.log("printData called")
+
+	console.log("--- responseText ---");
+	console.log(httpRequest.responseText);
+	
+	result.innerHTML = httpRequest.responseText;
+}
 </script>
+
 </head>
 <body>
+<%-- 	<%@ include file="./dog_Shelter_gnb.jsp" %> --%>
+
 	<div id="map" style="width: 1000px; height: 700px;"></div>
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5645296e24208ec4f20113a550ae0767&libraries=services,clusterer,drawing"></script>
@@ -130,12 +158,20 @@ $(document).ready(function () {
 
 //  	 // 마커에 표시할 인포윈도우를 생성합니다 
 		var infowindow = new kakao.maps.InfoWindow({
-      		content : '<div><%=dogList.get(i).getSheltername()%><br><button id="btnAction">상세보기</button></div>'
-<%--       		content : '<div><%=dogList.get(i).getSheltername()%><br><%=dogList.get(i).getShelteraddress()%><br><%=dogList.get(i).getSheltertel()%></div>', --%>
-      		
-		});
+      		content : '<div><%=dogList.get(i).getSheltername()%><br><button id="btnAction">상세보기</button></div>',
+      		iwRemoveable : true
+		})
   		
+<%--       		content : '<div><%=dogList.get(i).getSheltername()%><br><%=dogList.get(i).getShelteraddress()%><br><%=dogList.get(i).getSheltertel()%></div>', --%>
 
+
+		// 마커 Listener 이벤트 등록 
+		
+		// 마커에 클릭이벤트를 등록합니다
+		kakao.maps.event.addListener(marker, 'click', function() {
+      			// 마커 위에 인포윈도우를 표시합니다
+      			infowindow.open(map, marker);  	
+		});
 
 		
 		// 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
@@ -144,11 +180,6 @@ $(document).ready(function () {
 // 	    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
 	    kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
 	  
-		// 마커에 클릭이벤트를 등록합니다
-		kakao.maps.event.addListener(marker, 'click', function() {
-      			// 마커 위에 인포윈도우를 표시합니다
-      			infowindow.open(map, marker);  	
-			});
 		<%}%>
 
 	
