@@ -10,7 +10,7 @@
 <ul>
   <li>유기견 플랫폼 웹페이지 구현 프로젝트</li>
   <li>5인 팀프로젝트</li>
-  <li>SpringFramework, Mybatis </li>
+  <li></li>
 </ul> 
  
 ### 프로젝트 기간
