@@ -49,6 +49,7 @@ $(document).ready(function(){
 })
 </script>
 
+
 <!-- 만약 재설정 버튼 누르면 alert뜨면서 비밀번호가 재설정 되었습니다 -->
 <!-- 로그인 홈페이지로 이동 -->
 <script type="text/javascript">
@@ -125,7 +126,7 @@ select{
    	<div id="pw_check2"></div></h6>
 	  
 	<hr>
-	<button type="button" value="비밀번호재설정" id="pwChange" onclick="pwChange()" >비밀번호 재설정</button>
+	<input type="submit" value="비밀번호재설정" id="pwChange">
 	<hr>
 
   	<br><br>

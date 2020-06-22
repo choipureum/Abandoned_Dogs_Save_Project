@@ -255,7 +255,8 @@ public class MemberDaoImpl implements MemberDao{
 		   
 		   
 //		   여기 안걸려
-		   
+		   //0 이든 1이든 있다 count return 1로만 걸려 
+//		   rs.next 값이 그 행이 1인가 0인가 값 비교
 		   if(rs.next()) {
 			   return 1; // 존재하니깐 비밀번호 재설정 가능
 		   } else {
@@ -272,6 +273,34 @@ public class MemberDaoImpl implements MemberDao{
 	   }
 	   return -1; //데이터베이스 오류 발생
 
+   }
+
+//   비밀번호 재설정
+   @Override
+   public void changpassword(String userpw, String userid) {
+	   
+	   conn=JDBCTemplate.getConnection();
+	   
+	   String sql ="update member set userpw=? where userid=?";
+	  
+	   System.out.println(userpw);
+	   System.out.println(userid);
+	   
+	   try {
+		ps=conn.prepareStatement(sql);
+		ps.setString(1, userpw);
+		ps.setString(2, userid);
+		
+		ps.executeUpdate();
+		
+		
+	} catch (SQLException e) {
+		
+		e.printStackTrace();
+	} finally {
+		   JDBCTemplate.close(ps);
+	}
+	  
    }
 
 }

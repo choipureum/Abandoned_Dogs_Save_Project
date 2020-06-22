@@ -30,9 +30,7 @@ public class IdFindController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-//		인코딩
-		req.setCharacterEncoding("UTF-8");
-		resp.setContentType("text/html;charset=UTF-8");
+
 		
 		
 		String username = req.getParameter("username");

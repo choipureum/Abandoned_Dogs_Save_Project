@@ -67,6 +67,15 @@ public interface MemberService {
     */
    public int findpw(String username, String userid, String useremail);
 
+   /**
+    * userpw set 용도 userid같은지 확인
+    * @param userpw
+    * @param userid
+    */
+   public void changepassword(String userpw, String userid);
+
+
+
 
 
  

@@ -119,6 +119,15 @@ public class MemberServiceImpl implements MemberService{
 	   
    }
 
+   //유저 패스워드 update set useruid 같ㅇ느지 확인
+   // 비밀번호 업데이트용ㄴ
+   @Override
+	public void changepassword(String userpw, String userid) {
+		
+		memberDao.changpassword(userpw, userid);
+	
+   }
+
 
 
 }

@@ -38,6 +38,7 @@ public class PwFindController extends HttpServlet {
 		String useremail= req.getParameter("useremail");
 		String userid=req.getParameter("userid");
 		
+		System.out.println("컨트롤러"+userid);
 		//패스워드 찾기
 		//select username userid useremail
 		

@@ -59,6 +59,10 @@ function execPostCode() {
 <!-- 자바스크립트 -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 
+<script type="text/javascript">
+
+	
+</script>
 <!-- 유효성검사 코드 -->
 <script type="text/javascript">
 $(document).ready(function(){
@@ -140,11 +144,16 @@ $(document).ready(function(){
 	}) //blur
 	
 	$("#myForm").submit(function(){
-
+						   
 		   if(!uidReg.test($("#userid").val())){
 		      alert("아이디를 체크하세요");
 
 		      return false;
+		   }
+		   
+		   if(!($("#hiddenIdCheck").val()=="ok")){
+			   alert("아이디 중복확인 바랍니다");
+			   return false;
 		   }
 
 		   if(!upwReg.test($("#userpw").val())){
@@ -158,20 +167,19 @@ $(document).ready(function(){
 		      alert("이름한글로 2-5자");     
 		      return false;
 		   }
-		   
+		   if(!($("#hiddenEmailCheck").val()=="ok")){
+			   alert("이메일 인증확인을 해주세요");
+			   return false;
+		   }
 		   
 		   //#userpw_ck
 		   if( $("#userpw").val() != $("#userpw_ck").val() ){
 		      
 		      alert("비밀번호가 달라요!")
-		      //다지우기
-	
-		      $("#userpw").focus();
-		      
+		      $("#userpw").focus();      
 		      //select 이벤트발생
 		      $("#userpw_ck").select();
-		      return false;
-		   
+		      return false;		   
 		   }
 
 		   if(!uidReg.test($("#userid").val())){
@@ -184,19 +192,19 @@ $(document).ready(function(){
 			   alert("년도를 확인하세요");
 			   
 			   return false;
-		   }
-		})   
-		   return true;
+		   }		   	  
+		}) 		
+		return true;
 })
 
-
 </script>
+
+<!-- 변수 로 if문 -->
 
 <!-- 아이디 중복체크  -->
 <script type="text/javascript">
 
-	function idCheck(){
-		
+	function idCheck(){	
 // 		ajax 활용
 		var userid=$("#userid").val();
 		$.ajax({
@@ -209,6 +217,7 @@ $(document).ready(function(){
 					
 					$("#id_check2").text('가입이 가능한 아이디입니다');
 					$("#id_check2").css('color','blue');
+					$("#hiddenIdCheck").attr("value","ok");
 					
 				} else if(result==0){
 					$("#id_check2").text('아이디가 존재합니다');
@@ -230,6 +239,13 @@ $(document).ready(function(){
 var ran=0;
 function email(){
 	
+	
+	if($("#useremail").val()==""){
+		alert("이메일을 입력하세요");
+		
+		return false;
+	}
+	
 	if($('#emailcheckbox').css("display") =="none") {
 		$("#emailcheckbox").show();
 	} 		
@@ -241,27 +257,25 @@ function email(){
 		url: '/email/check',
 //			파라미터 변수 이름 값(사용자아이디값)
 		data : {"useremail" : useremail},
-		success : function(random){			
+		success : function(random){		
+			//왜일까? ----------여기 짊ㄴ아ㅓ
+			
 			alert("이메일을 보냈습니다"+random);
-			ran=random;		
+			ran=random;			
 		}
 	});
-	
 };
 
 // if (ran == 이메일인증.val()) emailCheck버튼
-function emailcheck(){
-	//랜덤이랑 이메일 체크
-	console.log(ran);
+function emailCheckFunc(){
 	
-	if(ran == $("#emailCheck").val()){
+	if(ran == $("#useremailcheck").val()){
 		$("#email_check").text('이메일이 인증되었습니다');
-		$("#email_check").css('color','blue');
-		
+		$("#email_check").css('color','blue');	
+		$("#hiddenEmailCheck").attr("value","ok");
 	} else{
 		$("#email_check").text('인증번호가 틀립니다  다시 확인해주세요!');
-		$("#email_check").css('color','red');
-		
+		$("#email_check").css('color','red');		
 	}
 }
 
@@ -336,10 +350,11 @@ select{
 <!--    비밀번호 확인 해주기  -->
 <!--    메인화면 으로 가야하지 않나..?-->
    <form action="/singup/singup" method="post" id="myForm">
-   
+   <!-- 아이디 중복 값 체크용 히든 밸류 -->
+   <input type="hidden" id="hiddenIdCheck"/>
    <h6><label>아이디<span id="red">(필수)</span><br>
       <input type="text" placeholder="아이디" name="userid" id="userid" class="username_input" required style="height:30px; width: 380px" />
-      <button type ="button" value="ID중복확인" class="id_Button" onclick="idCheck()">ID중복확인</button>
+      <button type ="button" value="ID중복확인" id="idCheckbutton" class="id_Button" onclick="idCheck()">ID중복확인</button>
       </label><div id="id_check"></div><div id="id_check2"></div>
       </h6>
  
@@ -357,7 +372,7 @@ select{
       <div id="name_check"></div></h6>
       
   <h6><label>핸드폰<span id="red">(필수)</span>
-      <input type="tel" placeholder="핸드폰번호입력" name="usertel" maxlength="11" id="usertel" required style="height:30px; width: 495px"/></label></h6>
+      <input type="tel" placeholder="- 없이 숫자만 써주세요(숫자11자리)" name="usertel" maxlength="11" id="usertel" required style="height:30px; width: 495px"/></label></h6>
   
   
   <h6><label>생년월일<span id="red">(필수)</span><br>
@@ -422,11 +437,12 @@ select{
       <button type ="button" value="이메일인증" class="id_Button" onclick="email()">이메일인증</button>
       
       </label></h6>
-      
+<!--     이메일인증 값 체크용 힐든 벨류  -->
+	<input type="hidden" id="hiddenEmailCheck"/>
   	<div id="emailcheckbox">
 	<h6>이메일인증
 	<input type="text"  name="useremailcheck" id="useremailcheck" maxlength="4" style="height:30px; width: 200px" />
-	<button type ="button" value="인증 확인" class="id_Button" id="emailCheck" onclick="emailCheck()">인증 확인</button>
+	<button type ="button" class="id_Button" id="emailCheck" onclick="emailCheckFunc()">인증 확인</button>
 	<div id="email_check"></div>
 <!-- 	//이메일 인증 컨트롤러 -->
 <!-- 		//이메일 인증 하는 코드 -->
