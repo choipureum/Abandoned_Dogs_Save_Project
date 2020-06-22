@@ -73,13 +73,5 @@ public interface MemberService {
     * @param userid
     */
    public void changepassword(String userpw, String userid);
-
-
-
-
-
- 
-
-
    
 }

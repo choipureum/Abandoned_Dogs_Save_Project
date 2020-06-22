@@ -84,17 +84,13 @@ function pwFind(event){
 		}
 		
 	});
-	
-
 }
-
 </script>
 
 <!-- 비밀번호 확인 이메일 체크 -->
 <script type="text/javascript">
 
 var ran=0;
-
 function email(){
 	
 	if($('#emailcheckbox').css("display") =="none") {
@@ -112,8 +108,7 @@ function email(){
 			alert("이메일을 보냈습니다"+random);
 			ran=random;		
 		}
-	});
-	
+	});	
 };
 
 //if (ran == 이메일인증.val()) emailCheck버튼

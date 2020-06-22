@@ -61,7 +61,6 @@ function execPostCode() {
 
 <script type="text/javascript">
 
-	
 </script>
 <!-- 유효성검사 코드 -->
 <script type="text/javascript">
@@ -79,8 +78,7 @@ $(document).ready(function(){
   	//출생년도 정규식 ( 생년월일 )
   	var yearReg = /^(19|20)[0-9]{2}$/;
   	var sw =true;
-  	
-  	
+
   	//아이디 blur
 	$("#userid").blur(function(){
 		if(uidReg.test($('#userid').val())){
@@ -90,7 +88,6 @@ $(document).ready(function(){
 			$("#id_check").css('color','red');
 		}
 	})
-	
 
 	//비밀번호 blur
 	$('#userpw').blur(function(){
@@ -104,7 +101,6 @@ $(document).ready(function(){
 		}
 	});
 
-	
 	//#userpw  #userpw_ck 일치 확인
 	$('#userpw_ck').blur(function(){
 		if($("#userpw").val() == '') {
@@ -120,7 +116,6 @@ $(document).ready(function(){
 			$('#pw_check2').css('color','blue');
 		} 
 	})
-	
 	//이름 blur
 	$('#username').blur(function(){
 		if(unameReg.test($('#username').val())){
@@ -187,7 +182,6 @@ $(document).ready(function(){
 
 			      return false;
 			   }
-		   
 		   if(!yearReg.test($("#userbirth_yy").val())){
 			   alert("년도를 확인하세요");
 			   
@@ -196,11 +190,9 @@ $(document).ready(function(){
 		}) 		
 		return true;
 })
-
 </script>
 
 <!-- 변수 로 if문 -->
-
 <!-- 아이디 중복체크  -->
 <script type="text/javascript">
 
@@ -238,8 +230,7 @@ $(document).ready(function(){
 <script type="text/javascript">
 var ran=0;
 function email(){
-	
-	
+
 	if($("#useremail").val()==""){
 		alert("이메일을 입력하세요");
 		
@@ -278,7 +269,6 @@ function emailCheckFunc(){
 		$("#email_check").css('color','red');		
 	}
 }
-
 </script>
 <!-- css -->
 <style type="text/css">
@@ -447,12 +437,10 @@ select{
 <!-- 	//이메일 인증 컨트롤러 -->
 <!-- 		//이메일 인증 하는 코드 -->
 	
-	
 	</h6></div>
-	
-	
+
 	<h6>주소<span id="red">(필수)</span>
-	
+		
 	<div class="form-group">                   
 		<input class="form-control"  placeholder="우편번호" name="mem_oaddress" id="mem_oaddress" type="text" readonly="readonly" required style=" height:28px; width: 100px">
     	<button type="button" class="btn-default" onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button>                               
@@ -470,6 +458,5 @@ select{
   
    </form>
 </div>
-
 </body>
 </html>

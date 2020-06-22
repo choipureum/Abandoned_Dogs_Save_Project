@@ -21,11 +21,7 @@ function agree(){
 		
 // 	})
 }
-
 </script>
-
-
-
 <!-- 체크 확인 -->
 <script type="text/javascript">
 
@@ -36,10 +32,8 @@ function singup(){
 			$(location).attr("href","/singup/singup");
 		}
 	}
-	
 	else{ alert("약관을 모두 동의해주세요!");}
 
-	
 }
 
 </script>
@@ -59,7 +53,6 @@ function singup(){
    
 }
 
-
 h5{
    text-align: center;
 }
@@ -75,9 +68,6 @@ h5 span{
 }
 
 </style>
-
-
-
 </head>
 <body>
 
@@ -112,15 +102,10 @@ h5 span{
 
 </div>
     </div>
-
-
 <br><br>
 <hr>
 <button type="button" class="btnagree" id="check_all" onclick="agree()">모두 동의</button>
 <button type="button" class="btnagree" onclick="singup()">회원가입</button>
-
 </div>
-
-<!-- "location.href='/singup/singup'" -->
 </body>
 </html>

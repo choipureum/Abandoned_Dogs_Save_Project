@@ -44,8 +44,7 @@ public class MemberDaoImpl implements MemberDao{
             e.printStackTrace();
          }
          
-      }
-      
+      }     
       return nextval;
    }
 
@@ -68,7 +67,6 @@ public class MemberDaoImpl implements MemberDao{
          ps.setString(6, member.getUsertel());
          ps.setString(7, member.getUserbirth());
 
-
          result = ps.executeUpdate();
          
       } catch (SQLException e) {
@@ -84,8 +82,6 @@ public class MemberDaoImpl implements MemberDao{
       }
       return result;
    }
-
-
 
    //userid 와 userpw 
    @Override
@@ -162,8 +158,7 @@ public class MemberDaoImpl implements MemberDao{
 	}
 	   return result;
    }
-   
-   
+  
    //중복체크 할때 아이디 중복체크
    public int registerCheck(String userid) {
 	   //db 연결 객체
@@ -197,9 +192,7 @@ public class MemberDaoImpl implements MemberDao{
 	}
 	   return -1; //데이터베이스 오류 발생
 	   
-   }
-
-   
+   }  
    //userid 찾기 / username과 useremail통해서 userid 찾기
    
    @Override
@@ -217,13 +210,10 @@ public class MemberDaoImpl implements MemberDao{
 		ps.setString(1, username);
 		ps.setString(2, useremail);
 		rs=ps.executeQuery();
-		
-		
+			
 		while(rs.next()) {
 			userid = rs.getString("userid");
 		} 
-		
-
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
@@ -238,8 +228,7 @@ public class MemberDaoImpl implements MemberDao{
    @Override
    public int findpw(String username, String userid, String useremail) {
 	   
-	   conn = JDBCTemplate.getConnection();
-	   
+	   conn = JDBCTemplate.getConnection();	   
 	   String sql = "select count(*) from member where userid=? and username=? and useremail=?";
 	   
 	   try {
@@ -251,18 +240,12 @@ public class MemberDaoImpl implements MemberDao{
 		   ps.setString(3, useremail);
 		   
 		   rs=ps.executeQuery();
-		   
-		   
-		   
-//		   여기 안걸려
-		   //0 이든 1이든 있다 count return 1로만 걸려 
-//		   rs.next 값이 그 행이 1인가 0인가 값 비교
+
 		   if(rs.next()) {
 			   return 1; // 존재하니깐 비밀번호 재설정 가능
 		   } else {
 			   return 0; //alert 할 부분 
 		   }
-
 		   
 	   } catch (SQLException e) {
 		// TODO Auto-generated catch block
@@ -274,7 +257,6 @@ public class MemberDaoImpl implements MemberDao{
 	   return -1; //데이터베이스 오류 발생
 
    }
-
 //   비밀번호 재설정
    @Override
    public void changpassword(String userpw, String userid) {

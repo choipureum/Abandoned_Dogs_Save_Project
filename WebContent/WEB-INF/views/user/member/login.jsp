@@ -89,7 +89,6 @@ a:hover{
 <!-- 비로그인상태 -->
 <c:if test="${empty login }">
 
-
 </c:if>
 
 <div class="container">

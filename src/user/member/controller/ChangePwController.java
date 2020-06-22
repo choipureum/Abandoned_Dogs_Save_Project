@@ -24,7 +24,7 @@ public class ChangePwController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String userid=req.getParameter("userid");
-//		System.out.println(userid);
+
 		req.getRequestDispatcher("/resources/js/changepassword.jsp").forward(req, resp);
 	      
 	}
@@ -41,14 +41,11 @@ public class ChangePwController extends HttpServlet {
 		String userid = req.getParameter("userid");
 		String userpw= req.getParameter("userpw");
 		
-		System.out.println("체인지" + userid);
+		System.out.println("체인지userid: " + userid);
 		
 		memberService.changepassword(userpw, userid);
 		
-		req.getRequestDispatcher("/WEB-INF/views/user/member/result.jsp").
-					forward(req, resp);
-		
-		
+
 	}
 
 }

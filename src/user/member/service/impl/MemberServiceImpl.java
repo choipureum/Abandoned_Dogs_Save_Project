@@ -40,9 +40,7 @@ public class MemberServiceImpl implements MemberService{
       member.setUsertel(req.getParameter("usertel"));
       
       return member;
-      
    }
-
    //멤버 다음 넘버 확인
    @Override
    public int insert(MemberDTO member) {
@@ -57,8 +55,6 @@ public class MemberServiceImpl implements MemberService{
    
       return memberDao.insert(member);
    }
-
-
    //로그인
    @Override
    public MemberDTO getLoginMember(HttpServletRequest req) {
@@ -75,8 +71,7 @@ public class MemberServiceImpl implements MemberService{
 	 member.setUserpw(req.getParameter("userpw"));
 	 
 	 return member;
-	 
-	   
+
    }
 
    //로그인 성공 실패 확인
