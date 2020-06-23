@@ -2,7 +2,7 @@ package user.dog.dto;
 
 import java.util.Date;
 
-public class Dog {
+public class DogDTO {
 	private int dogno;
 	private String dogname;
 	private String dogkind;
