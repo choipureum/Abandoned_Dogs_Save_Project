@@ -6,9 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import user.dog.dao.face.DogDao;
 import user.dog.dao.impl.DogDaoImpl;
-import user.dog.dto.Dog;
+import user.dog.dto.DogDTO;
 import user.dog.dto.Dog_Data;
-import user.dog.dto.Dog_File;
+import user.dog.dto.Dog_File_DTO;
 import user.dog.service.face.DogService;
 import util.Paging;
 
@@ -50,10 +50,10 @@ public class DogServiceImpl implements DogService{
 		
 		
 		@Override
-		public Dog getDogno(HttpServletRequest req) {
+		public DogDTO getDogno(HttpServletRequest req) {
 			
 			//boardno를 저장할 객체 생성
-			Dog dogno = new Dog();
+			DogDTO dogno = new DogDTO();
 			
 			//boardno 전달파라미터 검증 - null, ""
 			String param = req.getParameter("dogno");
@@ -69,16 +69,16 @@ public class DogServiceImpl implements DogService{
 
 
 		@Override
-		public Dog view(Dog dogno) {
+		public DogDTO view(DogDTO dogno) {
 			//게시글 조회//missno에 해당하는 객체의 정보만가져옮
-		      Dog dog= dogDao.selectDogByDogno(dogno); 
+			DogDTO dog= dogDao.selectDogByDogno(dogno); 
 		      
 		     
 		      return dog;
 		}
 
 		@Override
-		public Dog_File viewFile(Dog detailDog) {
+		public Dog_File_DTO viewFile(DogDTO detailDog) {
 			return dogDao.selectFile(detailDog);
 		}
 

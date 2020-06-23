@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import user.dog.dao.face.DogDao;
-import user.dog.dto.Dog;
+import user.dog.dto.DogDTO;
 import user.dog.dto.Dog_Data;
-import user.dog.dto.Dog_File;
+import user.dog.dto.Dog_File_DTO;
 import util.JDBCTemplate;
 import util.Paging;
 
@@ -159,7 +159,7 @@ public class DogDaoImpl implements DogDao{
 
 
 	@Override
-	public Dog selectDogByDogno(Dog dogno) {
+	public DogDTO selectDogByDogno(DogDTO dogno) {
 		//DB연결 객체
 		conn = JDBCTemplate.getConnection();
 		
@@ -169,7 +169,7 @@ public class DogDaoImpl implements DogDao{
 		sql += " WHERE dogno = ?";
 		
 		//결과 저장할 DogDTO객체
-		Dog dog = null;
+		DogDTO dog = null;
 		
 		try {
 			ps = conn.prepareStatement(sql); //SQL수행 객체
@@ -180,7 +180,7 @@ public class DogDaoImpl implements DogDao{
 			
 			//조회 결과 처리
 			while(rs.next()) {
-				dog = new Dog(); //결과값 저장 객체
+				dog = new DogDTO(); //결과값 저장 객체
 				
 				//결과값 한 행 처리
 				dog.setDogno(rs.getInt("dogno"));
@@ -208,7 +208,7 @@ public class DogDaoImpl implements DogDao{
 
 
 	@Override
-	public Dog_File selectFile(Dog detailDog) {
+	public Dog_File_DTO selectFile(DogDTO detailDog) {
 		//DB연결 객체
 		conn = JDBCTemplate.getConnection();
 		
@@ -218,7 +218,7 @@ public class DogDaoImpl implements DogDao{
 		sql += " WHERE dogno = ?";
 		
 		//결과 저장할 BoardFile 객체
-		Dog_File dogFile = null;
+		Dog_File_DTO dogFile = null;
 		
 		try {
 			ps = conn.prepareStatement(sql); //SQL수행 객체
@@ -229,7 +229,7 @@ public class DogDaoImpl implements DogDao{
 			
 			//조회 결과 처리
 			while(rs.next()) {
-				dogFile = new Dog_File();
+				dogFile = new Dog_File_DTO();
 				
 				dogFile.setDogno(rs.getInt("dogno"));
 				dogFile.setDog_fileno(rs.getInt("dog_fileno"));

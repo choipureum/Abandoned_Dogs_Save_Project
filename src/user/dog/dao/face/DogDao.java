@@ -2,9 +2,9 @@ package user.dog.dao.face;
 
 import java.util.List;
 
-import user.dog.dto.Dog;
+import user.dog.dto.DogDTO;
 import user.dog.dto.Dog_Data;
-import user.dog.dto.Dog_File;
+import user.dog.dto.Dog_File_DTO;
 import util.Paging;
 
 public interface DogDao {
@@ -20,9 +20,9 @@ public interface DogDao {
 
 	public int selectCntAll();
 
-	public Dog selectDogByDogno(Dog dogno);
+	public DogDTO selectDogByDogno(DogDTO dogno);
 
-	public Dog_File selectFile(Dog detailDog);
+	public Dog_File_DTO selectFile(DogDTO detailDog);
 
 	
 }
