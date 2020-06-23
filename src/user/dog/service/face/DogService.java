@@ -8,4 +8,6 @@ import user.dog.dto.DogDTO;
 public interface DogService {
 
 	public List<DogDTO> list();
+
+	
 }
