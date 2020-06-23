@@ -34,7 +34,8 @@ public class AdminMemberDeleteController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 //		 data:{member_chk : checkArr}		
-		String[]arr=req.getParameterValues("member_chk[]"); 		
+		String[]arr=req.getParameterValues("member_chk[]"); 	
+		
 		for(String e: arr) {
 			//유저 하나씩 삭제			
 			String userid = e.trim().substring(0, e.length());	

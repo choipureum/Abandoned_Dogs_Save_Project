@@ -60,6 +60,14 @@ public interface MemberDao {
    
    public int findpw(String username, String userid, String useremail);
 
+  /**
+   * ㅇ아이디를 이용해서 비밀번호 업데이트
+   * @param userpw
+   * @param userid
+   */
+   public void changpassword(String userpw, String userid);
+
+
 
 
  

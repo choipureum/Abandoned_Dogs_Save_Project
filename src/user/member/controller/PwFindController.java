@@ -38,28 +38,16 @@ public class PwFindController extends HttpServlet {
 		String useremail= req.getParameter("useremail");
 		String userid=req.getParameter("userid");
 		
+		System.out.println("컨트롤러"+userid);
 		//패스워드 찾기
 		//select username userid useremail
-		
-		//잘오나 확인
-		System.out.println(username+userid+useremail);
-		
+	
 		int result = memberService.findpw(userid, useremail, username);
 		
 		String json = "{\"data\":\""+result+"\"}";
-		
-		
-		System.out.println(json);
+
 		resp.getWriter().write(json);
-		
-		
-		//result 아이디를 가지고 오면 되는데 .. 오메 어려운겨
-//		
-//		String json = "{\"data\":\""+result+"\"}";
-//		
-//		System.out.println(json);
-//		resp.getWriter().write(json);
-//		
+	
 	}
 
 }

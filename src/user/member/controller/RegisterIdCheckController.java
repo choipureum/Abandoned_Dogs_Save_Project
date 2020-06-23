@@ -29,14 +29,9 @@ public class RegisterIdCheckController extends HttpServlet {
 		resp.setContentType("text/html;charset=UTF-8");
 
 		String userid=req.getParameter("userid");
-	
-//		System.out.println(userid);
-		
-//		resp.getWriter().write(new MemberDaoImpl.registerCheck(userid));
-	
+
 		resp.getWriter().write(memberService.registerCheck(userid)+"");
 
-	
 		System.out.println(userid);
 	
 	}

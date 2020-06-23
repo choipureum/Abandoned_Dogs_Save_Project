@@ -10,7 +10,7 @@
 <ul>
   <li>유기견 플랫폼 웹페이지 구현 프로젝트</li>
   <li>5인 팀프로젝트</li>
-  <li>SpringFramework, Mybatis </li>
+  <li></li>
 </ul> 
  
 ### 프로젝트 기간
@@ -23,7 +23,9 @@
 
 ### 웹 어플리케이션 주요기능
 <hr>
-
+1. 관리자 페이지
+2. 유기견 입양신청
+3. 
 ### 사용언어
 <hr>
 Java, Oracle SQL, HTML/CSS,JavaScript(Jquery)

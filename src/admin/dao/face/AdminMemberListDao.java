@@ -5,7 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 
 import admin.dao.impl.AdminMemberListDaoImpl;
-
+import admin.dto.DogClaimDTO;
+import user.dog.dto.DogDTO;
+import user.dog.dto.Dog_File_DTO;
 import user.member.dto.MemberDTO;
 import util.Paging;
 public interface AdminMemberListDao {
@@ -58,5 +60,53 @@ public interface AdminMemberListDao {
 	 * @return - TreeMap<Date,Integer>
 	 */
 	public TreeMap<Date,Integer> graphMember();
-
+	
+	/**
+	 * 유저 아이디를 통한 등급 업데이트
+	 * 
+	 * @param id,grade
+	 */
+	public void updateGradeById(String id,String grade);
+	
+	/**
+	 * dogNo 뽑기
+	 * 
+	 * @param 
+	 */
+	public int selectDogNo();
+	
+	/**
+	 *  개 정보 삽입
+	 * 
+	 * @return - void
+	 * @param - int Dogno
+	 */
+	 
+	public void insertDog(DogDTO dog);
+	
+	
+	/**
+	 * 
+	 * 개 파일 정보 삽입
+	 * 
+	 * @return - void
+	 * @param - Dog_File_DTO
+	 */
+	 public void insertDogFile(Dog_File_DTO dogFile);	
+	 
+	 
+	 
+	 /**
+	  * 개 입양신청 목록 조회
+	  * @return List<DogClaimDTO> - 개 입양신청
+	  */
+	 public List<DogClaimDTO> dogClaimSelectAll(HashMap<String,Object> listOpt,Paging paging); 
+	 
+	 /**
+	  * 입양신청 총 갯수 조회, 페이징에 사용
+	  * 
+	  * @return int - 총 신청 수 출력
+	  */
+	 public int dogClaimCount(HashMap<String,Object> listOpt);
+	 
 }		

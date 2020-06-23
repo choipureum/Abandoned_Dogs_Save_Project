@@ -24,15 +24,10 @@ public class LoginController extends HttpServlet {
    
    @Override
    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-      
-      
-      //접속 테스트
-      System.out.println("접속테스트입니다 아ㅏ아ㅏㅏ");
-      
+
       //포워딩
       req.getRequestDispatcher("/WEB-INF/views/user/member/login.jsp")
          .forward(req, resp);
-
    }
    
    @Override
@@ -41,8 +36,7 @@ public class LoginController extends HttpServlet {
 	  
 	   //전달 파라미터 얻기 - 로그인 정보
 	   MemberDTO member = memberService.getLoginMember(req);
-	   
-	   
+
 	   //로그인 인증
 	   boolean login = memberService.login(member);
 
@@ -55,7 +49,8 @@ public class LoginController extends HttpServlet {
 		   session.setAttribute("login", login);
 		   session.setAttribute("userid", member.getUserid());
 		   session.setAttribute("userpw", member.getUserpw());
-		   System.out.println("됀");
+
+		   resp.sendRedirect("/mypage/main");
 	   } else {
 		   
 		   resp.sendRedirect("/login/login");
@@ -64,7 +59,6 @@ public class LoginController extends HttpServlet {
 //	   //메인 리다이렉트
 //	   resp.sendRedirect("/");
 	
-
    }
 
 }

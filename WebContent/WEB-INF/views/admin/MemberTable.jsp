@@ -15,9 +15,9 @@
 
 <style>
 /*테이블 한행 호버효과*/
-tr.member_row:hover {
-	background: #FAFAD2;
-}
+tr.member_row:hover {background: #FAFAD2;}
+input[type="checkbox"]{width: 20px;height: 20px;cursor: pointer;}
+
 </style>
 	<!-- 헤더 임포트 -->
 		<c:import url="/WEB-INF/views/admin/util/Header.jsp"></c:import>
@@ -25,8 +25,10 @@ tr.member_row:hover {
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">회원 관리 보드</h1>
-          <p class="mb-4">회원에 대한 메일 발송, 삭제, 정보 열람등을 할 수 있습니다</p>
+          <p class="mb-4"><a href="/admin/dashboard" class="d-none d-sm-inline-block btn btn-sm text-gray-600">홈&nbsp;&nbsp;</a>
+          	<a href="#"class="d-none d-sm-inline-block btn btn-sm text-gray-600">>&nbsp;&nbsp;</a>
+          	<a href="/admin/memberlist"class="d-none d-sm-inline-block btn btn-sm text-gray-900">회원 관리</a>
+          </p>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
@@ -40,7 +42,8 @@ tr.member_row:hover {
                   <thead>                   
                     <tr>
                       <th>
-                      <input id="member_chk_All" type="checkbox" class="member_chk_All" /></th>                                  		  
+                      <input id="member_chk_All" type="checkbox" class="member_chk_All" />
+                      </th>                                  		  
               		  <th>아이디</th>
              		  <th>회원이름</th>
                 	  <th>휴대폰</th>
@@ -52,14 +55,17 @@ tr.member_row:hover {
                	  <tbody>               	  	           
       
             <%  
-             for(int i=0;i<m.size();i++){          		
-             		// 커스텀 속성에 유저 아이디 담아보기
-             		String userid= m.get(i).getUserid();
-             		String userEmail=m.get(i).getUseremail();
+              for(int i=0;i<m.size();i++){          		
+              		// 커스텀 속성에 유저 아이디 담아보기
+              		String userid= m.get(i).getUserid();
+              		String userEmail=m.get(i).getUseremail();
              		%>
             <tr class="member_row" onclick="location.href='/admin/memberView?userid=<%=userid%>'">										           
-            	<td>                	
-           		<input type="checkbox" id="member_chk"class="member_chk" data-memberid=<%=userid %> data-memberEmail=<%=userEmail %> /></td>            	                                                
+            	<td onclick='event.cancelBubble=true;'> 
+            	<div style="padding:0 0 0 9px">               	
+           		<input type="checkbox" id="member_chk"class="member_chk"           			
+           			data-memberid=<%=userid %> data-memberEmail=<%=userEmail %> />           	                                                			
+					</div></td> 
                 <td><%=m.get(i).getUserid() %></td>
                 <td><%=m.get(i).getUsername() %></td>
                 <td><%=m.get(i).getUsertel() %></td>
@@ -68,14 +74,14 @@ tr.member_row:hover {
                 <td><%=m.get(i).getUsergrade() %></td>               
             </tr>         
             <% } %>
-            
+	
                	  </tbody> 
                	  <tfoot>
 					    <tr>				    
 					        <th colspan="2" style="text-align:right;white-space:nowrap;">TOTAL : </th>
 					        <th colspan="1" style="text-align:left;white-space:nowrap;"><%=membercnt %> 명</th>
 					        <th colspan="4" style="text-align:right;white-space:nowrap; padding:12px 30px 0 0;">
-					        <c:import url="/WEB-INF/views/admin/util/paging.jsp"></c:import></th>					        
+					        <c:import url="/WEB-INF/views/admin/util/memberPaging.jsp"></c:import></th>					        
 					    </tr>
 					</tfoot>
                	                           	  	  
@@ -87,7 +93,7 @@ tr.member_row:hover {
           
               </div>
             </div>
-           <!-- 페이지 위치 출력, 페이징처리 여긴데...-->
+           <!-- 페이지 위치 출력,-->
          	
           </div>
 
@@ -111,6 +117,8 @@ tr.member_row:hover {
 	<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 	<script src="https://cdn.datatables.net/1.10.21/js/dataTables.jqueryui.min.js"></script>
  
+ 
+         
  
 </body>
 <script type="text/javascript">
@@ -138,7 +146,7 @@ $(document).ready(function(){
 		        }
 		    }, "lengthChange" : false,
 		    	"paging" : false,
-		    	"info":false,
+		    	"info":false
 
 	    });
 
@@ -165,57 +173,73 @@ $(document).ready(function(){
 
 	  
 	  //체크메일보내기(삭제)
-	  function chk_sendmail(){
-		  var agree=confirm("선택 회원에게 메일을 보내시겠습니까?");	 
+	  function chk_sendmail(){		 
+		  swal({
+				icon:"warning",
+				text: "선택 회원에게 메일을 보내시겠습니까?",
+				buttons:["아니요","메일보내기"]
+				
+			}).then((Yes)=> {		
 		  //한명 선택 했다면 정상 코드시행
-		  if(agree){	
-			  //여러명일때 불가
-			  if($("input[class='member_chk']:checked").length>1 ){
-				  alert("다중선택 불가");
-				  // 선택 모두 해제
-				  chk_All_Del();
-				  return;
-			  };
-			  //없을때 불가
-			  if($("input[class='member_chk']:checked").length==0){
-				  alert("회원을 선택해주세요!");
-				  return;
-			  }
-			  var Email=  $("input[class='member_chk']:checked").attr("data-memberEmail");
-			  console.log(Email);
-			  //문자열 정돈
-			  Email=Email.substring(0, Email.length).trim();
-			  var f = document.getElementById("MailPostForm");
-			  window.open("","MailForm","width=800,height=630,left=250,right=150");				  
-			  f.Email.value= Email;	
-			  f.target="MailForm";
-			  f.submit();	   
-		  };
+		 
+				  //여러명일때 불가
+				  if($("input[class='member_chk']:checked").length>1 ){
+					  alert("다중선택 불가");
+					  // 선택 모두 해제
+					  chk_All_Del();
+					  return;
+				  };
+				  //없을때 불가
+				  if($("input[class='member_chk']:checked").length==0){
+					  alert("회원을 선택해주세요!");
+					  return;
+				  }
+				  var Email=  $("input[class='member_chk']:checked").attr("data-memberEmail");
+				  
+				  //문자열 정돈
+				  Email=Email.substring(0, Email.length).trim();
+				  var f = document.getElementById("MailPostForm");
+				  window.open("","MailForm","width=800,height=630,left=250,right=150");				  
+				  f.Email.value= Email;	
+				  f.target="MailForm";
+				  f.submit();	   
+		  });
 	  };  
 	  //선택회원 삭제(삭제)
-	  function chk_delete(){
-		  var agree=confirm("선택 회원들을 삭제하시겠습니까?");
-		  //선택사항 삭제-확인 클릭시 
-		  if(agree){
-			 var checkArr = new Array();
-			 
-			 $("input[class='member_chk']:checked").each(function(){
-				 checkArr.push($(this).attr("data-memberid"));
-			 });	 
-			 
-			 $.post("/admin/delete",{"member_chk":checkArr},function(res){
-				 location.href ="/admin/memberlist";
-			 });	  
-	  }
+	  function chk_delete(){			
+				swal({
+					icon:"warning",
+					text: "회원을 삭제하시겠습니까?",
+					buttons:["아니요","삭제"]
+					
+				}).then((Yes)=> {				
+					if(Yes){
+						var checkArr = new Array();
+						 
+						 $("input[class='member_chk']:checked").each(function(){
+							 checkArr.push($(this).attr("data-memberid"));
+						 });	 
+						 
+						 $.post("/admin/delete",{"member_chk":checkArr},function(res){
+							 swal({				
+								  icon: "success",
+								  text: "회원 삭제가 완료되었습니다!"
+								}).then(function() {
+									 location.href ="/admin/memberlist";							
+							});				
+						 });												
+				}			
+			})
+			
+			 	  
 	  };
+
 	//멤버 전체 선택 해제
 	  function chk_All_Del(){
 		  $(".member_chk").prop("checked",false);
 		  $(".member_chk_All").prop("checked",false);
 	  }
 </script>
-
-
 </html>
 
 

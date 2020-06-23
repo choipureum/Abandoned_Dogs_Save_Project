@@ -1,7 +1,6 @@
 package user.dog_shleter.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -41,24 +40,10 @@ public class DogShelterListView extends HttpServlet {
 		req.setAttribute("list", shelterList);
 		
 		// JSP를 VIEW로 지정하고 응답으로 사용하기 - 포워딩
-		req.getRequestDispatcher("/WEB-INF/views/dogShelter/list.jsp")
+		req.getRequestDispatcher("/WEB-INF/views/user/dogShelter/list.jsp")
 			.forward(req, resp);
-		
-
-		
 		
 	}
 	
 
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		List<Dog_Shelter> shelterList = new ArrayList<>();
-
-		req.setAttribute("shelterList", shelterList);
-		
-		req.getRequestDispatcher("/WEB-INF/views/ajax/dog_ShelterResult.jsp")
-			.forward(req, resp);
-		
-	
-	}
 }

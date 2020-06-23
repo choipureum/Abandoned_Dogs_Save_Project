@@ -43,9 +43,11 @@ public class AdminMemberTableController extends HttpServlet {
 		}
 		//멤버 수 세기
 		int membercnt=0;
+		//페이징 처리 하는 스위치
+		String sw = "member";
 		membercnt= adminMemberListService.memberCount(listOpt);
 		//페이징
-		Paging paging = adminMemberListService.getPaging(req,listOpt); //기본값
+		Paging paging = adminMemberListService.getPaging(req,listOpt,sw); //기본값
 		//멤버 조회하기
 		List<MemberDTO> memberlist = adminMemberListService.memberSelect(listOpt, paging);
 		List<MemberDTO>memberAll = adminMemberListService.memberSelectAll();

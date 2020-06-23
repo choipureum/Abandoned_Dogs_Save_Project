@@ -1,8 +1,10 @@
 package user.dog.dto;
 
+
+
 public class Dog_File_DTO {
 	private int dogno;
-	private String dog_fileno;
+	private int dog_fileno;
 	private String dog_org_file_name;
 	private String dog_stored_file_name;
 	private int dog_file_size;
@@ -13,10 +15,10 @@ public class Dog_File_DTO {
 	public void setDogno(int dogno) {
 		this.dogno = dogno;
 	}
-	public String getDog_fileno() {
+	public int getDog_fileno() {
 		return dog_fileno;
 	}
-	public void setDog_fileno(String dog_fileno) {
+	public void setDog_fileno(int dog_fileno) {
 		this.dog_fileno = dog_fileno;
 	}
 	public String getDog_org_file_name() {

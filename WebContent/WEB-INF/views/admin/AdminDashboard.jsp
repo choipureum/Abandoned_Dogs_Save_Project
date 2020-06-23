@@ -17,11 +17,9 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">다솜 :: Page Management View</h1>
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
-          </div>
-
+<!--           <h1 class="h3 mb-2 text-gray-800">&nbsp;</h1> -->
+            <p class="mb-4"><a href="/admin/dashboard" class="d-none d-sm-inline-block btn btn-sm text-gray-900">홈</a>  
+            </p>                	         	           
           <!-- Content Row -->
           <div class="row">
 
@@ -120,7 +118,7 @@
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                       <div class="dropdown-header">Dropdown</div>
                       <a class="dropdown-item" href="#">회원정보</a>
-                      <a class="dropdown-item" href="#">회원관리</a>
+                      <a class="dropdown-item" href="/admin/memberlist">회원관리</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="#">대시보드 이동</a>
                     </div>
