@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import user.dog.dao.face.DogDao;
 import user.dog.dto.DogDTO;
@@ -29,19 +30,43 @@ public class DogDaoImpl implements DogDao{
 		conn = JDBCTemplate.getConnection();
 		
 		//SQL 작성
-		String sql = "select * from"; 
-	      sql += "(SELECT * FROM (SELECT rownum rnum, B.* FROM (SELECT dogno, dogname,  dogkind, doggender, dogneu, dogdate, dogimg, shelterno";
-	      sql += "      FROM dog";
-	      sql += "      ORDER BY dogno DESC";
-	      sql += "   ) B";
-	      sql += "    ) dog";
-	      sql += "    WHERE rnum BETWEEN ? AND ?) A ";
-	      sql += "   (SELECT";
-	      sql += "   dogno, dog_fileno, dog_org_file_name,dog_stored_file_name,dog_file_size,dog_del_gb";
-	      sql += "   FROM (" ;
-	      sql += "   SELECT DMF.* ,row_number() over( partition by dogno order by dog_fileno desc ) od  FROM dog_file DMF ";
-	      sql +="    )R WHERE od = 1) B";
-	      sql +="    where A.dogno = B.dogno";
+		String sql = ""; 
+		sql += "SELECT * FROM (";
+		sql += "    SELECT rownum rnum, R.* FROM (";
+		sql += "        SELECT ";
+		sql += "            D.dogno, dogname, dogkind, doggender";
+		sql += "            , dogneu, dogdate, dogimg, shelterno";
+		sql += "            , dog_fileno, dog_org_file_name, dog_stored_file_name, dog_file_size, dog_del_gb";
+		sql += "        FROM dog D, (";
+		sql += "            SELECT";
+		sql += "                *";
+		sql += "            FROM (";
+		sql += "                SELECT";
+		sql += "                    DF.*";
+		sql += "                    , row_number() over( partition by dogno order by dog_fileno desc ) od";
+		sql += "                FROM dog_file DF";
+		sql += "            )R";
+		sql += "            WHERE od = 1";
+		sql += "        ) DF_RES";
+		sql += "        WHERE D.dogno = DF_RES.dogno";
+		sql += "        ORDER BY dogno DESC";
+		sql += "    ) R";
+		sql += " ) RES";
+		sql += " WHERE rnum BETWEEN ? and ?";
+		
+//		  sql += "select * from"; 
+//	      sql += "(SELECT * FROM (SELECT rownum rnum, B.* FROM (SELECT dogno, dogname,  dogkind, doggender, dogneu, dogdate, dogimg, shelterno";
+//	      sql += "      FROM dog";
+//	      sql += "      ORDER BY dogno DESC";
+//	      sql += "   ) B";
+//	      sql += "    ) dog";
+//	      sql += "    WHERE rnum BETWEEN ? AND ?) A ";
+//	      sql += "   (SELECT";
+//	      sql += "   dogno, dog_fileno, dog_org_file_name,dog_stored_file_name,dog_file_size,dog_del_gb";
+//	      sql += "   FROM (" ;
+//	      sql += "   SELECT DMF.* ,row_number() over( partition by dogno order by dog_fileno desc ) od  FROM dog_file DMF ";
+//	      sql +="    )R WHERE od = 1) B";
+//	      sql +="    where A.dogno = B.dogno";
 		
 		
 		//결과 저장할 List
@@ -73,6 +98,7 @@ public class DogDaoImpl implements DogDao{
 				d.setDog_stored_file_name(rs.getString("dog_stored_file_name"));
 				d.setDog_file_size(rs.getInt("dog_file_size"));
 				d.setDog_del_gb(rs.getString("dog_del_gb"));
+				
 				//리스트에 결과값 저장
 				dogList.add(d);
 			}

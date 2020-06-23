@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@page import="user.dog.dto.Dog_Data"%>
 <%@page import="java.util.List"%>
 <%List<Dog_Data> list = (List)request.getAttribute("dogList");  %>
@@ -36,18 +38,148 @@
 				</section>
 
 
-			<% for(int i=0; i<list.size(); i++) {%>
+<%-- 			<% for(int i=0; i<list.size(); i++) {%> --%>
+<!--                      <div class="box">																		 -->
+<%--                         <a href="/dog/list?dogno=<%=list.get(i).getDogno()%>" class="image fit"><img src="/upload/<%=list.get(i).getDog_org_file_name() %>" alt="" /></a> --%>
+<!--                         <div class="inner"> -->
+<%--                            <span>이름 <%=list.get(i).getDogname()%></span><br> --%>
+<%--                            <span>성별<%=list.get(i).getDoggender()%></span><br> --%>
+<%--                            <span>중성화여부<%=list.get(i).getDogneu()%></span><br> --%>
+<%--                            <span>공고일<%=list.get(i).getDogdate()%></span> --%>
+<!--                         </div> -->
+<!--                      </div> -->
+<%--                      <%} %> --%>
+
+
+
+<style type="text/css">
+#doglist {
+	display: grid;
+
+	grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 10px;
+    column-gap: 100px;
+
+    width: 1000px;
+    margin: 0 auto;
+    margin-top : 20px;
+}
+.box {
+}
+.box a img {
+	width: 200px;
+	height: 200px;
+}
+
+.box a{
+border-bottom: none;
+}
+
+</style>
+
+
+				<div id="doglist">
+				<c:forEach items="${dogList }" var="dog">
                      <div class="box">																		
-                        <a href="/dog/list?dogno=<%=list.get(i).getDogno()%>" class="image fit"><img src="//<%=list.get(i).getDog_org_file_name() %>" alt="" /></a>
+                        <a href="/dog/detailView?dogno=${dog.dogno }"><img src="/upload/${dog.dog_stored_file_name }" alt="없음" /></a>
                         <div class="inner">
-                           <span>이름 <%=list.get(i).getDogname()%></span><br>
-                           <span>성별<%=list.get(i).getDoggender()%></span><br>
-                           <span>중성화여부<%=list.get(i).getDogneu()%></span><br>
-                           <span>공고일<%=list.get(i).getDogdate()%></span>
+                           <div>이름 ${dog.dogname }</div>
+                           <div>성별 ${dog.doggender }</div>
+                           <div>중성화여부 ${dog.dogneu }</div>
+                           <div>공고일 ${dog.dogdate }</div>
                         </div>
                      </div>
-                     <%} %>
+				</c:forEach>
+				
+<!--                      <div class="box">																		 -->
+<!--                         <a><img src="/resources/dog1.jpg" alt="없음" /></a> -->
+<!--                         <div class="inner"> -->
+<!--                            <span>이름1</span><br> -->
+<!--                            <span>성별1</span><br> -->
+<!--                            <span>중성화여부1</span><br> -->
+<!--                            <span>공고일1</span> -->
+<!--                         </div> -->
+<!--                      </div> -->
+				
+<!--                      <div class="box">																		 -->
+<!--                         <a><img src="/resources/dog1.jpg" alt="없음" /></a> -->
+<!--                         <div class="inner"> -->
+<!--                            <span>이름1</span><br> -->
+<!--                            <span>성별1</span><br> -->
+<!--                            <span>중성화여부1</span><br> -->
+<!--                            <span>공고일1</span> -->
+<!--                         </div> -->
+<!--                      </div> -->
 
+<!--                      <div class="box">																		 -->
+<!--                         <a><img src="/resources/dog1.jpg" alt="없음" /></a> -->
+<!--                         <div class="inner"> -->
+<!--                            <span>이름2</span><br> -->
+<!--                            <span>성별2</span><br> -->
+<!--                            <span>중성화여부2</span><br> -->
+<!--                            <span>공고일2</span> -->
+<!--                         </div> -->
+<!--                      </div> -->
+
+<!--                      <div class="box">																		 -->
+<!--                         <a><img src="/resources/dog1.jpg" alt="없음" /></a> -->
+<!--                         <div class="inner"> -->
+<!--                            <span>이름3</span><br> -->
+<!--                            <span>성별3</span><br> -->
+<!--                            <span>중성화여부3</span><br> -->
+<!--                            <span>공고일3</span> -->
+<!--                         </div> -->
+<!--                      </div> -->
+
+<!--                      <div class="box">																		 -->
+<!--                         <a><img src="/resources/dog1.jpg" alt="없음" /></a> -->
+<!--                         <div class="inner"> -->
+<!--                            <span>이름4</span><br> -->
+<!--                            <span>성별4</span><br> -->
+<!--                            <span>중성화여부4</span><br> -->
+<!--                            <span>공고일4</span> -->
+<!--                         </div> -->
+<!--                      </div> -->
+
+<!--                      <div class="box">																		 -->
+<!--                         <a><img src="/resources/dog1.jpg" alt="없음" /></a> -->
+<!--                         <div class="inner"> -->
+<!--                            <span>이름5</span><br> -->
+<!--                            <span>성별5</span><br> -->
+<!--                            <span>중성화여부5</span><br> -->
+<!--                            <span>공고일5</span> -->
+<!--                         </div> -->
+<!--                      </div> -->
+<!--                      <div class="box">																		 -->
+<!--                         <a><img src="/resources/dog1.jpg" alt="없음" /></a> -->
+<!--                         <div class="inner"> -->
+<!--                            <span>이름5</span><br> -->
+<!--                            <span>성별5</span><br> -->
+<!--                            <span>중성화여부5</span><br> -->
+<!--                            <span>공고일5</span> -->
+<!--                         </div> -->
+<!--                      </div> -->
+<!--                      <div class="box">																		 -->
+<!--                         <a><img src="/resources/dog1.jpg" alt="없음" /></a> -->
+<!--                         <div class="inner"> -->
+<!--                            <span>이름5</span><br> -->
+<!--                            <span>성별5</span><br> -->
+<!--                            <span>중성화여부5</span><br> -->
+<!--                            <span>공고일5</span> -->
+<!--                         </div> -->
+<!--                      </div> -->
+<!--                      <div class="box">																		 -->
+<!--                         <a><img src="/resources/dog1.jpg" alt="없음" /></a> -->
+<!--                         <div class="inner"> -->
+<!--                            <span>이름5</span><br> -->
+<!--                            <span>성별5</span><br> -->
+<!--                            <span>중성화여부5</span><br> -->
+<!--                            <span>공고일5</span> -->
+<!--                         </div> -->
+<!--                      </div> -->
+
+				
+				</div>
 
 			
 

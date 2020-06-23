@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,14 +15,14 @@
 
 <div class="box" >
 		<h3>입양신청</h3>
-	<a href="https://youtu.be/s6zR2T9vn2c" class="image fit" style="left:25%" ><img src="/resources/UserBoardTemplate/images/pic01.jpg" alt="" style="width:960px; "/></a>
+	<a href="" class="image fit" style="left:25%" ><img src="/upload/${dog.dog_stored_file_name }"/></a>
 		<div class="inner">
 			<p>이름 : </p>
 			<p>성별 : </p>
 			<p>품종 : </p>
 			<p>중성화여부 : </p>
 			<p>공고일 : </p>
-			<a href="/dog/adopt" class="button fit" data-poptrox="youtube,800x400"  >입양신청</a>
+			<a href="/dog/adopt" class="button fit" data-poptrox=""  >입양신청</a>
 		</div>
 </div>
 

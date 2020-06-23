@@ -36,7 +36,8 @@ public class DogServiceImpl implements DogService{
 			int totalCount = dogDao.selectCntAll();
 
 			//Paging 객체 생성 - 현재 페이지(curPage), 총 게시글 수(totalCount) 활용
-			Paging paging = new Paging(totalCount, curPage);
+			Paging paging = new Paging(totalCount, curPage, 6);
+//			Paging paging = new Paging(totalCount, curPage, 6);
 			
 			//Paging 객체 반환
 			return paging;

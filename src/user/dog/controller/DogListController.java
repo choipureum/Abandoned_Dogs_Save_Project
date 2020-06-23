@@ -1,6 +1,7 @@
 package user.dog.controller;
 
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -37,8 +38,12 @@ public class DogListController extends HttpServlet {
 //			
 //			게시글 페이징 처리 조회
 			List<Dog_Data> dogList = dogService.getList(paging);
-//			
-//			
+
+//			for (Iterator iterator = dogList.iterator(); iterator.hasNext();) {
+//				Dog_Data dog_Data = (Dog_Data) iterator.next();
+//				System.out.println(dog_Data);
+//			}
+			
 //			//페이징계산결과 MODEL값 전달
 			req.setAttribute("paging", paging);
 //			
@@ -46,10 +51,8 @@ public class DogListController extends HttpServlet {
 			req.setAttribute("dogList", dogList);
 			
 			
-			
 			//VIEW 지정 및 응답 - forward
 			req.getRequestDispatcher("/WEB-INF/views/user/dog/view.jsp").forward(req, resp);		
-			
 			
 			
 		}
