@@ -58,7 +58,6 @@
 </script>
 </head>
 <body>
- 
 	<form action="/admin/claimUpdate" method="post" class="container" style="margin:0 auto;padding:50px">
 		 <div class="card position-relative">
                 <div class="card-header py-3">
