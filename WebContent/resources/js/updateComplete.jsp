@@ -8,11 +8,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
    <!-- jQuery -->
    	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>	
+   	   	<!--Alert 디자인 라이브러리 -->
+   	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
 window.onload = function () {
-	 alert("등급 수정 완료");
-	 window.opener.location.reload();
-	 window.close();
+	 swal({				
+		  icon: "success",
+		  text: "등급 수정이 완료되었습니다!",
+		  timer:3000,
+		}).then(function() {
+			 window.opener.location.reload();
+			 window.close();
+	});	
+	
 
 	}
 </script>

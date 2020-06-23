@@ -19,7 +19,8 @@ public class AdminUpdateGradeController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 			 String grade = req.getParameter("grade");
 			 String id = req.getParameter("id");
-			 adminMemberListService.UpdateGrade(id, grade);			 
+			 adminMemberListService.UpdateGrade(id, grade);	
+			 
 			 resp.getWriter().write(grade);
 		}
 

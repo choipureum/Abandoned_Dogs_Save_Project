@@ -18,7 +18,8 @@
 
           <!-- Page Heading -->
 <!--           <h1 class="h3 mb-2 text-gray-800">&nbsp;</h1> -->
-            <p class="mb-4"><a href="/admin/dashboard" class="d-none d-sm-inline-block btn btn-sm text-gray-900">홈</a></p>                	         	           
+            <p class="mb-4"><a href="/admin/dashboard" class="d-none d-sm-inline-block btn btn-sm text-gray-900">홈</a>  
+            </p>                	         	           
           <!-- Content Row -->
           <div class="row">
 

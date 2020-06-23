@@ -9,6 +9,7 @@
 <%@ taglib prefix="c" uri ="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri ="http://java.sun.com/jsp/jstl/fmt" %> 
 <style>
+
 td{
  white-space: nowrap;
 }
@@ -177,17 +178,26 @@ td{
 
 <script>
 <%--멤버 삭제 버튼 메소드 --%>
-function memberDelete(){
-	var agree=confirm("${user.userid} 회원 정보를 삭제하시겠습니까?");
+function memberDelete(){	
+	swal({
+		icon:"warning",
+		text: "${user.userid} 회원 정보를 삭제하시겠습니까?",
+		buttons:["아니요","회원 삭제"]
+		
+	}).then((Yes)=>{	
 	
-	if(agree){
 		var checkArr = new Array;		
 		checkArr.push("${user.userid}");
 		 $.post("/admin/delete",{"member_chk":checkArr},function(res){
-			 alert("삭제완료 되었습니다")
-			 location.href ="/admin/memberlist";			 
+			 swal({				
+				  icon: "success",
+				  text: "회원 삭제가 완료되었습니다!"
+				}).then(function() {
+					 location.href ="/admin/memberlist";								
+			});
+						 
 		 });
-	}
+	})
 }
  <%--메일 보내기 sendmail 메소드--%> 
  function sendmail(){	
@@ -206,6 +216,7 @@ function memberDelete(){
 	  var grade = "${user.usergrade }";
 	  var gradeId = "${user.userid}";	
 	  var gradeName ="${user.username}";
+	  
 	  //문자열 정돈
 	  grade = grade.trim();
 	  gradeId=gradeId.substring(0, gradeId.length).trim();
