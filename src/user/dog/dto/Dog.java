@@ -2,7 +2,7 @@ package user.dog.dto;
 
 import java.util.Date;
 
-public class DogDTO {
+public class Dog {
 	private int dogno;
 	private String dogname;
 	private String dogkind;
@@ -13,6 +13,12 @@ public class DogDTO {
 	private int shelterno;
 	public int getDogno() {
 		return dogno;
+	}
+	@Override
+	public String toString() {
+		return "Dog [dogno=" + dogno + ", dogname=" + dogname + ", dogkind=" + dogkind + ", doggender=" + doggender
+				+ ", dogneu=" + dogneu + ", dogdate=" + dogdate + ", dogimg=" + dogimg + ", shelterno=" + shelterno
+				+ "]";
 	}
 	public void setDogno(int dogno) {
 		this.dogno = dogno;
@@ -59,11 +65,4 @@ public class DogDTO {
 	public void setShelterno(int shelterno) {
 		this.shelterno = shelterno;
 	}
-	@Override
-	public String toString() {
-		return "DogDTO [dogno=" + dogno + ", dogname=" + dogname + ", dogkind=" + dogkind + ", doggender=" + doggender
-				+ ", dogneu=" + dogneu + ", dogdate=" + dogdate + ", dogimg=" + dogimg + ", shelterno=" + shelterno
-				+ "]";
-	}
-	
 }

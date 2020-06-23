@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import user.dog.dao.face.DogDao;
-import user.dog.dto.DogDTO;
+import user.dog.dto.Dog;
 import user.dog.dto.Dog_Data;
-import user.dog.dto.Dog_File_DTO;
+import user.dog.dto.Dog_File;
 import util.JDBCTemplate;
 import util.Paging;
 
@@ -31,10 +31,10 @@ public class DogDaoImpl implements DogDao{
 		//SQL 작성
 		String sql = "select * from"; 
 	      sql += "(SELECT * FROM (SELECT rownum rnum, B.* FROM (SELECT dogno, dogname,  dogkind, doggender, dogneu, dogdate, dogimg, shelterno";
-	      sql += "      FROM dogdto";
+	      sql += "      FROM dog";
 	      sql += "      ORDER BY dogno DESC";
 	      sql += "   ) B";
-	      sql += "    ) dogdto";
+	      sql += "    ) dog";
 	      sql += "    WHERE rnum BETWEEN ? AND ?) A ";
 	      sql += "   (SELECT";
 	      sql += "   dogno, dog_fileno, dog_org_file_name,dog_stored_file_name,dog_file_size,dog_del_gb";
@@ -98,7 +98,7 @@ public class DogDaoImpl implements DogDao{
 		
 		//SQL 작성
 		String sql = "";
-		sql += "SELECT dogDTO_seq.nextval FROM dual";
+		sql += "SELECT dog_seq.nextval FROM dual";
 		
 		//결과 저장할 변수
 		int dogno = 0;
@@ -131,7 +131,7 @@ public class DogDaoImpl implements DogDao{
 		
 		//SQL 작성
 		String sql = "";
-		sql += "SELECT count(*) FROM board";
+		sql += "SELECT count(*) FROM dog";
 		
 		//최종 결과값
 		int cnt = 0;
@@ -159,17 +159,17 @@ public class DogDaoImpl implements DogDao{
 
 
 	@Override
-	public DogDTO selectDogByDogno(DogDTO dogno) {
+	public Dog selectDogByDogno(Dog dogno) {
 		//DB연결 객체
 		conn = JDBCTemplate.getConnection();
 		
 		//SQL 작성
 		String sql = "";
-		sql += "SELECT * FROM DogDTO";
+		sql += "SELECT * FROM Dog";
 		sql += " WHERE dogno = ?";
 		
 		//결과 저장할 DogDTO객체
-		DogDTO dog = null;
+		Dog dog = null;
 		
 		try {
 			ps = conn.prepareStatement(sql); //SQL수행 객체
@@ -180,7 +180,7 @@ public class DogDaoImpl implements DogDao{
 			
 			//조회 결과 처리
 			while(rs.next()) {
-				dog = new DogDTO(); //결과값 저장 객체
+				dog = new Dog(); //결과값 저장 객체
 				
 				//결과값 한 행 처리
 				dog.setDogno(rs.getInt("dogno"));
@@ -208,17 +208,17 @@ public class DogDaoImpl implements DogDao{
 
 
 	@Override
-	public Dog_File_DTO selectFile(DogDTO detailDog) {
+	public Dog_File selectFile(Dog detailDog) {
 		//DB연결 객체
 		conn = JDBCTemplate.getConnection();
 		
 		//SQL 작성
 		String sql = "";
-		sql += "SELECT * FROM dog_file_dto";
+		sql += "SELECT * FROM dog_file";
 		sql += " WHERE dogno = ?";
 		
 		//결과 저장할 BoardFile 객체
-		Dog_File_DTO dogFile = null;
+		Dog_File dogFile = null;
 		
 		try {
 			ps = conn.prepareStatement(sql); //SQL수행 객체
@@ -229,7 +229,7 @@ public class DogDaoImpl implements DogDao{
 			
 			//조회 결과 처리
 			while(rs.next()) {
-				dogFile = new Dog_File_DTO();
+				dogFile = new Dog_File();
 				
 				dogFile.setDogno(rs.getInt("dogno"));
 				dogFile.setDog_fileno(rs.getInt("dog_fileno"));

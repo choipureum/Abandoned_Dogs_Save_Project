@@ -4,9 +4,9 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import user.dog.dto.DogDTO;
+import user.dog.dto.Dog;
 import user.dog.dto.Dog_Data;
-import user.dog.dto.Dog_File_DTO;
+import user.dog.dto.Dog_File;
 import util.Paging;
 
 public interface DogService {
@@ -32,7 +32,7 @@ public interface DogService {
 	
 
 
-	public DogDTO getDogno(HttpServletRequest req);
+	public Dog getDogno(HttpServletRequest req);
 
 	
 	/**
@@ -40,12 +40,12 @@ public interface DogService {
 	 * @param dogno
 	 * @return
 	 */
-	public DogDTO view(DogDTO dogno);
+	public Dog view(Dog dogno);
 
 	/**
 	 * 파일정보
 	 * @param viewBoard
 	 * @return
 	 */
-	public Dog_File_DTO viewFile(DogDTO detailDog);
+	public Dog_File viewFile(Dog detailDog);
 }
