@@ -109,7 +109,7 @@ a:hover{
       <input type="text" id="userid" name="userid" placeholder="아이디" required style="height:30px; width: 380px" /><br>
 
       <label for="userpw"></label>
-      <input type="text" id="userpw" name="userpw"  placeholder="비밀번호" required style="height:30px; width: 380px" /><br>
+      <input type="password" id="userpw" name="userpw"  placeholder="비밀번호" required style="height:30px; width: 380px" /><br>
       <!-- <button>로그인</button> -->
       <input type="submit" value="로그인" class="login"/>
    </form>
