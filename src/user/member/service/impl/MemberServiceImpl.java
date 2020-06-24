@@ -122,6 +122,19 @@ public class MemberServiceImpl implements MemberService{
 		memberDao.changpassword(userpw, userid);
 	
    }
+   //전체 멤버 조회 - 마이페이지 
+   @Override
+   public MemberDTO getMemberInfo(MemberDTO member) {
+	   return memberDao.selectInfoAllByUserid(member);
+   }
+   
+   //userid를 통해서 mypagemodify
+   @Override
+   public int modifyMypage(MemberDTO member) {
+	   
+
+	   return memberDao.modifyMypage(member);
+   }
 
 
 

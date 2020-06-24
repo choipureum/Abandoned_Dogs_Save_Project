@@ -67,11 +67,22 @@ public interface MemberDao {
    */
    public void changpassword(String userpw, String userid);
 
-
-
-
- 
+   /**
+    * 전체 조회 - 마이페이지
+    * @param member
+    * @return
+    */
+   public MemberDTO selectInfoAllByUserid(MemberDTO member);
 
    
+   /**
+    * useridㅡ를 통해서 정보 업데이트
+    * @param member
+ * @return 
+    */
+   public int modifyMypage(MemberDTO member);
+
+
+
    
 }

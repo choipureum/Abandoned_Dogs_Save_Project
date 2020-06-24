@@ -73,5 +73,20 @@ public interface MemberService {
     * @param userid
     */
    public void changepassword(String userpw, String userid);
-   
+
+   /**
+    * 멤버의 모든 정보 회원 정보 수정할때 
+    * @param member
+    * @return member
+    */
+
+   public MemberDTO getMemberInfo(MemberDTO member);
+
+   /**
+    * userid를 이용한 업데이트
+    * @param userid
+ * @return 
+    */
+   public int modifyMypage(MemberDTO member);
+
 }

@@ -37,14 +37,14 @@ function pwFind(event){
 	
 	
 	if($("#username").val()==""){
-		alert("이름을 입력하세요");
+		alert("이름을 입력하세요!");
 		return false;
 		
 	}else if($("#userid").val()==""){
 		alert("아이디를 입력하세요!")
 		return false;
 	} else if($("#useremail").val()==""){
-		alert("이메일을 입력하세요");
+		alert("이메일을 입력하세요!");
 		return false;
 	} else if(!($("#hiddenEmailCheck").val()=="ok")){
 		alert("이메일인증버튼을 눌러주세요!");

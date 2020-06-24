@@ -158,7 +158,51 @@ public class MemberDaoImpl implements MemberDao{
 	}
 	   return result;
    }
-  
+   
+
+   @Override
+//   전체조회
+   public MemberDTO selectInfoAllByUserid(MemberDTO member) {
+
+	   //db 연결 객체
+	   conn = JDBCTemplate.getConnection();
+	   
+	   String sql ="select * from member where 1=1 and userid=?";
+	   
+	   MemberDTO result = null;
+	   
+	   try {
+		ps=conn.prepareStatement(sql);
+		
+		ps.setString(1, member.getUserid());
+		
+		rs=ps.executeQuery(); //결과 집합
+		
+		while(rs.next()) {
+			result=new MemberDTO();
+			
+			result.setUserid(rs.getString("userid"));
+			result.setUserpw(rs.getString("userpw"));
+			result.setUsername(rs.getString("username"));
+			result.setUsertel(rs.getString("usertel"));
+			result.setUseremail(rs.getString("useremail"));
+			result.setUserbirth(rs.getString("userbirth"));
+			result.setUseraddress(rs.getString("useraddress"));
+			result.setUsergrade(rs.getInt("usergrade"));
+			result.setUserregdate(rs.getDate("userregdate"));
+			
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally {
+		//DB객체 닫기
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(ps);
+	}
+	   return result;
+   }
+
    //중복체크 할때 아이디 중복체크
    public int registerCheck(String userid) {
 	   //db 연결 객체
@@ -226,27 +270,29 @@ public class MemberDaoImpl implements MemberDao{
 
    //userpw 체크 확인 사항
    @Override
-   public int findpw(String username, String userid, String useremail) {
+   public int findpw(String userid, String useremail, String username) {
 	   
 	   conn = JDBCTemplate.getConnection();	   
-	   String sql = "select count(*) from member where userid=? and username=? and useremail=?";
+	   String sql = "select count(*) from member where userid=? and useremail=? and username=?";
 	   
 	   try {
 		   
 		   ps=conn.prepareStatement(sql);
 		   
 		   ps.setString(1, userid);
-		   ps.setString(2, username);
-		   ps.setString(3, useremail);
+		   ps.setString(2, useremail);
+		   ps.setString(3, username);
 		   
 		   rs=ps.executeQuery();
 
-		   if(rs.next()) {
-			   return 1; // 존재하니깐 비밀번호 재설정 가능
-		   } else {
-			   return 0; //alert 할 부분 
-		   }
-		   
+		   while(rs.next()){
+			   System.out.println(rs.getInt(1));
+			   if(rs.getInt(1)==1) {			   
+				   return 1; // 존재하니깐 비밀번호 재설정 가능
+			   } else {
+				   return 0; //alert 할 부분 
+			   }
+		   }		   
 	   } catch (SQLException e) {
 		// TODO Auto-generated catch block
 		   e.printStackTrace();
@@ -264,11 +310,10 @@ public class MemberDaoImpl implements MemberDao{
 	   conn=JDBCTemplate.getConnection();
 	   
 	   String sql ="update member set userpw=? where userid=?";
-	  
-	   System.out.println(userpw);
-	   System.out.println(userid);
 	   
 	   try {
+
+		
 		ps=conn.prepareStatement(sql);
 		ps.setString(1, userpw);
 		ps.setString(2, userid);
@@ -284,5 +329,37 @@ public class MemberDaoImpl implements MemberDao{
 	}
 	  
    }
+   
+
+   //마이페이지 수정
+
+   @Override
+   public int modifyMypage(MemberDTO member) {
+	
+	   conn= JDBCTemplate.getConnection();
+	   
+	   String sql = "update member set userpw=?, usertel=?,  userbirth=?, useremail=?, useraddress=? where userid=?";
+	   int result = 0 ;
+	   
+	   try {
+		ps=conn.prepareStatement(sql);
+		
+		ps.setString(1, member.getUserpw());
+		ps.setString(2, member.getUsertel());
+		ps.setString(3, member.getUserbirth());
+		ps.setString(4, member.getUseremail());
+		ps.setString(5, member.getUseraddress());
+		ps.setString(6, member.getUserid());
+		
+		result = ps.executeUpdate();
+		
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally {
+		JDBCTemplate.close(ps);
+	}
+	   return result;   
+   }
+   
 
 }
