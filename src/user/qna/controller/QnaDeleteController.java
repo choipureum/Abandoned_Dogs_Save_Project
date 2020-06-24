@@ -1,6 +1,4 @@
-
 package user.qna.controller;
-
 
 import java.io.IOException;
 
@@ -10,13 +8,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import user.qna.dto.QNA;
 import user.qna.service.face.QnaService;
 import user.qna.service.impl.QnaServiceImpl;
 
 
 
-@WebServlet("/qna/write")
-public class QnaWriteController extends HttpServlet {
+@WebServlet("/qna/delete")
+public class QnaDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	//BoardService 객체
@@ -25,34 +24,16 @@ public class QnaWriteController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		//로그인 되어있지 않으면 리다이렉트 
-		//if( req.getSession().getAttribute("login") == null ) {
-		//	resp.sendRedirect("/main");
-		//	return;
-		//}
-		
-		//VIEW 지정
-		req.getRequestDispatcher("/WEB-INF/views/user/qna/write.jsp")
-			.forward(req, resp);
-		
-	}
-	
-	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		//전달받은  qnano을 전달해 qnano에 해당하는 빈객체를 반환  
+		QNA board = boardService.getBoardno(req);
 		
 		
+		//파일과 객체 삭제함 
+		boardService.delete(board);
 		
-		System.out.println("rr");
-		
-		//작성글 삽입//파일 삽입 
-		boardService.write(req);
-		
-		//목록으로 리다이렉션
+		//목록으로 리다이렉트
 		resp.sendRedirect("/qna/list");
 		
 	}
-	
 }
-
 
