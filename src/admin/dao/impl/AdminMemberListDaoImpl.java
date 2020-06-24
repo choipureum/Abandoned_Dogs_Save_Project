@@ -14,6 +14,9 @@ import java.util.List;
 import java.util.TreeMap;
 
 import admin.dao.face.AdminMemberListDao;
+import admin.dto.DogClaimDTO;
+import user.dog.dto.DogDTO;
+import user.dog.dto.Dog_File_DTO;
 import user.member.dto.MemberDTO;
 import util.JDBCTemplate;
 
@@ -98,7 +101,8 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 		    	sql.append(search);	 
 		    	sql.append(" order by userRegDate)B");
 		    	sql.append(" )MEMBER");
-		    	sql.append(" WHERE rnum BETWEEN ? AND ?");	  		    	
+		    	sql.append(" WHERE rnum BETWEEN ? AND ?");	
+		    	
 		    	ps=conn.prepareStatement(sql.toString());
 		    	ps.setInt(1, paging.getStartNo());
 		    	ps.setInt(2, paging.getEndNo());		    	
@@ -315,6 +319,7 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 				//문자열 날짜
 				ArrayList<Date> dates = new ArrayList<Date>();
 				Date currentDate= startDate;
+				
 				while(currentDate.compareTo(endDate)<=0){
 					dates.add(sb.parse(sb.format(currentDate)));
 					Calendar c = Calendar.getInstance();
@@ -367,7 +372,158 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 			}
 	
 	}
+	    @Override
+	    public int selectDogNo() {	    	
+	    	//DB연결 객체
+			conn = JDBCTemplate.getConnection();
+			
+			//SQL 작성
+			String sql = "";
+			sql += "SELECT dog_seq.nextval FROM dual";
+			
+			//결과 저장할 변수
+			int boardno = 0;
+			
+			try {
+				ps = conn.prepareStatement(sql); //SQL수행 객체
+				
+				rs = ps.executeQuery(); //SQL 수행 및 결과집합 저장
+				
+				//조회 결과 처리
+				while(rs.next()) {
+					boardno = rs.getInt(1);
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				//DB객체 닫기
+				JDBCTemplate.close(rs);
+				JDBCTemplate.close(ps);
+			}
+			
+			//최종 결과 반환
+			return boardno;	    	
+	    }
 	    
+	    
+	    @Override
+	    public void insertDog(DogDTO dog) {
+	    	conn = JDBCTemplate.getConnection();
+	    	
+	    	String sql = "Insert into dog(dogno, dogname, dogkind, doggender, dogneu, shelterno) values(dog_seq.nextval, ?,?,?,?,1)";
+	    	
+	    	try {
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, dog.getDogname());
+				ps.setString(2, dog.getDogkind());
+				ps.setString(3, dog.getDoggender());
+				//null이면 N으로 넣고 아니면 Y처리
+				if(dog.getDogneu()==null) {
+					ps.setString(4, "N");
+				}
+				else {
+					ps.setString(4, "Y");
+				}				
+				ps.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				JDBCTemplate.close(ps);
+			}
+	    }
+	    
+	    @Override
+	    public void insertDogFile(Dog_File_DTO dogFile) {
+
+			conn = JDBCTemplate.getConnection(); //DB 연결
+
+			//다음 게시글 번호 조회 쿼리
+			String sql = "";
+			sql += "INSERT INTO dog_file(dog_fileno, dogno,DOG_ORG_FILE_NAME,DOG_STORED_FILE_NAME, DOG_FILE_SIZE)";
+			sql += " VALUES ( dog_file_seq.nextval, ?, ?, ?, ? )";
+			
+			try {
+				//DB작업
+				ps = conn.prepareStatement(sql);
+
+				ps.setInt(1, dogFile.getDogno());
+				ps.setString(2, dogFile.getDog_org_file_name());
+				ps.setString(3, dogFile.getDog_stored_file_name());
+				ps.setInt(4, dogFile.getDog_file_size());
+				ps.executeUpdate();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				JDBCTemplate.close(ps);
+			}
+	    }
+	    @Override
+	    public List <DogClaimDTO> dogClaimSelectAll(HashMap<String,Object> listOpt,Paging paging) {
+	    	
+	    	List <DogClaimDTO> list = new ArrayList<>();
+	    	
+	    	conn = JDBCTemplate.getConnection();
+	    	sql = new StringBuffer();
+	    	 
+	    	
+	    	sql.append("SELECT * FROM (");      
+	    	sql.append(" SELECT rownum rnum, B.* FROM (");
+	    	sql.append(" SELECT");
+	    	sql.append(" *");
+	    	sql.append(" FROM dog_claim");	  
+	    	sql.append(" order by dogRegDate)B");
+	    	sql.append(" )dog_claim");
+	    	sql.append(" WHERE rnum BETWEEN ? AND ?");	
+	    	
+	    	try {
+				ps=conn.prepareStatement(sql.toString());
+				ps.setInt(1, paging.getStartNo());
+		    	ps.setInt(2, paging.getEndNo());		
+				rs= ps.executeQuery();
+				
+				while(rs.next()) {
+					DogClaimDTO dogClaim= new DogClaimDTO();
+				    dogClaim.setDogno(rs.getInt("dogno"));
+				    dogClaim.setDogkind(rs.getString("dogkind"));
+				    dogClaim.setDogname(rs.getString("dogname"));
+				    dogClaim.setDoggender(rs.getString("doggender"));
+				    dogClaim.setDogneu(rs.getString("dogneu"));
+				    dogClaim.setDogshelter(rs.getInt("dogshelter"));
+				    dogClaim.setUserid(rs.getString("userid"));
+				    dogClaim.setDogregdate(rs.getDate("dogregdate"));
+				    list.add(dogClaim);
+	
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}   	
+	    	return list;
+	    }
+	    
+	    @Override
+	    public int dogClaimCount(HashMap<String,Object> listOpt) {
+	    	conn= JDBCTemplate.getConnection();
+	    	int res =0;
+	    	sql= new StringBuffer();
+	    	sql.append("select count(*) from dog_Claim");
+	    	 	
+	    	try {
+				ps= conn.prepareStatement(sql.toString());
+				rs=ps.executeQuery();
+				
+				while(rs.next()) {
+					res=rs.getInt(1);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(ps);
+				JDBCTemplate.close(rs);
+			}	    	
+	    	return res;
+	    }
 }
 
 

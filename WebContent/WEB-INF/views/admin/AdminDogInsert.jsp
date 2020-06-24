@@ -34,7 +34,7 @@
           </p>
             
          <!-- 폼태그 포스트 값전달 -->
-         <form action="/admin/dogInsert" method="post" id="dogInsertForm" style="margin:0 auto;padding:40px">
+         <form action="/admin/dogInsert" method="post" id="dogInsertForm" style="margin:0 auto;padding:40px" enctype="multipart/form-data">
 		 <div class="card position-relative">
                 <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-primary">유기견 등록</h6>
@@ -91,7 +91,7 @@
                     <ul class="navbar-nav ml-center">
                      	<li>
                      		<div class="pretty p-switch p-fill">
-						     <input type="checkbox"/>
+						     <input type="checkbox" name="dogNeu" value="Y"/>
 						        <div class="state">
 						            <label>&nbsp;&nbsp;Neutered</label>
 						        </div>
@@ -106,7 +106,7 @@
                      		<div class="filebox bs3-primary preview-image">
                             <input class="upload-name" value="파일선택" disabled="disabled" style="width: 200px;">
                             <label for="dogImg">업로드</label> 
-                          <input type="file" id="dogImg" class="upload-hidden"> 
+                          <input type="file" id="dogImg" class="upload-hidden" name="dogImg"> 
                         </div>
 						</li>
                     </ul>
@@ -117,7 +117,7 @@
                      	<li style="padding:30px 10px">
                      		<button class="btn btn-warning" type="button" onclick="DogSubmit()">
                  				 <i class="fas fa-bone fa-sm">&nbsp;등록</i>
-                			</button>
+                			</button>                			
 						</li>
                    	 </ul>
                     </nav>
@@ -202,20 +202,78 @@ $(document).ready(function(){
 	    		$('input[type="checkbox"][name="genderCheck"]').prop('checked',false);
 	    		$(this).prop('checked',true);
 	    	}
-	    })
+	    });
+		  
 	});
 
 </script>
 <!-- 제출 -->
 <script>
+	//Dog 삽입 제출
 	function DogSubmit(){
-		var agree=confirm("유기견을 등록하시겠습니까?");
-		
-		if(agree){
-			$("#dogInsertForm").submit();			
-		}
+		swal({
+			icon:"warning",
+			text: "강아지 등록을 하시겠습니까?",
+			buttons:["아니요","유기견 등록"]
+			
+		}).then((Yes)=>{				
+			if(Yes){
+				if(dogCheck()){
+					swal({				
+						  icon: "success",
+						  text: "유기견 등록이 완료되었습니다!"
+						}).then(function() {															
+							$("#dogInsertForm").submit();									
+				})
+			}
+		}			
+	})
 	}
-
+	function dogCheck(){
+		//제출 시 유효성 검사					
+		   if(nullCheck($("#dogName").val().trim())){   
+		      swal({								  
+				  text: "강아지 이름을 입력해주세요"
+				}).then(function() {															
+					  return false;								
+			});
+		      return false;
+		   }
+		
+		   if(nullCheck($("#dogKind").val().trim())){
+			   swal({								  
+					  text: "견종을 입력해주세요"
+					}).then(function() {															
+						  return false;								
+				});
+			      return false;
+			   }		
+		   //성별 둘중에 하나라도 체크시 넘어감
+		  if(!$('input[name="genderCheck"]').is(":checked")){
+			  swal({								  
+				  text: "성별을 체크해주세요"
+				}).then(function() {															
+					  return false;								
+			});
+		      return false;
+		 			  }
+		   if($(".upload-name").val()=='파일선택'){
+			   swal({								  
+					  text: "강아지 사진을 업로드해주세요"
+					}).then(function() {															
+						  return false;								
+				});
+			      return false;
+		 	 };
+		  return true;
+	};
+	//눌값 체크
+function nullCheck(str){
+	 if(typeof str == "undefined" || str == null || str == "")
+         return true;
+     else
+         return false ;
+}
 </script>
 
 

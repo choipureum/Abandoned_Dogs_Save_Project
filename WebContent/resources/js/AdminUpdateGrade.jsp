@@ -39,7 +39,8 @@ function close(){
 function update(sw){
 	var num = sw
 	var userGradeById ="${param.gradeId}"
-			
+	var checkArr = new Array;
+	
 	$.ajax({
 		type : 'POST',
 		url : '/admin/updateGrade',

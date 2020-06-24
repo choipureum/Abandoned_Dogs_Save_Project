@@ -14,8 +14,6 @@ $(document).ready(function(){
 	
 	//#userpassword 검증
 	var upwReg = /^[A-Za-z0-9]{6,18}$/;
-	
-	
 	//비밀번호 blur
 	$('#userpw').blur(function(){
 		if(upwReg.test($('#userpw').val())){
@@ -27,8 +25,6 @@ $(document).ready(function(){
 			$("#pw_check").css('color','red');
 		}
 	});
-
-	
 	//#userpw  #userpw_ck 일치 확인
 	$('#userpw_ck').blur(function(){
 		if($("#userpw").val() == '') {
@@ -53,7 +49,25 @@ $(document).ready(function(){
 <!-- 로그인 홈페이지로 이동 -->
 <script type="text/javascript">
 
-
+function pwChangeFunc(){
+	
+	var userid="${param.userid}";
+	var userpw=$("#userpw").val();
+	
+	$.ajax({
+		type:'POST',
+		url:'/change/pw',
+		data : {
+			"userid":userid
+			, "userpw":userpw
+		},
+		success:function(res){
+			alert("비밀번호 변경이 완료되었습니다!")
+			location.href="/login/login";
+		}
+		
+	})
+}
 
 </script>
 <!-- css -->
@@ -103,8 +117,6 @@ select{
 </style>
 
 </head>
-
-
 <body>
 <!-- 입력  -->
 <div class="container">
@@ -115,7 +127,7 @@ select{
 <!--    비밀번호 확인 해주기  -->
 <!--    메인화면 으로 가야하지 않나..?-->
    <form action="/change/pw" method="post" id="myForm">
-	${param.userid }
+
    <h6><label>비밀번호<span id="red">(필수)</span>
       <input type="password" placeholder="비밀번호" name="userpw" id="userpw" class="pw" required style="height:30px; width: 495px"/></label>
   	<div id="pw_check"></div></h6>
@@ -125,7 +137,7 @@ select{
    	<div id="pw_check2"></div></h6>
 	  
 	<hr>
-	<button type="button" value="비밀번호재설정" id="pwChange" onclick="pwChange()" >비밀번호 재설정</button>
+	<input type="button" value="비밀번호재설정" id="pwChange" onclick="pwChangeFunc()">
 	<hr>
 
   	<br><br>

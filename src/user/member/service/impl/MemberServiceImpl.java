@@ -40,9 +40,7 @@ public class MemberServiceImpl implements MemberService{
       member.setUsertel(req.getParameter("usertel"));
       
       return member;
-      
    }
-
    //멤버 다음 넘버 확인
    @Override
    public int insert(MemberDTO member) {
@@ -57,8 +55,6 @@ public class MemberServiceImpl implements MemberService{
    
       return memberDao.insert(member);
    }
-
-
    //로그인
    @Override
    public MemberDTO getLoginMember(HttpServletRequest req) {
@@ -75,8 +71,7 @@ public class MemberServiceImpl implements MemberService{
 	 member.setUserpw(req.getParameter("userpw"));
 	 
 	 return member;
-	 
-	   
+
    }
 
    //로그인 성공 실패 확인
@@ -117,6 +112,15 @@ public class MemberServiceImpl implements MemberService{
 	  
 	   return memberDao.findpw(username,userid,useremail);
 	   
+   }
+
+   //유저 패스워드 update set useruid 같ㅇ느지 확인
+   // 비밀번호 업데이트용ㄴ
+   @Override
+	public void changepassword(String userpw, String userid) {
+		
+		memberDao.changpassword(userpw, userid);
+	
    }
 
 

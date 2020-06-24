@@ -89,7 +89,6 @@ a:hover{
 <!-- 비로그인상태 -->
 <c:if test="${empty login }">
 
-
 </c:if>
 
 <div class="container">
@@ -115,7 +114,7 @@ a:hover{
       <input type="submit" value="로그인" class="login"/>
    </form>
    
-   <input type="button" class="singup" value="회원가입" onclick="location.href='/singup/singup'" />
+   <input type="button" class="singup" value="회원가입" onclick="location.href='/resources/js/singupinfo.jsp'" />
 	
 <!-- 	아이디 비밀번호 찾기 -->
    <div id="lockfind">

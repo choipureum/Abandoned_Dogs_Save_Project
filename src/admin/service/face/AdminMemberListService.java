@@ -7,6 +7,7 @@ import java.util.TreeMap;
 
 import javax.servlet.http.HttpServletRequest;
 
+import admin.dto.DogClaimDTO;
 import user.member.dto.MemberDTO;
 import util.Paging;
 public interface AdminMemberListService {
@@ -47,9 +48,9 @@ public interface AdminMemberListService {
 	 * 페이징 객체 생성
 	 * 
 	 * @param req - 요청 정보 객체
-	 * @return Paging - 페이징 계산이 완료된 객체
+	 * @return Paging,String sw - 페이징 계산이 완료된 객체, total카운트 다르게 받기위한 스위치
 	 */
-	public Paging getPaging(HttpServletRequest req, HashMap<String, Object> listOpt);
+	public Paging getPaging(HttpServletRequest req, HashMap<String, Object> listOpt,String sw);
 	
 	/**
 	 * 그래프 멤버 30일 변화 반환 그래프
@@ -72,8 +73,21 @@ public interface AdminMemberListService {
 	 */
 	public void UpdateGrade(String id,String grade) ;
 		
+	/**
+	 * dogInsert 에 사용할
+	 * 파일 포함 객체 읽어들이기
+	 * 
+	 * @param req
+	 */
+	public void dogWrite(HttpServletRequest req);
 	
-	
+	/**
+	 * 입양신청 목록 보이기 
+	 * 
+	 * @return - DogClaimDTO 개 입양신청 DTO 반환
+	 * @param
+	 */
+	 public List<DogClaimDTO> dogClaimSelectAll(HashMap<String, Object> listOpt, Paging paging);
 }
 
 

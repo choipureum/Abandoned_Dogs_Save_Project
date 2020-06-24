@@ -1,5 +1,7 @@
 package user.dog_shleter.dto;
 
+import user.dog.dto.DogDTO;
+
 /**
  * @author User
  *
@@ -8,8 +10,8 @@ public class Dog_Shelter {
 
 	private int shelterno;
 	private String sheltername;
-	private String shelterlat;
-	private String shelterlon;
+	private int shelterlat;
+	private int shelterlon;
 	private String shelteraddress;
 	private String sheltertel;
 	public int getShelterno() {
@@ -24,16 +26,16 @@ public class Dog_Shelter {
 	public void setSheltername(String sheltername) {
 		this.sheltername = sheltername;
 	}
-	public String getShelterlat() {
+	public int getShelterlat() {
 		return shelterlat;
 	}
-	public void setShelterlat(String shelterlat) {
+	public void setShelterlat(int shelterlat) {
 		this.shelterlat = shelterlat;
 	}
-	public String getShelterlon() {
+	public int getShelterlon() {
 		return shelterlon;
 	}
-	public void setShelterlon(String shelterlon) {
+	public void setShelterlon(int shelterlon) {
 		this.shelterlon = shelterlon;
 	}
 	public String getShelteraddress() {
@@ -54,12 +56,6 @@ public class Dog_Shelter {
 				+ ", shelterlon=" + shelterlon + ", shelteraddress=" + shelteraddress + ", sheltertel=" + sheltertel
 				+ "]";
 	}
-
-
-	
-	
-	
-	
 	
 	
 	

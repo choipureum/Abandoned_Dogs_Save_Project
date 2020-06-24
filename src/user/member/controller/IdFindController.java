@@ -30,9 +30,7 @@ public class IdFindController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-//		인코딩
-		req.setCharacterEncoding("UTF-8");
-		resp.setContentType("text/html;charset=UTF-8");
+
 		
 		
 		String username = req.getParameter("username");
@@ -49,24 +47,5 @@ public class IdFindController extends HttpServlet {
 		System.out.println(json);
 		resp.getWriter().write(json);
 
-//		String[] userinfo = req.getParameterValues("userinfo[]");
-//		
-//		
-//		for(String p : userinfo) {
-//			String user =p.trim();
-//			//확인
-////			System.out.println(user);
-//		}
-//	
-//		System.out.println(userinfo[0].trim()+"");
-//		System.out.println(userinfo[1].trim());
-//		System.out.println(memberService.findid(userinfo[0].trim()+"",userinfo[1].trim())+"");
-//		
-//		String json = "{";
-//		json += "";
-				
-//		resp.getWriter().write();
-//		
-//		System.out.println(username+useremail);
 	}
 }

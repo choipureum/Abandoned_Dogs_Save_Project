@@ -2,33 +2,35 @@ package user.dog_shleter.dao.face;
 
 import java.util.List;
 
+import user.dog.dto.DogDTO;
+import user.dog.dto.Dog_Data;
 import user.dog_shleter.dto.Dog_Shelter;
 
 public interface DogShelterDao {
 
 
 	/**
-	 * 보호소 조회
+	 * 카카오 API 좌표값, 마커 조회
 	 * 좌표값, 보호소 명
 	 * @return
 	 */
 	public List<Dog_Shelter> selectAll();
 
 	/**
-	 * 보호소 조회
-	 * 보호소 명, 보호소 주소, 보호소 전화번호
-	 * @param sheltername
-	 * @param shelteraddress
-	 * @param sheltertel
-	 * @return
-	 */
-	public List<Dog_Shelter> view(String sheltername, String shelteraddress, String sheltertel);
-
-	/**
+	 * shelterno를 통한 유기견 보호소 정보 조회
 	 * 
 	 * @param dogShelter
 	 * @return
 	 */
 	public Dog_Shelter selectBy(Dog_Shelter dogShelter);
+
+	/**
+	 * shelterno를 통한 유기견 전체 정보값 반환
+	 * @param - String dog
+	 * @return - DogDTO
+	 */
+	public Dog_Data dogDetailList(Dog_Data dog);
+
+
 
 }
