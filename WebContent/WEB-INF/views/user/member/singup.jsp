@@ -318,6 +318,13 @@ h5 span{
 input {
     border: 1px solid lightgray;
     border-radius: 3px;
+    border: 1px solid lightgray;
+    border-radius: 3px;
+    border-bottom: teal 1px solid;
+    border-left: medium none;
+    border-right: medium none;
+    border-top: medium none;
+	font-size:12px;
 }
 
 #red{
