@@ -619,6 +619,7 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 				JDBCTemplate.close(rs);
 			}	
 	    	return cnt;
+	   
 	    }
 	    
 	    
