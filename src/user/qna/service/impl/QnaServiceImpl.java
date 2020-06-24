@@ -175,6 +175,9 @@ public class QnaServiceImpl implements QnaService {
 					if( "content".equals( item.getFieldName() ) ) {
 						board.setQnaContent( item.getString("utf-8") );
 					}
+					if( "writer".equals( item.getFieldName() ) ) {
+						board.setQnaWriter( item.getString("utf-8") );
+					}
 					
 					
 					
@@ -183,7 +186,7 @@ public class QnaServiceImpl implements QnaService {
 				}
 				
 				//작성자id 처리//id를 writer에 삽입 
-				board.setQnaWriter((String) req.getSession().getAttribute("userid"));
+				//board.setQnaWriter((String) req.getSession().getAttribute("userid"));
 				
 			} else { //파일 처리
 				UUID uuid = UUID.randomUUID();

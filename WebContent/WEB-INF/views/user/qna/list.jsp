@@ -93,6 +93,9 @@ tr td:not(:first-child), tr th:not(:first-child) {
 	<button id="btnSearch" class="btn">검색</button>
 </div>
 
+
+<jsp:include page="/commons/paging.jsp" />
+
 </div><!-- .container -->
 </body>
 </html>

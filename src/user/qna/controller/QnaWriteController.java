@@ -43,7 +43,7 @@ public class QnaWriteController extends HttpServlet {
 		
 		
 		
-		System.out.println("rr");
+		
 		
 		//작성글 삽입//파일 삽입 
 		boardService.write(req);

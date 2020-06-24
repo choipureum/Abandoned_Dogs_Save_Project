@@ -70,7 +70,10 @@ $(document).ready(function() {
 <div>
 <form action="/qna/write" method="post" enctype="multipart/form-data">
 <table class="table table-bordered">
-<tr><td class="info">아이디</td><td>${userid }</td></tr>
+
+<!--<tr><td class="info">아이디</td><td>${userid }</td></tr>  -->
+
+<tr><td class="info">아이디</td><td><input type="text" name="writer" style="width:100%"/></td></tr>
 <tr><td class="info">제목</td><td><input type="text" name="title" style="width:100%"/></td></tr>
 <tr><td class="info" colspan="2">본문</td></tr>
 <tr><td colspan="2"><textarea id="content" name="content"></textarea></td></tr>
