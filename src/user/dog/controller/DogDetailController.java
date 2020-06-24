@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import user.dog.dto.DogDTO;
 import user.dog.dto.Dog_File_DTO;
+import user.dog.dto.UserLike;
 import user.dog.service.face.DogService;
 import user.dog.service.impl.DogServiceImpl;
 
@@ -22,6 +23,7 @@ public class DogDetailController extends HttpServlet {
 
 	//BoardService 객체 생성
 		private DogService dogService = new DogServiceImpl();
+		
 		
 		@Override
 		protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -37,6 +39,9 @@ public class DogDetailController extends HttpServlet {
 			
 			
 			
+			
+			
+			
 			req.setAttribute("dogFile", dogFile);
 			
 			
@@ -48,4 +53,21 @@ public class DogDetailController extends HttpServlet {
 			req.getRequestDispatcher("/WEB-INF/views/user/dog/detailView.jsp").forward(req, resp);	
 		
 		}
+		
+		
+		@Override
+		protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+			
+			dogService.insertUserLike(req);
+			
+			dogService.insertDogClaim(req);
+				// 값 넣어주기
+			
+			
+			
+			
+			resp.sendRedirect("/dog/list");
+			
+		}
+		
 }

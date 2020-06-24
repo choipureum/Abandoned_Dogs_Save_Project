@@ -7,15 +7,13 @@
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-
-
-
 <!-- Bootstrap 3.3.2 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 
 
 <% DogMiss view = (DogMiss)request.getAttribute("view");%>
@@ -30,7 +28,100 @@
 	height:400px;
 }
 
+
+
+
+.input-group{
+	width:400px;
+}
+
+
+
+.wrapper{
+margin: 0 auto;
+
+}
+
+
+.view{
+	text-align:center;
+	float:left;
+	margin: 0 10px;
+	
+	
+}
+
+
+#area{
+	
+	width:411px;
+	height:399px;
+	position:relative;
+}
+
+.ra1{
+	position:absolute;
+	left:50px;
+	top:40px;
+	font-size:16px;
+	
+}
+.ra2{
+	position:absolute;
+	left:50px;
+	top:80px;
+	font-size:16px;
+}
+.ra3{
+	position:absolute;
+	left:50px;
+	top:120px;
+	font-size:16px;
+}
+.ra4{
+	position:absolute;
+	left:50px;
+	top:160px;
+	font-size:16px;
+}
+.ra5{
+	position:absolute;
+	left:50px;
+	top:200px;
+	font-size:16px;
+}
+.ra6{
+	position:absolute;
+	left:50px;
+	top:240px;
+	font-size:16px;
+}
+.ra7{
+	position:absolute;
+	left:280px;
+	top:40px;
+	font-size:16px;
+}
+
+#img{
+	height:350px;
+}
+
+td {
+	margin-left:5px;
+}
+
+.tit{
+	font-family: 'Do Hyeon', sans-serif;
+	font-size:40px;
+	color: yellow;
+}
+
 </style>
+
+
+
+
 <script type="text/javascript">
 $(document).ready(function() {
 	//목록버튼 동작
@@ -53,11 +144,7 @@ $(document).ready(function() {
 
 
 <!DOCTYPE HTML>
-<style>
-#img{
-	height:290px;
-}
-</style>
+
 <html>
 	<head>
 		<title>Full Motion</title>
@@ -84,46 +171,46 @@ $(document).ready(function() {
 					<div class="inner">
 
 					<div class="container">
-<table class="table table-condensed">
-	<tr>
-	
-		<th>제목</th>
-		<th>이름</th>
-		<th>품종</th>
-		<th>성별</th>
-		<th>분실날짜</th>
-		<th>분실장소</th>
-		<th>조회수</th>
-		<th>내용</th>
-	</tr>
+					<div class="tit">이  분실견을 찾아 주세요</div>
+					<div class="titt">지나가는 개 다시보자 지나친 개 다시보자 마주친 개 다시보자</div><br>
+		
+<div class="wrapper">					
+	<div class="view"><img  class="img" src ="/upload/<%=file.getMiss_stored_FILE_NAME()%>"/></div>
+		<div class="view" id="area">					
+		
+		
+		
+		
+		
+		
+		
+		<span class="ra1">제목&nbsp;&nbsp;&nbsp;<%=view.getMissTitle()%></span><br> 
+		<span class="ra2">이름&nbsp;&nbsp;&nbsp;<%=view.getMissName()%></span><br> 
+		<span class="ra3">견종&nbsp;&nbsp;&nbsp;<%=view.getMissKind()%></span><br> 
+		<span class="ra4">성별&nbsp;&nbsp;&nbsp;<%=view.getMissGender()%></span><br>
+		<span class="ra5">분실날짜&nbsp;&nbsp;&nbsp;<%=view.getMissDate()%></span><br>
+		<span class="ra6">분실장소&nbsp;&nbsp;&nbsp;<%=view.getMissLoc()%></span><br>
+		<span class="ra7">조회수&nbsp;&nbsp;&nbsp;<%=view.getMissHit()%></span>
+		
+		
+		
+	</div>
+</div>	
+
+	<table style="width:100px;">
 	<tr>
 		
-		<td><%=view.getMissTitle()%></td>
-		<td><%=view.getMissName()%></td>
-		<td><%=view.getMissKind()%></td>
-		<td><%=view.getMissGender()%></td>
-		<td><%=view.getMissDate()%></td>
-		<td><%=view.getMissLoc()%></td>
-		<td><%=view.getMissHit()%></td>
-		<td><%=view.getMissContent()%></td>
+		<td><textarea  readonly cols="5" rows="10" style="width:820px;"><%=view.getMissContent()%></textarea></td>
 	</tr>
-</table>
-
-
-	<div>
-		<a href="/upload/<%=file.getMiss_stored_FILE_NAME()%>"
-		 download="<%=file.getMiss_org_FILE_NAME()%>"><%=file.getMiss_org_FILE_NAME()%></a>
-	</div>
-
-
-	<img class="img" src ="/upload/<%=file.getMiss_stored_FILE_NAME()%>"/>
+	</table>
+	
 
 
 
 	<div class="text-right">	
-		<button id="btnList" class="btn btn-primary">목록</button>
+		<button id="btnList" class="btn btn-info">목록</button>
 		<button id="btnUpdate" class="btn btn-info">수정</button>
-		<button id="btnDelete" class="btn btn-danger">삭제</button>
+		<button id="btnDelete" class="btn btn-info">삭제</button>
 	</div>
 </div>
 
@@ -153,12 +240,12 @@ $(document).ready(function() {
 					
 
 		<!-- Scripts -->
-			<script src="/reources/UserBoardTemplate/assets/js/jquery.min.js"></script>
-			<script src="/reources/UserBoardTemplate/assets/js/jquery.scrolly.min.js"></script>
-			<script src="/reources/UserBoardTemplate/assets/js/jquery.poptrox.min.js"></script>
-			<script src="/reources/UserBoardTemplate/assets/js/skel.min.js"></script>
-			<script src="/reources/UserBoardTemplate/assets/js/util.js"></script>
-			<script src="/reources/UserBoardTemplate/assets/js/main.js"></script>
+			<script src="/resources/UserBoardTemplate/assets/js/jquery.min.js"></script>
+			<script src="/resources/UserBoardTemplate/assets/js/jquery.scrolly.min.js"></script>
+			<script src="/resources/UserBoardTemplate/assets/js/jquery.poptrox.min.js"></script>
+			<script src="/resources/UserBoardTemplate/assets/js/skel.min.js"></script>
+			<script src="/resources/UserBoardTemplate/assets/js/util.js"></script>
+			<script src="/resources/UserBoardTemplate/assets/js/main.js"></script>
 
 	</body>
 </html>

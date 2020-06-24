@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import user.dog.dto.DogDTO;
 import user.dog.dto.Dog_Data;
 import user.dog.dto.Dog_File_DTO;
+import user.dog.dto.UserLike;
 import util.Paging;
 
 public interface DogService {
@@ -31,7 +32,11 @@ public interface DogService {
 
 	
 
-
+	/**
+	 * dogno가져오기
+	 * @param req
+	 * @return
+	 */
 	public DogDTO getDogno(HttpServletRequest req);
 
 	
@@ -48,4 +53,23 @@ public interface DogService {
 	 * @return
 	 */
 	public Dog_File_DTO viewFile(DogDTO detailDog);
+
+	
+	/**
+	 * 입양신청 
+	 *  버튼 클릭시 Userlike에 저장
+	 * 
+	 * @param req
+	 */
+	public void insertUserLike(HttpServletRequest req);
+
+	public void insertDogClaim(HttpServletRequest req);
+	
+	
+	/**
+	 * 
+	 */
+	
+	
+
 }

@@ -11,15 +11,18 @@ public class DogDTO {
 	private Date dogdate;
 	private String dogimg;
 	private int shelterno;
+	private int dogenddate;
 	public int getDogno() {
 		return dogno;
 	}
+	
 	@Override
 	public String toString() {
-		return "Dog [dogno=" + dogno + ", dogname=" + dogname + ", dogkind=" + dogkind + ", doggender=" + doggender
+		return "DogDTO [dogno=" + dogno + ", dogname=" + dogname + ", dogkind=" + dogkind + ", doggender=" + doggender
 				+ ", dogneu=" + dogneu + ", dogdate=" + dogdate + ", dogimg=" + dogimg + ", shelterno=" + shelterno
-				+ "]";
+				+ ", dogenddate=" + dogenddate + "]";
 	}
+
 	public void setDogno(int dogno) {
 		this.dogno = dogno;
 	}
@@ -61,6 +64,13 @@ public class DogDTO {
 	}
 	public int getShelterno() {
 		return shelterno;
+	}
+	
+	public int getDogenddate() {
+		return dogenddate;
+	}
+	public void setDogenddate(int dogenddate) {
+		this.dogenddate = dogenddate;
 	}
 	public void setShelterno(int shelterno) {
 		this.shelterno = shelterno;

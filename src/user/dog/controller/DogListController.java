@@ -26,10 +26,22 @@ public class DogListController extends HttpServlet {
 		@Override
 		protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 			
-			
 			//요청파라미터를 전달하여 Paging 객체 생성하기
 			Paging paging = dogService.getPaging(req);
-//			System.out.println("BoardListController - " + paging);
+			req.setAttribute("paging", paging);
+
+			//VIEW 지정 및 응답 - forward
+			req.getRequestDispatcher("/WEB-INF/views/user/dog/view.jsp").forward(req, resp);		
+			
+			
+		}
+	
+		@Override
+		protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+			//요청파라미터를 전달하여 Paging 객체 생성하기
+			Paging paging = dogService.getPaging(req);
+			System.out.println("BoardListController - " + paging);
 //			
 			System.out.println("get");
 //			
@@ -39,23 +51,20 @@ public class DogListController extends HttpServlet {
 //			게시글 페이징 처리 조회
 			List<Dog_Data> dogList = dogService.getList(paging);
 
-//			for (Iterator iterator = dogList.iterator(); iterator.hasNext();) {
-//				Dog_Data dog_Data = (Dog_Data) iterator.next();
+			for (Iterator iterator = dogList.iterator(); iterator.hasNext();) {
+				Dog_Data dog_Data = (Dog_Data) iterator.next();
 //				System.out.println(dog_Data);
-//			}
+			}
 			
 //			//페이징계산결과 MODEL값 전달
 			req.setAttribute("paging", paging);
 //			
 //			//조회결과 MODEL값 전달
 			req.setAttribute("dogList", dogList);
-			
-			
+
 			//VIEW 지정 및 응답 - forward
-			req.getRequestDispatcher("/WEB-INF/views/user/dog/view.jsp").forward(req, resp);		
-			
-			
+			req.getRequestDispatcher("/WEB-INF/views/user/dog/listview.jsp").forward(req, resp);		
+
 		}
-	
 	
 }

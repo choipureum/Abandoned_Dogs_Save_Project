@@ -8,6 +8,19 @@ public class Dog_Data {
 		private String dogname;
 		private String dogkind;
 		private String doggender;
+		private String dogneu;
+		private Date dogdate;
+		private String dogimg;
+		private int shelterno;
+		//파일DTo
+		private int dog_fileno;
+		private String dog_org_file_name;
+		private String dog_stored_file_name;
+		private int dog_file_size;
+		private String dog_del_gb;
+		
+		
+		
 		public int getDogno() {
 			return dogno;
 		}
@@ -94,14 +107,5 @@ public class Dog_Data {
 		public void setDog_del_gb(String dog_del_gb) {
 			this.dog_del_gb = dog_del_gb;
 		}
-		private String dogneu;
-		private Date dogdate;
-		private String dogimg;
-		private int shelterno;
-		//파일DTo
-		private int dog_fileno;
-		private String dog_org_file_name;
-		private String dog_stored_file_name;
-		private int dog_file_size;
-		private String dog_del_gb;
+		
 }

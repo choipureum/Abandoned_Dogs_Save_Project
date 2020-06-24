@@ -90,7 +90,7 @@
             <a class="collapse-item" href="utilities-color.html">QNA게시판관리</a>
             <a class="collapse-item" href="utilities-border.html">분실견 게시판 관리</a>
             <a class="collapse-item" href="utilities-animation.html">유기견 게시판 관리</a>
-            <a class="collapse-item" href="/admin/dogClaim">입양신청 확인</a>
+            <a class="collapse-item" href="/admin/dogClaim">입양신청 처리</a>
           </div>
         </div>
       </li>
@@ -137,5 +137,5 @@
       <div id="content">
 
         <!-- Topbar 임포트-->
-        <c:import url="/WEB-INF/views/admin/util/Toolbar.jsp" />
+        <c:import url="/admin/toolbar" />
         <!-- End of Topbar -->

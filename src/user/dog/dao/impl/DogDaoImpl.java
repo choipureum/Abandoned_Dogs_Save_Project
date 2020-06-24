@@ -8,10 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
+import admin.dto.DogClaimDTO;
 import user.dog.dao.face.DogDao;
 import user.dog.dto.DogDTO;
 import user.dog.dto.Dog_Data;
 import user.dog.dto.Dog_File_DTO;
+import user.dog.dto.UserLike;
 import util.JDBCTemplate;
 import util.Paging;
 
@@ -71,7 +75,6 @@ public class DogDaoImpl implements DogDao{
 		
 		//결과 저장할 List
 		List<Dog_Data> dogList = new ArrayList<>();
-		
 		try {
 			ps = conn.prepareStatement(sql); //SQL수행 객체
 			
@@ -101,6 +104,7 @@ public class DogDaoImpl implements DogDao{
 				
 				//리스트에 결과값 저장
 				dogList.add(d);
+				System.out.println("121212"+dogList);
 			}
 			
 		} catch (SQLException e) {
@@ -278,6 +282,123 @@ public class DogDaoImpl implements DogDao{
 		return dogFile;
 		
 	}
+
+
+	@Override
+	public void insertUserLike(UserLike userlike) {
+		//DB연결 객체
+		conn = JDBCTemplate.getConnection();
+	
+		String sql = "";
+		sql += "INSERT INTO userlike(userid, dogno)";
+		sql += " VALUES ( ?,?)";
+		
+		try {
+			ps= conn.prepareStatement(sql);
+			
+			ps.setString(1, userlike.getUserid());
+			ps.setInt(2, userlike.getDogno());
+			
+			
+			if(userlike.getAdoptsw()==null) {
+				ps.setInt(3, "0");
+				
+			}else {
+				ps.setInt(3, "1");
+			}
+			
+			
+			
+			
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		
+	}
+
+
+	@Override
+	public void insertDogClaim(DogClaimDTO claim) {
+		//DB연결 객체
+		conn = JDBCTemplate.getConnection();
+		
+		//
+		
+		
+		String sql = "";
+		sql += "INSERT INTO dog_claim(dogno,dogname,dogkind,doggender,dogneu,dogshelter,userid)";
+		sql += " VALUES ( ?,?,?,?,?,?,?)";
+		
+		
+		
+		try {
+			ps= conn.prepareStatement(sql);
+			
+			ps.setInt(1, claim.getDogno());
+			ps.setString(2, claim.getDogname());
+			ps.setString(3, claim.getDogkind());
+			ps.setString(4, claim.getDoggender());
+			ps.setString(5, claim.getDogneu());
+			ps.setInt(6, claim.getDogshelter());
+			ps.setDate(7, claim.getDogregdate());
+			ps.setString(8, claim.getUserid());
+			
+			
+			
+			ps.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+	}
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+//	@Override
+//	public void insertUserLike(HttpServletRequest req) {
+		//DB연결 객체
+//		conn = JDBCTemplate.getConnection();
+//		
+//		// 
+//		
+//		//다음 게시글 번호 조회 쿼리
+//		String sql = "";
+//		sql += "INSERT INTO userlike(userid, adoptsw, dogno)";
+//		sql += " VALUES ( ?,?,?)";
+//		
+//		try {
+//			//DB작업
+//			ps = conn.prepareStatement(sql);
+//			
+//			
+//			ps.executeUpdate();
+//			
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			JDBCTemplate.close(ps);
+//		}
+//		
+		
+		
+//	}
 		
 		
 		

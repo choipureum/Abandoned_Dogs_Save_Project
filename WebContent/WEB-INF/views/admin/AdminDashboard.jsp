@@ -47,7 +47,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">등록된 유기견 수</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">215,000 마리</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">${dogcnt } 마리</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-dog fa-2x text-gray-300"></i>
@@ -90,7 +90,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">입양 신청 수</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">18 개</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">${dog_claim } 개</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -146,9 +146,9 @@
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                       <div class="dropdown-header">Dropdown</div>
                       <a class="dropdown-item" href="#">유기견 관리</a>
-                      <a class="dropdown-item" href="#">입양신청 페이지</a>
+                      <a class="dropdown-item" href="/admin/dogClaim">입양신청 페이지</a>
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">대시보드 이동</a>
+                      <a class="dropdown-item" href="/admin/dashboard">대시보드 이동</a>
                     </div>
                   </div>
                 </div>
@@ -182,9 +182,9 @@
                   <h6 class="m-0 font-weight-bold text-primary">홈페이지 현황</h6>
                 </div>
                 <div class="card-body">
-                  <h4 class="small font-weight-bold">입양신청률 <span class="float-right">20%</span></h4>
+                  <h4 class="small font-weight-bold">입양신청률 <span class="float-right">${Math.ceil(dog_claimBydogno/dogcnt*100)}%</span></h4>
                   <div class="progress mb-4">
-                    <div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-danger" role="progressbar" style="width:${dog_claimBydogno/dogcnt*100}%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                   <h4 class="small font-weight-bold">QNA 답변률 <span class="float-right">40%</span></h4>
                   <div class="progress mb-4">
@@ -315,13 +315,14 @@
 	Chart.defaults.global.defaultFontColor = '#858796';
 
 	// Pie Chart Example
+	
 	var ctx = document.getElementById("myPieChart");
 	var myPieChart = new Chart(ctx, {
 	  type: 'doughnut',
 	  data: {
 	    labels: ["입양신청 대기", "주인을 기다리는 유기견"],
 	    datasets: [{
-	      data: [30, 75],
+	      data: ["${dog_claimBydogno}", "${dogcnt-dog_claimBydogno}"],
 	      backgroundColor: ['#1cc88a', '#36b9cc'],
 	      hoverBackgroundColor: ['#17a673', '#2c9faf'],
 	      hoverBorderColor: "rgba(234, 236, 244, 1)",
