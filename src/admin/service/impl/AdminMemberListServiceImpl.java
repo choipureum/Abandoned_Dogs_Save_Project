@@ -222,6 +222,14 @@ public class AdminMemberListServiceImpl implements AdminMemberListService{
 	public List<DogClaimDTO> dogClaimSelectAll(HashMap<String, Object> listOpt, Paging paging) {				
 		return adminMemberListDao.dogClaimSelectAll(listOpt,paging);
 	}
+	
+	@Override
+	public void dogClaimDelete(String userid) {
+			//개 입양신청 삭제
+			adminMemberListDao.dogClaimDelete(userid);
+			//개 입양신청 유저라이크에 있는 스위치 0으로 변화
+			adminMemberListDao.dogUserLikeUpdate(userid);
+	}
 }
 
 

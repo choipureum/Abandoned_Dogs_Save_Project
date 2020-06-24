@@ -88,6 +88,15 @@ public interface AdminMemberListService {
 	 * @param
 	 */
 	 public List<DogClaimDTO> dogClaimSelectAll(HashMap<String, Object> listOpt, Paging paging);
+	 
+	 /**
+	  * 유저 아이디를 통해서
+	  * 입양신청 삭제 -> userLike 항목 값 1->0으로 치환 두가지 기능
+	  * 
+	  * @param userid
+	  */
+	 
+	 public void dogClaimDelete(String userid);
 }
 
 

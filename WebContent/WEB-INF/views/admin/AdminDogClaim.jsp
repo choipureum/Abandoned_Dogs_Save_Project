@@ -15,8 +15,8 @@
 <style>
 #useridView:hover {background: #FAFAD2;}
 input[type="checkbox"]{width: 20px;height: 20px;cursor: pointer;}
+}
 </style>
-
 	<!-- 헤더 임포트 -->
 		<c:import url="/WEB-INF/views/admin/util/Header.jsp"></c:import>
 
@@ -34,9 +34,9 @@ input[type="checkbox"]{width: 20px;height: 20px;cursor: pointer;}
                   <h6 class="m-0 font-weight-bold text-primary">입양 신청란</h6>
                 </div>
                 <div class="card-body">                
-                  <div class="mb-1 small"><code>note : </code>입양신청률&nbsp;&nbsp;&nbsp;&nbsp;<code>10 / 30</code></div>
+                  <div class="mb-1 small"><code>note : </code>입양신청률&nbsp;&nbsp;&nbsp;&nbsp;<code>${dog_claimBydogno } / ${dogcnt} </code></div>
                   <div class="progress progress-sm mb-2">
-                    <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar" role="progressbar" style="width: ${dog_claimBydogno/dogcnt*100}%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
                   </div> 
                   <br><hr><br> 
                   <!--  입양신청처리 버튼 -->               
@@ -63,13 +63,15 @@ input[type="checkbox"]{width: 20px;height: 20px;cursor: pointer;}
                		  <th>공고일 남은날짜</th>                             		  
                     </tr>
                   </thead>
-               	  <tbody>    
+               	  <tbody>   
+               	  <% Date today = new Date(); %> 
                	  <% int cnt=0; %>           	  	           
       					<c:forEach items="${dogClaimList }" var="d">
       					 <% cnt++; %>
+      					 
 			            <tr class="dog_row" >										           
 			            	<td onclick='event.cancelBubble=true;'> 
-			            		<div style="padding:0 15px 0 0px">               	
+			            		<div style="padding:0 0 0 9px">               	
 			           			<input type="checkbox" id="dog_chk" class="dog_chk"  data-memberid=${d.userid } />           	                                                			
 								</div></td> 
 			                <td>${d.dogno }</td>			                
@@ -81,15 +83,15 @@ input[type="checkbox"]{width: 20px;height: 20px;cursor: pointer;}
 			                <td id="useridView" onclick="window.open('/admin/memberView?userid=${d.userid }','');">${d.userid }</td>
 			                 <td>${ d.dogregdate }</td>      
 			                 <!-- 공고일 남은날짜 -->
-			                 <td></td>                    
-			            </tr>   
+			                 <td><span id="enddate" style="color:red">${d.dogenddate }일 남았습니다!</span></td>                    			                 
+			            </tr>    
 			            </c:forEach>      
 			          
                	  </tbody> 
                	  <tfoot>
 					    <tr>				    
 					        <th colspan="2" style="text-align:right;white-space:nowrap;">TOTAL : </th>
-					        <th colspan="7" style="text-align:left;white-space:nowrap;"> <%=cnt %> &nbsp;마리</th>
+					        <th colspan="7" style="text-align:left;white-space:nowrap;"> <%=cnt %> &nbsp;건</th>
 					    </tr>
 					</tfoot>
                	                           	  	  
@@ -143,20 +145,60 @@ $(document).ready(function(){
 		 
 </script>
 <script>
-//선택회원 삭제(삭제)
-function chk_confirm(){			
-		
+//선택 입양신청 처리 팝업
+function chk_confirm(){	
+	
+	  if($("input[class='dog_chk']:checked").length==0){
+		  swal({				
+			  icon: "error",
+			  text: "최소 한명의 입양신청자를 선택해주세요!"
+			})
+		  return;
+	  }	
+	
+	
 		var checkArr = new Array();
 					 
 		 $("input[class='dog_chk']:checked").each(function(){
 			 checkArr.push($(this).attr("data-memberid"));
 			 });	 			
-		window.open("/admin/claimUpdate?userid="+ checkArr.join(","),"","width=700,height=600,left=350,right=150");
+		window.open("/admin/claimUpdate?userid="+ checkArr.join(","),"","width=700,height=600,left=350,right=150,scrollbars=no");
 			
 		}	
 
 
 </script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	  //데이터 테이블 기능구현
+	 $('#dataTable').DataTable(			
+		{
+		  "language": {
+		        "emptyTable": "데이터가 존재하지 않습니다.",
+		        "lengthMenu": "페이지당 _MENU_ 개씩 보기",
+		        "info": "현재 _START_ - _END_ / _TOTAL_건",
+		        "infoEmpty": "데이터 없음",
+		        "infoFiltered": "( _MAX_건의 데이터에서 필터링됨 )",
+		        "search": "검색: ",
+		        "zeroRecords": "일치하는 데이터가 없어요.",
+		        "loadingRecords": "로딩중...",
+		        "processing":     "잠시만 기다려 주세요...",
+		        "paginate": {
+		            "next": "다음",
+		            "previous": "이전"
+		        }
+		    }, "lengthChange" :true,
+		    	"paging" : true,
+		    	"info":true
+
+	    });	
+	  
+	  
+
+});
+</script>
+
 
 
 </html>

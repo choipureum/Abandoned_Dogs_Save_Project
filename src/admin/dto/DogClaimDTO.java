@@ -12,7 +12,18 @@ public class DogClaimDTO {
 	private int dogshelter;
 	private Date dogregdate;
 	private String userid;
+	private long dogenddate;
 		
+	
+	
+	public long getDogenddate() {
+		return dogenddate;
+	}
+
+	public void setDogenddate(long dogenddate) {
+		this.dogenddate = dogenddate;
+	}
+
 	public int getDogno() {
 		return dogno;
 	}
@@ -65,12 +76,14 @@ public class DogClaimDTO {
 	public void setUserid(String userid) {
 		this.userid = userid;
 	}
+
 	@Override
 	public String toString() {
 		return "DogClaimDTO [dogno=" + dogno + ", dogname=" + dogname + ", dogkind=" + dogkind + ", doggender="
 				+ doggender + ", dogneu=" + dogneu + ", dogshelter=" + dogshelter + ", dogregdate=" + dogregdate
-				+ ", userid=" + userid + "]";
+				+ ", userid=" + userid + ", dogenddate=" + dogenddate + "]";
 	}
+	
 	
 	
 }

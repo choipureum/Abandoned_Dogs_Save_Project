@@ -483,6 +483,7 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 		    	ps.setInt(2, paging.getEndNo());		
 				rs= ps.executeQuery();
 				
+				Date today = new Date();
 				while(rs.next()) {
 					DogClaimDTO dogClaim= new DogClaimDTO();
 				    dogClaim.setDogno(rs.getInt("dogno"));
@@ -493,6 +494,12 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 				    dogClaim.setDogshelter(rs.getInt("dogshelter"));
 				    dogClaim.setUserid(rs.getString("userid"));
 				    dogClaim.setDogregdate(rs.getDate("dogregdate"));
+				    //공고일 구하기 남은 일수
+				  	long diffDay=0;		    
+				    //두날짜 사이의 시간 차이(ms)를 하루 동안의 ms(24시*60분*60초*1000밀리초) 로 나눈다.
+					diffDay = (today.getTime() - dogClaim.getDogregdate().getTime()) / (24*60*60*1000);
+					diffDay= 10-diffDay;
+				    dogClaim.setDogenddate(diffDay);
 				    list.add(dogClaim);
 	
 				}
@@ -524,6 +531,115 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 			}	    	
 	    	return res;
 	    }
+	    
+	    
+	    @Override
+	    public void dogClaimDelete(String userid) {
+	    	conn= JDBCTemplate.getConnection();
+	    	
+	    	sql= new StringBuffer();
+	    	sql.append(" delete from dog_claim where userid=?");
+	    	
+	    	try {
+				ps=conn.prepareStatement(sql.toString());
+				ps.setString(1, userid);				
+				ps.executeUpdate();
+				
+												
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+	    	
+	    }
+	    @Override
+	    public int dogClaimCount() {
+	    	conn=JDBCTemplate.getConnection();
+	    	sql= new StringBuffer();
+	    	sql.append(" select count(*) from dog_Claim");
+	    	int cnt=0;
+	    	
+	    	try {
+				ps=conn.prepareStatement(sql.toString());
+				rs=ps.executeQuery();
+				
+				while(rs.next()) {
+					cnt=rs.getInt(1);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(ps);
+				JDBCTemplate.close(rs);
+			}	
+	    	return cnt;
+	    }
+	    
+	    @Override
+	    public int dogCount() {
+	    	conn=JDBCTemplate.getConnection();
+	    	sql= new StringBuffer();
+	    	sql.append(" select count(*) from dog");
+	    	int cnt=0;
+	    	
+	    	try {
+				ps=conn.prepareStatement(sql.toString());
+				rs=ps.executeQuery();
+				
+				while(rs.next()) {
+					cnt=rs.getInt(1);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(ps);
+				JDBCTemplate.close(rs);
+			}	
+	    	return cnt;
+	    }
+	    
+	    @Override
+	    public int dogClaimBydognoCount() {
+	    	conn=JDBCTemplate.getConnection();
+	    	sql= new StringBuffer();
+	    	sql.append(" select count(*) from (select dogno from dog_claim group by dogno)");
+	    	int cnt=0;
+	    	
+	    	try {
+				ps=conn.prepareStatement(sql.toString());
+				rs=ps.executeQuery();
+				
+				while(rs.next()) {
+					cnt=rs.getInt(1);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(ps);
+				JDBCTemplate.close(rs);
+			}	
+	    	return cnt;
+	    }
+	    
+	    
+	    
+	    
+	    // 입양신청 허가에 따른 변동
+	    @Override
+	    public void dogClaimDeleteByDogno(String dogno) {
+	    	
+	    }
+	    
+	    @Override
+	    public void dogDeleteByadmin(int dogno) {
+	    
+	    }
+	    
+	    @Override
+	    public void userLikeUpdateByadmin(String userid, int dogno) {
+	    
+	    }
+	    
 }
 
 
