@@ -27,9 +27,6 @@ import util.Paging;
 
 
 
-
-
-
 public class DogMissServiceImpl implements DogMissService {
 
 	private DogMissDao dogMissDao = new DogMissDaoImpl();
@@ -86,18 +83,31 @@ public class DogMissServiceImpl implements DogMissService {
 		
 		
 		//검색어
-		String search = (String)req.getParameter("search");
+		//예외처리를 해주어야한다//예외처리 안해줬으니까 당연히 null이 뜰 수 밖에  .... //처음부터 seach값과 search2 값으로 페이징을 하면 안된다 
+		
+		String search = req.getParameter("search");//내가 검색창에 직접 입력한 검색어 
 
-				
-		//검색어 search를 전달하여 kind에서 검색어가 들어가는 수cnt를 반환
+		param = req.getParameter("search2");
+		int search2 = 0;
+		if( param!=null && !"".equals(param) ) {
+			search2 = Integer.parseInt(param);
+		}
+		
+		
+		//검색어 search 와 value 값을 전달하여 value값에 해당하는 검색어가 들어가는 수 total cnt 수를 반환
 		//Board TB와 curPage 값을 이용한 Paging 객체를 생성하고 반환
-		int totalCount = dogMissDao.selectCntAll(search);
+		int totalCount = dogMissDao.selectCntAll(search, search2);
+		
+		//기존의 totalCount 값을 구하는 메소드 
+		//int totalCount = dogMissDao.selectCntAll(search);
 				
-		// Paging 객체 생성 
-		Paging paging = new Paging(totalCount, curPage);
+		// Paging 객체 생성 //totalcount와 curpage를 구해서 paging객체를 만들었다 
+		Paging paging = new Paging(totalCount, curPage, 12);
 				
-		//페이징 객체에 검색어 생성 
+		//페이징 객체에 검색어 저장 // value값을 따로 처리해줘야 하//여기에서 처리해줘야 겠네//search2의 값이 1일 때 , 2일 때, 3일 때 
+		//그다음 sql문에서 뽑아올 때 serch의 값이 뭐냐에 따라 어떤 sql문을 실행할 지 생각하면 되겠네 
 		paging.setSearch(search);
+		paging.setValue(search2);
 				
 		//curpage와 검색어로 totalcount를 세어서 만든 paging객체를 반환
 		return paging;
