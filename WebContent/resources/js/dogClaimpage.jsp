@@ -34,26 +34,6 @@
 <script>
 
 
-// function update(sw){
-	
-	
-// 	$.ajax({
-// 		type : 'POST',
-// 		url : '/admin/updateGrade',
-// 		data : {
-// 			"grade" : num
-// 			, "id" : userGradeById
-// 		},
-// 		dataType: "json",
-// 		success : function(r){			
-// 			//확인
-// 			location.href="/resources/js/updateComplete.jsp"
-// 		}
-// 		, error: function() {
-// 			console.log("등급 업데이트 실패")
-// 		}		
-// 	});
-// }
 </script>
 </head>
 <body>
@@ -142,17 +122,8 @@
 						 $("input[class='member_chk']:checked").each(function(){
 							 checkArr.push($(this).attr("data-memberid"));
 						 });	 
-						 
-						 $.post("/admin/claimUpdate",{"member_chk":checkArr},function(res){
-							 swal({				
-								  icon: "success",
-								  text: "입양신청이 승인되었습니다!"
-								}).then(function() {
-									//종료
-									 window.opener.location.reload();
-									 window.close();					
-							});				
-						 });												
+						 location.href="/admin/dogClaimAccept?userid="+ checkArr.join(",");
+						 												
 				}			
 			})						 
 	 }

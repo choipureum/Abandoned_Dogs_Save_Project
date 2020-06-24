@@ -118,8 +118,13 @@ public interface AdminMemberListDao {
 	  */
 	 public void dogClaimDelete(String userid);
 	 
-	 
-	 
+	 /**
+	  * 
+	  * 개 입양신청 불허가에 따른 applysw =2로 업데이트
+	  * 
+	  * 
+	  */
+	 public void dogClaimUpdateApplySw(String userid,int dogno);
 	 /**
 	  * 유기견 총 몇마리 구하기
 	  * 
@@ -152,7 +157,7 @@ public interface AdminMemberListDao {
 	  * 
 	  * @param dogno
 	  */
-	 public void dogClaimDeleteByDogno(String dogno);
+	 public void dogClaimDeleteByDogno(int dogno);
 	 
 	 /**
 	  * 입양허가에 따른
@@ -171,4 +176,22 @@ public interface AdminMemberListDao {
 	  * @param - int dogno
 	  */
 	  public void dogDeleteByadmin(int dogno);
+	  
+	  /**
+	   * 입양 신청 허가 할때 
+	   * alert()로  화면 출력 - > 몇개의 동일한 입양신청 처리
+	   * 
+	   * @param - int dogno
+	   */
+	  public int dogClaimBydogno(int dogno);
+	  
+	  /**
+	   * 입양신청 강아지 번호 조회
+	   * Userlike 테이블에서
+	   * 
+	   * @param userid
+	   * @return
+	   */
+	  public int dognoBydogClaim(String userid);
+	  
 }		

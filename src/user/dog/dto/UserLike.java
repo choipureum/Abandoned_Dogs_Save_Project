@@ -6,7 +6,16 @@ public class UserLike {
 
 	private String userid;
 	private String adoptsw;
+	private String applysw;
 	private int dogno;
+	
+	
+	public String getApplysw() {
+		return applysw;
+	}
+	public void setApplysw(String applysw) {
+		this.applysw = applysw;
+	}
 	public String getUserid() {
 		return userid;
 	}
@@ -27,8 +36,10 @@ public class UserLike {
 	}
 	@Override
 	public String toString() {
-		return "UserLike [userid=" + userid + ", adoptsw=" + adoptsw + ", dogno=" + dogno + "]";
+		return "UserLike [userid=" + userid + ", adoptsw=" + adoptsw + ", applysw=" + applysw + ", dogno=" + dogno
+				+ "]";
 	}
+	
 
 	
 	

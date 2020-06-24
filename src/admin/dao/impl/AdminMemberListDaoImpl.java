@@ -621,26 +621,138 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 	    	return cnt;
 	   
 	    }
-	    
-	    
-	    
-	    
-	    // 입양신청 허가에 따른 변동
-	    @Override
-	    public void dogClaimDeleteByDogno(String dogno) {
+	    /**
+	     * 입양 신청 불허가에따른 apply sw=2로 치환
+	     */
+	   @Override
+	   public void dogClaimUpdateApplySw(String userid, int dogno) {
+		   conn=JDBCTemplate.getConnection();
+	    	sql= new StringBuffer();
+	    	sql.append(" update userlike set applysw =2 where userid=? and dogno=?");
 	    	
+	    	try {
+				ps=conn.prepareStatement(sql.toString());
+				ps.setString(1, userid);
+				ps.setInt(2, dogno);
+				ps.executeUpdate();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(ps);
+			}	
+	    }
+	    /**
+	     * 
+	     * 입양신청 허가에 따른 변동
+	     * 
+	     * 
+	     * 
+	     * 
+	     */
+	    //	같은 dogno에 따른 입양신청 전부 삭제
+	    @Override
+	    public void dogClaimDeleteByDogno(int dogno) {
+	    	conn=JDBCTemplate.getConnection();
+	    	sql= new StringBuffer();
+	    	sql.append(" DELETE FROM dog_claim WHERE dogno=? ");
+	    	
+	    	try {
+				ps=conn.prepareStatement(sql.toString());
+				ps.setInt(1, dogno);
+				ps.executeUpdate();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(ps);
+			}	
 	    }
 	    
+	    //	입양 신청에따른 dog정보 삭제
 	    @Override
 	    public void dogDeleteByadmin(int dogno) {
-	    
+	    	conn=JDBCTemplate.getConnection();
+	    	sql= new StringBuffer();
+	    	sql.append(" DELETE FROM dog WHERE dogno=? ");
+	    	
+	    	try {
+				ps=conn.prepareStatement(sql.toString());
+				ps.setInt(1, dogno);
+				ps.executeUpdate();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(ps);
+			}	
 	    }
-	    
+	    //	입양 신청에 따른 userlike 정보 업데이트
 	    @Override
 	    public void userLikeUpdateByadmin(String userid, int dogno) {
-	    
+	    	conn=JDBCTemplate.getConnection();
+	    	sql= new StringBuffer();
+	    	sql.append(" update userlike set adoptsw = 'Y' where userid=? and dogno=?");
+	    	
+	    	try {
+				ps=conn.prepareStatement(sql.toString());
+				ps.setString(1, userid);
+				ps.setInt(2,dogno);
+				ps.executeUpdate();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(ps);
+			}	
 	    }
-	    
+	    @Override
+	    public int dogClaimBydogno(int dogno) {
+	    	conn=JDBCTemplate.getConnection();
+	    	sql= new StringBuffer();
+	    	sql.append(" select count(*) from dog_claim where dogno=?  ");
+	    	int res=0;
+	    	
+	    	try {
+				ps=conn.prepareStatement(sql.toString());
+				ps.setInt(1, dogno);
+				rs=ps.executeQuery();
+				
+				while(rs.next()) {
+					res=rs.getInt(1);
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(ps);
+				JDBCTemplate.close(rs);
+			}	
+	    	return res;
+	    }
+	    @Override
+	    public int dognoBydogClaim(String userid) {
+	    	conn=JDBCTemplate.getConnection();
+	    	sql= new StringBuffer();
+	    	sql.append(" select dogno from dog_claim where userid=?  ");
+	    	int res=0;
+	    	
+	    	try {
+				ps=conn.prepareStatement(sql.toString());
+				ps.setString(1, userid);
+				rs=ps.executeQuery();
+				
+				while(rs.next()) {
+					res=rs.getInt(1);
+				}				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(ps);
+				JDBCTemplate.close(rs);
+			}	
+	    	return res;
+	    }
 }
 
 

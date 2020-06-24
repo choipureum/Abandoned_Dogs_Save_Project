@@ -223,12 +223,39 @@ public class AdminMemberListServiceImpl implements AdminMemberListService{
 		return adminMemberListDao.dogClaimSelectAll(listOpt,paging);
 	}
 	
+	/**
+	 * 
+	 * 입양 신청 불허가
+	 */
 	@Override
 	public void dogClaimDelete(String userid) {
 			//개 입양신청 삭제
 			adminMemberListDao.dogClaimDelete(userid);
-			//개 입양신청 유저라이크에 있는 스위치 0으로 변화
-			adminMemberListDao.dogUserLikeUpdate(userid);
+			
+			//dogClaim id를 통한 개번호 조회
+			int dogno=adminMemberListDao.dognoBydogClaim(userid);
+			
+			//입양 불허가 업데이트 apply sw =2;로 바꾸기
+			adminMemberListDao.dogClaimUpdateApplySw(userid,dogno);
+	}
+	/**
+	 * 입양신청 허가 서비스 구성
+	 * 
+	 * 
+	 */
+	@Override
+	public void dogClaimAccept(String userid) {
+		
+		//dogno 조회
+		//dogClaim id를 통한 개번호 조회
+		int dogno=adminMemberListDao.dognoBydogClaim(userid);
+		
+		//입양신청 dogno같은 애들 모조리 삭제
+		adminMemberListDao.dogClaimBydogno(dogno);
+		//userlike update sw=1
+		adminMemberListDao.userLikeUpdateByadmin(userid, dogno);
+		//dog정보 삭제
+		adminMemberListDao.dogDeleteByadmin(dogno);
 	}
 }
 
