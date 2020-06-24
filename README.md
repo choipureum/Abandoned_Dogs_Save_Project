@@ -25,7 +25,8 @@
 <hr>
 1. 관리자 페이지
 2. 유기견 입양신청
-3. 
+3. 회원가입, 로그인
+4. 지도 api를 활용한 위치 정보, AJAX 
 ### 사용언어
 <hr>
 Java, Oracle SQL, HTML/CSS,JavaScript(Jquery)
