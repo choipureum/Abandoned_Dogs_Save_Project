@@ -4,11 +4,13 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import admin.dto.DogClaimDTO;
 import user.dog.dao.face.DogDao;
 import user.dog.dao.impl.DogDaoImpl;
 import user.dog.dto.DogDTO;
 import user.dog.dto.Dog_Data;
 import user.dog.dto.Dog_File_DTO;
+import user.dog.dto.UserLike;
 import user.dog.service.face.DogService;
 import util.Paging;
 
@@ -36,7 +38,7 @@ public class DogServiceImpl implements DogService{
 			int totalCount = dogDao.selectCntAll();
 
 			//Paging 객체 생성 - 현재 페이지(curPage), 총 게시글 수(totalCount) 활용
-			Paging paging = new Paging(totalCount, curPage, 6);
+			Paging paging = new Paging(totalCount, curPage, 3);
 //			Paging paging = new Paging(totalCount, curPage, 6);
 			
 			//Paging 객체 반환
@@ -45,7 +47,7 @@ public class DogServiceImpl implements DogService{
 
 		//ok
 		@Override
-		public List<Dog_Data> getList(Paging paging) {
+		public List<DogDTO> getList(Paging paging) {
 			return dogDao.selectAll(paging);
 		}
 		
@@ -71,7 +73,7 @@ public class DogServiceImpl implements DogService{
 
 		@Override
 		public DogDTO view(DogDTO dogno) {
-			//게시글 조회//missno에 해당하는 객체의 정보만가져옮
+			//게시글 조회//dogno에 해당하는 객체의 정보만가져옮
 			DogDTO dog= dogDao.selectDogByDogno(dogno); 
 		      
 		     
@@ -81,6 +83,37 @@ public class DogServiceImpl implements DogService{
 		@Override
 		public Dog_File_DTO viewFile(DogDTO detailDog) {
 			return dogDao.selectFile(detailDog);
+		}
+
+		@Override
+		public void insertUserLike(HttpServletRequest req) {
+			
+			//userlike정보 저장할 객체
+			UserLike userlike = null;
+			
+			
+			int dogno = dogDao.selectDogno();
+			
+			
+			
+			userlike.setDogno(dogno);
+			
+			
+			dogDao.insertUserLike(userlike);
+		}
+
+		@Override
+		public void insertDogClaim(HttpServletRequest req) {
+			
+			//dogclaim 정보 저장할 객체
+			DogClaimDTO claim = null;
+			
+			int dogno = dogDao.selectDogno();
+			
+			claim.setDogno(dogno);
+			
+			dogDao.insertDogClaim(claim);
+			
 		}
 
 }

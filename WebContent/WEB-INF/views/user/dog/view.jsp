@@ -1,3 +1,4 @@
+<%@page import="user.dog.dto.DogDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -5,7 +6,7 @@
 
 <%@page import="user.dog.dto.Dog_Data"%>
 <%@page import="java.util.List"%>
-<%List<Dog_Data> list = (List)request.getAttribute("dogList");  %>
+<%List<DogDTO> list = (List)request.getAttribute("dogList");  %>
 <!DOCTYPE HTML>
 <!--
 	Full Motion by TEMPLATED
@@ -70,6 +71,9 @@
 	width: 200px;
 	height: 200px;
 }
+.box a img:hover{
+transform:scale(1.04);
+}
 
 .box a{
 border-bottom: none;
@@ -81,7 +85,7 @@ border-bottom: none;
 				<div id="doglist">
 				<c:forEach items="${dogList }" var="dog">
                      <div class="box">																		
-                        <a href="/dog/detailView?dogno=${dog.dogno }"><img src="/upload/${dog.dog_stored_file_name }" alt="없음" /></a>
+                        <a href="/dog/detailView?dogno=${dog.dogno }"><img src="/upload/${dog.dogno }" alt="없음" /></a>
                         <div class="inner">
                            <div>이름 ${dog.dogname }</div>
                            <div>성별 ${dog.doggender }</div>

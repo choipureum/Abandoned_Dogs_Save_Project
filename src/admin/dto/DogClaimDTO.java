@@ -10,7 +10,7 @@ public class DogClaimDTO {
 	private String doggender;
 	private String dogneu;
 	private int dogshelter;
-	private Date dogregdate;
+	private java.sql.Date dogregdate;
 	private String userid;
 		
 	public int getDogno() {
@@ -53,10 +53,10 @@ public class DogClaimDTO {
 	public void setDogshelter(int dogshelter) {
 		this.dogshelter = dogshelter;
 	}
-	public Date getDogregdate() {
+	public java.sql.Date getDogregdate() {
 		return dogregdate;
 	}
-	public void setDogregdate(Date dogregdate) {
+	public void setDogregdate(java.sql.Date dogregdate) {
 		this.dogregdate = dogregdate;
 	}
 	public String getUserid() {
