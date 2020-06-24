@@ -18,20 +18,35 @@ public interface DogDao {
 	 * @param paging
 	 * @return Dog_Data
 	 */
-	public List<DogDTO> selectAll(Paging paging);
+	public List<Dog_Data> selectAll(Paging paging);
 
 	
 
 
-	
+	/**
+	 * 유기견번호 선택
+	 * @return
+	 */
 	public int selectDogno();
 
-
+	/**
+	 * 
+	 * @param dogno
+	 * @return
+	 */
 	public DogDTO selectDogByDogno(DogDTO dogno);
 
+	/**
+	 * 
+	 * @param detailDog
+	 * @return
+	 */
 	public Dog_File_DTO selectFile(DogDTO detailDog);
 
-
+	/**
+	 * 
+	 * @return
+	 */
 	public int selectCntAll();
 
 
@@ -41,7 +56,7 @@ public interface DogDao {
 
 
 
-
+	
 	public void insertUserLike(UserLike userlike);
 
 

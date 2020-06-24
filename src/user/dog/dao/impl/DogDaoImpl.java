@@ -28,7 +28,7 @@ public class DogDaoImpl implements DogDao{
 	
 
 	@Override
-	public List<DogDTO> selectAll(Paging paging) {
+	public List<Dog_Data> selectAll(Paging paging) {
 		
 		//DB연결 객체
 		conn = JDBCTemplate.getConnection();
@@ -74,8 +74,7 @@ public class DogDaoImpl implements DogDao{
 		
 		
 		//결과 저장할 List
-		List<DogDTO> dogList = new ArrayList<>();
-		System.out.println("121212"+dogList);
+		List<Dog_Data> dogList = new ArrayList<>();
 		try {
 			ps = conn.prepareStatement(sql); //SQL수행 객체
 			
@@ -86,7 +85,7 @@ public class DogDaoImpl implements DogDao{
 			
 			//조회 결과 처리
 			while(rs.next()) {
-				DogDTO d = new DogDTO(); //결과값 저장 객체
+				Dog_Data d = new Dog_Data(); //결과값 저장 객체
 				
 				//결과값 한 행 처리
 				d.setDogno(rs.getInt("dogno"));
@@ -97,14 +96,15 @@ public class DogDaoImpl implements DogDao{
 				d.setDogdate( rs.getDate("dogdate") );
 				d.setDogimg( rs.getString("dogimg") );
 				d.setShelterno( rs.getInt("shelterno") );
-//				d.setDog_fileno(rs.getInt("dog_fileno"));
-//				d.setDog_org_file_name(rs.getString("dog_org_file_name"));
-//				d.setDog_stored_file_name(rs.getString("dog_stored_file_name"));
-//				d.setDog_file_size(rs.getInt("dog_file_size"));
-//				d.setDog_del_gb(rs.getString("dog_del_gb"));
+				d.setDog_fileno(rs.getInt("dog_fileno"));
+				d.setDog_org_file_name(rs.getString("dog_org_file_name"));
+				d.setDog_stored_file_name(rs.getString("dog_stored_file_name"));
+				d.setDog_file_size(rs.getInt("dog_file_size"));
+				d.setDog_del_gb(rs.getString("dog_del_gb"));
 				
 				//리스트에 결과값 저장
 				dogList.add(d);
+				System.out.println("121212"+dogList);
 			}
 			
 		} catch (SQLException e) {
@@ -299,6 +299,17 @@ public class DogDaoImpl implements DogDao{
 			ps.setString(1, userlike.getUserid());
 			ps.setInt(2, userlike.getDogno());
 			
+			
+			if(userlike.getAdoptsw()==null) {
+				ps.setInt(3, "0");
+				
+			}else {
+				ps.setInt(3, "1");
+			}
+			
+			
+			
+			
 			ps.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -320,8 +331,8 @@ public class DogDaoImpl implements DogDao{
 		
 		
 		String sql = "";
-		sql += "INSERT INTO dog_claim(dogno,dogname,dogkind,doggender,dogneu,dogshelter,dogregdate,userid)";
-		sql += " VALUES ( ?,?,?,?,?,?,?,dog_claim_seq.nextval)";
+		sql += "INSERT INTO dog_claim(dogno,dogname,dogkind,doggender,dogneu,dogshelter,userid)";
+		sql += " VALUES ( ?,?,?,?,?,?,?)";
 		
 		
 		
@@ -336,6 +347,7 @@ public class DogDaoImpl implements DogDao{
 			ps.setInt(6, claim.getDogshelter());
 			ps.setDate(7, claim.getDogregdate());
 			ps.setString(8, claim.getUserid());
+			
 			
 			
 			ps.executeUpdate();
