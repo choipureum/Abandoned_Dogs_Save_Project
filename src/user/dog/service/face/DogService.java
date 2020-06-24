@@ -4,9 +4,10 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import user.dog.dto.Dog;
+import user.dog.dto.DogDTO;
 import user.dog.dto.Dog_Data;
-import user.dog.dto.Dog_File;
+import user.dog.dto.Dog_File_DTO;
+import user.dog.dto.UserLike;
 import util.Paging;
 
 public interface DogService {
@@ -16,7 +17,7 @@ public interface DogService {
 	 * 
 	 * @return List<Board> - 게시글 전체 조회 결과 리스트
 	 */
-	public List<Dog_Data> getList(Paging paging);
+	public List<DogDTO> getList(Paging paging);
 
 	/**
 	 * 페이징 객체 생성
@@ -32,7 +33,7 @@ public interface DogService {
 	
 
 
-	public Dog getDogno(HttpServletRequest req);
+	public DogDTO getDogno(HttpServletRequest req);
 
 	
 	/**
@@ -40,12 +41,31 @@ public interface DogService {
 	 * @param dogno
 	 * @return
 	 */
-	public Dog view(Dog dogno);
+	public DogDTO view(DogDTO dogno);
 
 	/**
 	 * 파일정보
 	 * @param viewBoard
 	 * @return
 	 */
-	public Dog_File viewFile(Dog detailDog);
+	public Dog_File_DTO viewFile(DogDTO detailDog);
+
+	
+	/**
+	 * 입양신청 
+	 *  버튼 클릭시 Userlike에 저장
+	 * 
+	 * @param req
+	 */
+	public void insertUserLike(HttpServletRequest req);
+
+	public void insertDogClaim(HttpServletRequest req);
+	
+	
+	/**
+	 * 
+	 */
+	
+	
+
 }

@@ -8,8 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import user.dog.dto.Dog;
-import user.dog.dto.Dog_File;
+import user.dog.dto.DogDTO;
+import user.dog.dto.Dog_File_DTO;
+import user.dog.dto.UserLike;
 import user.dog.service.face.DogService;
 import user.dog.service.impl.DogServiceImpl;
 
@@ -23,17 +24,21 @@ public class DogDetailController extends HttpServlet {
 	//BoardService 객체 생성
 		private DogService dogService = new DogServiceImpl();
 		
+		
 		@Override
 		protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 			//전달파라미터 얻기 - boardno
-			Dog dogno = dogService.getDogno(req);
+			DogDTO dogno = dogService.getDogno(req);
 
 			//상세보기 결과 조회
-			Dog detailDog = dogService.view(dogno);
+			DogDTO detailDog = dogService.view(dogno);
 			
 			//첨부파일 정보 VIEW에 전달
-			Dog_File dogFile = dogService.viewFile(detailDog);
+			Dog_File_DTO dogFile = dogService.viewFile(detailDog);
+			
+			
+			
 			
 			
 			
@@ -48,4 +53,21 @@ public class DogDetailController extends HttpServlet {
 			req.getRequestDispatcher("/WEB-INF/views/user/dog/detailView.jsp").forward(req, resp);	
 		
 		}
+		
+		
+		@Override
+		protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+			
+			dogService.insertUserLike(req);
+			
+			dogService.insertDogClaim(req);
+				// 값 넣어주기
+			
+			
+			
+			
+			resp.sendRedirect("/dog/list");
+			
+		}
+		
 }
