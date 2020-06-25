@@ -269,17 +269,7 @@ public class DogMissDaoImpl implements DogMissDao {
 		sql +="    where A.missno = B.missno ";
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 		
 //		String sql = "";
 //		sql += "SELECT * FROM (";

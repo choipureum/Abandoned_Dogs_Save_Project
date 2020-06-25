@@ -6,14 +6,14 @@ public class UserLike {
 
 	private String userid;
 	private String adoptsw;
-	private String applysw;
+	private int applysw;
 	private int dogno;
 	
 	
-	public String getApplysw() {
+	public int getApplysw() {
 		return applysw;
 	}
-	public void setApplysw(String applysw) {
+	public void setApplysw(int applysw) {
 		this.applysw = applysw;
 	}
 	public String getUserid() {
