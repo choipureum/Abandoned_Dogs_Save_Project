@@ -40,9 +40,7 @@ public class ChangePwController extends HttpServlet {
 		
 		String userid = req.getParameter("userid");
 		String userpw= req.getParameter("userpw");
-		
-		System.out.println("체인지userid: " + userid);
-		
+
 		memberService.changepassword(userpw, userid);
 		
 

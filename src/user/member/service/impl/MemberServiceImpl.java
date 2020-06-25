@@ -128,6 +128,7 @@ public class MemberServiceImpl implements MemberService{
 		memberDao.changpassword(userpw, userid);
 	
    }
+<<<<<<< HEAD
    
    //Paging객체 생성
    	public Paging getPaging(HttpServletRequest req) {
@@ -138,6 +139,31 @@ public class MemberServiceImpl implements MemberService{
 		if( param!=null && !"".equals(param) ) {
 			curPage = Integer.parseInt(param);
 		}
+=======
+   //전체 멤버 조회 - 마이페이지 
+   @Override
+   public MemberDTO getMemberInfo(MemberDTO member) {
+	   return memberDao.selectInfoAllByUserid(member);
+   }
+   
+   //userid를 통해서 mypagemodify
+   @Override
+   public int modifyMypage(MemberDTO member) {
+	   
+
+	   return memberDao.modifyMypage(member);
+   }
+   
+   //회원 탈퇴
+   
+   @Override
+   public void memberDelete(String userid) {
+	   
+	   memberDao.memberDelete(userid);
+	   
+	   
+   }
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 
 		
 

@@ -12,21 +12,29 @@ public class Dog_Data {
 		private Date dogdate;
 		private String dogimg;
 		private int shelterno;
+		private long dogenddate;
 		//파일DTo
 		private int dog_fileno;
 		private String dog_org_file_name;
 		private String dog_stored_file_name;
-		private int dog_file_size;
+		private double dog_file_size;
 		private String dog_del_gb;
 		
 		
 		
+		public long getDogenddate() {
+			return dogenddate;
+		}
+		public void setDogenddate(long dogenddate) {
+			this.dogenddate = dogenddate;
+		}
 		public int getDogno() {
 			return dogno;
 		}
 		public void setDogno(int dogno) {
 			this.dogno = dogno;
 		}
+		
 		@Override
 		public String toString() {
 			return "Dog_Data [dogno=" + dogno + ", dogname=" + dogname + ", dogkind=" + dogkind + ", doggender="
@@ -95,10 +103,10 @@ public class Dog_Data {
 		public void setDog_stored_file_name(String dog_stored_file_name) {
 			this.dog_stored_file_name = dog_stored_file_name;
 		}
-		public int getDog_file_size() {
+		public double getDog_file_size() {
 			return dog_file_size;
 		}
-		public void setDog_file_size(int dog_file_size) {
+		public void setDog_file_size(double dog_file_size) {
 			this.dog_file_size = dog_file_size;
 		}
 		public String getDog_del_gb() {

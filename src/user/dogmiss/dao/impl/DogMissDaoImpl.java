@@ -308,8 +308,7 @@ public class DogMissDaoImpl implements DogMissDao {
 		sql2 +="    )R WHERE od = 1) B";
 		sql2 +="    where A.missno = B.missno ";
 		
-		
-		
+
 		
 		
 				//세번째 sql 구문이다
@@ -337,8 +336,7 @@ public class DogMissDaoImpl implements DogMissDao {
 		
 		
 		
-		
-		
+
 //		String sql = "";
 //		sql += "SELECT * FROM (";
 //		sql += "    SELECT rownum rnum, B.* FROM (";

@@ -7,7 +7,7 @@ public class Dog_File_DTO {
 	private int dog_fileno;
 	private String dog_org_file_name;
 	private String dog_stored_file_name;
-	private int dog_file_size;
+	private double dog_file_size;
 	private String dog_del_gb;
 	public int getDogno() {
 		return dogno;
@@ -33,10 +33,10 @@ public class Dog_File_DTO {
 	public void setDog_stored_file_name(String dog_stored_file_name) {
 		this.dog_stored_file_name = dog_stored_file_name;
 	}
-	public int getDog_file_size() {
+	public double getDog_file_size() {
 		return dog_file_size;
 	}
-	public void setDog_file_size(int dog_file_size) {
+	public void setDog_file_size(double dog_file_size) {
 		this.dog_file_size = dog_file_size;
 	}
 	public String getDog_del_gb() {

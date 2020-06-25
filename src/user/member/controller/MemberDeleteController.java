@@ -8,29 +8,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import user.member.dao.impl.MemberDaoImpl;
 import user.member.service.face.MemberService;
 import user.member.service.impl.MemberServiceImpl;
 
 /**
- * Servlet implementation class RegisterIdCheck
+ * Servlet implementation class MemberDeleteController
  */
-@WebServlet("/id/check")
-public class RegisterIdCheckController extends HttpServlet {
+@WebServlet("/member/delete")
+public class MemberDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	private MemberService memberService= new MemberServiceImpl();
-
+	
+	MemberService memberService = new MemberServiceImpl();
+	
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-//		인코딩
-		req.setCharacterEncoding("UTF-8");
-		resp.setContentType("text/html;charset=UTF-8");
-
+		
 		String userid=req.getParameter("userid");
-
-		resp.getWriter().write(memberService.registerCheck(userid)+"");
-	
+		System.out.println(userid);
+		
+		//탈퇴하기
+		memberService.memberDelete(userid);
+		
 	}
+
 }

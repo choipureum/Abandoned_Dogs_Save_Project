@@ -77,6 +77,7 @@ public interface MemberService {
     * @param userid
     */
    public void changepassword(String userpw, String userid);
+<<<<<<< HEAD
    
    
    
@@ -93,3 +94,33 @@ public interface MemberService {
    public List <MemberAddDTO>getList(Paging paging);
    
 }
+=======
+
+   /**
+    * 멤버의 모든 정보 회원 정보 수정할때 
+    * @param member
+    * @return member
+    */
+
+   public MemberDTO getMemberInfo(MemberDTO member);
+
+   /**
+    * userid를 이용한 업데이트
+    * @param userid
+ * @return 
+    */
+   public int modifyMypage(MemberDTO member);
+
+   /**
+    *  userid에 알맞은 회원을 탈퇴시킴
+    * @param userid
+    */
+   public void memberDelete(String userid);
+
+
+}
+
+
+
+
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
