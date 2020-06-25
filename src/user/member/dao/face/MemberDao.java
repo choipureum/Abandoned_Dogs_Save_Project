@@ -1,7 +1,11 @@
 package user.member.dao.face;
 
 
+import java.util.List;
+
+import user.member.dto.MemberAddDTO;
 import user.member.dto.MemberDTO;
+import util.Paging;
 
 public interface MemberDao {
 
@@ -67,11 +71,22 @@ public interface MemberDao {
    */
    public void changpassword(String userpw, String userid);
 
-
-
-
- 
-
+   /*
+    *페이징 객체를 생성하기 위한 게시물의 총수를 반환하는 메소드  
+    * 
+    * 
+    * */
+   public int selectCntAll();
+   
+   
+   
+   /**
+	 * 페이징 대상 게시글 목록 조회
+	 * 
+	 * @param Paging - 페이징 정보
+	 * @return List - 조회된 게시글 목록
+	 */
+	public List<MemberAddDTO> selectAll(Paging paging);
    
    
 }

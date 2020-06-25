@@ -1,14 +1,21 @@
 package user.member.dao.impl;
 
 import java.sql.Connection;
+
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import user.member.dao.face.MemberDao;
+import user.member.dto.MemberAddDTO;
 import user.member.dto.MemberDTO;
+import user.qna.dto.QNA;
+
 import util.JDBCTemplate;
+import util.Paging;
 
 public class MemberDaoImpl implements MemberDao{
    
@@ -284,5 +291,138 @@ public class MemberDaoImpl implements MemberDao{
 	}
 	  
    }
+   
+   
+   //paging객체를 생성하기 위한 총 totalCount를 반환하는 메소드//dog, dogfile, userlike를 join 할 것이므로
+   //dog의 전체 totalCount를 가져와도 상관이 없을거다
+   public int selectCntAll() {
+		
+		conn = JDBCTemplate.getConnection(); //DB 연결
+		
+		//수행할 SQL
+		String sql = "";
+		sql += "SELECT ";
+		sql += "	count(*)";
+		sql += " FROM dog";
+
+		//최종 결과 변수
+		int cnt = 0;
+		
+		try {
+			//SQL 수행 객체
+			ps = conn.prepareStatement(sql);
+			
+			//SQL 수행 및 결과 저장
+			rs = ps.executeQuery();
+			
+			//SQL 수행 결과 처리
+			while( rs.next() ) {
+				cnt = rs.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs!=null)	rs.close();
+				if(ps!=null)	ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		//최종 결과 반환
+		return cnt;
+	}//selectCntAll end
+   
+   
+	//paging객체를 전달받아 rnum을 생성하고 시작과 끝을 정함//where조건으로 검색어를 넣어서 반환 
+	public List<MemberAddDTO> selectAll(Paging paging) {
+		
+		conn =JDBCTemplate.getConnection(); //DB 연결
+		
+//		//수행할 SQL
+//		String sql = "";
+//		sql += "SELECT * FROM (";
+//		sql += "    SELECT rownum rnum, B.* FROM (";
+//		sql += "        SELECT";
+//		sql += "            qnano, qnatitle, qnacontent,"; 
+//		sql += "            qnahit, qnadate, qnawriter";
+//		sql += "        FROM qna";
+//		sql += "        ORDER BY qnano DESC";
+//		sql += "    ) B";
+//		sql += "    ORDER BY rnum";
+//		sql += " ) BOARD";
+//		sql += " WHERE rnum BETWEEN ? AND ?";
+		
+		
+		String sql = "";
+		sql +=   "select * from (select rownum rnum, e.* from";
+		sql +=  "(select c.dogNo,c.dogName,c.dogKind, c.dogGender, c.dogNeu,  c.dogDate, c.dogImg, c.shelterNo, c.dogEndDate,";
+		sql +=  "c.dog_fileNo, c.dog_org_FILE_NAME, c.dog_stored_FILE_NAME, c.dog_FILE_SIZE, c.dog_DEL_GB, d.userid, d.adoptsw, d.applysw from";
+		sql +=  "(select a.dogNo,a.dogName,a.dogKind, a.dogGender, a.dogNeu,  a.dogDate, a.dogImg, a.shelterNo, a.dogEndDate,";
+		sql +=  "b.dog_fileNo, b.dog_org_FILE_NAME, b.dog_stored_FILE_NAME, b.dog_FILE_SIZE, b.dog_DEL_GB";
+		sql +=  "from dog a, dog_file b where a.dogno = b.dogno)c , userlike d";
+		sql +=  "where c.dogno = d.dogno order by c.dogno desc) e)";  
+		sql +=  "WHERE rnum BETWEEN ? AND ?";
+		
+		
+		
+		
+		
+		
+		List<MemberAddDTO> list = new ArrayList();
+		
+		try {
+			//SQL 수행 객체
+			ps = conn.prepareStatement(sql);
+			
+			
+			ps.setInt(1, paging.getStartNo());
+			ps.setInt(2, paging.getEndNo());
+			
+			//SQL 수행 및 결과 저장
+			rs = ps.executeQuery();
+			
+			//SQL 수행 결과 처리
+			while( rs.next() ) {
+				MemberAddDTO board = new MemberAddDTO();
+				
+				board.setAdoptsw( rs.getString("adoptsw") );
+				board.setApplysw( rs.getInt("applysw") );
+				board.setDog_DEL_GB( rs.getString("dog_DEL_GB") );
+				board.setDog_FILE_SIZE( rs.getInt("dog_FILE_SIZE") );
+				board.setDog_fileNo(rs.getInt("dog_fileNo") );
+				board.setDog_org_FILE_NAME( rs.getString("dog_org_FILE_NAME") );
+				board.setDog_stored_FILE_NAME( rs.getString("dog_stored_FILE_NAME") );
+				board.setDogDate( rs.getDate("dogDate") );
+				board.setDogEndDate( rs.getDate("dogEndDate") );
+				board.setDogGender( rs.getString("dogGender") );
+				board.setDogImg( rs.getString("dogImg") );
+				board.setDogKind( rs.getString("dogKind") );
+				board.setDogName( rs.getString("dogName") );
+				board.setDogNeu( rs.getString("dogNeu") );
+				board.setDogNo( rs.getInt("dogNo") );
+				board.setShelterNo( rs.getInt("shelterNo") );
+				board.setUserid( rs.getString("userid") );
+				
+				
+				list.add(board);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs!=null)	rs.close();
+				if(ps!=null)	ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		//최종 결과 반환
+		return list;
+	}//end
 
 }

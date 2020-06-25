@@ -1,8 +1,12 @@
 package user.member.service.face;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
+import user.member.dto.MemberAddDTO;
 import user.member.dto.MemberDTO;
+import util.Paging;
 
 public interface MemberService {
    
@@ -73,5 +77,19 @@ public interface MemberService {
     * @param userid
     */
    public void changepassword(String userpw, String userid);
+   
+   
+   
+   /*
+    * 
+    * 페이징 객체 생성 
+    * 
+    *
+    * */
+   public Paging getPaging(HttpServletRequest req);
+   
+   
+   //startno과 endno을 정해서 paging객체 생성 
+   public List <MemberAddDTO>getList(Paging paging);
    
 }
