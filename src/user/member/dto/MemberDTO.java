@@ -10,11 +10,9 @@ public class MemberDTO {
 	private String usertel;
 	private String useremail;
 	private String userbirth;
-
 	private String useraddress;
-	private int usergrade;
+	private String usergrade;
 	private Date userregdate;
-	
 	public String getUserid() {
 		return userid;
 	}
@@ -51,19 +49,16 @@ public class MemberDTO {
 	public void setUserbirth(String userbirth) {
 		this.userbirth = userbirth;
 	}
-
-	
-
 	public String getUseraddress() {
 		return useraddress;
 	}
 	public void setUseraddress(String useraddress) {
 		this.useraddress = useraddress;
 	}
-	public int getUsergrade() {
+	public String getUsergrade() {
 		return usergrade;
 	}
-	public void setUsergrade(int usergrade) {
+	public void setUsergrade(String usergrade) {
 		this.usergrade = usergrade;
 	}
 	public Date getUserregdate() {
@@ -78,13 +73,6 @@ public class MemberDTO {
 				+ ", useremail=" + useremail + ", userbirth=" + userbirth + ", useraddress=" + useraddress
 				+ ", usergrade=" + usergrade + ", userregdate=" + userregdate + "]";
 	}
-
-	
-	
-
-	
-	
-	
 	
 	
 
