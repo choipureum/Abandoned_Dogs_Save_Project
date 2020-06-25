@@ -13,7 +13,7 @@
             <div class="input-group">
               <input type="text" class="form-control bg-light border-0 small" placeholder="검색" aria-label="Search" aria-describedby="basic-addon2">
               <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
+                <button class="btn bg-primary" type="button">
                   <i class="fas fa-search fa-sm"></i>
                 </button>              </div>
             </div>
@@ -86,13 +86,10 @@
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Main
                 </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  LoginPage
-                </a>
+               
                
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                <a class="dropdown-item" href="/admin/logout" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Logout
                 </a>

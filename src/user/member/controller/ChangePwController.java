@@ -21,6 +21,7 @@ public class ChangePwController extends HttpServlet {
 	   
     private MemberService memberService = new MemberServiceImpl();
 	   
+    
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String userid=req.getParameter("userid");
@@ -40,9 +41,7 @@ public class ChangePwController extends HttpServlet {
 		
 		String userid = req.getParameter("userid");
 		String userpw= req.getParameter("userpw");
-		
-		System.out.println("체인지userid: " + userid);
-		
+
 		memberService.changepassword(userpw, userid);
 		
 

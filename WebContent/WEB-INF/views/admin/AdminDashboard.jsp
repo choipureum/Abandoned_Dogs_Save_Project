@@ -66,13 +66,9 @@
                       <div class="text-xs font-weight-bold text-info text-uppercase mb-1">분실 강아지 수</div>
                       <div class="row no-gutters align-items-center">
                         <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50 마리</div>
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">${dogMissCnt } 마리</div>
                         </div>
-                        <div class="col">
-                          <div class="progress progress-sm mr-2">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </div>
+                        
                       </div>
                     </div>
                     <div class="col-auto">
@@ -145,7 +141,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                       <div class="dropdown-header">Dropdown</div>
-                      <a class="dropdown-item" href="#">유기견 관리</a>
+                      <a class="dropdown-item" href="/admin/dog">유기견 관리</a>
                       <a class="dropdown-item" href="/admin/dogClaim">입양신청 페이지</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="/admin/dashboard">대시보드 이동</a>
@@ -180,6 +176,7 @@
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-primary">홈페이지 현황</h6>
+                  
                 </div>
                 <div class="card-body">
                   <h4 class="small font-weight-bold">입양신청률 <span class="float-right">${Math.ceil(dog_claimBydogno/dogcnt*100)}%</span></h4>
@@ -190,73 +187,19 @@
                   <div class="progress mb-4">
                     <div class="progress-bar bg-warning" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
-                  <h4 class="small font-weight-bold">확률<span class="float-right">60%</span></h4>
-                  <div class="progress mb-4">
-                    <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <h4 class="small font-weight-bold">확률 <span class="float-right">80%</span></h4>
-                  <div class="progress mb-4">
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <h4 class="small font-weight-bold">확률 <span class="float-right">Complete!</span></h4>
-                  <div class="progress">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
+                 
                 </div>
               </div>
-
-              <!-- Color System -->
-              <div class="row" style="display:none;">
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-primary text-white shadow">
-                    <div class="card-body">
-                      Primary
-                      <div class="text-white-50 small">#4e73df</div>
-                    </div>
-                  </div>
+			 <!-- Approach -->
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">메인 홈페이지 이동</h6>
                 </div>
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-success text-white shadow">
-                    <div class="card-body">
-                      Success
-                      <div class="text-white-50 small">#1cc88a</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-info text-white shadow">
-                    <div class="card-body">
-                      Info
-                      <div class="text-white-50 small">#36b9cc</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-warning text-white shadow">
-                    <div class="card-body">
-                      Warning
-                      <div class="text-white-50 small">#f6c23e</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-danger text-white shadow">
-                    <div class="card-body">
-                      Danger
-                      <div class="text-white-50 small">#e74a3b</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-secondary text-white shadow">
-                    <div class="card-body">
-                      Secondary
-                      <div class="text-white-50 small">#858796</div>
-                    </div>
-                  </div>
+                <div class="card-body">
+                   <a target="_blank" rel="nofollow" href="/"style="font-size:11px">다솜 유기견 홈페이지 &rarr;</a>
                 </div>
               </div>
-
+             
             </div>
 
             <div class="col-lg-6 mb-4">
@@ -277,15 +220,7 @@
                 </div>
               </div>
 
-              <!-- Approach -->
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">메인 홈페이지 이동</h6>
-                </div>
-                <div class="card-body">
-                   <a target="_blank" rel="nofollow" href="/"style="font-size:11px">다솜 유기견 홈페이지 &rarr;</a>
-                </div>
-              </div>
+             
 
             </div>
           </div>

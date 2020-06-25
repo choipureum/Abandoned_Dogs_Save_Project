@@ -8,16 +8,21 @@ public class QNA {
 	private String qnaContent;
 	private int qnaHit;
 	private Date qnaDate;
-	private String qnaImg;
 	private String qnaWriter;
+	
+	
+	
 	public int getQnaNO() {
 		return qnaNO;
 	}
 	
-	
 	public void setQnaNO(int qnaNO) {
 		this.qnaNO = qnaNO;
 	}
+	
+	
+	
+	
 	public String getQnaTitle() {
 		return qnaTitle;
 	}
@@ -42,12 +47,9 @@ public class QNA {
 	public void setQnaDate(Date qnaDate) {
 		this.qnaDate = qnaDate;
 	}
-	public String getQnaImg() {
-		return qnaImg;
-	}
-	public void setQnaImg(String qnaImg) {
-		this.qnaImg = qnaImg;
-	}
+	
+	
+	
 	public String getQnaWriter() {
 		return qnaWriter;
 	}
@@ -57,6 +59,6 @@ public class QNA {
 	@Override
 	public String toString() {
 		return "QNA [qnaNO=" + qnaNO + ", qnaTitle=" + qnaTitle + ", qnaContent=" + qnaContent + ", qnaHit=" + qnaHit
-				+ ", qnaDate=" + qnaDate + ", qnaImg=" + qnaImg + ", qnaWriter=" + qnaWriter + "]";
+				+ ", qnaDate=" + qnaDate + ", qnaWriter=" + qnaWriter + "]";
 	}
 }

@@ -27,7 +27,7 @@ public interface DogMissDao {
 	//게시글의 전체 숫자를 가져온다 
 	public int selectCntAll();
 	
-	public int selectCntAll(String serch);
+	public int selectCntAll(String serch, int search2);
 	
 	public List<DogMissAdd> selectAll(Paging paging);
 	
