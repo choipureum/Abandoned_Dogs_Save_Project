@@ -96,10 +96,7 @@ function Move(sw){
 	
 	
 		location.href="/mypage/modify";
-		
-		
-	
-	
+
 }
 
 </script>

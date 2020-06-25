@@ -130,15 +130,24 @@ $(document).ready(function(){
 	$("#myForm").submit(function(){
 
 		   if(!upwReg.test($("#userpw").val())){
-		      alert("비밀번호는 6에서 18자리 소문자, 숫자를 ~");
+// 		      alert("비밀번호는 6에서 18자리 소문자, 숫자를 ~");
 
+				swal({
+					title: "비밀번호는 6에서 18자리 소문자, 숫자!",
+					icon:"error"
+				});
 		      return false;
 		   }
 
 		   //#userpw_ck
 		   if( $("#userpw").val() != $("#userpw_ck").val() ){
 		      
-		      alert("비밀번호가 달라요!")
+// 		      alert("비밀번호가 달라요!")
+				swal({
+					title: "비밀번호가 달라요!",
+					icon:"error"
+				});
+				
 		      $("#userpw").focus();      
 		      //select 이벤트발생
 		      $("#userpw_ck").select();
@@ -146,7 +155,11 @@ $(document).ready(function(){
 		   }
 
 		   if(!yearReg.test($("#userbirth_yy").val())){
-			   alert("년도를 확인하세요");
+// 			   alert("년도를 확인하세요");
+				swal({
+					title: "년도를 확인해주세요!",
+					icon:"error"
+				});	
 			   
 			   return false;
 		   }		   	
