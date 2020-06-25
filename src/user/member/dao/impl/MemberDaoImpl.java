@@ -337,7 +337,6 @@ public class MemberDaoImpl implements MemberDao{
 	  
    }
    
-<<<<<<< HEAD
    
    //paging객체를 생성하기 위한 총 totalCount를 반환하는 메소드//dog, dogfile, userlike를 join 할 것이므로
    //dog의 전체 totalCount를 가져와도 상관이 없을거다
@@ -470,8 +469,6 @@ public class MemberDaoImpl implements MemberDao{
 		//최종 결과 반환
 		return list;
 	}//end
-=======
->>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 
    //마이페이지 수정
 

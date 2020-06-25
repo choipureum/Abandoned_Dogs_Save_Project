@@ -71,7 +71,6 @@ public interface MemberDao {
    */
    public void changpassword(String userpw, String userid);
 
-<<<<<<< HEAD
    /*
     *페이징 객체를 생성하기 위한 게시물의 총수를 반환하는 메소드  
     * 
@@ -88,7 +87,7 @@ public interface MemberDao {
 	 * @return List - 조회된 게시글 목록
 	 */
 	public List<MemberAddDTO> selectAll(Paging paging);
-=======
+
    /**
     * 전체 조회 - 마이페이지
     * @param member
@@ -96,7 +95,6 @@ public interface MemberDao {
     */
    public MemberDTO selectInfoAllByUserid(MemberDTO member);
 
->>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
    
    /**
     * useridㅡ를 통해서 정보 업데이트

@@ -77,7 +77,6 @@ public interface MemberService {
     * @param userid
     */
    public void changepassword(String userpw, String userid);
-<<<<<<< HEAD
    
    
    
@@ -93,8 +92,7 @@ public interface MemberService {
    //startno과 endno을 정해서 paging객체 생성 
    public List <MemberAddDTO>getList(Paging paging);
    
-}
-=======
+
 
    /**
     * 멤버의 모든 정보 회원 정보 수정할때 
@@ -123,4 +121,3 @@ public interface MemberService {
 
 
 
->>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
