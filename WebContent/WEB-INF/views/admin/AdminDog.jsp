@@ -56,18 +56,19 @@ input[type="checkbox"]{width: 20px;height: 20px;cursor: pointer;}
                	  <tbody>               	  	           
       				  	  	           
       					<c:forEach items="${dogDataList }" var="m">      					
-			            <tr class="member_row" onclick="location.href='/admin/dashboard'">									           
+			            <tr class="member_row" >									           
 			            	<td onclick='event.cancelBubble=true;'> 
 			            		<div style="padding:0 0 0 9px">               	
 			           			<input type="checkbox" id="dog_chk" class="dog_chk"  data-dogno="${m.dogno }"  />           	                                                			
 								</div></td> 
-			                <td><img  id="img" src="/upload/${ m.dog_stored_file_name }" alt="" /></td>			                
+			                <td style="text-align:center; margin:0 auto;">
+			                <img  id="img" src="/upload/${ m.dog_stored_file_name }" alt="" style="width:100px;height:70px"/></td>			                
 			               	<td>${m.dogno }</td>	
 			              	<td>${m.doggender }</td>	
 			                <td>${m.dogkind }</td>
 			                <td>${m.dogneu }</td>
 			                <td>${m.dogdate }</td>
-			                 <td>${m.dogenddate }</td>					                          
+			                 <td style="color:red;">${m.dogenddate } 일 뒤 공고일 만료</td>					                          
 			            </tr>   
 			            </c:forEach>      
                	  </tbody>                	                	                           	  	  
@@ -106,7 +107,7 @@ input[type="checkbox"]{width: 20px;height: 20px;cursor: pointer;}
 <script type="text/javascript">
 $(document).ready(function(){
 	  //멤버 전체선택
-	  $("#dog_chk_All").click(function(){
+	  $(".dog_chk_All").click(function(){
 		  $(".dog_chk").prop("checked",this.checked);
 	  });	  
 	  //데이터 테이블 기능구현
@@ -147,7 +148,7 @@ $(document).ready(function(){
 	  function chk_delete(){			
 				swal({
 					icon:"warning",
-					text: "유기견을 사망처리하시겠습니까?",
+					text: "유기견을 데이터를 삭제하시겠습니까?",
 					buttons:["아니요","네"]
 					
 				}).then((Yes)=> {				
@@ -158,10 +159,10 @@ $(document).ready(function(){
 							 checkArr.push($(this).attr("data-dogno"));
 						 });	 
 						 
-						 $.post("/admin/delete",{"dog_chk":checkArr},function(res){
+						 $.post("/admin/dogDelete",{"dog_chk":checkArr},function(res){
 							 swal({				
-								  icon: "warning",
-								  text: "완료되었습니다"
+								  icon: "success",
+								  text: "유기견 데이터가 삭제되었습니다"
 								}).then(function() {
 									 location.href ="/admin/dog";							
 							});				

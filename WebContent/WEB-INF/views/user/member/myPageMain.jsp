@@ -16,6 +16,25 @@
 <!-- Custom CSS -->
 <link href="/resources/mypageTemplate/css/stylish-portfolio.min.css" rel="stylesheet">
 
+
+<!-- jQuery 2.2.4 -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+
+<script>
+$(document).ready(function() {
+	
+	//찜목록 버튼 누르면 이동
+	$("#like").click(function() {
+		location.href="/like/list";
+	});
+	
+});
+
+
+
+</script>
+
 </head>
 <body>
 
@@ -50,7 +69,7 @@
         </a>
       </div>
       <div class="col-lg-6">
-        <a class="portfolio-item" href="#!">
+        <a class="portfolio-item" href="#!" id="like">
           <div class="caption">
             <div class="caption-content">
               <div class="h2">찜목록</div>

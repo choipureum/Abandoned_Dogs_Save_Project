@@ -1,13 +1,19 @@
 package user.member.service.impl;
 
 import java.io.UnsupportedEncodingException;
+import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+
 import user.member.dao.face.MemberDao;
 import user.member.dao.impl.MemberDaoImpl;
+import user.member.dto.MemberAddDTO;
 import user.member.dto.MemberDTO;
 import user.member.service.face.MemberService;
+import util.Paging;
+
 
 public class MemberServiceImpl implements MemberService{
 
@@ -122,6 +128,16 @@ public class MemberServiceImpl implements MemberService{
 		memberDao.changpassword(userpw, userid);
 	
    }
+   
+   //Paging객체 생성
+   	public Paging getPaging(HttpServletRequest req) {
+		
+		//요청파라미터 curPage를 파싱한다
+		String param = req.getParameter("curPage");
+		int curPage = 0;
+		if( param!=null && !"".equals(param) ) {
+			curPage = Integer.parseInt(param);
+		}
    //전체 멤버 조회 - 마이페이지 
    @Override
    public MemberDTO getMemberInfo(MemberDTO member) {
@@ -146,6 +162,33 @@ public class MemberServiceImpl implements MemberService{
 	   
    }
 
+		
+
+		
+		
+		
+		
+		//Board TB와 curPage 값을 이용한 Paging 객체를 생성하고 반환
+		int totalCount = memberDao.selectCntAll();
+		
+		// Paging 객체 생성 // 한페이지에 기본적으로 보여주는 게시글수는 10으로 지정 
+		Paging paging = new Paging(totalCount, curPage);
+		
+		
+		
+		//curpage와 검색어로 totalcount를 세어서 만든 paging객체를 반환
+		return paging;
+	}//end
+   	
+   	
+   	
+   	//paging객체를 전달받아 시작과 끝을 정했다
+  	public List<MemberAddDTO> getList(Paging paging) {
+  		return memberDao.selectAll(paging);
+  	}
+	
+   
+   
 
 
 }
