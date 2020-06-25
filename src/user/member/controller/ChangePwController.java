@@ -21,6 +21,7 @@ public class ChangePwController extends HttpServlet {
 	   
     private MemberService memberService = new MemberServiceImpl();
 	   
+    
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String userid=req.getParameter("userid");
