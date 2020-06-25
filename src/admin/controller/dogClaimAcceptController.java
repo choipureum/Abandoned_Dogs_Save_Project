@@ -30,23 +30,23 @@ public class dogClaimAcceptController extends HttpServlet {
 		String useridArr=req.getParameter("userid");
 		
 		String []userid=useridArr.split(",");		
-//		List<String> id = new ArrayList<>();
-//		List<Integer> cnt = new ArrayList<>();
-//		for(String e:userid) {
-//			id.add(e);
-//			//승인 처리
-//			adminMemberListService.dogClaimAccept(e);
-//			//승인 완료
-//			int dogno = adminMemberListDao.dognoBydogClaim(e);
-//			cnt.add(adminMemberListDao.dogClaimBydogno(dogno));
-//		}
-//		
-//		
-//		
-//		
-//		req.setAttribute("cnt", cnt);
-//		req.setAttribute("userid", id);
-//		req.setAttribute("idCount", id.size());
+		List<String> id = new ArrayList<>();
+		int cnt=0;
+		for(String e:userid) {
+			id.add(e);
+			//승인 처리
+			adminMemberListService.dogClaimAccept(e);
+			//승인 완료
+			int dogno = adminMemberListDao.dognoBydogClaim(e);
+			//입양신청 dogno같은 유저 라이크 모조리 apply sw=2
+			adminMemberListDao.dogClaimUpdateApplySw(e, dogno);			
+			cnt+=adminMemberListDao.dogClaimBydogno(dogno);			
+		}
+		
+		
+		req.setAttribute("dogClaimCnt", cnt);
+		req.setAttribute("userid", id);
+		req.setAttribute("idCount", id.size());
 					
 		//입양신청 허가 페이지 보이기
 		req.getRequestDispatcher("/WEB-INF/views/admin/AdminDogClaimAccept.jsp").forward(req, resp);

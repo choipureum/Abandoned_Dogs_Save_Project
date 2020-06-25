@@ -26,7 +26,7 @@ input[type="checkbox"]{width: 20px;height: 20px;cursor: pointer;}
          <!-- Page Heading -->
           <p class="mb-4"><a href="/admin/dashboard" class="d-none d-sm-inline-block btn btn-sm text-gray-600">홈&nbsp;&nbsp;</a>
           	<a href="#"class="d-none d-sm-inline-block btn btn-sm text-gray-600">>&nbsp;&nbsp;</a>
-          	<a href="/admin/dogInsert"class="d-none d-sm-inline-block btn btn-sm text-gray-900">입양신청 확인</a>       	
+          	<a href="/admin/dogInsert"class="d-none d-sm-inline-block btn btn-sm text-gray-900">입양신청 처리</a>       	
           </p>
              <!-- 진행률 보드 -->
               <div class="card mb-4">
@@ -72,7 +72,7 @@ input[type="checkbox"]{width: 20px;height: 20px;cursor: pointer;}
 			            <tr class="dog_row" >										           
 			            	<td onclick='event.cancelBubble=true;'> 
 			            		<div style="padding:0 0 0 9px">               	
-			           			<input type="checkbox" id="dog_chk" class="dog_chk"  data-memberid=${d.userid } />           	                                                			
+			           			<input type="checkbox" id="dog_chk" class="dog_chk"  data-memberid=${d.userid } data-dogno=${d.dogno } />           	                                                			
 								</div></td> 
 			                <td>${d.dogno }</td>			                
 			                <td>${d.dogname }</td>
@@ -155,13 +155,36 @@ function chk_confirm(){
 			})
 		  return;
 	  }	
-	
-	
-		var checkArr = new Array();
+	  var checkDogno =new Array;
+	  //같은 개번호면 입양 신청 버튼 안되게
+	  $("input[class='dog_chk']:checked").each(function(){		 
+			checkDogno.push($(this).attr("data-dogno"));
+		});	 	
+	  console.log(checkDogno);
+	  for(var i = 0; i < checkDogno.length; i++){
+	      for(var j = i+1; j < checkDogno.length ; j++){
+	      // 값비교
+	        var tmpA = checkDogno[i];
+	         var tmpB = checkDogno[j];
+	         				
+	         if(tmpA == tmpB){
+	        	 swal({				
+	   			  icon: "error",
+	   			  text: "동일한 강아지에 대한 입양신청이 중복됩니다!"
+	   			})
+	   			return;          
+	         }
+	      }
+	     
+	   }
+	  
+	// 데이터 아이디 보내고 팝업 띄우기
+	  var checkArr = new Array();
 					 
 		 $("input[class='dog_chk']:checked").each(function(){
 			 checkArr.push($(this).attr("data-memberid"));
-			 });	 			
+			 });	
+		 
 		window.open("/admin/claimUpdate?userid="+ checkArr.join(","),"","width=700,height=600,left=350,right=150,scrollbars=no");
 			
 		}	

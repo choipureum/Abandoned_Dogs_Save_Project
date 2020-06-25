@@ -16,8 +16,11 @@ import java.util.TreeMap;
 import admin.dao.face.AdminMemberListDao;
 import admin.dto.DogClaimDTO;
 import user.dog.dto.DogDTO;
+import user.dog.dto.Dog_Data;
 import user.dog.dto.Dog_File_DTO;
+import user.dogmiss.dto.DogMissAdd;
 import user.member.dto.MemberDTO;
+import user.qna.dto.QNA;
 import util.JDBCTemplate;
 
 public class AdminMemberListDaoImpl implements AdminMemberListDao{
@@ -411,19 +414,20 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 	    public void insertDog(DogDTO dog) {
 	    	conn = JDBCTemplate.getConnection();
 	    	
-	    	String sql = "Insert into dog(dogno, dogname, dogkind, doggender, dogneu, shelterno) values(dog_seq.nextval, ?,?,?,?,1)";
+	    	String sql = "Insert into dog(dogno, dogname, dogkind, doggender, dogneu, shelterno) values(?, ?,?,?,?,1)";
 	    	
 	    	try {
 				ps=conn.prepareStatement(sql);
-				ps.setString(1, dog.getDogname());
-				ps.setString(2, dog.getDogkind());
-				ps.setString(3, dog.getDoggender());
+				ps.setInt(1, dog.getDogno());
+				ps.setString(2, dog.getDogname());
+				ps.setString(3, dog.getDogkind());
+				ps.setString(4, dog.getDoggender());
 				//null이면 N으로 넣고 아니면 Y처리
 				if(dog.getDogneu()==null) {
-					ps.setString(4, "N");
+					ps.setString(5, "N");
 				}
 				else {
-					ps.setString(4, "Y");
+					ps.setString(5, "Y");
 				}				
 				ps.executeUpdate();
 			} catch (SQLException e) {
@@ -450,7 +454,7 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 				ps.setInt(1, dogFile.getDogno());
 				ps.setString(2, dogFile.getDog_org_file_name());
 				ps.setString(3, dogFile.getDog_stored_file_name());
-				ps.setInt(4, dogFile.getDog_file_size());
+				ps.setDouble(4, dogFile.getDog_file_size());
 				ps.executeUpdate();
 				
 			} catch (SQLException e) {
@@ -645,10 +649,7 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 	    /**
 	     * 
 	     * 입양신청 허가에 따른 변동
-	     * 
-	     * 
-	     * 
-	     * 
+	     * 	  
 	     */
 	    //	같은 dogno에 따른 입양신청 전부 삭제
 	    @Override
@@ -753,6 +754,207 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 			}	
 	    	return res;
 	    }
+	    @Override
+	    public void DeletedognoUserlike(int dogno) {
+	    	conn= JDBCTemplate.getConnection();
+	    	
+	    	sql= new StringBuffer();
+	    	sql.append(" delete from userlike where adoptsw='N' and dogno=?");	    	
+	    	try {
+				ps=conn.prepareStatement(sql.toString());
+				ps.setInt(1,dogno);
+				ps.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(ps);
+			}	    		    		   
+	    }
+	    
+	    
+	    /**
+	     * 게시판 페이지들
+	     * selectAll()함수 집합
+	     */	   	    
+	  @Override
+	    public List<QNA> qnaSelectAll() {
+		  conn = JDBCTemplate.getConnection();
+			
+			//SQL 작성
+			String sql = "";
+			sql += "SELECT * FROM QNA";
+			sql += " ORDER BY QNANO DESC";
+			
+			//결과 저장할 List
+			List<QNA> qnaList = new ArrayList<>();
+			
+			try {
+				ps = conn.prepareStatement(sql); //SQL수행 객체
+				
+				rs = ps.executeQuery(); //SQL 수행 및 결과집합 저장
+				
+				//조회 결과 처리
+				while(rs.next()) {
+					QNA qna = new QNA(); //결과값 저장 객체
+					
+					qna.setQnaNO( rs.getInt("qnano") );
+					qna.setQnaTitle( rs.getString("qnatitle") );
+					qna.setQnaContent( rs.getString("qnacontent") );
+					qna.setQnaHit( rs.getInt("qnahit"));
+					qna.setQnaDate( rs.getDate("qnadate") );					
+					qna.setQnaWriter( rs.getString("qnawriter") );
+				
+					//리스트에 결과값 저장
+					qnaList.add(qna);
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				//DB객체 닫기
+				JDBCTemplate.close(rs);
+				JDBCTemplate.close(ps);
+			}		
+			return qnaList;
+	    }  
+	    
+	  
+	    @Override
+	    public List<DogMissAdd> dogmissSelectAll() {
+	    	conn = JDBCTemplate.getConnection();
+	    	String sql = ""; 
+			sql += "SELECT * FROM (SELECT missno, missname, misskind, missgender, missdate, missimg, missloc, misstitle, misscontent, misswriter, misshit";
+			sql += "		FROM dog_miss";
+			sql += "		ORDER BY missno DESC";
+			sql += "	) B, ";
+			sql += "   (SELECT";
+			sql += "   missno, miss_fileno, miss_org_file_name, miss_stored_file_name, miss_file_size, miss_del_gb";
+			sql += "   FROM dog_miss_file ";
+			sql +="    )R ";
+			sql +="    where B.missno = R.missno ";
+			
+			//결과 저장할 List
+			List<DogMissAdd> missList = new ArrayList<>();
+			
+			try {
+				ps = conn.prepareStatement(sql); //SQL수행 객체											
+				rs = ps.executeQuery(); //SQL 수행 및 결과집합 저장
+				
+				//조회 결과 처리
+				while(rs.next()) {
+					DogMissAdd b = new DogMissAdd(); //결과값 저장 객체
+					
+					b.setMissNO( rs.getInt("missno") );
+					b.setMissName( rs.getString("missname") );
+					b.setMissKind( rs.getString("misskind") );
+					b.setMissGender( rs.getString("missgender"));
+					b.setMissDate( rs.getDate("missdate") );
+					b.setMissImg( rs.getString("missimg") );
+					b.setMissLoc( rs.getString("missloc") );
+					b.setMissTitle( rs.getString("misstitle") );
+					b.setMissContent( rs.getString("misscontent") );
+					b.setMissWriter( rs.getString("misswriter") );
+					b.setMissHit( rs.getInt("misshit") );
+					
+					b.setMiss_fileNO( rs.getInt("miss_fileno") );				
+					b.setMiss_org_FILE_NAME( rs.getString("miss_org_file_name") );
+					b.setMiss_stored_FILE_NAME( rs.getString("miss_stored_file_name") );
+					b.setMiss_FILE_SIZE( rs.getDouble("miss_file_size") );
+					b.setMiss_DEL_GB( rs.getString("miss_del_gb") );
+										
+					missList.add(b);
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				//DB객체 닫기
+				JDBCTemplate.close(rs);
+				JDBCTemplate.close(ps);
+			}			
+			return missList;
+    	
+	    }
+		 @Override
+		public List<Dog_Data> dogDataSelectAll() {			
+			    	conn = JDBCTemplate.getConnection();
+			    	String sql = ""; 
+					sql += "SELECT * FROM (SELECT dogno, dogname, dogkind, doggender, dogneu, dogdate, shelterno, dogimg";
+					sql += "		FROM dog";
+					sql += "		ORDER BY dogdate";
+					sql += "	) B, ";
+					sql += "   (SELECT";
+					sql += "   dogno, dog_fileno, dog_org_file_name, dog_stored_file_name, dog_file_size, dog_del_gb";
+					sql += "   FROM dog_file ";
+					sql +="    )R ";
+					sql +="    where B.dogno = R.dogno ";
+					
+					//결과 저장할 List
+					List<Dog_Data> dogList = new ArrayList<>();
+										
+					try {
+						ps = conn.prepareStatement(sql); //SQL수행 객체											
+						rs = ps.executeQuery(); //SQL 수행 및 결과집합 저장
+						Date today = new Date();
+						//조회 결과 처리
+						while(rs.next()) {
+							Dog_Data d = new Dog_Data(); //결과값 저장 객체
+							
+							d.setDogno(rs.getInt("dogno"));
+							d.setDogname(rs.getString("dogname"));
+							d.setDogkind( rs.getString("dogkind") );
+							d.setDoggender( rs.getString("doggender") );
+							d.setDogneu( rs.getString("dogneu") );
+							d.setDogdate( rs.getDate("dogdate") );
+							d.setDogimg( rs.getString("dogimg") );
+							d.setShelterno( rs.getInt("shelterno") );
+							//공고일 구하기 남은 일수
+						  	long diffDay=0;		    
+						    //두날짜 사이의 시간 차이(ms)를 하루 동안의 ms(24시*60분*60초*1000밀리초) 로 나눈다.
+							diffDay = (today.getTime() - d.getDogdate().getTime()) / (24*60*60*1000);
+							diffDay= 10-diffDay;							
+						    d.setDogenddate(diffDay);
+							
+							
+							d.setDog_fileno( rs.getInt("dog_fileno") );				
+							d.setDog_org_file_name( rs.getString("dog_org_file_name") );
+							d.setDog_stored_file_name( rs.getString("dog_stored_file_name") );
+							d.setDog_file_size( rs.getDouble("dog_file_size") );
+							d.setDog_del_gb( rs.getString("dog_del_gb") );
+												
+							dogList.add(d);
+						}
+						
+					} catch (SQLException e) {
+						e.printStackTrace();
+					} finally {
+						//DB객체 닫기
+						JDBCTemplate.close(rs);
+						JDBCTemplate.close(ps);
+					}			
+					return dogList;
+		    	
+		}
+	  
+	    //--게시판삭제
+
+	    @Override
+	    public void QnaDelete(int qnano) {
+	    	conn= JDBCTemplate.getConnection();
+	    	
+	    	sql= new StringBuffer();
+	    	sql.append(" delete from qna where qnano=?");	    	
+	    	try {
+				ps=conn.prepareStatement(sql.toString());
+				ps.setInt(1,qnano);
+				ps.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(ps);
+			}	  
+	    }
+
 }
 
 
