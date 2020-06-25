@@ -135,6 +135,16 @@ public class MemberServiceImpl implements MemberService{
 
 	   return memberDao.modifyMypage(member);
    }
+   
+   //회원 탈퇴
+   
+   @Override
+   public void memberDelete(String userid) {
+	   
+	   memberDao.memberDelete(userid);
+	   
+	   
+   }
 
 
 

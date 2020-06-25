@@ -360,6 +360,26 @@ public class MemberDaoImpl implements MemberDao{
 	}
 	   return result;   
    }
-   
 
+   //탈퇴버튼 멤버 삭제
+   @Override
+   public void memberDelete(String userid) {
+	   
+	   conn = JDBCTemplate.getConnection();
+	   
+	   String sql = "delete from member where userid=?";
+	   
+	   try {
+		ps=conn.prepareStatement(sql);
+		ps.setString(1, userid);
+		
+		ps.executeUpdate();
+		
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} finally {
+		JDBCTemplate.close(ps);
+	}
+   }
 }

@@ -89,4 +89,15 @@ public interface MemberService {
     */
    public int modifyMypage(MemberDTO member);
 
+   /**
+    *  userid에 알맞은 회원을 탈퇴시킴
+    * @param userid
+    */
+   public void memberDelete(String userid);
+
+
 }
+
+
+
+

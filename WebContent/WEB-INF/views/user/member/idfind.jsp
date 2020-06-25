@@ -69,17 +69,6 @@ function idFind(event){
 }
 </script>
 
-
-<!-- controller전달 하는 부분 -->
-
-
-
-
-
-<!-- 이름이ㅏㄹㅇ 이메일 보내서 -->
-
-
-
 <!-- css -->
 <style type="text/css">
 
@@ -168,8 +157,6 @@ select{
 	
 	</h6>
 
-	
-	
 <!-- 	아이디찾기 로그인 버튼 -->
 	<hr>
 	<button type="button" value="아이디 찾기" id="findid" onclick="idFind()" value="아이디찾기">아이디찾기</button>

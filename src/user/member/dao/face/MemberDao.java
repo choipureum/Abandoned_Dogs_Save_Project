@@ -82,6 +82,12 @@ public interface MemberDao {
     */
    public int modifyMypage(MemberDTO member);
 
+   /**
+    * userid 를 이용해서 멤버 삭제
+    * @param userid
+    */
+   public void memberDelete(String userid);
+
 
 
    
