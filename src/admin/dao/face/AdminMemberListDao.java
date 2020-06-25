@@ -7,8 +7,11 @@ import java.util.List;
 import admin.dao.impl.AdminMemberListDaoImpl;
 import admin.dto.DogClaimDTO;
 import user.dog.dto.DogDTO;
+import user.dog.dto.Dog_Data;
 import user.dog.dto.Dog_File_DTO;
+import user.dogmiss.dto.DogMissAdd;
 import user.member.dto.MemberDTO;
+import user.qna.dto.QNA;
 import util.Paging;
 public interface AdminMemberListDao {
 	
@@ -193,5 +196,52 @@ public interface AdminMemberListDao {
 	   * @return
 	   */
 	  public int dognoBydogClaim(String userid);
+	  
+	  /**
+	   * 
+	   * dogno으로 유저라이크 정보들 삭제
+	   * 대신 입양이 허가된 데이터는 지워지면안됨
+	   * adoptsw ='N'인 데이터만지움
+	   * 
+	   * @param dogno
+	   */
+	  public void DeletedognoUserlike(int dogno);
+	  
+	  
+	  /**
+	   * 분실견 수 반환
+	   * 
+	   * @param 
+	   * @return
+	   */
+	  public int dogMisscnt();
+	  
+	  
+	  
+	  /**
+	   * 
+	   *
+	   * 관리자 게시판 페이지들 select All 함수들
+	   *
+	   *-----------------------------------------
+	   *
+	   *
+	   *
+	   *
+	   **/	  
+	  public List<QNA> qnaSelectAll();
+	  public List<DogMissAdd> dogmissSelectAll();
+	  public List<Dog_Data> dogDataSelectAll();
+	  
+	  /**
+	   * 
+	   * 게시판 삭제
+	   */
+	  public void QnaDelete(int qnano);
+	  public void dogDelete(int dogno);
+	  public void dogFileDelete(int dogno);
+	  public void dogMissDelete(int dogMissno);
+	  public void dogMissFileDelete(int dogMissno);
+	    
 	  
 }		

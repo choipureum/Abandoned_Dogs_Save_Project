@@ -17,7 +17,6 @@
 /*테이블 한행 호버효과*/
 tr.member_row:hover {background: #FAFAD2;}
 input[type="checkbox"]{width: 20px;height: 20px;cursor: pointer;}
-
 </style>
 	<!-- 헤더 임포트 -->
 		<c:import url="/WEB-INF/views/admin/util/Header.jsp"></c:import>

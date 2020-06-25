@@ -12,35 +12,17 @@
 				let timerInterval
 				swal({
 				  title: '입양신청 허가 중입니다',
-				  html: '시간이 <b></b>초 남았습니다.',
+				  text: '잠시만 기다려주세요...',
 				  timer: 2000,
-				  timerProgressBar: true,
-				  onBeforeOpen: () => {
-				    Swal.showLoading()
-				    timerInterval = setInterval(() => {
-				      const content = Swal.getContent()
-				      if (content) {
-				        const b = content.querySelector('b')
-				        if (b) {
-				          b.textContent = Swal.getTimerLeft()
-				        }
-				      }
-				    }, 100)
-				  },
-				  onClose: () => {
-				    clearInterval(timerInterval)
-				  }
+				  button:[],				  
 				}).then((result) => {
 					 swal({				
 						  icon: "success",
-						  text: "등급 수정이 완료되었습니다!",
+						  text: "입양신청이 허가되었습니다!",
 						  timer:3000,
 						}).then(function() {
-							 window.opener.location.reload();
-							 window.close();
-					});
-					
-					
+							 window.opener.location.reload();							 
+					});				
 				});
 
 		}
@@ -65,7 +47,33 @@
 </script>
 </head>
 <body>
-
+<form action="#" method="post" class="container" style="margin:0 auto;padding:50px">
+	 <div class="card position-relative">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">입양신청 결과</h6>
+                  
+                </div>
+                <div class="card-body">
+                  <div class="mb-3">
+                    <code>Current members : ${idCount } member</code><br><br>
+                    <p class="mb-0 small"><code>Note:</code> 입양허가 : 같은 유기견의 입양신청인  총 <code>${dogClaimCnt }</code>의 게시글이 삭제되엇습니다</p>
+                  </div>
+                  <div class="small mb-1"><i class="fas fa-user fa-sm text-gray-300"></i>&nbsp;&nbsp;입양 신청 허가 회원</div><hr>                  
+                                  
+                              
+                  <div class="navbar-light bg-light mb-4" style="padding:0 0 0 10px; height:240px; width:400px;" id="memberContent" >   
+                  <br>
+                  <!-- 반복문 하기 -->
+                  <!-- 아이디 -->
+                   <c:forEach items="${userid }" var="d">
+                   <label for="${d }">&nbsp;                  
+                    <a class="navbar-brand" href="#" id="${d }"> &nbsp;&nbsp;${d }</a><i class="fas fa-check-circle fa-sm text-gray-300"></i></label><br>
+                    </c:forEach>                       
+                </div>
+                 
+              </div>
+              </div>
+</form>
 
 </body>
 <!-- Bootstrap core JavaScript-->

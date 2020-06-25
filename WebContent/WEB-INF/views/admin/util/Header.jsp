@@ -36,7 +36,7 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul class="navbar-nav bg-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin/dashboard">
@@ -87,9 +87,9 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">게시판 관리</h6>
-            <a class="collapse-item" href="utilities-color.html">QNA게시판관리</a>
-            <a class="collapse-item" href="utilities-border.html">분실견 게시판 관리</a>
-            <a class="collapse-item" href="utilities-animation.html">유기견 게시판 관리</a>
+            <a class="collapse-item" href="/admin/qna">QNA게시판관리</a>
+            <a class="collapse-item" href="/admin/dogmiss">분실견 게시판 관리</a>
+            <a class="collapse-item" href="/admin/dog">유기견 게시판 관리</a>
             <a class="collapse-item" href="/admin/dogClaim">입양신청 처리</a>
           </div>
         </div>
@@ -111,10 +111,10 @@
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">유기견관리</h6>
-            <a class="collapse-item" href="/admin/dogInsert">유기견 등록</a>
+            <h6 class="collapse-header" >유기견관련</h6>
+            <a class="collapse-item" href="/admin/dogInsert">유기견 등록</a>           
+            <a class="collapse-item" href="/admin/shelterInsert">유기견 보호소 등록</a>
             <div class="collapse-divider"></div>
-            <h6 class="collapse-header">아직 보류</h6>
          </div>
         </div>
       </li>
