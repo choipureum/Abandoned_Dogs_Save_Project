@@ -8,7 +8,7 @@
 
 
 <!-- jQuery 2.2.4 -->
-<script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 
 
 
@@ -87,8 +87,8 @@ $(document).ready(function() {
 				</tr>
 				<tr>
 					<th>성별</th>
-					<td>남<input type="checkbox" name="gender" value="male" >
-						여<input type="checkbox" name="gender" value="female" >
+					<td><input type="checkbox" name="gender" value="남자" id="checkboxMale" /><label for="checkboxMale">남</label>
+						<input type="checkbox" name="gender" value="여자" id="checkboxFemale" /><label for="checkboxFemale">여</label>
 					</td>
 				</tr>
 				<tr>
@@ -101,7 +101,8 @@ $(document).ready(function() {
 				</tr>
 				<tr>
 					<th>내용</th>
-					<td><textarea name="content" id="content" cols="10" rows="20"></textarea></td>
+					<td><textarea name="content" id="content" cols="10" rows="20"
+					placeholder="더 자세한 사항을 기입해주세요 분실견을 찾는데 도움이 될 수 있습니다 "></textarea></td>
 				</tr>
 			</table>
 </form>	

@@ -10,10 +10,6 @@
 
 
 
-<!-- Bootstrap 3.3.2 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 <% DogMiss view = (DogMiss)request.getAttribute("viewBoard");%>
 <%DogMissFile file = (DogMissFile)request.getAttribute("boardF"); %>
@@ -88,7 +84,7 @@ $(document).ready(function() {
 		
 		<tr>
 			<th>제목</th>
-			<td><input type="text" name="title"></td>
+			<td><input type="text" name="title" value="<%=view.getMissTitle()%>"></td>
 		</tr>
 		<tr>
 			<th>작성자</th>
@@ -96,18 +92,17 @@ $(document).ready(function() {
 		</tr>
 		<tr>
 			<th>유기견이름</th>
-			<td><input type="text" name="name"></td>
+			<td><input type="text" name="name" value="<%=view.getMissName()%>"></td>
 		</tr>
 		<tr>
 			<th>품종</th>
-			<td><input type="text" name="kind" ></td>
+			<td><input type="text" name="kind" value="<%=view.getMissKind()%>" ></td>
 		</tr>
 		<tr>
 			<th>성별</th>
-			<td>남<input type="checkbox" name="gender" value="male" >
-				여<input type="checkbox" name="gender" value="female" >
+			<td><input type="checkbox" name="gender" value="남자" id="checkboxMale" /><label for="checkboxMale">남</label>
+				<input type="checkbox" name="gender" value="여자" id="checkboxFemale" /><label for="checkboxFemale">여</label>
 			</td>
-		</tr>
 		<tr>
 			<th>파일</th>
 			<td><input type="file" name="file"></td>
@@ -118,22 +113,20 @@ $(document).ready(function() {
 		</tr>
 		<tr>
 			<th>분실 위치</th>
-			<td><input type="text" name="loc"></td>
+			<td><input type="text" name="loc" value="<%=view.getMissLoc()%>"></td>
 		</tr>
 		<tr>
 			<th>내용</th>
-			<td><textarea name="content" id="content" cols="10" rows="20"></textarea></td>
+			<td><textarea name="content" id="content" cols="10" rows="20"><%=view.getMissContent()%></textarea></td>
 		</tr>
-						</table>
-						</form>	
+		</table>
+</form>	
 			<div>
 				<button id="insert">수정적용</button>
 				<button id="cancel">취소</button>
 			</div>
 </div>
 						
-					
-
 
 	
 					</div>
@@ -148,7 +141,7 @@ $(document).ready(function() {
 						    <address class="addr">
      							   상호명:다솜 │ 대표:4조 │ 개인정보관리자:4조
       						</address>
-      						<p class="copy">Copyright 2020-2020 by 다솜. All rights reserved.</p>
+      						<p class="copy">Copyright &copy;2020-2020 by 다솜. All rights reserved.</p>
 
 						<ul class="icons">
 							<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
@@ -162,12 +155,12 @@ $(document).ready(function() {
 					
 
 		<!-- Scripts -->
-			<script src="/reources/UserBoardTemplate/assets/js/jquery.min.js"></script>
-			<script src="/reources/UserBoardTemplate/assets/js/jquery.scrolly.min.js"></script>
-			<script src="/reources/UserBoardTemplate/assets/js/jquery.poptrox.min.js"></script>
-			<script src="/reources/UserBoardTemplate/assets/js/skel.min.js"></script>
-			<script src="/reources/UserBoardTemplate/assets/js/util.js"></script>
-			<script src="/reources/UserBoardTemplate/assets/js/main.js"></script>
+			<script src="/resources/UserBoardTemplate/assets/js/jquery.min.js"></script>
+			<script src="/resources/UserBoardTemplate/assets/js/jquery.scrolly.min.js"></script>
+			<script src="/resources/UserBoardTemplate/assets/js/jquery.poptrox.min.js"></script>
+			<script src="/resources/UserBoardTemplate/assets/js/skel.min.js"></script>
+			<script src="/resources/UserBoardTemplate/assets/js/util.js"></script>
+			<script src="/resources/UserBoardTemplate/assets/js/main.js"></script>
 
 	</body>
 </html>

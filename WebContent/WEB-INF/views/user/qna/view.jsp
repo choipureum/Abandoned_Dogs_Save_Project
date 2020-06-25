@@ -1,75 +1,104 @@
-<%@page import="user.qna.dto.QnaFile"%>
-<%@page import="user.qna.dto.QNA"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-    
-<!-- jQuery 2.2.4.min -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-<!-- ºÎÆ®½ºÆ®·¦ 3.3.2 -->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!-- Bootstrap 3.3.2 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<% QNA viewqna = (QNA)request.getAttribute("viewqna");%>
-<%QnaFile qnafile = (QnaFile)request.getAttribute("qnaFile"); %>
+
+
+
+<script type="text/javascript"
+src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
 <!DOCTYPE html>
 <html>
-<head>
 <script type="text/javascript">
 $(document).ready(function() {
-	//¸ñ·Ï¹öÆ° µ¿ÀÛ
+	//ëª©ë¡ë²„íŠ¼ ë™ì‘
 	$("#btnList").click(function() {
 		$(location).attr("href", "/qna/list");
 	});
 	
-	//¼öÁ¤¹öÆ° µ¿ÀÛ
+	//ìˆ˜ì •ë²„íŠ¼ ë™ì‘
 	$("#btnUpdate").click(function() {
+		$(location).attr("href", "/qna/update?qnano=${viewBoard.qnaNO }");
 	});
 
-	//»èÁ¦¹öÆ° µ¿ÀÛ
+	//ì‚­ì œë²„íŠ¼ ë™ì‘
 	$("#btnDelete").click(function() {
+		$(location).attr("href", "/qna/delete?qnano=${viewBoard.qnaNO }");
 	});
 	
 });
 </script>
-<meta charset="EUC-KR">
+<head>
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 <div class="container">
-<table class="table table-condensed">
-	<tr>
-		<th>¹øÈ£</th>
-		<th>Á¦¸ñ</th>
-		<th>ÀÛ¼ºÀÏ</th>
-		<th>ÀÛ¼ºÀÚ</th>
-		<th>³»¿ë</th>
-		<th>Á¶È¸¼ö</th>
-	</tr>
-	
-	
-	<tr>
-		<td><%=viewqna.getQnaNO()%></td>
-		<td><%=viewqna.getQnaTitle()%></td>
-		<td><%=viewqna.getQnaDate()%></td>
-		<td><%=viewqna.getQnaWriter()%></td>
-		<td><%=viewqna.getQnaContent()%></td>
-		<td><%=viewqna.getQnaHit()%></td>
-	</tr>
-	
+
+<h1 class="pull-left">ê²Œì‹œíŒ - ìƒì„¸ë³´ê¸°</h1>
+
+
+
+<div class="clearfix"></div>
+
+<hr>
+
+<table class="table table-bordered">
+<tr>
+<td class="info">ê¸€ë²ˆí˜¸</td><td colspan="3">${viewBoard.qnaNO }</td>
+</tr>
+
+<tr>
+<td class="info">ì œëª©</td><td colspan="3">${viewBoard.qnaTitle }</td>
+</tr>
+
+<tr>
+<td class="info">ì•„ì´ë””</td><td>${viewBoard.qnaWriter }</td>
+</tr>
+
+<tr>
+<td class="info">ì¡°íšŒìˆ˜</td><td>${viewBoard.qnaHit }</td>
+
+</tr>
+
+<tr>
+<td class="info">ì‘ì„±ì¼</td><td colspan="3">${viewBoard.qnaDate }</td>
+</tr>
+
+<tr><td class="info"  colspan="4">ë³¸ë¬¸</td></tr>
+
+<tr><td colspan="4">${viewBoard.qnaContent }</td></tr>
+
 </table>
 
-
 <div>
-<a href="/upload/<%=qnafile.getQna_stored_FILR_NAME()%>"
- download="<%=qnafile.getQna_org_FILE_NAME()%>"><%=qnafile.getQna_org_FILE_NAME()%></a>
+<a href="/file/download?fileno=${boardFile.qna_fileNo }">${boardFile.qna_org_FILE_NAME }</a>
+</div>
+
+<div class="text-center">	
+	<button id="btnList" class="btn btn-primary">ëª©ë¡</button>
+	
+	
+	
+	<button id="btnUpdate" class="btn btn-info">ìˆ˜ì •</button>
+	<button id="btnDelete" class="btn btn-danger">ì‚­ì œ</button>
+	
 </div>
 
 
-<div class="text-right">	
-		<button id="btnList" class="btn btn-primary">¸ñ·Ï</button>
-		<button id="btnUpdate" class="btn btn-info">¼öÁ¤</button>
-		<button id="btnDelete" class="btn btn-danger">»èÁ¦</button>
-</div>
-</div>
+<!-- <c:if test="${userid eq viewBoard.qnaWriter }"> -->
+	<!--</c:if>-->
+
+
+
+
+
+
+
+</div><!-- .container -->
 </body>
 </html>

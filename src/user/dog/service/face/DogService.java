@@ -17,7 +17,7 @@ public interface DogService {
 	 * 
 	 * @return List<Board> - 게시글 전체 조회 결과 리스트
 	 */
-	public List<DogDTO> getList(Paging paging);
+	public List<Dog_Data> getList(Paging paging);
 
 	/**
 	 * 페이징 객체 생성
@@ -32,7 +32,11 @@ public interface DogService {
 
 	
 
-
+	/**
+	 * dogno가져오기
+	 * @param req
+	 * @return
+	 */
 	public DogDTO getDogno(HttpServletRequest req);
 
 	

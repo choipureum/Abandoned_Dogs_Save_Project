@@ -891,7 +891,7 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 					
 					//결과 저장할 List
 					List<Dog_Data> dogList = new ArrayList<>();
-					
+										
 					try {
 						ps = conn.prepareStatement(sql); //SQL수행 객체											
 						rs = ps.executeQuery(); //SQL 수행 및 결과집합 저장
