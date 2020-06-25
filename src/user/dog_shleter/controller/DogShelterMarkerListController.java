@@ -40,7 +40,7 @@ public class DogShelterMarkerListController extends HttpServlet {
 		req.setAttribute("list", shelterList);
 		
 		// JSP를 VIEW로 지정하고 응답으로 사용하기 - 포워딩
-		req.getRequestDispatcher("/WEB-INF/views/user/dogShelter/DogShelterKaKaoMap.jsp")
+		req.getRequestDispatcher("/WEB-INF/views/user/dogShelter/dogShelterKaKaoMap.jsp")
 			.forward(req, resp);
 		
 	}

@@ -109,4 +109,89 @@ public interface AdminMemberListDao {
 	  */
 	 public int dogClaimCount(HashMap<String,Object> listOpt);
 	 
+	 
+	 /**
+	  * 개 입양신청 삭제
+	  * 
+	  * 
+	  * @param userid
+	  */
+	 public void dogClaimDelete(String userid);
+	 
+	 /**
+	  * 
+	  * 개 입양신청 불허가에 따른 applysw =2로 업데이트
+	  * 
+	  * 
+	  */
+	 public void dogClaimUpdateApplySw(String userid,int dogno);
+	 /**
+	  * 유기견 총 몇마리 구하기
+	  * 
+	  * @return - int 유기견 수
+	  */
+	 public int dogCount();
+	 
+	 
+	 /**
+	  * 
+	  * 입양신청 총 개수 구하기
+	  * 
+	  * @return - 입양신청 수 int
+	  */
+	 public int dogClaimCount();
+	 
+	 
+	 /**
+	  * dogno에 따른 입양 개수
+	  * 같으면 1개로 취급 - 입양신청률을 구하기 위함
+	  * @return - int 도그no에 따른 카운트
+	  */	 
+	 public int dogClaimBydognoCount();
+	 
+	 
+	 //-------------입양허가에 따른 메소드 --------------
+	 /**
+	  * 입양허가에 따른
+	  * 개 번호에 해당하는 dogClaim 전부 삭제
+	  * 
+	  * @param dogno
+	  */
+	 public void dogClaimDeleteByDogno(int dogno);
+	 
+	 /**
+	  * 입양허가에 따른
+	  * 개 번호, id에 따른 sw ->1 로 치환
+	  * 
+	  * @param userid
+	  * @param dogno
+	  */
+	 public void userLikeUpdateByadmin(String userid,int dogno);
+	 
+	 
+	 /**
+	  * 입양허가에 따른
+	  * 유기견 입양 -> 유기견 정보 삭제
+	  * 
+	  * @param - int dogno
+	  */
+	  public void dogDeleteByadmin(int dogno);
+	  
+	  /**
+	   * 입양 신청 허가 할때 
+	   * alert()로  화면 출력 - > 몇개의 동일한 입양신청 처리
+	   * 
+	   * @param - int dogno
+	   */
+	  public int dogClaimBydogno(int dogno);
+	  
+	  /**
+	   * 입양신청 강아지 번호 조회
+	   * Userlike 테이블에서
+	   * 
+	   * @param userid
+	   * @return
+	   */
+	  public int dognoBydogClaim(String userid);
+	  
 }		

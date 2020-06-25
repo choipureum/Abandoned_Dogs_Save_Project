@@ -1,12 +1,16 @@
 package user.dog_shleter.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import user.dog.dto.Dog_Data;
 import user.dog_shleter.dao.face.DogShelterDao;
 import user.dog_shleter.dao.impl.DogShelterDaoImpl;
 import user.dog_shleter.dto.Dog_Shelter;
 import user.dog_shleter.service.face.DogShelterService;
+import util.Paging;
 
 public class DogShelterServiceImpl implements DogShelterService {
 
@@ -34,10 +38,32 @@ public class DogShelterServiceImpl implements DogShelterService {
 
 
 	@Override
-	public Dog_Data dogDetail(Dog_Data dog) {
-		//TEST
-		System.out.println("dogService : " + dog);
-		return dogShelterDao.dogDetailList(dog);
+	public ArrayList<Dog_Data> dogDetail(Dog_Data dog, Paging paging, String keyWord, String keyField) {
+		return dogShelterDao.dogDetailList(dog, paging, keyWord, keyField);
+		
 	}
 	
-}
+
+	@Override
+	public Paging getPaging(HttpServletRequest req) {
+		//전달파라미터 curPage를 파싱한다
+		String param = req.getParameter("curPage");
+		int curPage = 0;
+		if( param!=null && !"".equals(param) ) {
+			curPage = Integer.parseInt(param);
+		}
+		
+		//dog 테이블의 총 게시글 수를 조회한다
+		int totalCount = dogShelterDao.selectCntAll();
+
+		//Paging 객체 생성 - 현재 페이지(curPage), 총 게시글 수(totalCount) 활용
+		Paging paging = new Paging(totalCount, curPage, 6);
+	
+		//Paging 객체 반환
+		return paging;
+	}
+
+
+	
+	}
+	

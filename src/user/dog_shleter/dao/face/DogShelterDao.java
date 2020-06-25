@@ -1,10 +1,12 @@
 package user.dog_shleter.dao.face;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import user.dog.dto.DogDTO;
 import user.dog.dto.Dog_Data;
 import user.dog_shleter.dto.Dog_Shelter;
+import util.Paging;
 
 public interface DogShelterDao {
 
@@ -26,11 +28,19 @@ public interface DogShelterDao {
 
 	/**
 	 * shelterno를 통한 유기견 전체 정보값 반환
+	 * @param paging 
+	 * @param keyField 
+	 * @param keyWord 
 	 * @param - String dog
 	 * @return - DogDTO
 	 */
-	public Dog_Data dogDetailList(Dog_Data dog);
+	public ArrayList<Dog_Data> dogDetailList(Dog_Data dog, Paging paging, String keyWord, String keyField);
 
+	/**
+	 *  페이징, 검색기능
+	 * @return
+	 */
+	public int selectCntAll();
 
 
 }

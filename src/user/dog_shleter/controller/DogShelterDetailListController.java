@@ -50,7 +50,7 @@ public class DogShelterDetailListController extends HttpServlet {
 		
 			
 		//VIEW를 지정하고 응답하기(포워딩) - request객체 사용
-		req.getRequestDispatcher("/WEB-INF/views/user/dogShelter/DogShelterDetail.jsp")
+		req.getRequestDispatcher("/WEB-INF/views/user/dogShelter/dogShelterDetailView.jsp")
 		.forward(req, resp);
 	}
 	

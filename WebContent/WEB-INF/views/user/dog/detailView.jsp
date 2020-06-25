@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
+    
+
+<%@page import="user.dog.dto.Dog_Data"%>
+<%@page import="java.util.List"%>
+<%List<Dog_Data> list = (List)request.getAttribute("dogList");  %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,12 +23,12 @@
 		<h3>입양신청</h3>
 	<a href="" class="image fit" style="left:25%" ><img src="/upload/${dog.dog_stored_file_name }"/></a>
 		<div class="inner">
-			<p>이름 : </p>
-			<p>성별 : </p>
-			<p>품종 : </p>
-			<p>중성화여부 : </p>
-			<p>공고일 : </p>
-			<a href="/dog/adopt" class="button fit" data-poptrox=""  >입양신청</a>
+			<div>이름 ${dog.dogname }</div>
+               <div>성별 ${dog.doggender }</div>
+               <div>품종 ${dog.dogkind }</div>
+               <div>중성화여부 ${dog.dogneu }</div>
+               <div>공고일 ${dog.dogdate }</div>
+			<form action="post" onclick=""><button>입양신청</button></form>
 		</div>
 </div>
 

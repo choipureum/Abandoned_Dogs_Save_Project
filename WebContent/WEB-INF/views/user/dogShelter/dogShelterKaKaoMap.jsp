@@ -49,10 +49,12 @@ $(document).on("click", ".dogshelterlist", function() {
 </head>
 <body>
 
-	<div id="map" style="width: 100%; height: 700px;"  >
-	<div id="container" style="z-index: 9999; position: relative; display: inline-block; width: 30%;
-	height: 40%; top: 65%; top: 50%"></div>
+	<div style="position: relative;">
+		<div id="map" style="width: 100%; height: 700px;"></div>
+		<div id="container"
+			style="z-index: 9999; position: absolute; display: inline-block; width: 30%; height: 37%; left: 50px; bottom: 50px"></div>
 	</div>
+
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5645296e24208ec4f20113a550ae0767&libraries=services,clusterer,drawing"></script>
 
@@ -125,7 +127,7 @@ $(document).on("click", ".dogshelterlist", function() {
 		 
 		// 마커를 표시할 위치와 내용을 가지고 있는 객체 배열 
 		var marker = new kakao.maps.Marker({
-			position : new kakao.maps.LatLng(<%=dogList.get(i).getShelterlat()%>,<%=dogList.get(i).getShelterlon()%>),		
+			position : new kakao.maps.LatLng('<%=dogList.get(i).getShelterlat()%>','<%=dogList.get(i).getShelterlon()%>'),		
 			map: map,
 			clickable : true
 		});
@@ -147,7 +149,7 @@ $(document).on("click", ".dogshelterlist", function() {
 					'</div>'
 			});
 	
-	  		
+	
 		// 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
 	    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
 	    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
@@ -180,6 +182,12 @@ $(document).on("click", ".dogshelterlist", function() {
 
 	
 	</script>
+	<div id="search"></div>
+
+	<div id="dog"></div>
+	<div id="showplus">
+		<button>더보기</button>
+	</div>
 
 </body>
 </html>

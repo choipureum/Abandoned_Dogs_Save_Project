@@ -12,7 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+import admin.dao.face.AdminMemberListDao;
+import admin.dao.impl.AdminMemberListDaoImpl;
 import admin.service.face.AdminMemberListService;
 import admin.service.impl.AdminMemberListServiceImpl;
 import user.member.dto.MemberDTO;
@@ -24,7 +25,9 @@ public class AdminDashboard extends HttpServlet {
 	
 	//서비스 객체생성
 	private AdminMemberListService adminMemberListService = new AdminMemberListServiceImpl();
- 
+	//다오 생성
+	private AdminMemberListDao adminMemberListDao = AdminMemberListDaoImpl.getInstance();
+	
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		 // 검색조건과 내용을 Map에 담는다.
 		HashMap<String, Object> listOpt = new HashMap<String, Object>();
@@ -60,9 +63,20 @@ public class AdminDashboard extends HttpServlet {
 			graphKey.add(key);
 			graphVal.add(graphMember.get(key));
 		}
-		
+		//유기견 전체 수 세기
+		int dogcnt = 0;
+		dogcnt=adminMemberListDao.dogCount();
+		//유기견 입양신청 수 세기
+		int dog_claim =0;
+		dog_claim= adminMemberListDao.dogClaimCount();
+				
 		//멤버 조회하기
 		List<MemberDTO>memberAll = adminMemberListService.memberSelectAll();
+		
+		
+		
+		req.setAttribute("dogcnt", dogcnt);
+		req.setAttribute("dog_claim", dog_claim);
 		req.setAttribute("graphKey", graphKey);	
 		req.setAttribute("graphVal", graphVal);		
 		req.setAttribute("memberAll", memberAll);
@@ -71,9 +85,5 @@ public class AdminDashboard extends HttpServlet {
 		
 	}
 	
-	//포스트
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		 
 
-	}
 }

@@ -36,6 +36,14 @@ input[type="checkbox"]{width: 20px;height: 20px;cursor: pointer;}
               <h6 class="m-0 font-weight-bold text-primary">Dasom :: 회원목록</h6>
             </div>
             <div class="card-body">
+            <!-- 메일보내기 버튼 -->
+           <a  class='btn btn-primary btn-icon-split' href="#" onclick='chk_sendmail()'><span class='icon text-white-50'>
+           <i class='fas fa-envelope'></i></span><span class='text'style='color:white'>메일보내기</span></a>
+           <!-- 삭제 버튼 -->
+          <a  class='btn btn-warning btn-icon-split' href="#" onclick='chk_delete();'><span class='icon text-white-50'><i class='fas fa-user-minus'></i></span>
+          <span class='text'style='color:white'>선택회원 삭제</span></a><br><br>
+          
+          <!-- 테이블 -->
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                
@@ -53,35 +61,28 @@ input[type="checkbox"]{width: 20px;height: 20px;cursor: pointer;}
                     </tr>
                   </thead>
                	  <tbody>               	  	           
-      
-            <%  
-              for(int i=0;i<m.size();i++){          		
-              		// 커스텀 속성에 유저 아이디 담아보기
-              		String userid= m.get(i).getUserid();
-              		String userEmail=m.get(i).getUseremail();
-             		%>
-            <tr class="member_row" onclick="location.href='/admin/memberView?userid=<%=userid%>'">										           
-            	<td onclick='event.cancelBubble=true;'> 
-            	<div style="padding:0 0 0 9px">               	
-           		<input type="checkbox" id="member_chk"class="member_chk"           			
-           			data-memberid=<%=userid %> data-memberEmail=<%=userEmail %> />           	                                                			
-					</div></td> 
-                <td><%=m.get(i).getUserid() %></td>
-                <td><%=m.get(i).getUsername() %></td>
-                <td><%=m.get(i).getUsertel() %></td>
-                <td><%=m.get(i).getUseremail() %></td>
-                <td><%=m.get(i).getUserregdate() %></td>
-                <td><%=m.get(i).getUsergrade() %></td>               
-            </tr>         
-            <% } %>
-	
+      				<% int cnt=0; %>           	  	           
+      					<c:forEach items="${memberlist }" var="m">
+      					 <% cnt++; %>
+			            <tr class="member_row" onclick="location.href='/admin/memberView?userid=${m.userid}'">									           
+			            	<td onclick='event.cancelBubble=true;'> 
+			            		<div style="padding:0 0 0 9px">               	
+			           			<input type="checkbox" id="member_chk" class="member_chk"  data-memberid="${m.userid }" data-memberEmail="${m.useremail }" />           	                                                			
+								</div></td> 
+			                <td>${m.userid }</td>			                
+			               	<td>${m.username }</td>	
+			              	<td>${m.usertel }</td>	
+			                <td>${m.useremail }</td>
+			                <td>${m.userregdate }</td>
+			                <td>${m.usergrade }</td>			                          
+			            </tr>   
+			            </c:forEach>      
                	  </tbody> 
                	  <tfoot>
 					    <tr>				    
 					        <th colspan="2" style="text-align:right;white-space:nowrap;">TOTAL : </th>
-					        <th colspan="1" style="text-align:left;white-space:nowrap;"><%=membercnt %> 명</th>
-					        <th colspan="4" style="text-align:right;white-space:nowrap; padding:12px 30px 0 0;">
-					        <c:import url="/WEB-INF/views/admin/util/memberPaging.jsp"></c:import></th>					        
+					        <th colspan="6" style="text-align:left;white-space:nowrap;"><%=cnt%> 명</th>					    
+					      			        
 					    </tr>
 					</tfoot>
                	                           	  	  
@@ -144,16 +145,13 @@ $(document).ready(function(){
 		            "next": "다음",
 		            "previous": "이전"
 		        }
-		    }, "lengthChange" : false,
-		    	"paging" : false,
-		    	"info":false
+		    }, "lengthChange" : true,
+		    	"paging" : true,
+		    	"info":true
 
 	    });
 
 	  	//상단 버튼 삽입
-	  	//메일버튼
-		$('#dataTable_filter').
-		prepend("<button onclick='chk_sendmail()' style='border:0;outline:0';><a  class='btn btn-primary btn-icon-split'><span class='icon text-white-50'><i class='fas fa-envelope'></i></span><span class='text'style='color:white'>메일보내기</span></a></button>");	
 		//삭제버튼
 	  	$('#dataTable_filter').
 		prepend("<button class='member_delete' onclick='chk_delete();'style='border:0;outline:0'><a  class='btn btn-warning btn-icon-split'><span class='icon text-white-50'><i class='fas fa-user-minus'></i></span><span class='text'style='color:white'>선택회원 삭제</span></a></button>");
@@ -195,9 +193,8 @@ $(document).ready(function(){
 					  return;
 				  }
 				  var Email=  $("input[class='member_chk']:checked").attr("data-memberEmail");
-				  
+				  Email=Email.trim();
 				  //문자열 정돈
-				  Email=Email.substring(0, Email.length).trim();
 				  var f = document.getElementById("MailPostForm");
 				  window.open("","MailForm","width=800,height=630,left=250,right=150");				  
 				  f.Email.value= Email;	

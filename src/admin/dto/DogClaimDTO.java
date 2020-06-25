@@ -10,9 +10,20 @@ public class DogClaimDTO {
 	private String doggender;
 	private String dogneu;
 	private int dogshelter;
-	private Date dogregdate;
+	private java.sql.Date dogregdate;
 	private String userid;
+	private long dogenddate;
 		
+	
+	
+	public long getDogenddate() {
+		return dogenddate;
+	}
+
+	public void setDogenddate(long dogenddate) {
+		this.dogenddate = dogenddate;
+	}
+
 	public int getDogno() {
 		return dogno;
 	}
@@ -53,10 +64,10 @@ public class DogClaimDTO {
 	public void setDogshelter(int dogshelter) {
 		this.dogshelter = dogshelter;
 	}
-	public Date getDogregdate() {
+	public java.sql.Date getDogregdate() {
 		return dogregdate;
 	}
-	public void setDogregdate(Date dogregdate) {
+	public void setDogregdate(java.sql.Date dogregdate) {
 		this.dogregdate = dogregdate;
 	}
 	public String getUserid() {
@@ -65,12 +76,14 @@ public class DogClaimDTO {
 	public void setUserid(String userid) {
 		this.userid = userid;
 	}
+
 	@Override
 	public String toString() {
 		return "DogClaimDTO [dogno=" + dogno + ", dogname=" + dogname + ", dogkind=" + dogkind + ", doggender="
 				+ doggender + ", dogneu=" + dogneu + ", dogshelter=" + dogshelter + ", dogregdate=" + dogregdate
-				+ ", userid=" + userid + "]";
+				+ ", userid=" + userid + ", dogenddate=" + dogenddate + "]";
 	}
+	
 	
 	
 }
