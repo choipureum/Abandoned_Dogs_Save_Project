@@ -954,7 +954,94 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 				JDBCTemplate.close(ps);
 			}	  
 	    }
-
+	    @Override
+	    public void dogDelete(int dogno) {
+	    	conn= JDBCTemplate.getConnection();
+	    	
+	    	sql= new StringBuffer();
+	    	sql.append(" delete from dog where dogno=?");	    	
+	    	try {
+				ps=conn.prepareStatement(sql.toString());
+				ps.setInt(1,dogno);
+				ps.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(ps);
+			}	  
+	    }
+	    @Override
+	    public void dogFileDelete(int dogno) {
+	    	conn= JDBCTemplate.getConnection();
+	    	
+	    	sql= new StringBuffer();
+	    	sql.append(" delete from dog_file where dogno=?");	    	
+	    	try {
+				ps=conn.prepareStatement(sql.toString());
+				ps.setInt(1,dogno);
+				ps.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(ps);
+			}	  
+	    }
+	    
+	    @Override
+	    public void dogMissDelete(int dogMissno) {
+	    	conn= JDBCTemplate.getConnection();
+	    	
+	    	sql= new StringBuffer();
+	    	sql.append(" delete from dog_miss where missno=?");	    	
+	    	try {
+				ps=conn.prepareStatement(sql.toString());
+				ps.setInt(1,dogMissno);
+				ps.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(ps);
+			}	  
+	    }
+	    
+	    
+	    @Override
+	    public void dogMissFileDelete(int dogMissno) {
+	    	conn= JDBCTemplate.getConnection();
+	    	
+	    	sql= new StringBuffer();
+	    	sql.append(" delete from dog_miss_file where missno=?");	    	
+	    	try {
+				ps=conn.prepareStatement(sql.toString());
+				ps.setInt(1,dogMissno);
+				ps.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(ps);
+			}	
+	    }
+	    @Override
+	    public int dogMisscnt() {
+	    	conn= JDBCTemplate.getConnection();
+	    	int res=0;
+	    	sql= new StringBuffer();
+	    	sql.append(" select count(*) from dog_miss");	    	
+	    	try {
+				ps=conn.prepareStatement(sql.toString());
+				rs =ps.executeQuery();
+				
+				while(rs.next()) {
+					res= rs.getInt(1);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(ps);
+			}	
+	    	
+	    return res;
+	    }
 }
 
 

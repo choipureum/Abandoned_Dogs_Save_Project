@@ -55,17 +55,17 @@ input[type="checkbox"]{width: 20px;height: 20px;cursor: pointer;}
                	  <tbody>               	  	           
       				  	  	           
       					<c:forEach items="${missList }" var="m">      					
-			            <tr class="member_row" onclick="location.href='/admin/dashboard'">									           
+			            <tr class="member_row">									           
 			            	<td onclick='event.cancelBubble=true;'> 
-			            		<div style="padding:0 0 0 9px">               	
-			           			<input type="checkbox" id="member_chk" class="dogMiss_chk"  data-dogMiss="${m.missno }"  />           	                                                			
+			            		<div style="padding:0 0 0 8px">               	
+			           			<input type="checkbox" id="member_chk" class="dogMiss_chk"  data-dogMiss="${m.missNO }"  />           	                                                			
 								</div></td> 
-			                <td><img  id="img" src="/upload/${ m.miss_stored_FILE_NAME() }" alt="사진없음" /></td>			                
-			               	<td>${m.missno }</td>	
-			              	<td>${m.missgender }</td>	
-			                <td>${m.missloc }</td>
-			                <td>${m.misswriter }</td>
-			                <td>${m.misskind }</td>			                          
+			                <td style="text-align:center;margin:0 auto;"><img  id="img" src="/upload/${ m.miss_stored_FILE_NAME }" alt="사진없음" style="width:100px;height:70px"/></td>			                
+			               	<td>${m.missNO }</td>	
+			              	<td>${m.missGender }</td>	
+			                <td>${m.missLoc }</td>
+			                <td>${m.missWriter }</td>
+			                <td>${m.missKind }</td>			                          
 			            </tr>   
 			            </c:forEach>      
                	  </tbody>                	                	                           	  	  
@@ -104,7 +104,7 @@ input[type="checkbox"]{width: 20px;height: 20px;cursor: pointer;}
 <script type="text/javascript">
 $(document).ready(function(){
 	  //멤버 전체선택
-	  $("#dogMiss_chk_All").click(function(){
+	  $(".dogMiss_chk_All").click(function(){
 		  $(".dogMiss_chk").prop("checked",this.checked);
 	  });	  
 	  //데이터 테이블 기능구현
@@ -156,7 +156,7 @@ $(document).ready(function(){
 							 checkArr.push($(this).attr("data-dogMiss"));
 						 });	 
 						 
-						 $.post("/admin/delete",{"dogMiss_chk":checkArr},function(res){
+						 $.post("/admin/dogMissDelete",{"dogMiss_chk":checkArr},function(res){
 							 swal({				
 								  icon: "success",
 								  text: "게시글 삭제가 완료되었습니다!"

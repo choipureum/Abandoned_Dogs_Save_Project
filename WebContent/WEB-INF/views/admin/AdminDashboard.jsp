@@ -66,13 +66,9 @@
                       <div class="text-xs font-weight-bold text-info text-uppercase mb-1">분실 강아지 수</div>
                       <div class="row no-gutters align-items-center">
                         <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50 마리</div>
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">${dogMissCnt } 마리</div>
                         </div>
-                        <div class="col">
-                          <div class="progress progress-sm mr-2">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </div>
+                        
                       </div>
                     </div>
                     <div class="col-auto">
@@ -145,7 +141,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                       <div class="dropdown-header">Dropdown</div>
-                      <a class="dropdown-item" href="#">유기견 관리</a>
+                      <a class="dropdown-item" href="/admin/dog">유기견 관리</a>
                       <a class="dropdown-item" href="/admin/dogClaim">입양신청 페이지</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="/admin/dashboard">대시보드 이동</a>
@@ -180,6 +176,7 @@
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-primary">홈페이지 현황</h6>
+                  
                 </div>
                 <div class="card-body">
                   <h4 class="small font-weight-bold">입양신청률 <span class="float-right">${Math.ceil(dog_claimBydogno/dogcnt*100)}%</span></h4>

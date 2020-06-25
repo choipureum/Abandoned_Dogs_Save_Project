@@ -208,6 +208,13 @@ public interface AdminMemberListDao {
 	  public void DeletedognoUserlike(int dogno);
 	  
 	  
+	  /**
+	   * 분실견 수 반환
+	   * 
+	   * @param 
+	   * @return
+	   */
+	  public int dogMisscnt();
 	  
 	  
 	  
@@ -231,6 +238,10 @@ public interface AdminMemberListDao {
 	   * 게시판 삭제
 	   */
 	  public void QnaDelete(int qnano);
-	  
+	  public void dogDelete(int dogno);
+	  public void dogFileDelete(int dogno);
+	  public void dogMissDelete(int dogMissno);
+	  public void dogMissFileDelete(int dogMissno);
+	    
 	  
 }		

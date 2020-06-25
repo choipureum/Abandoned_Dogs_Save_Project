@@ -308,11 +308,7 @@ public class DogMissDaoImpl implements DogMissDao {
 		sql2 +="    )R WHERE od = 1) B";
 		sql2 +="    where A.missno = B.missno ";
 		
-		
-<<<<<<< HEAD
 
-=======
-		
 		
 		
 				//세번째 sql 구문이다
@@ -340,9 +336,7 @@ public class DogMissDaoImpl implements DogMissDao {
 		
 		
 		
-		
->>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
-		
+
 //		String sql = "";
 //		sql += "SELECT * FROM (";
 //		sql += "    SELECT rownum rnum, B.* FROM (";
