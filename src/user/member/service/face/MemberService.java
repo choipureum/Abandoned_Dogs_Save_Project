@@ -118,9 +118,15 @@ public interface MemberService {
    
    
    /*
-    * list에서 선택된 목록을 삭제시키는 기능//dog,file,userlike 데베에서 전부다 지워야 한다 
+    * list에서 선택된 목록을 삭제시키는 기능//file,userlike 데베에서 지운다
     */
    public void memberListDelete(String names);
+   
+   
+   /*
+    * list에서 선택된 목록을 삭제시키는 기능//dog 데베에서 지운다
+    * */
+   public void memberAddDelete(String names);
 
 
 }

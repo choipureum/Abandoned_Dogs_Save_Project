@@ -191,10 +191,13 @@ public class MemberServiceImpl implements MemberService{
   	public void memberListDelete(String names) {
   		
   		memberDao.deleteMemberFileList(names);
-		memberDao.deleteMemberList(names);
 		memberDao.deleteUserlikeList(names);
 		
 	}
+  	
+  	 public void memberAddDelete(String names) {
+  		memberDao.deleteMemberList(names);
+  	 }
 
 
 }

@@ -38,7 +38,7 @@ $(document).ready(function() {
 		
 		// 전송 폼
 		var $form = $("<form>")
-			.attr("action", "/miss/delete")
+			.attr("action", "/like/delete")
 			.attr("method", "post")
 			.append(
 				$("<input>")
@@ -100,10 +100,10 @@ function checkAll() {
 	<th>엔드데이트</th>
 	<th>입양신청 상태</th>
 </tr>
+
 <c:forEach items="${list}" var="list">
-<input type="hidden" name="userid" value="${list.userid }">
 <tr>
-	<td><input type="checkbox" name="checkRow" value="${list.dogno }" /></td>
+	<td><input type="checkbox" name="checkRow" value="${list.dogNo }" /></td>
 	<td><img style="width:30px; "id="img" src="/upload/${list.dog_stored_FILE_NAME }" alt="" /></td>
 	<td>${list.dogKind}</td>
 	<td>${list.dogGender}</td>
@@ -119,6 +119,7 @@ function checkAll() {
 	<td>거절되었습니다</td>
 	</c:if>
 </tr>
+
 </c:forEach>
 
 </table>

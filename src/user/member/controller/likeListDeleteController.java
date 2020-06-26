@@ -11,16 +11,14 @@ import javax.websocket.SendResult;
 import user.member.service.face.MemberService;
 import user.member.service.impl.MemberServiceImpl;
 
-/**
- * Servlet implementation class likeListDeleteController
- */
+
 @WebServlet("/like/delete")
 public class likeListDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
    
 
-		MemberService memberService = new MemberServiceImpl();
+	MemberService memberService = new MemberServiceImpl();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -32,7 +30,11 @@ public class likeListDeleteController extends HttpServlet {
 		String names = request.getParameter("names");
 		
 		if( !"".equals(names) && names != null) {
+			 
 			memberService.memberListDelete(names);
+			memberService.memberAddDelete(names);
+			
+			
 		}
 		
 		response.sendRedirect("/like/list");
