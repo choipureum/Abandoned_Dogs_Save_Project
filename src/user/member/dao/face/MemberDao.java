@@ -3,6 +3,7 @@ package user.member.dao.face;
 
 import java.util.List;
 
+import user.dog.dto.UserLike;
 import user.member.dto.MemberAddDTO;
 import user.member.dto.MemberDTO;
 import util.Paging;
@@ -109,7 +110,8 @@ public interface MemberDao {
     */
    public void memberDelete(String userid);
 
-
-
+ 
+   
+   
    
 }

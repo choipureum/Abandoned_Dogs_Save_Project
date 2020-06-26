@@ -13,7 +13,7 @@
         <div class="modal-body">로그아웃 후 로그인 페이지로 이동합니다</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
+          <a class="btn btn-primary" href="/admin/logout">Logout</a>
         </div>
       </div>
     </div>

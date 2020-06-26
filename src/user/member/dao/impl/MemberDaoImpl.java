@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import user.dog.dto.UserLike;
 import user.member.dao.face.MemberDao;
 import user.member.dto.MemberAddDTO;
 import user.member.dto.MemberDTO;
@@ -195,7 +196,7 @@ public class MemberDaoImpl implements MemberDao{
 			result.setUseremail(rs.getString("useremail"));
 			result.setUserbirth(rs.getString("userbirth"));
 			result.setUseraddress(rs.getString("useraddress"));
-			result.setUsergrade(rs.getInt("usergrade"));
+			result.setUsergrade(rs.getString("usergrade"));
 			result.setUserregdate(rs.getDate("userregdate"));
 			
 		}
@@ -521,4 +522,9 @@ public class MemberDaoImpl implements MemberDao{
 		JDBCTemplate.close(ps);
 	}
    }
+   
+   
+   
+   
+   
 }
