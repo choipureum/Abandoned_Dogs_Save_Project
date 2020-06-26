@@ -323,6 +323,7 @@ function emailCheckFunc(){
    line-height: 16px;
 }
 
+
 h5{
    text-align: center;
 }

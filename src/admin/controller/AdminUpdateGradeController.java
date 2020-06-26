@@ -17,11 +17,32 @@ public class AdminUpdateGradeController extends HttpServlet {
 	private AdminMemberListService adminMemberListService = new AdminMemberListServiceImpl();   
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-			 String grade = req.getParameter("grade");
+			req.setCharacterEncoding("UTF-8");
+			resp.setContentType("text/html;charset=UTF-8");
+		
+			 int gradeSw =Integer.parseInt( req.getParameter("grade"));
+			 String res = req.getParameter("grade");
 			 String id = req.getParameter("id");
+			 
+			 String grade="";
+			 //등급 한글로 변환
+			 switch(gradeSw) {			
+				 case 1:
+					 grade="아이언";
+					 break;
+				 case 2:
+					 grade="실버";
+					 break;
+				 case 3:
+					 grade="골드";
+					 break;
+				 case 4:
+					 grade="다이아";
+				 
+				 }				
 			 adminMemberListService.UpdateGrade(id, grade);	
 			 
-			 resp.getWriter().write(grade);
+			 resp.getWriter().write(res);
 		}
 
 	}

@@ -15,7 +15,7 @@
               <div class="input-group-append">
                 <button class="btn bg-primary" type="button">
                   <i class="fas fa-search fa-sm"></i>
-                </button>              </div>
+                </button> </div>
             </div>
           </form>
 
@@ -55,7 +55,7 @@
                   	입양신청 알람
                 </h6>
                <c:forEach items="${doglist }" var="d" end="3">
-                <a class="dropdown-item d-flex align-items-center" href="/admin/memberView?userid=${d.userid }'">
+                <a class="dropdown-item d-flex align-items-center" href="/admin/memberView?userid=${d.userid }">
                   <div class="mr-3">
                     <div class="icon-circle bg-warning">
                       <i class="fas fa-clock text-white"></i>
