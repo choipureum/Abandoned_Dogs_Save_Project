@@ -5,6 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>비밀번호 찾기</title>
+<!--Alert 디자인 라이브러리 -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 
 
 <!-- 자바스크립트 -->
@@ -37,17 +40,32 @@ function pwFind(event){
 	
 	
 	if($("#username").val()==""){
-		alert("이름을 입력하세요!");
+// 		alert("이름을 입력하세요!");
+		swal({
+			title: "이름을 입력하세요!",
+			icon:"error"
+		});
 		return false;
 		
 	}else if($("#userid").val()==""){
-		alert("아이디를 입력하세요!")
+// 		alert("아이디를 입력하세요!")
+		swal({
+			title: "아이디를 입력하세요!",
+			icon:"error"
+		});
 		return false;
 	} else if($("#useremail").val()==""){
-		alert("이메일을 입력하세요!");
+// 		alert("이메일을 입력하세요!");
+		swal({
+			title: "이메일을 입력하세요!",
+			icon:"error"
+		});
 		return false;
 	} else if(!($("#hiddenEmailCheck").val()=="ok")){
-		alert("이메일인증버튼을 눌러주세요!");
+		swal({
+			title: "이메일 인증을 해주세요!",
+			icon:"error"
+		});
 		return false;
 	}
 	
@@ -75,7 +93,10 @@ function pwFind(event){
 				location.href="/change/pw?userid="+userid;				
 			}
 			else{
-				alert("회원의 정보가 존재하지 않습니다!");
+				swal({
+					title: "회원의 정보가 존재하지 않습니다!",
+					icon:"error"
+				});
 			}
 
 		}
@@ -105,8 +126,14 @@ function email(){
 //			파라미터 변수 이름 값(사용자아이디값)
 		data : {"useremail" : useremail},
 		success : function(random){			
-			alert("이메일을 보냈습니다"+random);
-			ran=random;		
+// 			alert("이메일을 보냈습니다"+random);
+// 			ran=random;	
+			swal({
+				icon:"success",
+				title: "이메일을 보냈습니다",
+			});
+			
+			ran=random;
 		}
 	});	
 };

@@ -109,7 +109,14 @@ public interface MemberDao {
     */
    public void memberDelete(String userid);
 
-
+   /**
+    * 
+    * 
+    * 
+    * @param member
+    * @return
+    */
+   public int modifyMypageNotAdd(MemberDTO member);
 
    
 }

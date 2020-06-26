@@ -33,15 +33,11 @@ public class MypageLikeListController extends HttpServlet {
 		
 		request.setAttribute("list", list);
 		
-		
-		
-		
-		
+
 		request.getRequestDispatcher("/WEB-INF/views/user/member/likeList.jsp").forward(request, response);
 	}
 
-	
-	
+
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		

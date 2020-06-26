@@ -23,10 +23,9 @@ public class MemberDeleteController extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
 		
 		String userid=req.getParameter("userid");
-		System.out.println(userid);
+//		System.out.println(userid);
 		
 		//탈퇴하기
 		memberService.memberDelete(userid);

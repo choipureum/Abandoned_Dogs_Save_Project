@@ -195,7 +195,7 @@ public class MemberDaoImpl implements MemberDao{
 			result.setUseremail(rs.getString("useremail"));
 			result.setUserbirth(rs.getString("userbirth"));
 			result.setUseraddress(rs.getString("useraddress"));
-			result.setUsergrade(rs.getInt("usergrade"));
+			result.setUsergrade(rs.getString("usergrade"));
 			result.setUserregdate(rs.getDate("userregdate"));
 			
 		}
@@ -489,6 +489,33 @@ public class MemberDaoImpl implements MemberDao{
 		ps.setString(4, member.getUseremail());
 		ps.setString(5, member.getUseraddress());
 		ps.setString(6, member.getUserid());
+		
+		result = ps.executeUpdate();
+		
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally {
+		JDBCTemplate.close(ps);
+	}
+	   return result;   
+   }
+   
+   @Override
+   public int modifyMypageNotAdd(MemberDTO member) {
+	
+	   conn= JDBCTemplate.getConnection();
+	   
+	   String sql = "update member set userpw=?, usertel=?,  userbirth=?, useremail=? where userid=?";
+	   int result = 0 ;
+	   
+	   try {
+		ps=conn.prepareStatement(sql);
+		
+		ps.setString(1, member.getUserpw());
+		ps.setString(2, member.getUsertel());
+		ps.setString(3, member.getUserbirth());
+		ps.setString(4, member.getUseremail());
+		ps.setString(5, member.getUserid());
 		
 		result = ps.executeUpdate();
 		
