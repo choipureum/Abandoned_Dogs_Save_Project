@@ -195,7 +195,7 @@ public class MemberDaoImpl implements MemberDao{
 			result.setUseremail(rs.getString("useremail"));
 			result.setUserbirth(rs.getString("userbirth"));
 			result.setUseraddress(rs.getString("useraddress"));
-			result.setUsergrade(rs.getInt("usergrade"));
+			result.setUsergrade(rs.getString("usergrade"));
 			result.setUserregdate(rs.getDate("userregdate"));
 			
 		}
@@ -530,4 +530,95 @@ public class MemberDaoImpl implements MemberDao{
 		JDBCTemplate.close(ps);
 	}
    }
+   
+   
+	@Override
+	// 찜목록 리스트.jsp에서 체크된 강아지 파일을 삭제하는 기능 
+	public void deleteMemberFileList(String names){
+		
+		conn = JDBCTemplate.getConnection(); //DB 연결
+
+		String sql = "DELETE FROM dog_file WHERE dogno IN ( "+names+" )";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(ps!=null)	ps.close();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}//deleteMemberFileList end 
+	
+	
+	//// 찜목록 리스트.jsp에서 체크된 강아지 리스트을 삭제하는 기능 
+	 public void deleteMemberList(String names) {
+		 
+		conn = JDBCTemplate.getConnection(); //DB 연결
+
+		String sql = "DELETE FROM dog WHERE dogno IN ( "+names+" )";
+			
+			try {
+				ps = conn.prepareStatement(sql);
+				
+				ps.executeUpdate();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if(ps!=null)	ps.close();
+					
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		 
+		 
+		 
+	 }//deleteMemberList end 
+	 
+	 
+	 	//// 찜목록 리스트.jsp에서 체크된 강아지 리스트을 삭제하는 기능 
+	 	public void deleteUserlikeList(String names) {
+		 
+		 conn = JDBCTemplate.getConnection(); //DB 연결
+
+			String sql = "DELETE FROM userlike WHERE dogno IN ( "+names+" )";
+				
+				try {
+					ps = conn.prepareStatement(sql);
+					
+					ps.executeUpdate();
+					
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} finally {
+					try {
+						if(ps!=null)	ps.close();
+						
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+		 
+		 
+		 
+	 }//deleteUserlikeList end
+	   
+	
+	
+	
+	
+	
+	
+	
+	
 }

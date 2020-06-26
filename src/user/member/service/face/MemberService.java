@@ -114,6 +114,13 @@ public interface MemberService {
     * @param userid
     */
    public void memberDelete(String userid);
+   
+   
+   
+   /*
+    * list에서 선택된 목록을 삭제시키는 기능//dog,file,userlike 데베에서 전부다 지워야 한다 
+    */
+   public void memberListDelete(String names);
 
 
 }
