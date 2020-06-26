@@ -52,7 +52,7 @@ public class MyPageModify extends HttpServlet {
 		String userid=req.getParameter("userid");
 		
 //		userid 확인
-		System.out.println("modify userid" + userid);
+//		System.out.println("modify userid" + userid);
 		
 		int res = memberService.modifyMypage(member);
 		
@@ -61,15 +61,15 @@ public class MyPageModify extends HttpServlet {
 		} else {
 			System.out.println("입력실패");
 		}
+
+////      swal
+      req.setAttribute("msg", "개인정보를 수정했습니다");
+      req.setAttribute("title", "개인정보 수정완료 ");
+      req.setAttribute("url", "/mypage/main");
 		
-	      //view 전달
-	      req.getRequestDispatcher("/WEB-INF/views/user/member/myPageMain.jsp")
+	  //view 전달
+	  req.getRequestDispatcher("/WEB-INF/views/user/member/swal.jsp")
 	         .forward(req, resp);
-		
-		
-		
-		
-		
 	}
 
 }

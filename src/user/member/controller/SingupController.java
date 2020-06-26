@@ -46,9 +46,17 @@ public class SingupController extends HttpServlet {
       }else {
          System.out.println("입력실패");
       }
+      
+//      swal
+      req.setAttribute("msg", "회원가입을 성공했습니다!");
+      req.setAttribute("title", "로그인해서 이용해주세요! ");
+      req.setAttribute("url", "/login/login");
+      
       //view 전달
-      req.getRequestDispatcher("/WEB-INF/views/user/member/login.jsp")
+      req.getRequestDispatcher("/WEB-INF/views/user/member/swal.jsp")
          .forward(req, resp);
+      
+
 
    }
 
