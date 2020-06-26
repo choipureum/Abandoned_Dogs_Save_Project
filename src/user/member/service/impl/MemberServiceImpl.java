@@ -139,16 +139,20 @@ public class MemberServiceImpl implements MemberService{
 			curPage = Integer.parseInt(param);
 		}
 		//Board TB와 curPage 값을 이용한 Paging 객체를 생성하고 반환
-				int totalCount = memberDao.selectCntAll();
+
+		int totalCount = memberDao.selectCntAll();
 				
 				// Paging 객체 생성 // 한페이지에 기본적으로 보여주는 게시글수는 10으로 지정 
-				Paging paging = new Paging(totalCount, curPage);
+		Paging paging = new Paging(totalCount, curPage);
 				
 				
 				
 				//curpage와 검색어로 totalcount를 세어서 만든 paging객체를 반환
 				return paging;
 			}//end
+   	
+
+
    //전체 멤버 조회 - 마이페이지 
    @Override
    public MemberDTO getMemberInfo(MemberDTO member) {
@@ -175,13 +179,7 @@ public class MemberServiceImpl implements MemberService{
 
 		
 
-		
-		
-		
-		
-		
-   	
-   	
+
    	
    	//paging객체를 전달받아 시작과 끝을 정했다
   	public List<MemberAddDTO> getList(Paging paging) {
@@ -189,7 +187,14 @@ public class MemberServiceImpl implements MemberService{
   	}
 	
    
-   
+  	//리스트에서 체크된 값을 dog/file/userlike에서 다 지우는 역할  
+  	public void memberListDelete(String names) {
+  		
+  		memberDao.deleteMemberFileList(names);
+		memberDao.deleteMemberList(names);
+		memberDao.deleteUserlikeList(names);
+		
+	}
 
 
 }

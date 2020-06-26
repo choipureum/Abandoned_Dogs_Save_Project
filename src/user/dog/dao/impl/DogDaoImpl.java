@@ -301,10 +301,10 @@ public class DogDaoImpl implements DogDao{
 			
 			
 			if(userlike.getAdoptsw()==null) {
-				ps.setInt(3, "0");
+				ps.setString(3, "N");
 				
 			}else {
-				ps.setInt(3, "1");
+				ps.setString(3, "Y");
 			}
 			
 			
