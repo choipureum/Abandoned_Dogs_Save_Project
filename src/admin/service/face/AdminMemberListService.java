@@ -87,7 +87,7 @@ public interface AdminMemberListService {
 	 * @return - DogClaimDTO 개 입양신청 DTO 반환
 	 * @param
 	 */
-	 public List<DogClaimDTO> dogClaimSelectAll(HashMap<String, Object> listOpt, Paging paging);
+	 public List<DogClaimDTO> dogClaimSelectAll();
 	 
 	 /**
 	  * 유저 아이디를 통해서

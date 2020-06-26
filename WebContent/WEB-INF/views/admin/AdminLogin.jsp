@@ -60,7 +60,7 @@
                     </div>
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">
-                        <input type="checkbox" class="custom-control-input" id="idSaveCheck">
+                        <input type="checkbox" class="custom-control-input">
                         <label class="custom-control-label" for="customCheck">아이디 저장</label>
                       </div>
                     </div>
@@ -72,7 +72,7 @@
                   </form>
                   
                   <div class="text-center">
-                    <a class="small" href="/resources/AdminTemplate/forgot-password.html">비밀번호 찾기</a>
+                    <a class="small" href="/resources/js/AdminForgotPw.jsp">비밀번호 찾기</a>
                   </div>
                 
                 </div>
@@ -112,7 +112,8 @@ function submit(){
 			});
 		return false;
 		
-	}else if($("#userPw").val()==""){
+	}
+	else if($("#userPw").val()==""){
 		swal({				
 			  icon: "error",
 			  text: "비밀번호를 입력하세요!"
@@ -134,8 +135,10 @@ function submit(){
 				swal({				
 					  icon: "success",
 					  text: "로그인 성공"
-					})
-				location.href="/admin/dashboard";				
+					}).then(function(){
+						location.href="/admin/dashboard";		
+					});
+					
 			}
 			else if(res.data==1){
 				swal({				

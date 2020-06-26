@@ -8,6 +8,7 @@ public class QNA {
 	private String qnaContent;
 	private int qnaHit;
 	private Date qnaDate;
+	private String delsw;
 	private String qnaWriter;
 	
 	
@@ -23,6 +24,14 @@ public class QNA {
 	
 	
 	
+	public String getDelsw() {
+		return delsw;
+	}
+
+	public void setDelsw(String delsw) {
+		this.delsw = delsw;
+	}
+
 	public String getQnaTitle() {
 		return qnaTitle;
 	}
@@ -56,9 +65,11 @@ public class QNA {
 	public void setQnaWriter(String qnaWriter) {
 		this.qnaWriter = qnaWriter;
 	}
+
 	@Override
 	public String toString() {
 		return "QNA [qnaNO=" + qnaNO + ", qnaTitle=" + qnaTitle + ", qnaContent=" + qnaContent + ", qnaHit=" + qnaHit
-				+ ", qnaDate=" + qnaDate + ", qnaWriter=" + qnaWriter + "]";
+				+ ", qnaDate=" + qnaDate + ", delsw=" + delsw + ", qnaWriter=" + qnaWriter + "]";
 	}
+	
 }

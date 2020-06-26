@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import user.dog.dto.UserLike;
 import user.member.dao.face.MemberDao;
 import user.member.dto.MemberAddDTO;
 import user.member.dto.MemberDTO;
@@ -532,6 +533,11 @@ public class MemberDaoImpl implements MemberDao{
    }
    
    
+<<<<<<< HEAD
+   
+   
+   
+=======
 	@Override
 	// 찜목록 리스트.jsp에서 체크된 강아지 파일을 삭제하는 기능 
 	public void deleteMemberFileList(String names){
@@ -621,4 +627,5 @@ public class MemberDaoImpl implements MemberDao{
 	
 	
 	
+>>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
 }

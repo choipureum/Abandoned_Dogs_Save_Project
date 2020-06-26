@@ -61,14 +61,14 @@ table td {
                	  <tbody>               	  	           
       				  	  	           
       					<c:forEach items="${qnaList }" var="m">      					
-			            <tr class="member_row" onclick="location.href='/admin/dashboard'">									           
+			            <tr class="member_row" onclick="location.href='/admin/qnaDetail?qnano=${m.qnaNO}'">									           
 			            	<td onclick='event.cancelBubble=true;'> 
 			            		<div style="padding:0 0 0 9px">               	
 			           			<input type="checkbox" id="list_chk" class="list_chk"  data-qna="${m.qnaNO }"  />           	                                                			
 								</div></td> 
 			                <td>${m.qnaNO }</td>			                
-			               	<td id="qnatitle">${m.qnaTitle }</td>				               	
-			              	<td id="qnacontent">${m.qnaContent}</td>	
+			               	<td>${m.qnaTitle }</td>				               	
+			              	<td>${m.qnaContent}</td>	
 			              	<td>${m.qnaDate }</td>
 			                <td>${m.qnaWriter }</td>
 			            </tr>   
