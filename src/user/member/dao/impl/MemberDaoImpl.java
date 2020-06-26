@@ -346,8 +346,8 @@ public class MemberDaoImpl implements MemberDao{
 		
 		//수행할 SQL
 		String sql = "";
-		sql += "SELECT ";
-		sql += "	count(*)";
+		sql += " SELECT ";
+		sql += " count(*)";
 		sql += " FROM dog";
 
 		//최종 결과 변수
@@ -375,14 +375,14 @@ public class MemberDaoImpl implements MemberDao{
 				e.printStackTrace();
 			}
 		}
-		
+		System.out.println("cnt:"+cnt);
 		//최종 결과 반환
 		return cnt;
 	}//selectCntAll end
    
    
 	//paging객체를 전달받아 rnum을 생성하고 시작과 끝을 정함//where조건으로 검색어를 넣어서 반환 
-	public List<MemberAddDTO> selectAll(Paging paging) {
+		public List<MemberAddDTO> selectAll(Paging paging) {
 		
 		conn =JDBCTemplate.getConnection(); //DB 연결
 		
@@ -400,19 +400,23 @@ public class MemberDaoImpl implements MemberDao{
 //		sql += " ) BOARD";
 //		sql += " WHERE rnum BETWEEN ? AND ?";
 		
+		   String sql = " ";
+	       sql +=  "	select * from (select rownum rnum, e.* from"; 
+	       sql +=  "	(";
+	       sql +=  "	select"; 
+	       sql +=  "	a.dogno, a.dogname,a.dogkind,a.doggender, a.dogNeu, a.dogDate, a.dogImg, a.shelterNo, a.dogEndDate,";
+	       sql +=  "	b.dog_fileNo, b.dog_org_FILE_NAME,b.dog_stored_FILE_NAME,b.dog_FILE_SIZE,b.dog_DEL_GB,";
+	       sql +=  "	c.userid,c.adoptsw,c.applysw";
+	       sql +=  "	from";
+	       sql +=  "	dog a, dog_file b, userlike c";
+	       sql +=  "	where a.dogno = b.dogno";
+		   sql +=  "	and   a.dogno = c.dogno order by a.dogno";
+	       sql +=  "	) e"; 
+	       sql +=  "	order by rnum )"; 
+	       sql +=  "	WHERE rnum BETWEEN ? AND ?";
 		
-		String sql = "";
-		sql +=   "select * from (select rownum rnum, e.* from";
-		sql +=  "(select c.dogNo,c.dogName,c.dogKind, c.dogGender, c.dogNeu,  c.dogDate, c.dogImg, c.shelterNo, c.dogEndDate,";
-		sql +=  "c.dog_fileNo, c.dog_org_FILE_NAME, c.dog_stored_FILE_NAME, c.dog_FILE_SIZE, c.dog_DEL_GB, d.userid, d.adoptsw, d.applysw from";
-		sql +=  "(select a.dogNo,a.dogName,a.dogKind, a.dogGender, a.dogNeu,  a.dogDate, a.dogImg, a.shelterNo, a.dogEndDate,";
-		sql +=  "b.dog_fileNo, b.dog_org_FILE_NAME, b.dog_stored_FILE_NAME, b.dog_FILE_SIZE, b.dog_DEL_GB";
-		sql +=  "from dog a, dog_file b where a.dogno = b.dogno)c , userlike d";
-		sql +=  "where c.dogno = d.dogno order by c.dogno desc) e)";  
-		sql +=  "WHERE rnum BETWEEN ? AND ?";
 		
-		
-		
+	
 		
 		
 		
@@ -423,11 +427,16 @@ public class MemberDaoImpl implements MemberDao{
 			ps = conn.prepareStatement(sql);
 			
 			
+			
 			ps.setInt(1, paging.getStartNo());
 			ps.setInt(2, paging.getEndNo());
 			
+			
+			
 			//SQL 수행 및 결과 저장
 			rs = ps.executeQuery();
+			
+			System.out.println("rr");
 			
 			//SQL 수행 결과 처리
 			while( rs.next() ) {
