@@ -231,24 +231,9 @@ public class DogShelterDaoImpl implements DogShelterDao {
 
 	@Override
 	public List<Dog_Data> dogSearchList(int category, String keyword, Paging paging) {
-		List<Dog_Data> list = new ArrayList<>();
-		
-		conn = JDBCTemplate.getConnection(); // DB연결
-		
-		try {
-			conn = ps.getConnection();
-			sql = new StringBuffer();
-			
-			if(col.equals("none")) {
-				sql.app
-			}
-		
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return list;
+		// TODO Auto-generated method stub
+		return null;
 	}
+
 
 }

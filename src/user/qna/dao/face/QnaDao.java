@@ -24,7 +24,7 @@ public interface QnaDao {
 	 * @param Paging - 페이징 정보
 	 * @return List - 조회된 게시글 목록
 	 */
-	public List selectAll(Paging paging);
+	public List<QNA> selectAll(Paging paging);
 	
 	/**
 	 * 총 게시글 수 조회
