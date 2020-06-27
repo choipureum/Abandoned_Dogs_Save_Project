@@ -57,22 +57,7 @@ public class DogDaoImpl implements DogDao{
 		sql += "    ) R";
 		sql += " ) RES";
 		sql += " WHERE rnum BETWEEN ? and ?";
-		
-//		  sql += "select * from"; 
-//	      sql += "(SELECT * FROM (SELECT rownum rnum, B.* FROM (SELECT dogno, dogname,  dogkind, doggender, dogneu, dogdate, dogimg, shelterno";
-//	      sql += "      FROM dog";
-//	      sql += "      ORDER BY dogno DESC";
-//	      sql += "   ) B";
-//	      sql += "    ) dog";
-//	      sql += "    WHERE rnum BETWEEN ? AND ?) A ";
-//	      sql += "   (SELECT";
-//	      sql += "   dogno, dog_fileno, dog_org_file_name,dog_stored_file_name,dog_file_size,dog_del_gb";
-//	      sql += "   FROM (" ;
-//	      sql += "   SELECT DMF.* ,row_number() over( partition by dogno order by dog_fileno desc ) od  FROM dog_file DMF ";
-//	      sql +="    )R WHERE od = 1) B";
-//	      sql +="    where A.dogno = B.dogno";
-		
-		
+
 		//결과 저장할 List
 		List<Dog_Data> dogList = new ArrayList<>();
 		try {
@@ -297,11 +282,9 @@ public class DogDaoImpl implements DogDao{
 			ps= conn.prepareStatement(sql);
 			
 			ps.setString(1, userlike.getUserid());
-<<<<<<< HEAD
 			ps.setString(2, userlike.getAdoptsw());
 			ps.setInt(3, userlike.getApplysw());
 			ps.setInt(4, userlike.getDogno());
-=======
 			ps.setInt(2, userlike.getDogno());
 			
 			
@@ -311,11 +294,7 @@ public class DogDaoImpl implements DogDao{
 			}else {
 				ps.setString(3, "Y");
 			}
-			
-			
-			
-			
->>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
+
 			ps.executeUpdate();
 			
 		} catch (SQLException e) {

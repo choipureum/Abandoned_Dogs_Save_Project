@@ -178,11 +178,7 @@ public class MemberServiceImpl implements MemberService{
    }
 
 
-<<<<<<< HEAD
-   	
-=======
 
->>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
    	
    	//paging객체를 전달받아 시작과 끝을 정했다
   	public List<MemberAddDTO> getList(Paging paging) {

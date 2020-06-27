@@ -75,7 +75,10 @@ public interface DogService {
 	 * @param userlike
 	 */
 	public void deleteUserLike(UserLike userlike);
-	
+	/**
+	 * 
+	 * @param dogclaim
+	 */
 	public void deleteDogClaim(DogClaimDTO dogclaim);
 	
 	
@@ -94,7 +97,11 @@ public interface DogService {
 	
 	public UserLike getUserLike(HttpServletRequest req);
 	
-	
+	/**
+	 * 
+	 * @param userlike
+	 * @return
+	 */
 	public boolean UserLike(UserLike userlike);
 	
 

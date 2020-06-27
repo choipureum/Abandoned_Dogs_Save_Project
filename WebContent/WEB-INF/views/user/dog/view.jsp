@@ -35,15 +35,10 @@
     width: 1000px;
     margin: 0 auto;
     margin-top : 20px;
-    
-    
 }
-
 body{
 background: white;
 }
-
-
 .box {
 background: skyblue;
 }
@@ -54,7 +49,6 @@ background: skyblue;
 .box a img:hover{
 transform:scale(1.04);
 }
-
 .box a{
 border-bottom: none;
 }
@@ -85,43 +79,11 @@ border-bottom: none;
 		<a href="#main" class="more">Learn More</a>
 	</div>
 </section>
-
-
-
-
-
-
-
-<!-- 자바스크립트 -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-
-<script type="text/javascript">
-$(document).ready(function(){
-   $("#heart").click(function(){
-      if($("#heart").hasClass("liked")){
-         $("#heart").html('<i class="fa fa-heart-o" aria-hidden="true"></i>');
-         $("#heart").removeClass("liked");
-      }else{
-         $("#heart").html('<i class="fa fa-heart" aria-hidden="true"></i>');
-         $("#heart").addClass("liked");
-      }
-   });
-});
-</script>
-
-
-
-
-
-
-
-
 <div id="doglist"></div>
-<div id="showplus"><!-- <button id="btnUserLike">더보기</button> --></div>
-
-
+<div id="showplus"></div>
 
 <!-- Scripts -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script src="/resources/UserBoardTemplate/assets/js/jquery.min.js"></script>
 <script src="/resources/UserBoardTemplate/assets/js/jquery.scrolly.min.js"></script>
 <script src="/resources/UserBoardTemplate/assets/js/jquery.poptrox.min.js"></script>
