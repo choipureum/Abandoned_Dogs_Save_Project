@@ -20,6 +20,10 @@
 	/* 	top: 420px; */
 	/* 	pos`ition: relative; */
 }
+
+.w3-display-left {
+font-size: 15px;
+}
 </style>
 <script type="text/javascript">
 	var curPage = 1;
@@ -64,28 +68,7 @@
 		})
 	})
 
-	$(document).ready(function() {
-		$(document).on("click", ".w3-container", function() {
 
-			$.ajax({
-				type : "post",
-				url : "/dog/detail",
-				data : {
-
-					curPage : curPage++
-				},
-				dataType : "html",
-				success : function(h) {
-					console.log("AJAX success")
-					$("#search").html(h)
-				},
-				error : function() {
-					console.log("AJAX error")
-				}
-			})
-			return false;
-		})
-	})
 	</script>
 
 
@@ -99,28 +82,27 @@
 <div class="w3-display-left w3-padding w3-col l6 m8" style="width: 100%;">
 	<div class="w3-container w3-red">
 		<h2>
-			<i class="fa fa-bed w3-margin-right"></i>보호소 정보
+			<label><i class="fa fa-bed w3-margin-right"></i><label><%=l.getSheltername()%></label></label> 
 		</h2>
 	</div>
 	<div class="w3-container w3-white w3-padding-16" style="">
 		<div class="w3-row-padding" style="margin: 0 -16px;">
-			<div class="w3-half w3-margin-bottom">
-				<label><i class="fa fa-calendar-o"></i>유기견 보호소 번호</label> <label><%=l.getShelterno()%></label>
-			</div>
 			<div class="w3-half">
-				<label><i class="fa fa-calendar-o"></i>유기견 보호소 명</label> <label><%=l.getSheltername()%></label>
-			</div>
-		</div>
-		<div class="w3-row-padding" style="margin: 8px -16px;">
-			<div class="w3-half w3-margin-bottom">
-				<label><i class="fa fa-male"></i> 유기견 보호소 주소</label> <label><%=l.getShelteraddress()%></label>
-			</div>
+				<label><i class="fa fa-calendar-o"></i><%=l.getSheltername()%></label>
+			</div>	
+		</div><br>
 			<div class="w3-half">
-				<label><i class="fa fa-child"></i>유기견 보호소 전화번호</label> <label><%=l.getSheltertel()%></label>
+				<label><i class="fa fa-child"></i>유기견 보호소 전화번호</label><br>
+				<label><%=l.getSheltertel()%></label><br>
+			</div><br><br>
+		<div class="w3-row-padding" style="margin: 8px -16px; ">
+			<div class="w3-half w3-margin-bottom"  style="width: 110%;">
+				<br><label><i class="fa fa-male"></i> 유기견 보호소 주소</label><br>
+				<label><%=l.getShelteraddress()%></label>
 			</div>
 		</div>
 		<a href="/dog/details?shelterno=<%=l.getShelterno()%>">
-			<button>유기견 조회용</button>
+			<button>유기견 조회</button>
 		</a>
 	</div>
 	</div>
