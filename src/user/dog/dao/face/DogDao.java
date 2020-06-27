@@ -87,6 +87,11 @@ public interface DogDao {
 	public int selectCntUserLike(UserLike userlike);
 
 
+
+
+	public UserLike selectUserLike(HttpServletRequest req);
+
+
 	
 	
 }

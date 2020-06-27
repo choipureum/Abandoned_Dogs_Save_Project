@@ -20,8 +20,7 @@ public class LoginController extends HttpServlet {
 
    //MemberService 객체 생성
    private MemberService memberService= new MemberServiceImpl();
-
-   
+  
    @Override
    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

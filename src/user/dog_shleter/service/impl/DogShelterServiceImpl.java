@@ -65,13 +65,6 @@ public class DogShelterServiceImpl implements DogShelterService {
 	}
 
 
-	@Override
-	public List<Dog_Data> select(int category, String keyword, Paging paging) {
-		
-		
-		
-		return dogShelterDao.dogSearchList(category, keyword, paging);
-	}
 
 
 

@@ -10,8 +10,8 @@
 <%	List<Dog_Shelter> dogList = (List) request.getAttribute("list");%>
 	
 	
-<!-- 헤더 임포트 -->
-<c:import url="/WEB-INF/views/user/util/header/Header.jsp"></c:import>
+<!-- <!-- 헤더 임포트 --> -->
+<%-- <c:import url="/WEB-INF/views/user/util/header/Header.jsp"></c:import> --%>
 
 <!DOCTYPE html>
 <html>
@@ -72,7 +72,7 @@ $(document).on("click", ".dogshelterlist", function() {
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = {
 			center : new kakao.maps.LatLng(37.56682, 126.97865), // 지도의 중심좌표
-			level : 11, // 지도의 확대 레벨
+			level : 8, // 지도의 확대 레벨
 			mapTypeId : kakao.maps.MapTypeId.ROADMAP
 		// 지도종류
 		};
@@ -84,7 +84,7 @@ $(document).on("click", ".dogshelterlist", function() {
         var clusterer = new daum.maps.MarkerClusterer({
             map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
             averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
-            minLevel: 8 // 클러스터 할 최소 지도 레벨 
+            minLevel: 15 // 클러스터 할 최소 지도 레벨 
         });
         
 		 
@@ -97,7 +97,7 @@ $(document).on("click", ".dogshelterlist", function() {
 				lon = position.coords.longitude; // 경도
 
 				var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-				message = '<div style="padding:5px;">현재위치</div>'; // 인포윈도우에 표시될 내용입니다
+				message = '<div style="padding:3px;">현재위치</div>'; // 인포윈도우에 표시될 내용입니다
 
 				// 마커와 인포윈도우를 표시합니다
 				displayMarker(locPosition, message);
@@ -160,6 +160,7 @@ $(document).on("click", ".dogshelterlist", function() {
 			});
 	
 	
+		
 		// 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
 	    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
 	    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
@@ -194,7 +195,8 @@ $(document).on("click", ".dogshelterlist", function() {
 	</script>
 
 
-	<div id="search"></div>
+
+	<!-- Ajax 영역  -->
 	<div id="dog"></div>
 	<div id="showplus">
 		<button>더보기</button>

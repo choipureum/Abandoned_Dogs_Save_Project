@@ -130,7 +130,7 @@ public class MemberServiceImpl implements MemberService{
    }
    
    //Paging객체 생성
-   	public Paging getPaging(HttpServletRequest req) {
+   	public Paging getPaging(HttpServletRequest req ,String userid) {
 		
 		//요청파라미터 curPage를 파싱한다
 		String param = req.getParameter("curPage");
@@ -140,16 +140,16 @@ public class MemberServiceImpl implements MemberService{
 		}
 		//Board TB와 curPage 값을 이용한 Paging 객체를 생성하고 반환
 
-		int totalCount = memberDao.selectCntAll();
+		int totalCount = memberDao.selectCntAll(userid);
 				
-				// Paging 객체 생성 // 한페이지에 기본적으로 보여주는 게시글수는 10으로 지정 
+		// Paging 객체 생성 // 한페이지에 기본적으로 보여주는 게시글수는 10으로 지정 
 		Paging paging = new Paging(totalCount, curPage);
 				
 				
 				
-				//curpage와 검색어로 totalcount를 세어서 만든 paging객체를 반환
-				return paging;
-			}//end
+			//curpage와 검색어로 totalcount를 세어서 만든 paging객체를 반환
+			return paging;
+		}//end
    	
 
 
@@ -191,10 +191,13 @@ public class MemberServiceImpl implements MemberService{
   	public void memberListDelete(String names) {
   		
   		memberDao.deleteMemberFileList(names);
-		memberDao.deleteMemberList(names);
 		memberDao.deleteUserlikeList(names);
 		
 	}
+  	
+  	 public void memberAddDelete(String names) {
+  		memberDao.deleteMemberList(names);
+  	 }
 
 
 }
