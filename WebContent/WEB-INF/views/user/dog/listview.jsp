@@ -19,7 +19,10 @@
       ${dog.dogno }
 <!-- 하트버튼 -->
       <span class="heartDog"><i class="fa fa-heart-o" aria-hidden="true" data-dogno="${dog.dogno }" data-userid="${userlike.userid }"></i> </span><!-- id 부분 dog no으로 가져오기  -->
-      
+
+
+
+
    </div>
 </div>
 </c:forEach>
