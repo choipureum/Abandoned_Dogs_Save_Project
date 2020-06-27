@@ -5,19 +5,18 @@
 
 <c:forEach items="${dogList }" var="dog">
 <div class="box">																		
-	<a href="/dog/detailView?dogno=${dog.dogno }"><img src="/upload/${dog.dog_stored_file_name }" alt="없음" /></a>
+	<a href="/dog/detailView?dogno=${dog.dogno }"><img src="/upload/${dog.dog_stored_file_name }" alt="없음"  /></a>
 	<div class="inner">
 		<div>이름 ${dog.dogname }</div>
 		<div>성별 ${dog.doggender }</div>
 		<div>중성화여부 ${dog.dogneu }</div>
 		<div>공고일 ${dog.dogdate }</div>
-		<div><button style="background: none; border: none; font-size: 20px;">♥</button></div>
+		<span id = heart><i class="fa fa-heart-o" aria-hidden="true" ></i> </span><!-- id 부분 dog no으로 가져오기  -->
+		
+
 	</div>
 </div>
 </c:forEach>
 
 
-<style type="text/css">
 
-
-</style>

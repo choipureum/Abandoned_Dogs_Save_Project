@@ -34,11 +34,11 @@ public class DogServiceImpl implements DogService{
 				curPage = Integer.parseInt(param);
 			}
 			
-			//Board 테이블의 총 게시글 수를 조회한다
+			//dog 테이블의 총 데이터 수를 조회한다
 			int totalCount = dogDao.selectCntAll();
 
 			//Paging 객체 생성 - 현재 페이지(curPage), 총 게시글 수(totalCount) 활용
-			Paging paging = new Paging(totalCount, curPage, 6);
+			Paging paging = new Paging(totalCount, curPage,6);
 //			Paging paging = new Paging(totalCount, curPage, 6);
 			
 			//Paging 객체 반환
@@ -116,5 +116,65 @@ public class DogServiceImpl implements DogService{
 			
 		}
 
+		@Override
+		public void deleteUserLike(UserLike userlike) {
+			dogDao.deleteUserLike(userlike);
+		}
+
+		public void deleteDogClaim(DogClaimDTO dogclaim) {
+			dogDao.deleteDogClaim(dogclaim);
+		}
+
+		@Override
+		public boolean isUserLike(UserLike userlike) {
+			int cnt = dogDao.selectCntUserLike(userlike);
+			
+			if(cnt>0) {// 추천했음
+				return true;
+			}else { //추천하지 않았음
+				return false;
+				
+			}
+			
+		}
+
+		@Override
+		public UserLike getUserLike(HttpServletRequest req) {
+			
+			//전달파라미터 파싱
+			int dogno = 0;
+			String param = req.getParameter("dogno");
+			if(param!=null && !"".equals(param)) {
+				dogno = Integer.parseInt(param);
+			}
+			// 로그인한 아이디
+			
+			String userid = (String) req.getSession().getAttribute("userid");
+			
+			UserLike userlike = new UserLike();
+			userlike.setDogno(dogno);
+			userlike.setUserid(userid);
+			
+			
+			return userlike;
+		}
+
+		@Override
+		public boolean UserLike(UserLike userlike) {
+		
+			if(isUserLike(userlike)) {//담아두기한 상태
+				dogDao.deleteUserLike(userlike);
+				
+				return false;
+			} else {//담아두기 하지 않은 상태
+				dogDao.insertUserLike(userlike);
+			}
+			return true;
+			
+		}
+		
+		
+		
+		
 }
 

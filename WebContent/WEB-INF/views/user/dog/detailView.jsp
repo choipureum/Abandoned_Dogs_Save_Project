@@ -4,9 +4,12 @@
     
     
 
-<%@page import="user.dog.dto.Dog_Data"%>
-<%@page import="java.util.List"%>
-<%List<Dog_Data> list = (List)request.getAttribute("dogList");  %>
+<%@page import="user.dog.dto.DogDTO"%>
+<%@page import="user.dog.dto.Dog_File_DTO"%>
+
+<%DogDTO detailDog = (DogDTO) request.getAttribute("detailDog");  %>
+<%Dog_File_DTO dogFile = (Dog_File_DTO) request.getAttribute("dogFile");  %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,14 +24,14 @@
 
 <div class="box" >
 		<h3>입양신청</h3>
-	<a href="" class="image fit" style="left:25%" ><img src="/upload/${dog.dog_stored_file_name }"/></a>
+	<img src="/upload/${dogFile.dog_stored_file_name }" style="width:500px;"/>
 		<div class="inner">
-			<div>이름 ${dog.dogname }</div>
-               <div>성별 ${dog.doggender }</div>
-               <div>품종 ${dog.dogkind }</div>
-               <div>중성화여부 ${dog.dogneu }</div>
-               <div>공고일 ${dog.dogdate }</div>
-			<form action="post" onclick=""><button>입양신청</button></form>
+			<div>이름 &nbsp;${detailDog.dogname }</div>
+               <div>성별 &nbsp;${detailDog.doggender }</div>
+               <div>품종 &nbsp;${detailDog.dogkind }</div>
+               <div>중성화여부 &nbsp;${detailDog.dogneu }</div>
+               <div>공고일 &nbsp;${detailDog.dogdate }</div>
+			<a href="/views/user/dog/adoptView.jsp"><button onclick=" ">입양신청</button></a>
 		</div>
 </div>
 
