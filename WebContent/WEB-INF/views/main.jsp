@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  	
-	<c:import url="/WEB-INF/util/header.jsp"></c:import>
+<!--  	헤더 -->
+	<c:import url="/WEB-INF/views/user/util/header/Header.jsp"></c:import>
+	
         <!-- Services-->
         <section class="page-section" id="services">
             <div class="container">
@@ -296,7 +299,8 @@
                 </form>
             </div>
         </section>
-       <c:import url="/WEB-INF/util/footer.jsp"></c:import>
+<!--         footer -->
+       <c:import url="/WEB-INF/views/user/util/footer/footer.jsp"></c:import>
         <!-- Portfolio Modals-->
         <!-- Modal 1-->
         <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
