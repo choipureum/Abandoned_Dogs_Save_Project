@@ -105,4 +105,7 @@ public interface DogService {
 	public boolean UserLike(UserLike userlike);
 	
 
+	public UserLike selectUserLike(HttpServletRequest req);
+	
+	
 }
