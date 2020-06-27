@@ -87,7 +87,7 @@ border-bottom: none;
 		<a href="#main" class="more">Learn More</a>
 	</div>
 </section>
-<<<<<<< HEAD
+
 =======
 
 

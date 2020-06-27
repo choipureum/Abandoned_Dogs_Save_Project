@@ -293,7 +293,6 @@ public class DogDaoImpl implements DogDao{
 			}else {
 				ps.setString(3, "Y");
 			}
-
 			ps.executeUpdate();
 			
 		} catch (SQLException e) {
