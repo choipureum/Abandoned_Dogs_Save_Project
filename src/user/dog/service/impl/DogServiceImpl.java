@@ -129,9 +129,9 @@ public class DogServiceImpl implements DogService{
 		public boolean isUserLike(UserLike userlike) {
 			int cnt = dogDao.selectCntUserLike(userlike);
 			
-			if(cnt>0) {// 추천했음
+			if(cnt>0) {// 담아두기했음
 				return true;
-			}else { //추천하지 않았음
+			}else { //담아두지 않았음
 				return false;
 				
 			}

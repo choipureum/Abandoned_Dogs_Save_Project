@@ -57,22 +57,7 @@ public class DogDaoImpl implements DogDao{
 		sql += "    ) R";
 		sql += " ) RES";
 		sql += " WHERE rnum BETWEEN ? and ?";
-		
-//		  sql += "select * from"; 
-//	      sql += "(SELECT * FROM (SELECT rownum rnum, B.* FROM (SELECT dogno, dogname,  dogkind, doggender, dogneu, dogdate, dogimg, shelterno";
-//	      sql += "      FROM dog";
-//	      sql += "      ORDER BY dogno DESC";
-//	      sql += "   ) B";
-//	      sql += "    ) dog";
-//	      sql += "    WHERE rnum BETWEEN ? AND ?) A ";
-//	      sql += "   (SELECT";
-//	      sql += "   dogno, dog_fileno, dog_org_file_name,dog_stored_file_name,dog_file_size,dog_del_gb";
-//	      sql += "   FROM (" ;
-//	      sql += "   SELECT DMF.* ,row_number() over( partition by dogno order by dog_fileno desc ) od  FROM dog_file DMF ";
-//	      sql +="    )R WHERE od = 1) B";
-//	      sql +="    where A.dogno = B.dogno";
-		
-		
+
 		//결과 저장할 List
 		List<Dog_Data> dogList = new ArrayList<>();
 		try {
@@ -283,7 +268,6 @@ public class DogDaoImpl implements DogDao{
 		
 	}
 
-
 	@Override
 	public void insertUserLike(UserLike userlike) {
 		//DB연결 객체
@@ -295,11 +279,14 @@ public class DogDaoImpl implements DogDao{
 		
 		try {
 			ps= conn.prepareStatement(sql);
-			
 			ps.setString(1, userlike.getUserid());
 			ps.setString(2, userlike.getAdoptsw());
 			ps.setInt(3, userlike.getApplysw());
 			ps.setInt(4, userlike.getDogno());
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
 			ps.setInt(2, userlike.getDogno());
 			
 			
@@ -309,7 +296,12 @@ public class DogDaoImpl implements DogDao{
 			}else {
 				ps.setString(3, "Y");
 			}
+<<<<<<< HEAD
 	
+=======
+
+			
+>>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
 			ps.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -327,20 +319,12 @@ public class DogDaoImpl implements DogDao{
 		//DB연결 객체
 		conn = JDBCTemplate.getConnection();
 		
-		//
-		
-		
 		String sql = "";
 		sql += "INSERT INTO dog_claim(dogno,dogname,dogkind,doggender,dogneu,dogshelter,userid)";
 		sql += " VALUES ( ?,?,?,?,?,?,?)";
 		
-		
-		
 		try {
 			ps= conn.prepareStatement(sql);
-			
-			
-			
 			
 			ps.setInt(1, claim.getDogno());
 			ps.setString(2, claim.getDogname());
@@ -350,12 +334,7 @@ public class DogDaoImpl implements DogDao{
 			ps.setInt(6, claim.getDogshelter());
 			ps.setDate(7, claim.getDogregdate());
 			ps.setString(8, claim.getUserid());
-			
-			
-			
 			ps.executeUpdate();
-			
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -372,28 +351,16 @@ public class DogDaoImpl implements DogDao{
 		
 		//SQL구문
 		String sql = "DELETE FROM USERLIKE WHERE dogno=? ";
-		
-		
-		
 		try {
 			ps= conn.prepareStatement(sql);
-			
 			ps.setInt(1, userlike.getDogno());
-			
 			ps.executeUpdate();
-			
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			JDBCTemplate.close(ps);
 		}
-		
-		
-				
-		
 	}
-
 
 	@Override
 	public void deleteDogClaim(DogClaimDTO dogclaim) {
@@ -404,9 +371,7 @@ public class DogDaoImpl implements DogDao{
 		
 		try {
 			ps= conn.prepareStatement(sql);
-			
 			ps.setString(1, dogclaim.getUserid());
-			
 			ps.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -417,7 +382,6 @@ public class DogDaoImpl implements DogDao{
 		
 	}
 
-
 	@Override
 	public int selectCntUserLike(UserLike userlike) {
 		String sql ="";
@@ -426,10 +390,6 @@ public class DogDaoImpl implements DogDao{
 		sql += " 	AND userid = ?";
 		sql += " 	 AND adoptsw = ?";
 		sql += " 	  AND applysw = ?";
-		
-		
-		
-		
 		int cnt = -1;
 		
 		try {
@@ -445,9 +405,6 @@ public class DogDaoImpl implements DogDao{
 				
 				cnt = rs.getInt(1);
 			}
-			
-			
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}	finally {
@@ -460,18 +417,4 @@ public class DogDaoImpl implements DogDao{
 	}
 
 
-	
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-		
 	}

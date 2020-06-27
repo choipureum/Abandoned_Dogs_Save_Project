@@ -7,6 +7,7 @@
 
 <%@page import="user.dog.dto.Dog_Data"%>
 <%@page import="java.util.List"%>
+
 <%List<Dog_Data> list = (List)request.getAttribute("dogList");  %>
 
 
@@ -17,13 +18,14 @@
 		<title>가족 찾기</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 		부트스트랩 -->
 		<link rel="stylesheet" href="/resources/UserBoardTemplate/assets/css/main.css" /><!--  -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 		
 
 
-
-<style type="text/css">/* 리스트 css */
+<!-- 스타일 css -->
+<style type="text/css">
 #doglist {
 	display: grid;
 
@@ -35,15 +37,14 @@
     width: 1000px;
     margin: 0 auto;
     margin-top : 20px;
+<<<<<<< HEAD
+=======
     
-    
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 }
-
 body{
 background: white;
 }
-
-
 .box {
 background: skyblue;
 }
@@ -54,13 +55,14 @@ background: skyblue;
 .box a img:hover{
 transform:scale(1.04);
 }
-
 .box a{
 border-bottom: none;
 }
 
 </style>
-<style type="text/css">/* 담아두기 버튼 css */
+
+<!-- 담아두기css -->
+<style type="text/css">
 .fa-heart-o {
   color: red;
   cursor: pointer;
@@ -85,25 +87,42 @@ border-bottom: none;
 		<a href="#main" class="more">Learn More</a>
 	</div>
 </section>
-
-
-
-
+<<<<<<< HEAD
+=======
 
 
 
 <!-- 자바스크립트 -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 
+<!-- 하트버튼 자바스크립트 -->
 <script type="text/javascript">
+
 $(document).ready(function(){
-   $("#heart").click(function(){
-      if($("#heart").hasClass("liked")){
-         $("#heart").html('<i class="fa fa-heart-o" aria-hidden="true"></i>');
-         $("#heart").removeClass("liked");
+	
+   $(".heartDog > .fa").click(function(){
+	   var dogno=$("i[class=fa]").attr("data-dogno");
+	   var userid="";
+	   
+	   if($("i[class=fa-heart-o]")){
+		   //이미 색칠 되어있는 하트
+		   //	아작스 처리 -> 색칠빼고 아작스 담아두기 delete 기능수행
+	   }
+	   else{
+		   //색칠 안되어있는 하트
+		   //	 아작스처리 -> 색칠빼고 아작스 가서 담아주기(insert)기능 수행
+	   }
+	   
+	   
+	   
+	   
+	   
+      if($("#'${dog.dogno }'").hasClass("liked")){
+         $("#'${dog.dogno }'").html('<i class="fa fa-heart-o" aria-hidden="true"></i>');
+         $("#'${dog.dogno }'").removeClass("liked");
       }else{
-         $("#heart").html('<i class="fa fa-heart" aria-hidden="true"></i>');
-         $("#heart").addClass("liked");
+         $("#'${dog.dogno }'").html('<i class="fa fa-heart" aria-hidden="true"></i>');
+         $("#'${dog.dogno }'").addClass("liked");
       }
    });
 });
@@ -111,17 +130,18 @@ $(document).ready(function(){
 
 
 
-
-
-
-
-
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 <div id="doglist"></div>
+<<<<<<< HEAD
+<div id="showplus"></div>
+
+=======
 <div id="showplus"><!-- <button id="btnUserLike">더보기</button> --></div>
 
-
-
+<!-- board template -->
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 <!-- Scripts -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script src="/resources/UserBoardTemplate/assets/js/jquery.min.js"></script>
 <script src="/resources/UserBoardTemplate/assets/js/jquery.scrolly.min.js"></script>
 <script src="/resources/UserBoardTemplate/assets/js/jquery.poptrox.min.js"></script>
@@ -132,7 +152,7 @@ $(document).ready(function(){
 
 
 
-
+<!-- 무한스크롤 -->
 <script type="text/javascript">
 
 var page = 1;
@@ -143,15 +163,9 @@ $(window).scroll(function(){
 		if('${paging.totalPage }' >= page  ) {
 // 		console.log(page);
 			$("body").append(loadlist())
-		}
-		
+		}		
 // 		loadlist();
-		
-		
 	}
-	
-	
-	
 })
 
 function loadlist() {
@@ -171,15 +185,10 @@ function loadlist() {
 		}
 	})
 }	
-
 </script>
 
 
-
-
-
-
-	</body>
+</body>
 </html>
 
 

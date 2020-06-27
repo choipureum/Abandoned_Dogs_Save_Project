@@ -40,26 +40,15 @@ public class DogListController extends HttpServlet {
 
 		// 요청파라미터를 전달하여 Paging 객체 생성하기
 		Paging paging = dogService.getPaging(req);
-//			System.out.println("BoardListController - " + paging);
-//			
-//			System.out.println("get");
-//			
-//			
-//			
-//			게시글 페이징 처리 조회
-//		System.out.println(paging);
-//		if(paging.getTotalPage() < paging.getCurPage()) {
-//			
-//			return;
-//		}
+		
+		// Dog_Data 리스트 가져오기
 		List<Dog_Data> dogList = dogService.getList(paging);
 
 		for (Iterator iterator = dogList.iterator(); iterator.hasNext();) {
 			Dog_Data dog_Data = (Dog_Data) iterator.next();
-				System.out.println("TEST  :  "+dog_Data);
+//				System.out.println("TEST  :  "+dog_Data);
 		}
 
-//		System.out.println(dogList);
 
 //			//담아두기 정보 얻기
 //			UserLike userlike = dogService.getUserLike(req);
