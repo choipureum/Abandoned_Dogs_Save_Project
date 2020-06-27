@@ -283,10 +283,6 @@ public class DogDaoImpl implements DogDao{
 			ps.setString(2, userlike.getAdoptsw());
 			ps.setInt(3, userlike.getApplysw());
 			ps.setInt(4, userlike.getDogno());
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
 			ps.setInt(2, userlike.getDogno());
 			
 			
@@ -296,12 +292,9 @@ public class DogDaoImpl implements DogDao{
 			}else {
 				ps.setString(3, "Y");
 			}
-<<<<<<< HEAD
 	
-=======
 
 			
->>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
 			ps.executeUpdate();
 			
 		} catch (SQLException e) {

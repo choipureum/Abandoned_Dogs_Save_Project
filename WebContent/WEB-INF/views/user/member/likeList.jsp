@@ -75,10 +75,6 @@ function checkAll() {
 <script type="text/javascript">
 
 
-
-
-
-
 </script>
 <body>
 <div class="container">
