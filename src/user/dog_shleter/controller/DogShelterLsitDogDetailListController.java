@@ -20,7 +20,7 @@ import util.Paging;
 /**
  * Servlet implementation class DogShelterLsitDogDetailListController
  */
-@WebServlet("/dog/detail")
+@WebServlet("/dog/details")
 public class DogShelterLsitDogDetailListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -29,14 +29,13 @@ public class DogShelterLsitDogDetailListController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		String keyField = req.getParameter("keyField");
-		String keyWord = req.getParameter("keyWord");
-		
-		// 요청파라미터를 전달하여 Paging 객체 생성하기
-		Paging paging = dogShelterService.getPaging(req);
+
 
 		// 전달파라미터 shelterno 추출
 		String param = req.getParameter("shelterno");
+
+		// 요청파라미터를 전달하여 Paging 객체 생성하기
+		Paging paging = dogShelterService.getPaging(req);
 
 		// TEST
 		System.out.println("param" + param);
@@ -55,8 +54,11 @@ public class DogShelterLsitDogDetailListController extends HttpServlet {
 		System.out.println("Dog_Data : " + dog);
 
 		// 유기견 상세조회
-		ArrayList<Dog_Data> result = dogShelterService.dogDetail(dog, paging, keyWord, keyField);
+		List<Dog_Data> result = dogShelterService.dogDetail(dog, paging);
 
+		//유기견 검색조회
+//		List<Dog_Data> list = dogShelterService.dogSearch(paging, keyField, keyWord );
+		
 		for (Iterator iterator = result.iterator(); iterator.hasNext();) {
 			dog = (Dog_Data) iterator.next();
 			System.out.println(dog);
@@ -68,8 +70,6 @@ public class DogShelterLsitDogDetailListController extends HttpServlet {
 		// 조회된 결과 값을 VIEW에 전달하기 - request 객체 사용
 		req.setAttribute("result", result);
 
-		req.setAttribute("keyWord", keyWord);
-		req.setAttribute("keyField", keyField);
 		
 		// 페이징계산결과 MODEL값 전달
 		req.setAttribute("paging", paging);
@@ -78,6 +78,25 @@ public class DogShelterLsitDogDetailListController extends HttpServlet {
 		req.getRequestDispatcher("/WEB-INF/views/user/dogShelter/dogDetailView.jsp").forward(req, resp);
 
 	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	
+		Paging paging = dogShelterService.getPaging(req);
+		
+		int category = Integer.parseInt(req.getParameter("searchCategory"));
+		String keyword = req.getParameter("searchKeyword");
+		
+		List<Dog_Data> slist = dogShelterService.select(category, keyword, paging);
+		
+		req.setAttribute("dogList", slist);
+		
+		// VIEW 지정 응답
+		req.getRequestDispatcher("/WEB-INF/views/user/dogShelter/dogSearch.jsp").forward(req, resp);
+
+	
+	}
+
 
 
 }

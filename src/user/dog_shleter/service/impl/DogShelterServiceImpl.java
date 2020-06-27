@@ -16,7 +16,7 @@ public class DogShelterServiceImpl implements DogShelterService {
 
 	private DogShelterDao dogShelterDao = new DogShelterDaoImpl();
 	
-	//유기견 보호소 조회
+	//좌표값, 마커 조회
 	 
 	@Override
 	public List<Dog_Shelter> list() {
@@ -28,6 +28,7 @@ public class DogShelterServiceImpl implements DogShelterService {
 	}
 
 
+	//유기견 보호소 조회
 	@Override
 	public Dog_Shelter detail(Dog_Shelter dogShelter) {
 		//TEST
@@ -38,8 +39,8 @@ public class DogShelterServiceImpl implements DogShelterService {
 
 
 	@Override
-	public ArrayList<Dog_Data> dogDetail(Dog_Data dog, Paging paging, String keyWord, String keyField) {
-		return dogShelterDao.dogDetailList(dog, paging, keyWord, keyField);
+	public List<Dog_Data> dogDetail(Dog_Data dog, Paging paging) {
+		return dogShelterDao.dogDetailList(dog, paging);
 		
 	}
 	
@@ -62,6 +63,17 @@ public class DogShelterServiceImpl implements DogShelterService {
 		//Paging 객체 반환
 		return paging;
 	}
+
+
+	@Override
+	public List<Dog_Data> select(int category, String keyword, Paging paging) {
+		
+		
+		
+		return dogShelterDao.dogSearchList(category, keyword, paging);
+	}
+
+
 
 
 	

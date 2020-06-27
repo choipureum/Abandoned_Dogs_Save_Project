@@ -1,9 +1,12 @@
+<%@page import="user.dog.dto.Dog_Data"%>
 <%@page import="user.dog_shleter.dto.Dog_Shelter"%>
 <%@page import="javax.annotation.PostConstruct"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+
 <%	List<Dog_Shelter> dogList = (List) request.getAttribute("list");%>
 
 
@@ -16,7 +19,11 @@
 <script type="text/javascript" src="/resources/js/httpRequest.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
+<style type="text/css">
+.dogshelterlist {
+	text-decoration: none;
+}
+</style>
 <script type="text/javascript">
 
 $(document).ready(function() {
@@ -50,7 +57,7 @@ $(document).on("click", ".dogshelterlist", function() {
 <body>
 
 	<div style="position: relative;">
-		<div id="map" style="width: 100%; height: 700px;"></div>
+		<div id="map" style="width: 125%%; height: 920px;"></div>
 		<div id="container"
 			style="z-index: 9999; position: absolute; display: inline-block; width: 30%; height: 37%; left: 50px; bottom: 50px"></div>
 	</div>
@@ -87,7 +94,7 @@ $(document).on("click", ".dogshelterlist", function() {
 				lon = position.coords.longitude; // 경도
 
 				var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-				message = '<div style="padding:5px;">내 위치다</div>'; // 인포윈도우에 표시될 내용입니다
+				message = '<div style="padding:5px;">현재위치</div>'; // 인포윈도우에 표시될 내용입니다
 
 				// 마커와 인포윈도우를 표시합니다
 				displayMarker(locPosition, message);
@@ -182,8 +189,9 @@ $(document).on("click", ".dogshelterlist", function() {
 
 	
 	</script>
-	<div id="search"></div>
 
+
+	<div id="search"></div>
 	<div id="dog"></div>
 	<div id="showplus">
 		<button>더보기</button>

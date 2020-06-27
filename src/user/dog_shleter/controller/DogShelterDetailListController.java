@@ -23,6 +23,7 @@ public class DogShelterDetailListController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
 		//전달파라미터 shelterno 추출
 		String param = req.getParameter("shelterno");
 		//test
@@ -46,7 +47,7 @@ public class DogShelterDetailListController extends HttpServlet {
 		System.out.println("result : "+result);
 		
 		//조회결과(MODEL) 값을 VIEW에 전달하기 - request객체 사용
-		req.setAttribute("res", result);
+		req.setAttribute("result", result);
 		
 			
 		//VIEW를 지정하고 응답하기(포워딩) - request객체 사용

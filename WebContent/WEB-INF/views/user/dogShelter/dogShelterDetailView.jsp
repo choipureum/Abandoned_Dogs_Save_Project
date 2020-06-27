@@ -6,7 +6,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
-	Dog_Shelter l = (Dog_Shelter) request.getAttribute("res");
+	Dog_Shelter l = (Dog_Shelter) request.getAttribute("result");
 %>
 <style type="text/css">
 #dog {
@@ -68,8 +68,12 @@
 		$(document).on("click", ".w3-container", function() {
 
 			$.ajax({
-				type : "get",
+				type : "post",
 				url : "/dog/detail",
+				data : {
+
+					curPage : curPage++
+				},
 				dataType : "html",
 				success : function(h) {
 					console.log("AJAX success")
@@ -82,10 +86,7 @@
 			return false;
 		})
 	})
-</script>
-
-
-
+	</script>
 
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -95,8 +96,7 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<div class="w3-display-left w3-padding w3-col l6 m8"
-	style="width: 100%;">
+<div class="w3-display-left w3-padding w3-col l6 m8" style="width: 100%;">
 	<div class="w3-container w3-red">
 		<h2>
 			<i class="fa fa-bed w3-margin-right"></i>보호소 정보
@@ -116,15 +116,15 @@
 				<label><i class="fa fa-male"></i> 유기견 보호소 주소</label> <label><%=l.getShelteraddress()%></label>
 			</div>
 			<div class="w3-half">
-				<label><i class="fa fa-c	hild"></i>유기견 보호소 전화번호</label> <label><%=l.getSheltertel()%></label>
+				<label><i class="fa fa-child"></i>유기견 보호소 전화번호</label> <label><%=l.getSheltertel()%></label>
 			</div>
 		</div>
-
-		<a href="/dog/detail?shelterno=<%=l.getShelterno()%>">
+		<a href="/dog/details?shelterno=<%=l.getShelterno()%>">
 			<button>유기견 조회용</button>
 		</a>
 	</div>
-</div>
+	</div>
+
 
 <!-- Scripts -->
 <script src="/resources/UserBoardTemplate/assets/js/jquery.min.js"></script>

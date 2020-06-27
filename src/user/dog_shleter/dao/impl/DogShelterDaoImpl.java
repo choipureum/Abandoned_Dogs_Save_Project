@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import user.dog.dto.DogDTO;
@@ -16,6 +17,8 @@ import util.Paging;
 
 public class DogShelterDaoImpl implements DogShelterDao {
 
+	private static final String SQL_SELECT_BY_DOGNAME = null;
+	private static final String SQL_SELECT_BY_DOGKIND = null;
 	private Connection conn = null; // DB연결 객체
 	private PreparedStatement ps = null; // SQL수행 객체
 	private ResultSet rs = null; // SQL조회 결과 객체
@@ -105,7 +108,7 @@ public class DogShelterDaoImpl implements DogShelterDao {
 
 	// 유기견 조회
 	@Override
-	public ArrayList<Dog_Data> dogDetailList(Dog_Data dog, Paging paging, String keyWord, String keyField) {
+	public List<Dog_Data> dogDetailList(Dog_Data dog, Paging paging) {
 		// DB연결 객체
 		conn = JDBCTemplate.getConnection();
 
@@ -139,18 +142,18 @@ public class DogShelterDaoImpl implements DogShelterDao {
 		sql += " 	AND shelterno = ?";
 
 		// 조회 결과가 저장될 DTO
-		ArrayList<Dog_Data> dogDTOList = new ArrayList<>();
+		List<Dog_Data> dogDTOList = new ArrayList<>();
 
 		System.out.println("dao result : " + dogDTOList);
 
 		try {
-			if(keyWord !=null && !keyWord.equals("")) {
-				sql +="WHERE"+keyField.trim()+" LIKE '%"+keyWord.trim()+"%' order by dogdate";
-			} else {//모든 레코드 검색
-				sql +="order by dogdate";
-			} 
-			System.out.println("sql" + sql);
-		
+//			if(keyWord !=null && !keyWord.equals("")) {
+//				sql +="WHERE"+keyField.trim()+" LIKE '%"+keyWord.trim()+"%' order by dogdate";
+//			} else {//모든 레코드 검색
+//				sql +="order by dogdate";
+//			} 
+//			System.out.println("sql" + sql);
+
 			ps = conn.prepareStatement(sql);
 
 			ps.setInt(1, paging.getStartNo()); // 페이징 게시글 시작 번호
@@ -225,4 +228,27 @@ public class DogShelterDaoImpl implements DogShelterDao {
 		}
 		return cnt;
 	}
+
+	@Override
+	public List<Dog_Data> dogSearchList(int category, String keyword, Paging paging) {
+		List<Dog_Data> list = new ArrayList<>();
+		
+		conn = JDBCTemplate.getConnection(); // DB연결
+		
+		try {
+			conn = ps.getConnection();
+			sql = new StringBuffer();
+			
+			if(col.equals("none")) {
+				sql.app
+			}
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+
 }

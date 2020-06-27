@@ -30,11 +30,9 @@ public interface DogShelterService {
 	 * 유기견 조회
 	 * @param dog - String shelterno
 	 * @param paging - paginh
-	 * @param keyField 
-	 * @param keyWord 
 	 * @return - DogDTO
 	 */
-	public ArrayList<Dog_Data> dogDetail(Dog_Data dog, Paging paging, String keyWord, String keyField);
+	public List<Dog_Data> dogDetail(Dog_Data dog, Paging paging);
 
 	/**
 	 * 페이징 생성
@@ -46,7 +44,9 @@ public interface DogShelterService {
 	 * @return Panging - 페이징 계산이 완료된 결과 객체
 	 */
 	public Paging getPaging(HttpServletRequest req);
-	
+
+	public List<Dog_Data> select(int category, String keyword, Paging paging);
+
 	
 
 }

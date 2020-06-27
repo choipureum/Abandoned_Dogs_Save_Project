@@ -29,18 +29,17 @@ public interface DogShelterDao {
 	/**
 	 * shelterno를 통한 유기견 전체 정보값 반환
 	 * @param paging 
-	 * @param keyField 
-	 * @param keyWord 
 	 * @param - String dog
 	 * @return - DogDTO
 	 */
-	public ArrayList<Dog_Data> dogDetailList(Dog_Data dog, Paging paging, String keyWord, String keyField);
+	public List<Dog_Data> dogDetailList(Dog_Data dog, Paging paging);
 
 	/**
-	 *  페이징, 검색기능
+	 *  페이징
 	 * @return
 	 */
 	public int selectCntAll();
 
+	public List<Dog_Data> dogSearchList(int category, String keyword, Paging paging);
 
 }
