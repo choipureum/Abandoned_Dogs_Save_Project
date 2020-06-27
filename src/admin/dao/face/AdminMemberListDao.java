@@ -13,6 +13,7 @@ import user.dog.dto.UserLike;
 import user.dogmiss.dto.DogMissAdd;
 import user.member.dto.MemberDTO;
 import user.qna.dto.QNA;
+import user.qna.dto.Qna_Reply;
 import util.Paging;
 public interface AdminMemberListDao {
 	
@@ -277,7 +278,30 @@ public interface AdminMemberListDao {
 	    */
 	   public QNA QnaSelectByqnano(int qnano);
 	   
+	   /**
+	    * qnano 에따른 댓글 삽입
+	    * 
+	    * 
+	    * @param qnano
+	    */
+	   public void InsertQnaReply(int qnano, String title,String content);
+	   
+	   /**
+	    * qnano 에 따른 delsw를 'Y'로 치환
+	    * 답변이 달렸다는 이야기
+	    * 
+	    * @param qnano
+	    */
+	   public void UpdateDelsw(int qnano); 
+	   
+	   /**qnano에 따른 댓글조회
+	    * 
+	    * 
+	    * @param qnano
+	    * @return
+	    */
+	   public Qna_Reply QnaRefSelect(int qnano);
 	   
 	   
-	  
+	   
 }		

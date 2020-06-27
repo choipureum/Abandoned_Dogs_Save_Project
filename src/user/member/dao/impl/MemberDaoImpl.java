@@ -560,7 +560,10 @@ public class MemberDaoImpl implements MemberDao{
    }
    
    
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 	@Override
 	// 찜목록 리스트.jsp에서 체크된 강아지 파일을 삭제하는 기능 
 	public void deleteMemberFileList(String names){
@@ -650,5 +653,8 @@ public class MemberDaoImpl implements MemberDao{
 	
 	
 	
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 }
