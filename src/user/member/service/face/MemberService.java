@@ -1,8 +1,12 @@
 package user.member.service.face;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
+import user.member.dto.MemberAddDTO;
 import user.member.dto.MemberDTO;
+import util.Paging;
 
 public interface MemberService {
    
@@ -67,11 +71,63 @@ public interface MemberService {
     */
    public int findpw(String username, String userid, String useremail);
 
+   
    /**
     * userpw set 용도 userid같은지 확인
     * @param userpw
     * @param userid
     */
    public void changepassword(String userpw, String userid);
+ 
+   /*
+    * 
+    * 페이징 객체 생성 
+    * 
+    *
+    * */
+   public Paging getPaging(HttpServletRequest req);
    
+   
+   //startno과 endno을 정해서 paging객체 생성 
+   public List <MemberAddDTO>getList(Paging paging);
+   
+
+
+   /**
+    * 멤버의 모든 정보 회원 정보 수정할때 
+    * @param member
+    * @return member
+    */
+
+   public MemberDTO getMemberInfo(MemberDTO member);
+
+   /**
+    * userid를 이용한 업데이트
+    * @param userid
+ * @return 
+    */
+   public int modifyMypage(MemberDTO member);
+
+   /**
+    *  userid에 알맞은 회원을 탈퇴시킴
+    * @param userid
+    */
+   public void memberDelete(String userid);
+   
+   
+   
+   /*
+    * list에서 선택된 목록을 삭제시키는 기능//dog,file,userlike 데베에서 전부다 지워야 한다 
+    */
+   public void memberListDelete(String names);
+
+   public int modifyMypageNotAdd(MemberDTO member);
+
+
+   
+
 }
+
+
+
+

@@ -1,5 +1,6 @@
 package admin.controller;
 import util.Paging;
+
 import java.util.*;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -69,12 +70,14 @@ public class AdminDashboard extends HttpServlet {
 		//유기견 입양신청 수 세기
 		int dog_claim =0;
 		dog_claim= adminMemberListDao.dogClaimCount();
-				
+		//분실견 전체 수 세기
+		int dog_missCnt =0;
+		dog_missCnt = adminMemberListDao.dogMisscnt();
 		//멤버 조회하기
 		List<MemberDTO>memberAll = adminMemberListService.memberSelectAll();
 		
 		
-		
+		req.setAttribute("dogMissCnt", dog_missCnt);
 		req.setAttribute("dogcnt", dogcnt);
 		req.setAttribute("dog_claim", dog_claim);
 		req.setAttribute("graphKey", graphKey);	

@@ -159,7 +159,14 @@ public class AdminMemberListServiceImpl implements AdminMemberListService{
 							} catch (UnsupportedEncodingException e) {
 								e.printStackTrace();
 							}	
-						}// 쉘터 추가?
+						}
+						else if("shelter".equals(key)) {
+							try {
+								dog.setShelterno(Integer.parseInt( item.getString("UTF-8")) );
+							} catch (UnsupportedEncodingException e) {
+								e.printStackTrace();
+							}	
+						}
 						
 					} // if( item.isFormField() ) end - 폼필드 확인
 					
@@ -204,11 +211,11 @@ public class AdminMemberListServiceImpl implements AdminMemberListService{
 				int dogno= adminMemberListDao.selectDogNo();
 				
 					
-					//게시글 번호 입력
-					dog.setDogno(dogno);			
-					//게시글 삽입
-					adminMemberListDao.insertDog(dog);
-				
+				//게시글 번호 입력
+				dog.setDogno(dogno);			
+				//게시글 삽입
+				adminMemberListDao.insertDog(dog);
+			
 								
 				//첨부파일 정보가 있을 경우
 				if(dogFile != null) {
@@ -219,8 +226,8 @@ public class AdminMemberListServiceImpl implements AdminMemberListService{
 				}
 	}
 	@Override
-	public List<DogClaimDTO> dogClaimSelectAll(HashMap<String, Object> listOpt, Paging paging) {				
-		return adminMemberListDao.dogClaimSelectAll(listOpt,paging);
+	public List<DogClaimDTO> dogClaimSelectAll() {				
+		return adminMemberListDao.dogClaimSelectAll();
 	}
 	
 	/**
@@ -251,9 +258,14 @@ public class AdminMemberListServiceImpl implements AdminMemberListService{
 		int dogno=adminMemberListDao.dognoBydogClaim(userid);
 		
 		//입양신청 dogno같은 애들 모조리 삭제
-		adminMemberListDao.dogClaimBydogno(dogno);
+		adminMemberListDao.dogClaimDeleteByDogno(dogno);
+	
 		//userlike update sw=1
 		adminMemberListDao.userLikeUpdateByadmin(userid, dogno);
+		
+		//userlike 해당 dogno 전부 삭제
+		adminMemberListDao.DeletedognoUserlike(dogno);
+		
 		//dog정보 삭제
 		adminMemberListDao.dogDeleteByadmin(dogno);
 	}

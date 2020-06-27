@@ -6,6 +6,12 @@
 <meta charset="UTF-8">
 <title>회원가입</title>
 
+<!-- i링크 -->
+<!-- Custom fonts for this template-->
+<link href="/resources/AdminTemplate/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+<!--Alert 디자인 라이브러리 -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 <!-- 다음 주소 api -->
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -59,9 +65,6 @@ function execPostCode() {
 <!-- 자바스크립트 -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 
-<script type="text/javascript">
-
-</script>
 <!-- 유효성검사 코드 -->
 <script type="text/javascript">
 $(document).ready(function(){
@@ -138,61 +141,90 @@ $(document).ready(function(){
 		}
 	}) //blur
 	
+	
 	$("#myForm").submit(function(){
 						   
 		   if(!uidReg.test($("#userid").val())){
-		      alert("아이디를 체크하세요");
-
+				swal({
+					title: "아이디를 체크하세요!",
+					icon:"error"
+				});
 		      return false;
 		   }
 		   
+		   
 		   if(!($("#hiddenIdCheck").val()=="ok")){
-			   alert("아이디 중복확인 바랍니다");
+				swal({
+					title: "아이디 중복확인 해주세요!",
+					icon:"error"
+				});
 			   return false;
 		   }
 
 		   if(!upwReg.test($("#userpw").val())){
-		      alert("비밀번호는 6에서 18자리 소문자, 숫자를 ~");
+				swal({
+					title: "비밀번호는 6에서 18자리 소문자, 숫자!",
+					icon:"error"
+				});
 
 		      return false;
 		   }
 
 		   if(!unameReg.test($("#username").val())) {
 
-		      alert("이름한글로 2-5자");     
+				swal({
+					title: "이름한글로 2-5자!",
+					icon:"error"
+				});
 		      return false;
 		   }
 		   if(!($("#hiddenEmailCheck").val()=="ok")){
-			   alert("이메일 인증확인을 해주세요");
+
+				swal({
+					title: "이메일 인증을 해주세요!",
+					icon:"error"
+				});
 			   return false;
 		   }
 		   
 		   //#userpw_ck
 		   if( $("#userpw").val() != $("#userpw_ck").val() ){
-		      
-		      alert("비밀번호가 달라요!")
+
+				swal({
+					title: "비밀번호가 달라요!",
+					icon:"error"
+				});
 		      $("#userpw").focus();      
 		      //select 이벤트발생
 		      $("#userpw_ck").select();
 		      return false;		   
 		   }
 
-		   if(!uidReg.test($("#userid").val())){
-			      alert("아이디를 체크하세요");
 
-			      return false;
-			   }
 		   if(!yearReg.test($("#userbirth_yy").val())){
-			   alert("년도를 확인하세요");
-			   
+				swal({
+					title: "년도를 확인해주세요!",
+					icon:"error"
+				});			   
 			   return false;
-		   }		   	  
-		}) 		
-		return true;
+		   }
+  
+// 			   swal({
+// 					icon:"success",
+// 					text: "로그인을 해서 이용해주세요!",
+// 					title : "회원가입이 완료되었습니다!",
+// 					button:["확인"]
+// 					}).then(function(){
+// 						return true;
+// 					});
+
+		});
+		
+		
 })
 </script>
 
-<!-- 변수 로 if문 -->
+
 <!-- 아이디 중복체크  -->
 <script type="text/javascript">
 
@@ -232,8 +264,11 @@ var ran=0;
 function email(){
 
 	if($("#useremail").val()==""){
-		alert("이메일을 입력하세요");
-		
+// 		alert("이메일을 입력하세요");
+		swal({
+			title: "이메일을 입력하세요!",
+			icon:"error"
+		});
 		return false;
 	}
 	
@@ -251,7 +286,12 @@ function email(){
 		success : function(random){		
 			//왜일까? ----------여기 짊ㄴ아ㅓ
 			
-			alert("이메일을 보냈습니다"+random);
+// 			alert("이메일을 보냈습니다"+random);
+			swal({
+				icon:"success",
+				title: "이메일을 보냈습니다",
+			});
+			
 			ran=random;			
 		}
 	});
@@ -270,6 +310,7 @@ function emailCheckFunc(){
 	}
 }
 </script>
+
 <!-- css -->
 <style type="text/css">
 
@@ -282,17 +323,19 @@ function emailCheckFunc(){
    line-height: 16px;
 }
 
+
 h5{
    text-align: center;
 }
 
 h5 span{
-   color:blue;
+   color:#b93c3c;
+   
    
 }
 
 .singup {
-   background-color: rgb(255,80,90);
+   background-color: #6E6E6E;
    color:white;
    border-radius: 5px;
    border: 0;
@@ -341,128 +384,128 @@ select{
 <!-- 입력  -->
 <div class="container">
 
-   <h5><span>회원가입 </span>페이지</h5>
-   <hr>
-   
-<!--    비밀번호 확인 해주기  -->
-<!--    메인화면 으로 가야하지 않나..?-->
-   <form action="/singup/singup" method="post" id="myForm">
-   <!-- 아이디 중복 값 체크용 히든 밸류 -->
-   <input type="hidden" id="hiddenIdCheck"/>
-   <h6><label>아이디<span id="red">(필수)</span><br>
-      <input type="text" placeholder="아이디" name="userid" id="userid" class="username_input" required style="height:30px; width: 380px" />
-      <button type ="button" value="ID중복확인" id="idCheckbutton" class="id_Button" onclick="idCheck()">ID중복확인</button>
-      </label><div id="id_check"></div><div id="id_check2"></div>
-      </h6>
+	<h5><i class="fas fa-paw" style="color :purple;"></i><span> 회원가입 </span><i class="fas fa-paw" style="color :purple;"></i></h5>
+	<hr>
+	<!-- 비밀번호 확인 해주기  -->
+	<!-- 메인화면 으로 가야하지 않나..?-->
+	<form action="/singup/singup" method="post" id="myForm">
+   		<!-- 아이디 중복 값 체크용 히든 밸류 -->
+   		<input type="hidden" id="hiddenIdCheck"/>
+   		<h6><label>아이디<span id="red">(필수)</span><br>
+      		<input type="text" placeholder="아이디" name="userid" id="userid" class="username_input" required style="height:30px; width: 360px" />
+      		<button type ="button" value="ID중복확인" id="idCheckbutton" class="id_Button" onclick="idCheck()"><i class="fa fa-search"></i>ID중복확인</button>
+      		</label><div id="id_check"></div><div id="id_check2"></div>
+      	</h6>
  
  
-   <h6><label>비밀번호<span id="red">(필수)</span>
-      <input type="password" placeholder="비밀번호" name="userpw" id="userpw" class="pw" required style="height:30px; width: 495px"/></label>
-  	<div id="pw_check"></div></h6>
+   		<h6><label>비밀번호<span id="red">(필수)</span>
+      		<input type="password" placeholder="비밀번호" name="userpw" id="userpw" class="pw" required style="height:30px; width: 495px"/></label>
+  			<div id="pw_check"></div>
+  		</h6>
   
-   <h6><label>비밀번호확인<span id="red">(필수)</span>
-      <input type="password" placeholder="비밀번호확인" name="userpw_ck" id="userpw_ck" class="pw" required style="height:30px; width: 495px"/></label>
-   	<div id="pw_check2"></div></h6>
+   		<h6><label>비밀번호확인<span id="red">(필수)</span>
+      		<input type="password" placeholder="비밀번호확인" name="userpw_ck" id="userpw_ck" class="pw" required style="height:30px; width: 495px"/></label>
+   			<div id="pw_check2"></div>
+   		</h6>
    
-   <h6><label>이름<span id="red">(필수)</span>
-      <input type="text" placeholder="이름" name="username" id="username" required style="height:30px; width: 495px"/></label>
-      <div id="name_check"></div></h6>
+   		<h6><label>이름<span id="red">(필수)</span>
+      		<input type="text" placeholder="이름" name="username" id="username" required style="height:30px; width: 495px"/></label>
+      		<div id="name_check"></div>
+      	</h6>
       
-  <h6><label>핸드폰<span id="red">(필수)</span>
-      <input type="tel" placeholder="- 없이 숫자만 써주세요(숫자11자리)" name="usertel" maxlength="11" id="usertel" required style="height:30px; width: 495px"/></label></h6>
+  		<h6><label>핸드폰<span id="red">(필수)</span>
+      		<input type="tel" placeholder="- 없이 숫자만 써주세요(숫자11자리)" name="usertel" maxlength="11" id="usertel" required style="height:30px; width: 495px"/></label>
+      	</h6>
   
   
-  <h6><label>생년월일<span id="red">(필수)</span><br>
-      <input type="text" name="userbirth_yy" id="userbirth_yy" maxlength="4" placeholder="년(4자)" size="10" required style="height:30px">
-<!--  	생년월일 월 -->
-      <select name="userbirth_mm" >
-         <option value="">월</option>
-         <option value="01">1</option>
-         <option value="02">2</option>
-         <option value="03">3</option>
-         <option value="04">4</option>
-         <option value="05">5</option>
-         <option value="06">6</option>
-         <option value="07">7</option>
-         <option value="08">8</option>
-         <option value="09">9</option>
-         <option value="10">10</option>
-         <option value="11">11</option>
-         <option value="12">12</option>   
-      </select>
-<!--   		생년월일 일 -->
-      <select name="userbirth_dd" >
-         <option value="">일</option>
-         <option value="01">1</option>
-         <option value="02">2</option>
-         <option value="03">3</option>
-         <option value="04">4</option>
-         <option value="05">5</option>
-         <option value="06">6</option>
-         <option value="07">7</option>
-         <option value="08">8</option>
-         <option value="09">9</option>
-         <option value="10">10</option>
-         <option value="11">11</option>
-         <option value="12">12</option>
-         <option value="13">13</option>
-         <option value="14">14</option>
-         <option value="15">15</option>
-         <option value="16">16</option>
-         <option value="17">17</option>
-         <option value="18">18</option>
-         <option value="19">19</option>
-         <option value="20">20</option>
-         <option value="21">21</option>
-         <option value="22">22</option>
-         <option value="23">23</option>
-         <option value="24">24</option>
-         <option value="25">25</option>
-         <option value="26">26</option>
-         <option value="27">27</option>
-         <option value="28">28</option>
-         <option value="29">29</option>
-         <option value="30">30</option>
-         <option value="31">31</option>
+  		<h6><label>생년월일<span id="red">(필수)</span><br>
+     		<input type="text" name="userbirth_yy" id="userbirth_yy" maxlength="4" placeholder="년(4자)" size="10" required style="height:30px">
+			<!-- 생년월일 월 -->
+      		<select name="userbirth_mm" >
+         		<option value="">월</option>
+         		<option value="01">1</option>
+         		<option value="02">2</option>
+         		<option value="03">3</option>
+         		<option value="04">4</option>
+         		<option value="05">5</option>
+         		<option value="06">6</option>
+         		<option value="07">7</option>
+         		<option value="08">8</option>
+         		<option value="09">9</option>
+         		<option value="10">10</option>
+         		<option value="11">11</option>
+         		<option value="12">12</option>   
+      		</select>
+			<!-- 생년월일 일 -->
+      		<select name="userbirth_dd" >
+        		<option value="">일</option>
+         		<option value="01">1</option>
+         		<option value="02">2</option>
+         		<option value="03">3</option>
+         		<option value="04">4</option>
+         		<option value="05">5</option>
+         		<option value="06">6</option>
+         		<option value="07">7</option>
+         		<option value="08">8</option>
+         		<option value="09">9</option>
+         		<option value="10">10</option>
+         		<option value="11">11</option>
+         		<option value="12">12</option>
+         		<option value="13">13</option>
+         		<option value="14">14</option>
+         		<option value="15">15</option>
+         		<option value="16">16</option>
+         		<option value="17">17</option>
+         		<option value="18">18</option>
+         		<option value="19">19</option>
+         		<option value="20">20</option>
+         		<option value="21">21</option>
+         		<option value="22">22</option>
+         		<option value="23">23</option>
+         		<option value="24">24</option>
+         		<option value="25">25</option>
+         		<option value="26">26</option>
+         		<option value="27">27</option>
+         		<option value="28">28</option>
+         		<option value="29">29</option>
+         		<option value="30">30</option>
+         		<option value="31">31</option>
 
-      </select>
-<!--      <input type="text" name="userbirth_dd" id="userbirth_dd" maxlength="2" placeholder="일" size="10" required style="height:30px"> -->
-     <div id="year_check"></div></label></h6>
+      		</select>
+     		<div id="year_check"></div></label></h6>
 
-   <h6><label >이메일<span id="red">(필수)</span><br>
-      <input type="email" placeholder="이메일" name="useremail" id="useremail" required style="height:30px; width: 380px"/>
-      <button type ="button" value="이메일인증" class="id_Button" onclick="email()">이메일인증</button>
-      
-      </label></h6>
-<!--     이메일인증 값 체크용 힐든 벨류  -->
+   		<h6><label >이메일<span id="red">(필수)</span><br>
+      		<input type="email" placeholder="이메일" name="useremail" id="useremail" required style="height:30px; width: 380px"/>
+      		<button type ="button" value="이메일인증" class="id_Button" onclick="email()">이메일인증</button>
+      		</label>
+      	</h6>
+		<!-- 이메일인증 값 체크용 힐든 벨류  -->
 	<input type="hidden" id="hiddenEmailCheck"/>
+  	
   	<div id="emailcheckbox">
-	<h6>이메일인증
-	<input type="text"  name="useremailcheck" id="useremailcheck" maxlength="4" style="height:30px; width: 200px" />
-	<button type ="button" class="id_Button" id="emailCheck" onclick="emailCheckFunc()">인증 확인</button>
-	<div id="email_check"></div>
-<!-- 	//이메일 인증 컨트롤러 -->
-<!-- 		//이메일 인증 하는 코드 -->
+		<h6>이메일인증
+			<input type="text"  name="useremailcheck" id="useremailcheck" maxlength="4" style="height:30px; width: 200px" />
+			<button type ="button" class="id_Button" id="emailCheck" onclick="emailCheckFunc()"><i class="far fa-check-circle"></i>인증 확인</button>
+			<div id="email_check"></div>
 	
-	</h6></div>
+		</h6>
+	</div>
 
 	<h6>주소<span id="red">(필수)</span>
 		
-	<div class="form-group">                   
-		<input class="form-control"  placeholder="우편번호" name="mem_oaddress" id="mem_oaddress" type="text" readonly="readonly" required style=" height:28px; width: 100px">
-    	<button type="button" class="btn-default" onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button>                               
-	</div>
+		<div class="form-group">                   
+			<input class="form-control"  placeholder="우편번호" name="mem_oaddress" id="mem_oaddress" type="text" readonly="readonly" required style=" height:28px; width: 100px">
+    		<button type="button" class="btn-default" onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button>                               
+		</div>
 
-	<div class="form-group">
-    	<input type="text" class="form-control"  placeholder="도로명 주소" name="mem_address" id="mem_address" required style="height:30px; width: 254px" readonly="readonly" />
-   	 	<input type="text" class="form-control" placeholder="상세주소" name="mem_detailaddress" id="mem_detailaddress" required style="height:30px; width: 230px"/>
-	</div>
+		<div class="form-group">
+    		<input type="text" class="form-control"  placeholder="도로명 주소" name="mem_address" id="mem_address" required style="height:30px; width: 254px" readonly="readonly" />
+   	 		<input type="text" class="form-control" placeholder="상세주소" name="mem_detailaddress" id="mem_detailaddress" required style="height:30px; width: 230px"/>
+		</div>
 	</h6>
 	
 	<hr>
-	<input type="submit" value="가입하기" class="singup" /><br>
-
-  
+	<input type="submit" value="가입하기" class="singup"/><br>
    </form>
 </div>
 </body>

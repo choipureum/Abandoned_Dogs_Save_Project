@@ -6,6 +6,8 @@
 <meta charset="UTF-8">
 <title>아이디찾기</title>
 
+<!--Alert 디자인 라이브러리 -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <!-- 자바스크립트 -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
@@ -25,9 +27,17 @@ function idFind(event){
 	
 	
 	if($("#username").val()==""){
-		alert("이름을 입력하세요");
+// 		alert("이름을 입력하세요");
+		swal({
+			title: "이름을 입력하세요!",
+			icon:"error"
+		});
 	} else if($("#useremail").val()==""){
-		alert("이메일을 입력하세요");
+// 		alert("이메일을 입력하세요");
+		swal({
+			title: "이메일을 입력하세요!",
+			icon:"error"
+		});
 	} 
 
 // 	//배열에 유저정보 삽입
@@ -68,17 +78,6 @@ function idFind(event){
 
 }
 </script>
-
-
-<!-- controller전달 하는 부분 -->
-
-
-
-
-
-<!-- 이름이ㅏㄹㅇ 이메일 보내서 -->
-
-
 
 <!-- css -->
 <style type="text/css">
@@ -154,30 +153,26 @@ select{
    <h5><span>아이디 </span>찾기</h5>
    <hr>
    
-<!--    비밀번호 확인 해주기  -->
-<!--    메인화면 으로 가야하지 않나..?-->
-   <form action="/id/find" method="post" id="myForm">
+<!-- 비밀번호 확인 해주기  -->
+<!-- 메인화면 으로 가야하지 않나..?-->
+	<form action="/id/find" method="post" id="myForm">
+   		<h6><label>이름<span id="red">(필수)</span>
+     		<input type="text" placeholder="이름" name="username" id="username" required style="height:30px; width: 495px"/></label>
+      		<div id="name_check"></div>
+      	</h6>
 
-  
-   <h6><label>이름<span id="red">(필수)</span>
-      <input type="text" placeholder="이름" name="username" id="username" required style="height:30px; width: 495px"/></label>
-      <div id="name_check"></div></h6>
-
-   <h6><label >이메일<span id="red">(필수)</span><br>
-      <input type="email" placeholder="이메일" name="useremail" id="useremail" required style="height:30px; width: 495px"/></label>
+   		<h6><label >이메일<span id="red">(필수)</span><br>
+      		<input type="email" placeholder="이메일" name="useremail" id="useremail" required style="height:30px; width: 495px"/></label>
+		</h6>
 	
-	</h6>
-
-	
-	
-<!-- 	아이디찾기 로그인 버튼 -->
-	<hr>
-	<button type="button" value="아이디 찾기" id="findid" onclick="idFind()" value="아이디찾기">아이디찾기</button>
-	<button type="button" value="로그인" id="login" onclick="location.href='/login/login'" value="로그인">로그인</button>
-	<hr>
-<!-- 	찾은아이디 반환넣어줄 -->
-  	<div id="id_find"></div>
-  	<br><br>
+	<!-- 아이디찾기 로그인 버튼 -->
+		<hr>
+			<button type="button" value="아이디 찾기" id="findid" onclick="idFind()" value="아이디찾기">아이디찾기</button>
+			<button type="button" value="로그인" id="login" onclick="location.href='/login/login'" value="로그인">로그인</button>
+		<hr>
+	<!-- 찾은아이디 반환넣어줄 -->
+  		<div id="id_find"></div>
+  		<br><br>
    </form>
 </div>
 </body>

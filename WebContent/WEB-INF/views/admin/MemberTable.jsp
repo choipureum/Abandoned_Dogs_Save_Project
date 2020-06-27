@@ -8,16 +8,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri ="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri ="http://java.sun.com/jsp/jstl/fmt" %> 
-<%List<MemberDTO>all =(List)request.getAttribute("memberAll"); %> 
-<%Paging paging =(Paging)request.getAttribute("paging"); %>
-<%List<MemberDTO> m = (List) request.getAttribute("memberlist"); %>
-<% int membercnt= (int)request.getAttribute("membercnt"); %> 
+
 
 <style>
 /*테이블 한행 호버효과*/
 tr.member_row:hover {background: #FAFAD2;}
 input[type="checkbox"]{width: 20px;height: 20px;cursor: pointer;}
-
 </style>
 	<!-- 헤더 임포트 -->
 		<c:import url="/WEB-INF/views/admin/util/Header.jsp"></c:import>
@@ -42,11 +38,12 @@ input[type="checkbox"]{width: 20px;height: 20px;cursor: pointer;}
            <!-- 삭제 버튼 -->
           <a  class='btn btn-warning btn-icon-split' href="#" onclick='chk_delete();'><span class='icon text-white-50'><i class='fas fa-user-minus'></i></span>
           <span class='text'style='color:white'>선택회원 삭제</span></a><br><br>
-          
+         
+        
           <!-- 테이블 -->
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-               
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">              
+               		
                   <thead>                   
                     <tr>
                       <th>
@@ -61,13 +58,13 @@ input[type="checkbox"]{width: 20px;height: 20px;cursor: pointer;}
                     </tr>
                   </thead>
                	  <tbody>               	  	           
-      				<% int cnt=0; %>           	  	           
-      					<c:forEach items="${memberlist }" var="m">
-      					 <% cnt++; %>
+      					  <% int cnt=0; %>
+      					<c:forEach items="${memberAll }" var="m">  
+      					<% cnt++; %>    					
 			            <tr class="member_row" onclick="location.href='/admin/memberView?userid=${m.userid}'">									           
 			            	<td onclick='event.cancelBubble=true;'> 
-			            		<div style="padding:0 0 0 9px">               	
-			           			<input type="checkbox" id="member_chk" class="member_chk"  data-memberid="${m.userid }" data-memberEmail="${m.useremail }" />           	                                                			
+			            		<div style="padding:0 0 0 4px">               	
+			           			<input type="checkbox" id="member_chk" class="member_chk" data-memberid="${m.userid }" data-memberEmail="${m.useremail }" />           	                                                			
 								</div></td> 
 			                <td>${m.userid }</td>			                
 			               	<td>${m.username }</td>	
@@ -79,13 +76,13 @@ input[type="checkbox"]{width: 20px;height: 20px;cursor: pointer;}
 			            </c:forEach>      
                	  </tbody> 
                	  <tfoot>
-					    <tr>				    
+               	   		<tr>				    
 					        <th colspan="2" style="text-align:right;white-space:nowrap;">TOTAL : </th>
-					        <th colspan="6" style="text-align:left;white-space:nowrap;"><%=cnt%> 명</th>					    
-					      			        
-					    </tr>
-					</tfoot>
-               	                           	  	  
+					        <th colspan="5" style="text-align:left;white-space:nowrap;"> <%=cnt %> &nbsp;명</th>
+					  </tr>             	  
+               	  </tfoot>
+               	 
+              	                           	  	  
                 </table>
                 <!-- 메일 보내기 폼 메소드(히든) --> 
 				<form id="MailPostForm" action="/resources/js/AdminMailForm.jsp" method="post" target="MailForm">
@@ -94,7 +91,6 @@ input[type="checkbox"]{width: 20px;height: 20px;cursor: pointer;}
           
               </div>
             </div>
-           <!-- 페이지 위치 출력,-->
          	
           </div>
 
@@ -123,52 +119,63 @@ input[type="checkbox"]{width: 20px;height: 20px;cursor: pointer;}
  
 </body>
 <script type="text/javascript">
+
 $(document).ready(function(){
 	  //멤버 전체선택
 	  $("#member_chk_All").click(function(){
 		  $(".member_chk").prop("checked",this.checked);
 	  });	  
 	  //데이터 테이블 기능구현
-	 $('#dataTable').DataTable(			
-		{
-		  "language": {
-		        "emptyTable": "데이터가 존재하지 않습니다.",
-		        "lengthMenu": "페이지당 _MENU_ 개씩 보기",
-		        "info": "현재 _START_ - _END_ / _TOTAL_건",
-		        "infoEmpty": "데이터 없음",
-		        "infoFiltered": "( _MAX_건의 데이터에서 필터링됨 )",
-		        "search": "검색: ",
-		        "zeroRecords": "일치하는 데이터가 없어요.",
-		        "loadingRecords": "로딩중...",
-		        "processing":     "잠시만 기다려 주세요...",
-		        "paginate": {
-		            "next": "다음",
-		            "previous": "이전"
-		        }
-		    }, "lengthChange" : true,
-		    	"paging" : true,
-		    	"info":true
+		 $('#dataTable').DataTable(			
+			{
+			  "language": {
+			        "emptyTable": "데이터가 존재하지 않습니다.",
+			        "lengthMenu": "페이지당 _MENU_ 개씩 보기",
+			        "info": "현재 _START_ - _END_ / _TOTAL_건",
+			        "infoEmpty": "데이터 없음",
+			        "infoFiltered": "( _MAX_건의 데이터에서 필터링됨 )",
+			        "search": "검색: ",
+			        "zeroRecords": "일치하는 데이터가 없어요.",
+			        "loadingRecords": "로딩중...",
+			        "processing":     "잠시만 기다려 주세요...",
+			        "paginate": {
+			            "next": "다음",
+			            "previous": "이전"
+			        }
+			    }, "lengthChange" : true,
+			    	"paging" : true,
+			    	"info":true
 
-	    });
+		    });	  	
+	});<%--document.ready End --%>
+   
 
-	  	//상단 버튼 삽입
-		//삭제버튼
-	  	$('#dataTable_filter').
-		prepend("<button class='member_delete' onclick='chk_delete();'style='border:0;outline:0'><a  class='btn btn-warning btn-icon-split'><span class='icon text-white-50'><i class='fas fa-user-minus'></i></span><span class='text'style='color:white'>선택회원 삭제</span></a></button>");
-	  
-	    });<%--document.ready End --%>
-	    
-
-	   
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	  //전체선택 
 	  function chk_All(){	
 		  $(".member_chk_All").click(function(){
 			  $(".member_chk").prop("checked",this.checked);
 		  });		  	
 	  }
-
-
 	  
 	  //체크메일보내기(삭제)
 	  function chk_sendmail(){		 
@@ -179,17 +186,23 @@ $(document).ready(function(){
 				
 			}).then((Yes)=> {		
 		  //한명 선택 했다면 정상 코드시행
-		 
+		 	if(Yes){
 				  //여러명일때 불가
 				  if($("input[class='member_chk']:checked").length>1 ){
-					  alert("다중선택 불가");
+					  swal({
+							icon:"error",
+							text: "여러명에게 메일 보내기 불가입니다"
+						})
 					  // 선택 모두 해제
 					  chk_All_Del();
 					  return;
 				  };
 				  //없을때 불가
 				  if($("input[class='member_chk']:checked").length==0){
-					  alert("회원을 선택해주세요!");
+					  swal({
+							icon:"error",
+							text: "회원을 선택해주세요!"
+						})
 					  return;
 				  }
 				  var Email=  $("input[class='member_chk']:checked").attr("data-memberEmail");
@@ -200,6 +213,7 @@ $(document).ready(function(){
 				  f.Email.value= Email;	
 				  f.target="MailForm";
 				  f.submit();	   
+		  } 
 		  });
 	  };  
 	  //선택회원 삭제(삭제)
@@ -211,6 +225,7 @@ $(document).ready(function(){
 					
 				}).then((Yes)=> {				
 					if(Yes){
+						
 						var checkArr = new Array();
 						 
 						 $("input[class='member_chk']:checked").each(function(){

@@ -1,7 +1,12 @@
 package user.member.dao.face;
 
 
+import java.util.List;
+
+import user.dog.dto.UserLike;
+import user.member.dto.MemberAddDTO;
 import user.member.dto.MemberDTO;
+import util.Paging;
 
 public interface MemberDao {
 
@@ -67,11 +72,82 @@ public interface MemberDao {
    */
    public void changpassword(String userpw, String userid);
 
+   /*
+    *페이징 객체를 생성하기 위한 게시물의 총수를 반환하는 메소드  
+    * 
+    * 
+    * */
+   public int selectCntAll();
+   
+   
+   
+   /**
+	 * 페이징 대상 게시글 목록 조회
+	 * 
+	 * @param Paging - 페이징 정보
+	 * @return List - 조회된 게시글 목록
+	 */
+	public List<MemberAddDTO> selectAll(Paging paging);
 
-
-
- 
+   /**
+    * 전체 조회 - 마이페이지
+    * @param member
+    * @return
+    */
+   public MemberDTO selectInfoAllByUserid(MemberDTO member);
 
    
+   /**
+    * useridㅡ를 통해서 정보 업데이트
+    * @param member
+ * @return 
+    */
+   public int modifyMypage(MemberDTO member);
+
+   /**
+    * userid 를 이용해서 멤버 삭제
+    * @param userid
+    */
+   public void memberDelete(String userid);
+
+<<<<<<< HEAD
+   /**
+    * 
+    * 
+    * 
+    * @param member
+    * @return
+    */
+   public int modifyMypageNotAdd(MemberDTO member);
+
+=======
+<<<<<<< HEAD
+ 
+=======
+   
+   /*
+    *리스트.jsp에서 체크된 리스트의 dog 파일을 삭제하는 기능 
+    */
+   public void deleteMemberFileList(String names);
+   
+   
+   
+   /*
+    * 
+    * 리스트.jsp에서 체크된 리스트의 dog리스트를 삭제하는 기능 
+    * 
+    * */
+   public void deleteMemberList(String names);
+   
+   
+   
+   /*
+    * 리스트.jsp에서 체크된 리스트의 userlike를 삭제하는 기능 
+    */
+   public void deleteUserlikeList(String names);
+>>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
+   
+   
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
    
 }

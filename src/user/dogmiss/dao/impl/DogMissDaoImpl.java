@@ -253,34 +253,95 @@ public class DogMissDaoImpl implements DogMissDao {
 		//DB연결 객체
 		conn = JDBCTemplate.getConnection();
 		
-		//SQL 작성
-		String sql = "select * from"; 
-		sql += "(SELECT * FROM (SELECT rownum rnum, B.* FROM (SELECT missno, missname, misskind, missgender, missdate, missimg, missloc, misstitle, misscontent, misswriter, misshit";
-		sql += "		FROM dog_miss WHERE misskind LIKE '%'||?||'%'";
-		sql += "		ORDER BY missno DESC";
-		sql += "	) B";
-		sql += "    ) BOARD";
-		sql += "    WHERE rnum BETWEEN ? AND ?) A ,";
-		sql += "   (SELECT";
-		sql += "   missno, miss_fileno, miss_org_file_name, miss_stored_file_name, miss_file_size, miss_del_gb";
-		sql += "   FROM (" ;
-		sql += "   SELECT DMF.* ,row_number() over( partition by missno order by miss_fileno desc ) od  FROM dog_miss_file DMF ";
-		sql +="    )R WHERE od = 1) B";
-		sql +="    where A.missno = B.missno ";
+		//기존의 SQL 작성
+//		String sql = "select * from"; 
+//		sql += "(SELECT * FROM (SELECT rownum rnum, B.* FROM (SELECT missno, missname, misskind, missgender, missdate, missimg, missloc, misstitle, misscontent, misswriter, misshit";
+//		sql += "		FROM dog_miss WHERE misskind LIKE '%'||?||'%'";
+//		sql += "		ORDER BY missno DESC";
+//		sql += "	) B";
+//		sql += "    ) BOARD";
+//		sql += "    WHERE rnum BETWEEN ? AND ?) A ,";
+//		sql += "   (SELECT";
+//		sql += "   missno, miss_fileno, miss_org_file_name, miss_stored_file_name, miss_file_size, miss_del_gb";
+//		sql += "   FROM (" ;
+//		sql += "   SELECT DMF.* ,row_number() over( partition by missno order by miss_fileno desc ) od  FROM dog_miss_file DMF ";
+//		sql +="    )R WHERE od = 1) B";
+//		sql +="    where A.missno = B.missno ";
+		
+		
+		
+		//이 sql문을 3개를 작성해야 한다 
+		//첫번째 sql문은 제목으로 검색하는 sql문이다 //궁금한건 검색을 누르지 않았을 때 첫번째 ?에 아무것도 들어가지 않는데 어떻게 sql구문이 실행이 되는걸까?
+		//만약 paging.getvalue가 1이라면 실행 
+
+
+		
+//		String sql1 = "select * from"; 
+//		sql1 += "(SELECT * FROM (SELECT rownum rnum, B.* FROM (SELECT missno, missname, misskind, missgender, missdate, missimg, missloc, misstitle, misscontent, misswriter, misshit";
+//		sql1 += "		FROM dog_miss WHERE misstitle LIKE '%'||?||'%'";
+//		sql1 += "		ORDER BY missno DESC";
+//		sql1 += "	) B";
+//		sql1 += "    ) BOARD";
+//		sql1 += "    WHERE rnum BETWEEN ? AND ?) A ,";
+//		sql1 += "   (SELECT";
+//		sql1 += "   missno, miss_fileno, miss_org_file_name, miss_stored_file_name, miss_file_size, miss_del_gb";
+//		sql1 += "   FROM (" ;
+//		sql1 += "   SELECT DMF.* ,row_number() over( partition by missno order by miss_fileno desc ) od  FROM dog_miss_file DMF ";
+//		sql1 +="    )R WHERE od = 1) B";
+//		sql1 +="    where A.missno = B.missno ";
+//		
+		
+		
+		//두번째 sql 구문이다
+		//두번째 sql 구문은 견종으로 검색하는 구문이다 
+//		String sql2 = "select * from"; 
+//		sql2 += "(SELECT * FROM (SELECT rownum rnum, B.* FROM (SELECT missno, missname, misskind, missgender, missdate, missimg, missloc, misstitle, misscontent, misswriter, misshit";
+//		sql2 += "		FROM dog_miss WHERE misskind LIKE '%'||?||'%'";
+//		sql2 += "		ORDER BY missno DESC";
+//		sql2 += "	) B";
+//		sql2 += "    ) BOARD";
+//		sql2 += "    WHERE rnum BETWEEN ? AND ?) A ,";
+//		sql2 += "   (SELECT";
+//		sql2 += "   missno, miss_fileno, miss_org_file_name, miss_stored_file_name, miss_file_size, miss_del_gb";
+//		sql2 += "   FROM (" ;
+//		sql2 += "   SELECT DMF.* ,row_number() over( partition by missno order by miss_fileno desc ) od  FROM dog_miss_file DMF ";
+//		sql2 +="    )R WHERE od = 1) B";
+//		sql2 +="    where A.missno = B.missno ";
+		
+
+		
+		
+				//세번째 sql 구문이다
+				//세번째 sql 구문은 잃어버린 장소로 검색하는 구문이다 
+//				String sql3 = "select * from"; 
+//				sql3 += "(SELECT * FROM (SELECT rownum rnum, B.* FROM (SELECT missno, missname, misskind, missgender, missdate, missimg, missloc, misstitle, misscontent, misswriter, misshit";
+//				sql3 += "		FROM dog_miss WHERE missloc LIKE '%'||?||'%'";
+//				sql3 += "		ORDER BY missno DESC";
+//				sql3 += "	) B";
+//				sql3 += "    ) BOARD";
+//				sql3 += "    WHERE rnum BETWEEN ? AND ?) A ,";
+//				sql3 += "   (SELECT";
+//				sql3 += "   missno, miss_fileno, miss_org_file_name, miss_stored_file_name, miss_file_size, miss_del_gb";
+//				sql3 += "   FROM (" ;
+//				sql3 += "   SELECT DMF.* ,row_number() over( partition by missno order by miss_fileno desc ) od  FROM dog_miss_file DMF ";
+//				sql3 +="    )R WHERE od = 1) B";
+//				sql3 +="    where A.missno = B.missno ";
+		
+		
+		
+		
+				
+				
+				
+				
+				
+				//value값을 저장해놔야 하네 그래야지 그 값을 가지고 검색이 가능하겠네 
 		
 		
 		
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 //		String sql = "";
 //		sql += "SELECT * FROM (";
 //		sql += "    SELECT rownum rnum, B.* FROM (";
@@ -327,24 +388,168 @@ public class DogMissDaoImpl implements DogMissDao {
 //	) R
 //	WHERE od = 1;
 //		
+//				
+//						String sql = "";
+//						sql += "  SELECT * FROM "; 
+//						sql += "  (SELECT rownum rnum, c.* FROM "; 
+//						sql += "  (SELECT * FROM ";
+//						sql += "  (SELECT missno, missname, misskind, missgender, missdate, missimg, missloc, misstitle, misscontent, misswriter, misshit";
+//						sql += "  FROM dog_miss";
+//						sql += "  WHERE 1=1";
+//
+//						if(paging.getValue() ==1 ) {
+//						sql += "		AND misstitle LIKE ?";
+//						} else if(paging.getValue() ==2 ) {
+//						sql += "		AND misskind LIKE ?";
+//						} else if(paging.getValue() ==3 ) {
+//						sql += "		AND missloc LIKE ?";
+//						}
+//						sql += "		ORDER BY missno DESC";
+//						sql += "	    ) A ,";
+//						sql += "       (SELECT";
+//						sql += "       missno, miss_fileno, miss_org_file_name, miss_stored_file_name, miss_file_size, miss_del_gb";
+//						sql += "       FROM (" ;
+//						sql += "       SELECT DMF.* ,row_number() over( partition by missno order by miss_fileno desc ) od  FROM dog_miss_file DMF ";
+//						sql += "       )R WHERE od = 1) B";
+//						sql += "       where A.missno = B.missno) c )";
+//						sql += "       WHERE rnum BETWEEN ? AND ? ";
+				
+				
+//						String sql = "";
+//						sql += "SELECT * FROM (";
+//						sql += "	SELECT rownum rnum, B.* FROM (";
+//						sql += "		SELECT";
+//						sql += "			boardno, title, id";
+//						sql += "			, content, hit, writtendate";
+//						sql += "		FROM board";
+//						sql += "		ORDER BY boardno DESC";
+//						sql += "	) B";
+//						sql += " ) BOARD";
+//						sql += " WHERE rnum BETWEEN ? AND ?";
+////				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+//				String sql = "";
+//				sql += "select * from"; 
+//				sql += "(SELECT * FROM (SELECT rownum rnum, B.* FROM (SELECT missno, missname, misskind, missgender, missdate, missimg, missloc, misstitle, misscontent, misswriter, misshit";
+//				sql += "		FROM dog_miss";
+//				sql += "		WHERE 1=1";
+//
+//				if(paging.getValue() ==1 ) {
+//				sql += "		AND misstitle LIKE ?";
+//				} else if(paging.getValue() ==2 ) {
+//				sql += "		AND misskind LIKE ?";
+//				} else if(paging.getValue() ==3 ) {
+//				sql += "		AND missloc LIKE ?";
+//				}
+//				sql += "		ORDER BY missno DESC";
+//				sql += "	) B";
+//				sql += "    ) BOARD";
+//				sql += "    WHERE rnum BETWEEN ? AND ?) A ,";
+//				sql += "   (SELECT";
+//				sql += "   missno, miss_fileno, miss_org_file_name, miss_stored_file_name, miss_file_size, miss_del_gb";
+//				sql += "   FROM (" ;
+//				sql += "   SELECT DMF.* ,row_number() over( partition by missno order by miss_fileno desc ) od  FROM dog_miss_file DMF ";
+//				sql +="    )R WHERE od = 1) B";
+//				sql +="    where A.missno = B.missno ";
 		
 		
 		
 		
+				
+				
+				
+				
+				
+				
+				
+		//-------------------------------------------------
 		
 		
-		
+		String sql = "";
+		sql += "select * from"; 
+		sql += "(SELECT * FROM (SELECT rownum rnum, B.* FROM (SELECT missno, missname, misskind, missgender, missdate, missimg, missloc, misstitle, misscontent, misswriter, misshit";
+		sql += "		FROM dog_miss";
+		sql += "		WHERE 1=1";
+
+		if(paging.getValue() ==1 ) {
+		sql += "		AND misstitle LIKE ?";
+		} else if(paging.getValue() ==2 ) {
+		sql += "		AND misskind LIKE ?";
+		} else if(paging.getValue() ==3 ) {
+		sql += "		AND missloc LIKE ?";
+		}
+		sql += "		ORDER BY missno DESC";
+		sql += "	) B";
+		sql += "    ) BOARD";
+		sql += "    WHERE rnum BETWEEN ? AND ?) A ,";
+		sql += "   (SELECT";
+		sql += "   missno, miss_fileno, miss_org_file_name, miss_stored_file_name, miss_file_size, miss_del_gb";
+		sql += "   FROM (" ;
+		sql += "   SELECT DMF.* ,row_number() over( partition by missno order by miss_fileno desc ) od  FROM dog_miss_file DMF ";
+		sql +="    )R WHERE od = 1) B";
+		sql +="    where A.missno = B.missno ";
+
 		//결과 저장할 List
 		List<DogMissAdd> missList = new ArrayList<>();
 		
+		int index = 1;
 		try {
 			ps = conn.prepareStatement(sql); //SQL수행 객체
 			
-			ps.setString(1, paging.getSearch());
-			ps.setInt(2, paging.getStartNo());
-			ps.setInt(3, paging.getEndNo());
-			
+			if(paging.getValue() == 1 || paging.getValue() == 2 || paging.getValue() == 3) {
+				ps.setString(index++, "%" + paging.getSearch() + "%");
+			} 
+
+			ps.setInt(index++, paging.getStartNo());
+			ps.setInt(index++, paging.getEndNo());
+
 			rs = ps.executeQuery(); //SQL 수행 및 결과집합 저장
+
+			
+//			if(paging.getValue() ==1 ) {
+//				ps = conn.prepareStatement(sql1); //SQL수행 객체
+//				
+//				ps.setString(1, paging.getSearch());
+//				ps.setInt(2, paging.getStartNo());
+//				ps.setInt(3, paging.getEndNo());
+//				
+//				rs = ps.executeQuery(); //SQL 수행 및 결과집합 저장
+//			}else if(paging.getValue() ==2) {
+//				ps = conn.prepareStatement(sql2); //SQL수행 객체
+//				
+//				ps.setString(1, paging.getSearch());
+//				ps.setInt(2, paging.getStartNo());
+//				ps.setInt(3, paging.getEndNo());
+//				
+//			}else if(paging.getValue() ==3) {
+//				ps = conn.prepareStatement(sql3); //SQL수행 객체
+//				
+//				ps.setString(1, paging.getSearch());
+//				ps.setInt(2, paging.getStartNo());
+//				ps.setInt(3, paging.getEndNo());
+//				
+//			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			//조회 결과 처리
 			while(rs.next()) {
@@ -852,34 +1057,108 @@ public class DogMissDaoImpl implements DogMissDao {
 //			return null;
 //		};
 //	
-		public int selectCntAll(String search) {
+	  //public int selectCntAll(String search) //기존의 검색을 위한 매개변수 값	
+	  //검색어에 따라서 paging의 totlacount를 만들기 위해서 전달 받은 값이다 
+	  //search값은 내가 검색창에 검색한 겂이고 search2는 value값이다 
+		public int selectCntAll(String search, int search2) {
 			
 			conn =JDBCTemplate.getConnection(); //DB 연결
 			
-			//수행할 SQL
-			String sql = "";
-			sql += "SELECT ";
-			sql += "	count(*)";
-			sql += " FROM dog_miss";
-			sql += " WHERE misskind LIKE '%'||?||'%'";
+			// 기존의 수행할 SQL
+			//String sql = "";
+			//sql += "SELECT ";
+			//sql += "	count(*)";
+			//sql += " FROM dog_miss";
+			//sql += " WHERE misskind LIKE '%'||?||'%'";
+			
+			
+			//parameter로 받아들인 value값에 대한 검색어를 찾기위해서  sql문을 3개 만들어야 한다 
+			//1번 sql문 //value값이 제목이다 
+			
+			String sql1 = "";
+			sql1 += "SELECT ";
+			sql1 += "	count(*)";
+			sql1 += " FROM dog_miss";
+			sql1 += " WHERE misstitle LIKE '%'||?||'%'";
+			
+			
+			
+			//2번 sql문 // value값이 견종이다 
+			String sql2 = "";
+			sql2 += "SELECT ";
+			sql2 += "	count(*)";
+			sql2 += " FROM dog_miss";
+			sql2 += " WHERE misskind LIKE '%'||?||'%'";
+			
+			
+			//3번 sql문 // value값이 장소이다 
+			String sql3 = "";
+			sql3 += "SELECT ";
+			sql3 += "	count(*)";
+			sql3 += " FROM dog_miss";
+			sql3 += " WHERE missloc LIKE '%'||?||'%'";
+			
+			
 
-			//최종 결과 변수
+			
+			
+			
+			
+			
+			
+			
+			
+			String sql = "";
+			sql += "SELECT count(*) FROM dog_miss";
+			sql += " WHERE 1=1";
+			if(search2 ==1 ) {
+			sql += "		AND misstitle LIKE ?";
+			} else if(search2 ==2 ) {
+			sql += "		AND misskind LIKE ?";
+			} else if(search2 ==3 ) {
+			sql += "		AND missloc LIKE ?";
+			}
+
+
 			int cnt = 0;
 			
 			try {
-				//SQL 수행 객체
+				
 				ps = conn.prepareStatement(sql);
+				if( search2 == 1 || search2 == 2 || search2 == 3 ) {
+				ps.setString(1, "%" + search + "%");
+				}
 				
 				
-				//?에 검색어 저장 
-				ps.setString(1, search);
+				
+//			      if (search2 == 1) {
+//			         ps = conn.prepareStatement(sql1);
+//			         ps.setString(1, "%" + search + "%");
+//			      } else if (search2 == 2) {
+//			         ps = conn.prepareStatement(sql2);
+//			         ps.setString(1, "%" + search + "%");
+//			      } else if (search2 == 3) {
+//			         ps = conn.prepareStatement(sql3);
+//			         ps.setString(1, "%" + search + "%");
+//			         
+//			      }
+				
+				
+			    //SQL 수행 객체
+				//ps = conn.prepareStatement(sql);
+				
+				
+				//?에 검색어 적용
+				//ps.setString(1, search);
 
 				//SQL 수행 및 결과 저장
 				rs = ps.executeQuery();
 				
 				//SQL 수행 결과 처리
 				while( rs.next() ) {
-					cnt = rs.getInt(1);
+					
+					
+				cnt = rs.getInt(1);
 				}
 				
 			} catch (SQLException e) {
@@ -893,7 +1172,7 @@ public class DogMissDaoImpl implements DogMissDao {
 				}
 			}
 			
-			//최종 결과 반환//검색어가 들어간 것의 수를 반환 
+			//최종 결과 반환//검색어가 들어간 것의 수를 반환 //totalcount를 새기 위해서 반환하는 값이다 
 			return cnt;
 		}
 

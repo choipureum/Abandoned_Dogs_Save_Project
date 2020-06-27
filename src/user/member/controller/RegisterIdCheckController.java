@@ -31,8 +31,6 @@ public class RegisterIdCheckController extends HttpServlet {
 		String userid=req.getParameter("userid");
 
 		resp.getWriter().write(memberService.registerCheck(userid)+"");
-
-		System.out.println(userid);
 	
 	}
 }

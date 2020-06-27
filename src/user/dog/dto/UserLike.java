@@ -8,6 +8,17 @@ public class UserLike {
 	private String adoptsw;
 	private int applysw;
 	private int dogno;
+<<<<<<< HEAD
+=======
+	
+	
+	public int getApplysw() {
+		return applysw;
+	}
+	public void setApplysw(int applysw) {
+		this.applysw = applysw;
+	}
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 	public String getUserid() {
 		return userid;
 	}

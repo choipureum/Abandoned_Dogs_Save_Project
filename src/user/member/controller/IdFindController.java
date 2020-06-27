@@ -31,8 +31,6 @@ public class IdFindController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 
-		
-		
 		String username = req.getParameter("username");
 		String useremail = req.getParameter("useremail");
 		

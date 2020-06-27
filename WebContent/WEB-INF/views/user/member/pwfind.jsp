@@ -5,6 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>비밀번호 찾기</title>
+<!--Alert 디자인 라이브러리 -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 
 
 <!-- 자바스크립트 -->
@@ -37,17 +40,32 @@ function pwFind(event){
 	
 	
 	if($("#username").val()==""){
-		alert("이름을 입력하세요");
+// 		alert("이름을 입력하세요!");
+		swal({
+			title: "이름을 입력하세요!",
+			icon:"error"
+		});
 		return false;
 		
 	}else if($("#userid").val()==""){
-		alert("아이디를 입력하세요!")
+// 		alert("아이디를 입력하세요!")
+		swal({
+			title: "아이디를 입력하세요!",
+			icon:"error"
+		});
 		return false;
 	} else if($("#useremail").val()==""){
-		alert("이메일을 입력하세요");
+// 		alert("이메일을 입력하세요!");
+		swal({
+			title: "이메일을 입력하세요!",
+			icon:"error"
+		});
 		return false;
 	} else if(!($("#hiddenEmailCheck").val()=="ok")){
-		alert("이메일인증버튼을 눌러주세요!");
+		swal({
+			title: "이메일 인증을 해주세요!",
+			icon:"error"
+		});
 		return false;
 	}
 	
@@ -75,7 +93,10 @@ function pwFind(event){
 				location.href="/change/pw?userid="+userid;				
 			}
 			else{
-				alert("회원의 정보가 존재하지 않습니다!");
+				swal({
+					title: "회원의 정보가 존재하지 않습니다!",
+					icon:"error"
+				});
 			}
 
 		}
@@ -105,8 +126,14 @@ function email(){
 //			파라미터 변수 이름 값(사용자아이디값)
 		data : {"useremail" : useremail},
 		success : function(random){			
-			alert("이메일을 보냈습니다"+random);
-			ran=random;		
+// 			alert("이메일을 보냈습니다"+random);
+// 			ran=random;	
+			swal({
+				icon:"success",
+				title: "이메일을 보냈습니다",
+			});
+			
+			ran=random;
 		}
 	});	
 };
@@ -202,27 +229,31 @@ select{
    
 <!--    비밀번호 확인 해주기  -->
 <!--    메인화면 으로 가야하지 않나..?-->
-   <form action="/pw/find" method="post" id="myForm">
+	<form action="/pw/find" method="post" id="myForm">
   
-   <h6><label>이름<span id="red">(필수)</span>
-      <input type="text" placeholder="이름" name="username" id="username" required style="height:30px; width: 495px"/></label>
-     </h6>
+	<h6><label>이름<span id="red">(필수)</span>
+    	<input type="text" placeholder="이름" name="username" id="username" required style="height:30px; width: 495px"/></label>
+    </h6>
       
-      <h6><label >아이디<span id="red">(필수)</span>
-      <input type="email" placeholder="아이디" name="userid" id="userid" required style="height:30px; width: 495px"/></label></h6>
+    <h6><label >아이디<span id="red">(필수)</span>
+    	<input type="email" placeholder="아이디" name="userid" id="userid" required style="height:30px; width: 495px"/></label>
+    </h6>
       
-   <h6><label >이메일<span id="red">(필수)</span><br>
-      <input type="email" placeholder="이메일" name="useremail" id="useremail" required style="height:30px; width: 380px"/>
-	  <button type ="button" value="이메일인증" class="id_Button" onclick="email()">이메일인증</button></label></h6>
+   	<h6><label >이메일<span id="red">(필수)</span><br>
+    	<input type="email" placeholder="이메일" name="useremail" id="useremail" required style="height:30px; width: 380px"/>
+	  	<button type ="button" value="이메일인증" class="id_Button" onclick="email()">이메일인증</button></label>
+	</h6>
 
   	<div id="emailcheckbox">
-	<h6>이메일인증
-	<input type="text"  name="useremailcheck" id="useremailcheck" maxlength="4" style="height:30px; width: 200px" />
-	<button type ="button" class="id_Button" id="emailCheck" onclick="emailCheckFunc()">인증 확인</button>
-	<div id="email_check"></div></h6></div>
+		<h6>이메일인증
+			<input type="text"  name="useremailcheck" id="useremailcheck" maxlength="4" style="height:30px; width: 200px" />
+			<button type ="button" class="id_Button" id="emailCheck" onclick="emailCheckFunc()">인증 확인</button>
+			<div id="email_check"></div>
+		</h6>
+	</div>
 	  
-
 	<hr>
+	
 	<input type="hidden" id="hiddenEmailCheck"/>
 	<button type="button" value="비밀번호찾기" id="findpw" onclick="pwFind()" >비밀번호찾기</button>
 	<button type="button" value="로그인" id="login" onclick="location.href='/login/login'" value="로그인">로그인</button>

@@ -5,6 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>비밀번호 찾기</title>
+
+<!--Alert 디자인 라이브러리 -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 <!-- 자바스크립트 -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 
@@ -53,6 +57,37 @@ function pwChangeFunc(){
 	
 	var userid="${param.userid}";
 	var userpw=$("#userpw").val();
+	var userpw_ck=$("#userpw_ck").val();
+	//#userpassword 검증
+	var upwReg = /^[A-Za-z0-9]{6,18}$/;
+	
+	
+	if($("#userpw").val() != $("#userpw_ck").val()){
+		swal({
+			title: "비밀번호를 확인해주세요!!",
+			icon:"error"
+		});
+		
+		return false;
+	} 
+	else if($("#userpw").val() == ""){
+		swal({
+			title: "비밀번호를 확인해주세요!!",
+			icon:"error"
+		});
+		return false;
+	}
+	
+// 	비밀번호 정규
+	if(!upwReg.test($("#userpw").val())){
+		swal({
+			title: "비밀번호는 6에서 18자리 소문자, 숫자!",
+			icon:"error"
+		});
+
+	    return false;
+	}
+	
 	
 	$.ajax({
 		type:'POST',
@@ -61,9 +96,17 @@ function pwChangeFunc(){
 			"userid":userid
 			, "userpw":userpw
 		},
-		success:function(res){
-			alert("비밀번호 변경이 완료되었습니다!")
+		success:function(res){			
+// 	if문
+			alert("비밀번호 변경이 완료되었습니다!");
+			
+// 			swal({
+// 				title: "비밀번호 변경이 완료되었습니다!",
+// 				icon:"success"
+// 			});
+// 			req.getRequestDis
 			location.href="/login/login";
+			
 		}
 		
 	})

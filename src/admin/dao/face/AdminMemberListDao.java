@@ -7,8 +7,12 @@ import java.util.List;
 import admin.dao.impl.AdminMemberListDaoImpl;
 import admin.dto.DogClaimDTO;
 import user.dog.dto.DogDTO;
+import user.dog.dto.Dog_Data;
 import user.dog.dto.Dog_File_DTO;
+import user.dog.dto.UserLike;
+import user.dogmiss.dto.DogMissAdd;
 import user.member.dto.MemberDTO;
+import user.qna.dto.QNA;
 import util.Paging;
 public interface AdminMemberListDao {
 	
@@ -100,7 +104,7 @@ public interface AdminMemberListDao {
 	  * 개 입양신청 목록 조회
 	  * @return List<DogClaimDTO> - 개 입양신청
 	  */
-	 public List<DogClaimDTO> dogClaimSelectAll(HashMap<String,Object> listOpt,Paging paging); 
+	 public List<DogClaimDTO> dogClaimSelectAll(); 
 	 
 	 /**
 	  * 입양신청 총 갯수 조회, 페이징에 사용
@@ -193,5 +197,87 @@ public interface AdminMemberListDao {
 	   * @return
 	   */
 	  public int dognoBydogClaim(String userid);
+	  
+	  /**
+	   * 
+	   * dogno으로 유저라이크 정보들 삭제
+	   * 대신 입양이 허가된 데이터는 지워지면안됨
+	   * adoptsw ='N'인 데이터만지움
+	   * 
+	   * @param dogno
+	   */
+	  public void DeletedognoUserlike(int dogno);
+	  
+	  
+	  /**
+	   * 분실견 수 반환
+	   * 
+	   * @param 
+	   * @return
+	   */
+	  public int dogMisscnt();
+	  
+	  
+	  
+	  /**
+	   * 
+	   *
+	   * 관리자 게시판 페이지들 select All 함수들
+	   *
+	   *-----------------------------------------
+	   *
+	   *
+	   *
+	   *
+	   **/	  
+	  public List<QNA> qnaSelectAll();
+	  public List<DogMissAdd> dogmissSelectAll();
+	  public List<Dog_Data> dogDataSelectAll();
+	  
+	  /**
+	   * 
+	   * 게시판 삭제
+	   */
+	  public void QnaDelete(int qnano);
+	  public void dogDelete(int dogno);
+	  public void dogFileDelete(int dogno);
+	  public void dogMissDelete(int dogMissno);
+	  public void dogMissFileDelete(int dogMissno);
+	  
+	  /**
+	    * 유저 찜한 아이디 목록 조회
+	    *  dogno 반환
+	    * 
+	    * @return List<UserLike>
+	    */
+	   public List<UserLike> SelectById(String userid);
+	   
+	   /**
+	    * 입양받은 강아지 목록
+	    * 
+	    * @return List<UserLike>
+	    */
+	   public List<UserLike> AdoptSelectById(String userid);
+	    
+	   /**
+	    * 개 번호를 통한 개 정보 조회
+	    * 
+	    * @return 
+	    */
+	   public Dog_Data selectByDogno(int dogno);
+	   
+	   
+	   
+	   /**
+	    * qnano 에따른 qna 디테일 뷰 조회
+	    * 
+	    * 
+	    * @param qnano
+	    * @return
+	    */
+	   public QNA QnaSelectByqnano(int qnano);
+	   
+	   
+	   
 	  
 }		
