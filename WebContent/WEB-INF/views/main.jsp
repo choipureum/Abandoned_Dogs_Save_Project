@@ -5,7 +5,7 @@
 
 
 <c:import url="/WEB-INF/views/user/util/header.jsp"></c:import>
-\
+<c:import url="/WEB-INF/views/user/util/sidebar.jsp"></c:import>
 <script type="text/javascript">
 $(document).ready(function(){
 	$(".open").on('click',function(){
