@@ -410,7 +410,6 @@ public class MemberDaoImpl implements MemberDao{
 //		sql += " ) BOARD";
 //		sql += " WHERE rnum BETWEEN ? AND ?";
 		
-<<<<<<< HEAD
 //		   String sql = " ";
 //	       sql +=  "	select * from (select rownum rnum, e.* from"; 
 //	       sql +=  "	(";
@@ -425,7 +424,6 @@ public class MemberDaoImpl implements MemberDao{
 //	       sql +=  "	) e"; 
 //	       sql +=  "	order by rnum )"; 
 //	       sql +=  "	WHERE rnum BETWEEN ? AND ?";
-=======
 		  
 		String sql = " ";
 	       sql +=  "	select * from (select rownum rnum, e.* from"; 
@@ -441,7 +439,6 @@ public class MemberDaoImpl implements MemberDao{
 	       sql +=  "	) e"; 
 	       sql +=  "	order by rnum )"; 
 	       sql +=  "	WHERE rnum BETWEEN ? AND ?";
->>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 		
 		
 		String sql = "";
@@ -706,7 +703,7 @@ public class MemberDaoImpl implements MemberDao{
 		   return list;
 		}
 	
-	
+	  
 	@Override
 	public Dog_Data dogSelectBydogno(int dogno) {
 		conn = JDBCTemplate.getConnection();
@@ -760,11 +757,8 @@ public class MemberDaoImpl implements MemberDao{
 	
 	
 	
-<<<<<<< HEAD
-=======
 	
 	
 	
->>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 
 }

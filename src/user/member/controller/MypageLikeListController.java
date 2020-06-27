@@ -24,14 +24,8 @@ import util.Paging;
 public class MypageLikeListController extends HttpServlet {
 		private static final long serialVersionUID = 1L;
 		MemberService memberService = new MemberServiceImpl();
-<<<<<<< HEAD
 		MemberDao memberDao =  new MemberDaoImpl();
 		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-			
-			
-				
 //				dog_data -> dog 데이터를 담을 리스트 //이거를 보내봤자 userlike 변수 값이 담겨있지가 않아요 !!
 //				List<Dog_Data> dogList = new ArrayList<>();			 
 //			 
@@ -60,35 +54,20 @@ public class MypageLikeListController extends HttpServlet {
 		//2.userid를 이용해서 paging객체 반환하기
 		Paging paging = memberService.getPaging(request , userid);
 			 
-=======
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//찜목록
->>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 		//paging객체의 totalcount로 pagig객체 생성하여 반환 
 		//Paging paging = memberService.getPaging(request);
-		
 		
 		//paging객체를 전달하여  //starno과 endno에 맞는 객체를 가져옴 
 		List<MemberAddDTO> list = memberService.getList(paging);
 		
-		
 		request.setAttribute("list", list);
 		
-<<<<<<< HEAD
-		
-		
-		
-//		
 //		request.setAttribute("dogList", dogList);
 //		request.setAttribute("userlikeList", userlikeList);
 //		
-		
-		
-		
-=======
-
->>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 		request.getRequestDispatcher("/WEB-INF/views/user/member/likeList.jsp").forward(request, response);
 	}
 
