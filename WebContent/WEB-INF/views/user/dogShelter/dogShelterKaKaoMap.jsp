@@ -8,7 +8,10 @@
 
 
 <%	List<Dog_Shelter> dogList = (List) request.getAttribute("list");%>
-
+	
+	
+<!-- 헤더 임포트 -->
+<c:import url="/WEB-INF/views/user/util/header/Header.jsp"></c:import>
 
 <!DOCTYPE html>
 <html>
