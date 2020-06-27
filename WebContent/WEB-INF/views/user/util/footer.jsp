@@ -3,7 +3,7 @@
 <!-- Footer -->
 			<footer id="footer">
 				<div class="inner">
-					<h2>저희를 찾아오세요</h2>
+					<h2>Contact us</h2>
 					<ul class="actions">
 						<li><span class="icon fa-phone"></span> <a href="#">(010) 1234-1234</a></li>
 						<li><span class="icon fa-envelope"></span> <a href="#">pooreumsunny@gmail.com</a></li>
@@ -14,3 +14,5 @@
 					Copyright &copy; DaSom KH Fighting
 				</div>
 			</footer>
+				</body>
+</html>

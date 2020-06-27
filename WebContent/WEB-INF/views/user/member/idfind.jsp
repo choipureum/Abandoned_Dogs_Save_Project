@@ -1,16 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>아이디찾기</title>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>   
 
+
+<c:import url="/WEB-INF/views/user/util/header.jsp"></c:import>
 <!--Alert 디자인 라이브러리 -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-<!-- 자바스크립트 -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
 
 <!-- //아이디 찾기  -->
 <script type="text/javascript">
@@ -74,8 +72,6 @@ function idFind(event){
 		}
 		
 	});
-	
-
 }
 </script>
 
@@ -145,8 +141,7 @@ select{
 	display: none;
 }
 </style>
-</head>
-<body>
+
 <!-- 입력  -->
 <div class="container">
 
@@ -175,5 +170,5 @@ select{
   		<br><br>
    </form>
 </div>
-</body>
-</html>
+
+<c:import url="/WEB-INF/views/user/util/footer.jsp"></c:import>
