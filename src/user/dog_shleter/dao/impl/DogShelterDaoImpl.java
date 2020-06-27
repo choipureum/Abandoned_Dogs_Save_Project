@@ -228,15 +228,5 @@ public class DogShelterDaoImpl implements DogShelterDao {
 		return cnt;
 	}
 
-<<<<<<< HEAD
-	@Override
-	public List<Dog_Data> dogSearchList(int category, String keyword, Paging paging) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-=======
-
->>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
-
 
 }

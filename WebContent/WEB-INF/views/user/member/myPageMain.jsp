@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>마이페이지 메인</title>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>   
+
+
+<c:import url="/WEB-INF/views/user/util/header.jsp"></c:import>
+<!--Alert 디자인 라이브러리 -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 
 <!-- 부트스트랩 임포트 -->
 <!-- Bootstrap Core CSS -->
@@ -15,10 +18,6 @@
 <link href="/resources/mypageTemplate/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
 <!-- Custom CSS -->
 <link href="/resources/mypageTemplate/css/stylish-portfolio.min.css" rel="stylesheet">
-
-
-<!-- jQuery 2.2.4 -->
-<script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
 
 
 <script>
@@ -120,9 +119,7 @@ function Move(sw){
 
 </script>
 
-</html>
-
-
+<c:import url="/WEB-INF/views/user/util/footer.jsp"></c:import>
 
 
 

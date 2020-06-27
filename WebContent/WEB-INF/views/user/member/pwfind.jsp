@@ -1,17 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>비밀번호 찾기</title>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>   
+
+
+<c:import url="/WEB-INF/views/user/util/header.jsp"></c:import>
 <!--Alert 디자인 라이브러리 -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-
-
-<!-- 자바스크립트 -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 
 <script type="text/javascript">
 
@@ -174,35 +170,35 @@ h5 span{
 }
 
 
-#findpw {
+/* #findpw { */
 
-    background-color: rgb(255,80,90); 
-     color:white;  
-     border-radius: 5px;  
-     border: 0;  
-     padding: 11px 93px;  
+/*     background-color: rgb(255,80,90);  */
+/*      color:white;   */
+/*      border-radius: 5px;   */
+/*      border: 0;   */
+/*      padding: 11px 93px;   */
    
-}
+/* } */
 
-.id_Button{
-   background-color: rgb(220,220,220);
-   color:black;
-   border-radius: 2px;
-   border: 0;
-   padding: 6px 20px;
+ .id_Button{ 
+    background-color: rgb(220,220,220); 
+    color:black; 
+/*    border-radius: 2px; */
+/*    border: 0; */
+/*    padding: 6px 20px; */
 
-}
+ } 
 #emailcheckbox{
 	display: none;
 }
-#login{
+/*  #login{  */
 
-   	background-color: rgb(255,80,90);
-    color:white; 
-    border-radius: 5px; 
-    border: 0; 
-    padding: 11px 93px; 
-}
+/*     	background-color: rgb(255,80,90);  */
+/*     color:white;  */
+/*     border-radius: 5px;  */
+/*     border: 0;  */
+/*     padding: 11px 93px;  */
+/*  }  */
 
 input {
     border: 1px solid lightgray;
@@ -232,21 +228,21 @@ select{
 	<form action="/pw/find" method="post" id="myForm">
   
 	<h6><label>이름<span id="red">(필수)</span>
-    	<input type="text" placeholder="이름" name="username" id="username" required style="height:30px; width: 495px"/></label>
+    	<input type="text" placeholder="이름" name="username" id="username" required style="width: 495px"/></label>
     </h6>
       
     <h6><label >아이디<span id="red">(필수)</span>
-    	<input type="email" placeholder="아이디" name="userid" id="userid" required style="height:30px; width: 495px"/></label>
+    	<input type="email" placeholder="아이디" name="userid" id="userid" required style="width: 495px"/></label>
     </h6>
       
    	<h6><label >이메일<span id="red">(필수)</span><br>
-    	<input type="email" placeholder="이메일" name="useremail" id="useremail" required style="height:30px; width: 380px"/>
+    	<input type="email" placeholder="이메일" name="useremail" id="useremail" required style="display:inline-block; width: 330px"/>
 	  	<button type ="button" value="이메일인증" class="id_Button" onclick="email()">이메일인증</button></label>
 	</h6>
 
   	<div id="emailcheckbox">
 		<h6>이메일인증
-			<input type="text"  name="useremailcheck" id="useremailcheck" maxlength="4" style="height:30px; width: 200px" />
+			<input type="text"  name="useremailcheck" id="useremailcheck" maxlength="4" style="display:inline-block; width: 200px" />
 			<button type ="button" class="id_Button" id="emailCheck" onclick="emailCheckFunc()">인증 확인</button>
 			<div id="email_check"></div>
 		</h6>
@@ -255,13 +251,14 @@ select{
 	<hr>
 	
 	<input type="hidden" id="hiddenEmailCheck"/>
+	<div style="margin:0 auto;text-align:center;">
 	<button type="button" value="비밀번호찾기" id="findpw" onclick="pwFind()" >비밀번호찾기</button>
-	<button type="button" value="로그인" id="login" onclick="location.href='/login/login'" value="로그인">로그인</button>
+	<button type="button" value="로그인" id="login" onclick="location.href='/main'" value="로그인">로그인</button>
+	</div>
 	<hr>
 <!-- 	찾은아이디 반환넣어줄 -->
   	<div id="id_find"></div>
   	<br><br>
    </form>
 </div>
-</body>
-</html>
+<c:import url="/WEB-INF/views/user/util/footer.jsp"></c:import>

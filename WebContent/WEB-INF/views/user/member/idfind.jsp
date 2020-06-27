@@ -95,22 +95,22 @@ h5 span{
 
 #findid {
 
-    background-color: rgb(255,80,90); 
-     color:white;  
-     border-radius: 5px;  
-     border: 0;  
-     padding: 11px 95px;  
+/*     background-color: rgb(255,80,90);  */
+/*      color:white;   */
+/*      border-radius: 5px;   */
+/*      border: 0;   */
+/*      padding: 11px 95px;   */
    
 }
 
-#login{
+/* #login{ */
 
-   	background-color: rgb(255,80,90);
-    color:white; 
-    border-radius: 5px; 
-    border: 0; 
-    padding: 11px 95px; 
-}
+/*    	background-color: rgb(255,80,90); */
+/*     color:white;  */
+/*     border-radius: 5px;  */
+/*     border: 0;  */
+/*     padding: 11px 95px;  */
+/* } */
 
 
 input {
@@ -152,18 +152,20 @@ select{
 <!-- 메인화면 으로 가야하지 않나..?-->
 	<form action="/id/find" method="post" id="myForm">
    		<h6><label>이름<span id="red">(필수)</span>
-     		<input type="text" placeholder="이름" name="username" id="username" required style="height:30px; width: 495px"/></label>
+     		<input type="text" placeholder="이름" name="username" id="username" required style="width: 495px"/></label>
       		<div id="name_check"></div>
       	</h6>
 
    		<h6><label >이메일<span id="red">(필수)</span><br>
-      		<input type="email" placeholder="이메일" name="useremail" id="useremail" required style="height:30px; width: 495px"/></label>
+      		<input type="email" placeholder="이메일" name="useremail" id="useremail" required style="width: 495px"/></label>
 		</h6>
 	
 	<!-- 아이디찾기 로그인 버튼 -->
 		<hr>
+		<div style="margin:0 auto;text-align:center;">
 			<button type="button" value="아이디 찾기" id="findid" onclick="idFind()" value="아이디찾기">아이디찾기</button>
-			<button type="button" value="로그인" id="login" onclick="location.href='/login/login'" value="로그인">로그인</button>
+			<button type="button" value="로그인" id="login" onclick="location.href='/main'" value="로그인">로그인</button>
+		</div>
 		<hr>
 	<!-- 찾은아이디 반환넣어줄 -->
   		<div id="id_find"></div>

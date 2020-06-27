@@ -171,11 +171,15 @@ public class MemberServiceImpl implements MemberService{
    
    @Override
    public void memberDelete(String userid) {
-	   
+	   //qna 지우기
+	   memberDao.DeleteDogMiss(userid);
+	   //dog miss 지우기
+	   memberDao.DeleteQna(userid);
 	   memberDao.memberDelete(userid);
-	   
-	   
+	    
    }
+   
+   
    	//paging객체를 전달받아 시작과 끝을 정했다
   	public List<MemberAddDTO> getList(Paging paging) { 		
   		return memberDao.selectAll(paging);
