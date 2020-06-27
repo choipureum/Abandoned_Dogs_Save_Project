@@ -5,7 +5,6 @@
 
 <!-- 자바스크립트 -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-<<<<<<< HEAD
 <script type="text/javascript">
 $(document).ready(function(){
    $("#heart").click(function(){
@@ -19,8 +18,6 @@ $(document).ready(function(){
    });
 });
 </script>
-=======
->>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 
 
 <c:forEach items="${dogList }" var="dog">
@@ -32,12 +29,9 @@ $(document).ready(function(){
 		<div>중성화여부 ${dog.dogneu }</div>
 		<div>공고일 ${dog.dogdate }</div>
 		${dog.dogno }
-<<<<<<< HEAD
 		<span id = heart><i class="fa fa-heart-o" aria-hidden="true" ></i> </span><!-- id 부분 dog no으로 가져오기  -->
-=======
 <!-- 하트버튼 -->
 		<span class="heartDog"><i class="fa fa-heart-o" aria-hidden="true" data-dogno="${dog.dogno }"></i> </span><!-- id 부분 dog no으로 가져오기  -->
->>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 		
 	</div>
 </div>
