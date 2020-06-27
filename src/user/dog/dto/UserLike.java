@@ -23,12 +23,7 @@ public class UserLike {
 	public void setAdoptsw(String adoptsw) {
 		this.adoptsw = adoptsw;
 	}
-	public int getApplysw() {
-		return applysw;
-	}
-	public void setApplysw(int applysw) {
-		this.applysw = applysw;
-	}
+
 	public int getDogno() {
 		return dogno;
 	}

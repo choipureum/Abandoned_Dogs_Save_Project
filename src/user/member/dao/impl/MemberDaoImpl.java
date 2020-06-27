@@ -560,6 +560,7 @@ public class MemberDaoImpl implements MemberDao{
    }
    
    
+
 	@Override
 	// 찜목록 리스트.jsp에서 체크된 강아지 파일을 삭제하는 기능 
 	public void deleteMemberFileList(String names){
@@ -649,4 +650,5 @@ public class MemberDaoImpl implements MemberDao{
 	
 	
 	
+
 }
