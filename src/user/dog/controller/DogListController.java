@@ -56,7 +56,7 @@ public class DogListController extends HttpServlet {
 
 		for (Iterator iterator = dogList.iterator(); iterator.hasNext();) {
 			Dog_Data dog_Data = (Dog_Data) iterator.next();
-				System.out.println("TEST  :  "+dog_Data);
+//				System.out.println("TEST  :  "+dog_Data);
 		}
 
 //		System.out.println(dogList);
