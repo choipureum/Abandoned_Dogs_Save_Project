@@ -24,6 +24,7 @@ import util.Paging;
 public class MypageLikeListController extends HttpServlet {
 		private static final long serialVersionUID = 1L;
 		MemberService memberService = new MemberServiceImpl();
+<<<<<<< HEAD
 		MemberDao memberDao =  new MemberDaoImpl();
 		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -59,6 +60,11 @@ public class MypageLikeListController extends HttpServlet {
 		//2.userid를 이용해서 paging객체 반환하기
 		Paging paging = memberService.getPaging(request , userid);
 			 
+=======
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//찜목록
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 		//paging객체의 totalcount로 pagig객체 생성하여 반환 
 		//Paging paging = memberService.getPaging(request);
 		
@@ -69,6 +75,7 @@ public class MypageLikeListController extends HttpServlet {
 		
 		request.setAttribute("list", list);
 		
+<<<<<<< HEAD
 		
 		
 		
@@ -79,11 +86,13 @@ public class MypageLikeListController extends HttpServlet {
 		
 		
 		
+=======
+
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 		request.getRequestDispatcher("/WEB-INF/views/user/member/likeList.jsp").forward(request, response);
 	}
 
-	
-	
+
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		

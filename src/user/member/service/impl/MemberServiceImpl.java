@@ -176,17 +176,17 @@ public class MemberServiceImpl implements MemberService{
 	   
 	   
    }
-
-		
-
-
-   	
    	//paging객체를 전달받아 시작과 끝을 정했다
-  	public List<MemberAddDTO> getList(Paging paging) {
+  	public List<MemberAddDTO> getList(Paging paging) { 		
   		return memberDao.selectAll(paging);
   	}
-	
-   
+  	
+	@Override
+	public int modifyMypageNotAdd(MemberDTO member) {
+		// TODO Auto-generated method stub
+		return memberDao.modifyMypageNotAdd(member);
+	}
+	  
   	//리스트에서 체크된 값을 dog/file/userlike에서 다 지우는 역할  
   	public void memberListDelete(String names) {
   		

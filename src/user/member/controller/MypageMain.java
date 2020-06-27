@@ -16,9 +16,7 @@ public class MypageMain extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		
-		
-		
+
 		req.getRequestDispatcher("/WEB-INF/views/user/member/myPageMain.jsp").forward(req, resp);
 	}
 	

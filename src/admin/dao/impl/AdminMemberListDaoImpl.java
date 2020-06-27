@@ -22,6 +22,7 @@ import user.dog.dto.UserLike;
 import user.dogmiss.dto.DogMissAdd;
 import user.member.dto.MemberDTO;
 import user.qna.dto.QNA;
+import user.qna.dto.Qna_Reply;
 import util.JDBCTemplate;
 
 public class AdminMemberListDaoImpl implements AdminMemberListDao{
@@ -797,6 +798,7 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 					qna.setQnaHit( rs.getInt("qnahit"));
 					qna.setQnaDate( rs.getDate("qnadate") );					
 					qna.setQnaWriter( rs.getString("qnawriter") );
+					qna.setDelsw( rs.getString("delsw") );
 				
 					//리스트에 결과값 저장
 					qnaList.add(qna);
@@ -1055,7 +1057,10 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
-			}    	
+			} finally {
+				JDBCTemplate.close(ps);
+				JDBCTemplate.close(rs);
+			}	   	
 	    	return list;
 	    }
 	    
@@ -1080,7 +1085,10 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
-			}    	
+			} finally {
+				JDBCTemplate.close(ps);
+				JDBCTemplate.close(rs);
+			}   	
 	    	return list;
 	    }
 	    @Override
@@ -1130,6 +1138,9 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 			
 			} catch (SQLException e) {
 				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(ps);
+				JDBCTemplate.close(rs);
 			}
 	    	return d;
 	    }
@@ -1156,11 +1167,83 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(ps);
+				JDBCTemplate.close(rs);
 			}
     	
 	    	return qna;
 	    }
-}
+	    @Override
+	    public void InsertQnaReply(int qnano, String title,String content) {
+	    	conn= JDBCTemplate.getConnection();
+	    	sql= new StringBuffer();
+	    	Qna_Reply ref = new Qna_Reply();
+	    	sql.append("insert into qna_reply(ref_title,ref_content,ref_date,qnano) values(?,?,sysdate,?) ");
+	    	
+	    	try {
+				ps= conn.prepareStatement(sql.toString());
+				ps.setString(1, title);
+				ps.setString(2, content);
+				ps.setInt(3, qnano);
+				ps.executeUpdate();			
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(ps);
+			}    		    	
+	    }
+	    
+	    @Override
+	    public void UpdateDelsw(int qnano) {
+	    	conn= JDBCTemplate.getConnection();
+	    	sql= new StringBuffer();
+	    	Qna_Reply ref = new Qna_Reply();
+	    	sql.append("update qna set delsw='Y' where qnano=? ");
+	    	
+	    	try {
+				ps= conn.prepareStatement(sql.toString());		
+				ps.setInt(1, qnano);
+				ps.executeUpdate();			
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(ps);
+			}    		    	
+	    }
+	    @Override
+	    public Qna_Reply QnaRefSelect(int qnano) {
+	    	conn= JDBCTemplate.getConnection();
+	    	sql= new StringBuffer();
+	    	Qna_Reply qnaRef = new Qna_Reply();
+	    	sql.append("select * from qna_reply where qnano=?");
+	    	
+	    	try {
+				ps= conn.prepareStatement(sql.toString());
+				ps.setInt(1, qnano);
+				rs=ps.executeQuery();
+				
+				while(rs.next()) {
+					qnaRef.setQnano(qnano);
+					qnaRef.setRef_title(rs.getString("ref_title"));
+					qnaRef.setRef_content(rs.getString("ref_content"));
+					qnaRef.setRef_date(rs.getDate("ref_date"));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(ps);
+				JDBCTemplate.close(rs);
+			}
+    	
+	    	return qnaRef;
+	    	
+	        	
+	    }
+	    }
+
 
 
 

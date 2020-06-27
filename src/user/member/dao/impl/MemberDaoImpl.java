@@ -410,6 +410,7 @@ public class MemberDaoImpl implements MemberDao{
 //		sql += " ) BOARD";
 //		sql += " WHERE rnum BETWEEN ? AND ?";
 		
+<<<<<<< HEAD
 //		   String sql = " ";
 //	       sql +=  "	select * from (select rownum rnum, e.* from"; 
 //	       sql +=  "	(";
@@ -424,6 +425,23 @@ public class MemberDaoImpl implements MemberDao{
 //	       sql +=  "	) e"; 
 //	       sql +=  "	order by rnum )"; 
 //	       sql +=  "	WHERE rnum BETWEEN ? AND ?";
+=======
+		  
+		String sql = " ";
+	       sql +=  "	select * from (select rownum rnum, e.* from"; 
+	       sql +=  "	(";
+	       sql +=  "	select"; 
+	       sql +=  "	a.dogno, a.dogname,a.dogkind,a.doggender, a.dogNeu, a.dogDate, a.dogImg, a.shelterNo, a.dogEndDate,";
+	       sql +=  "	b.dog_fileNo, b.dog_org_FILE_NAME,b.dog_stored_FILE_NAME,b.dog_FILE_SIZE,b.dog_DEL_GB,";
+	       sql +=  "	c.userid,c.adoptsw,c.applysw";
+	       sql +=  "	from";
+	       sql +=  "	dog a, dog_file b, userlike c";
+	       sql +=  "	where a.dogno = b.dogno";
+		   sql +=  "	and   a.dogno = c.dogno order by a.dogno";
+	       sql +=  "	) e"; 
+	       sql +=  "	order by rnum )"; 
+	       sql +=  "	WHERE rnum BETWEEN ? AND ?";
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 		
 		
 		String sql = "";
@@ -518,6 +536,33 @@ public class MemberDaoImpl implements MemberDao{
 		ps.setString(4, member.getUseremail());
 		ps.setString(5, member.getUseraddress());
 		ps.setString(6, member.getUserid());
+		
+		result = ps.executeUpdate();
+		
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally {
+		JDBCTemplate.close(ps);
+	}
+	   return result;   
+   }
+   
+   @Override
+   public int modifyMypageNotAdd(MemberDTO member) {
+	
+	   conn= JDBCTemplate.getConnection();
+	   
+	   String sql = "update member set userpw=?, usertel=?,  userbirth=?, useremail=? where userid=?";
+	   int result = 0 ;
+	   
+	   try {
+		ps=conn.prepareStatement(sql);
+		
+		ps.setString(1, member.getUserpw());
+		ps.setString(2, member.getUsertel());
+		ps.setString(3, member.getUserbirth());
+		ps.setString(4, member.getUseremail());
+		ps.setString(5, member.getUserid());
 		
 		result = ps.executeUpdate();
 		
@@ -715,5 +760,11 @@ public class MemberDaoImpl implements MemberDao{
 	
 	
 	
+<<<<<<< HEAD
+=======
+	
+	
+	
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 
 }

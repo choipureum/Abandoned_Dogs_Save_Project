@@ -8,7 +8,13 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri ="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri ="http://java.sun.com/jsp/jstl/fmt" %> 
+<%--한글 인코딩 --%>
+<% request.setCharacterEncoding("UTF-8"); %>
+<style>
 
+
+
+</style>
 	<!-- 헤더 임포트 -->
   	<c:import url="/WEB-INF/views/admin/util/Header.jsp"></c:import>
         <!-- Begin Page Content -->
@@ -22,7 +28,8 @@
           </p>
             
          <!-- 폼태그 포스트 값전달 -->
-         <form action="/admin/dogInsert" method="post" id="dogInsertForm" style="margin:0 auto;padding:40px" enctype="multipart/form-data">
+         <div style="margin:0 auto;padding:40px"  >	
+       
 		 <div class="card position-relative">
                 <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-primary">QNA 상세</h6>
@@ -37,60 +44,52 @@
                   <!-- 내용물 -->
                   <!-- 질문제목 -->
                   <nav class="navbar navbar-expand  mb-4">	                  
-	                    <a class="navbar-brand">질문 제목</a>    
+	                    <a class="navbar-brand">질문 제목</a>   
+	                    <input type="hidden" name="qnano"/> 
 	                   <input type="text" id="qnatitle" name="qnatitle" class="form-control bg-light border-0 small" value="${qna.qnaTitle }"style="width:500px; overflow:auto;"readonly>               
-	                    <ul class="navbar-nav ml-center">
-	                     	
-	                    </ul>               
+	                                
                   </nav>
                   <!-- 질문내용 -->
                   <nav class="navbar navbar-expand  mb-4">                
-                    <a class="navbar-brand">질문 내용</a>                   
-                    <ul class="navbar-nav ml-center">
-                     <input type="text" id="qnacontent" name= "qnacontent"  class="form-control bg-light border-0 small" value="${qna.qnaContent }"style="width:500px; height:300px;overflow-y:scroll;"readonly>
-                    </ul>
+                    <a class="navbar-brand">질문 내용</a>                                      
+                     <input type="text" id="qnacontent" name= "qnacontent"  class="form-control bg-light border-0 small" value="${qna.qnaContent }"style="width:500px; height:300px;overflow-y:scroll;"readonly>                 
                     </nav>
                     <!-- 작성회원 -->
                   <nav class="navbar navbar-expand  mb-4">                
-                    <a class="navbar-brand">작성 회원</a>                   
-                    <ul class="navbar-nav ml-center">                
-                     	<input type="text" id="qnawriter" name="qnawriter" class="form-control bg-light border-0 small" value="${qna.qnaWriter }"style="width:500px; "readonly>
-                     	                    	
-                    </ul>
+                    <a class="navbar-brand">작성 회원</a>                                             
+                     	<input type="text" id="qnawriter" name="qnawriter" class="form-control bg-light border-0 small" value="${qna.qnaWriter }"style="width:500px; "readonly>                
                     </nav>
                     <!-- 작성일자 -->
                   <nav class="navbar navbar-expand  mb-4">                
-                    <a class="navbar-brand">작성일자</a>                   
-                    <ul class="navbar-nav ml-center">
-                     	<input type="text" id="qnaDate" name="qnaDate" class="form-control bg-light border-0 small" value="${qna.qnaDate }"style="width:500px; overflow:auto;"readonly>
-                   	 </ul>
+                    <a class="navbar-brand">작성일자</a>                                     
+                     	<input type="text" id="qnaDate" name="qnaDate" class="form-control bg-light border-0 small" value="${qna.qnaDate }"style="width:500px; overflow:auto;"readonly>                 
                   </nav>
                   
-                  
+                 
                    <!-- ------- 숨겨져잇는 댓글란------------------- -->
-                    <hr>
-                   <div id="replyBtn" style="display:none;">
+                    
+                    <form action="/admin/qnaDetail" style="margin:0 auto;padding:40px;display:none;"  method="post" id="replyBtn">               
+                   		
+                   		<hr>
                    		<!-- 작성일자 -->
                   <nav class="navbar navbar-expand  mb-4">                
                     <a class="navbar-brand">답변 제목</a>                   
-                    <ul class="navbar-nav ml-center">
-                     	<input type="text" id="reftitle" name="reftitle" class="form-control bg-light border-0 small" style="width:500px; overflow:auto;">
-                   	 </ul>
+                     	<input type="hidden" name="qnano" value="${qna.qnaNO }">
+                     	<input type="text" value="${ref.ref_title }"id="reftitle" name="reftitle" class="form-control bg-light border-0 small" style="width:500px; overflow:auto;">                  
                   </nav>
                    		<!-- 작성일자 -->
                   <nav class="navbar navbar-expand  mb-4">                
                     <a class="navbar-brand">답변 내용</a>                   
-                    <ul class="navbar-nav ml-center">
-                     	<input type="text" id="refcontent" name="refcontent" class="form-control bg-light border-0 small" style="width:500px; height:400px;overflow:auto;">
-                   	 </ul>
+                     	<input type="text" value="${ref.ref_content }"id="refcontent" name="refcontent" class="form-control bg-light border-0 small" style="width:500px; height:400px;overflow:auto;">               
                   </nav>       
-                   </div>
+                 </form>
+                  
                    <!-- ------------------- -->
                     <!-- 제출 버튼 -->
                   <nav class="navbar navbar-expand  mb-4">                                                
                     <ul class="navbar-nav ml-right">
                      	<li style="padding:30px 10px">
-                     		<button class="btn btn-warning" type="button" onclick="Submit()">
+                     		<button class="btn btn-warning" type="button" onclick="submit()">
                  				 <i class="fas fa-bone fa-sm">&nbsp;관리자 QNA 답변 작성</i>
                 			</button>                			
 						</li>
@@ -104,8 +103,11 @@
 						「유실물법」 제12조 및 「민법」 제253조의 규정에도 불구하고 해당 시·도지사 또는 시장·군수·구청장이 그 동물의 소유권을 취득하게 됩니다.</p>
                 </div>
               </div>
-	</form>      
-        </div>
+	</div>
+	</div> 
+     
+      
+         
         <!-- /.container-fluid -->
       <c:import url="/WEB-INF/views/admin/util/Footer.jsp"></c:import>
 
@@ -122,14 +124,36 @@
 
 
 <script>
+	function submit(){	
+		
+			
+		if($('#replyBtn').css("display") == "none") {
+			$("#replyBtn").show();
+			// 한번 더 눌렀을 때
+			//제출
+		} 	else{
+			swal({
+				icon:"warning",
+				text:"답변을 작성하시겠습니까?",
+				buttons:["아니요","작성"]
+			}).then((Yes)=>{
+				
+				if(Yes){
+					swal({
+						icon:"success",
+						text:"답변이 작성되었습니다"
+					}).then(function(){
+						$("#replyBtn").submit();				
+					});
+				}
+			});
+			
+
 	
-
-
-
-
-
-
+		}				
+	}
 </script>
+
 </body>
 
 </html>

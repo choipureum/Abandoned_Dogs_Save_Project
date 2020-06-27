@@ -1,9 +1,5 @@
 package user.dog_shleter.dto;
 
-/**
- * @author User
- *
- */
 public class Dog_Shelter {
 
 	private int shelterno;
@@ -54,13 +50,6 @@ public class Dog_Shelter {
 				+ ", shelterlon=" + shelterlon + ", shelteraddress=" + shelteraddress + ", sheltertel=" + sheltertel
 				+ "]";
 	}
-
-
-	
-	
-	
-	
-	
 	
 	
 	

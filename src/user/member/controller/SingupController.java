@@ -55,9 +55,6 @@ public class SingupController extends HttpServlet {
       //view 전달
       req.getRequestDispatcher("/WEB-INF/views/user/member/swal.jsp")
          .forward(req, resp);
-      
-
-
    }
 
 }

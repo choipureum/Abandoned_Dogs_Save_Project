@@ -5,6 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
+
+<!-- i링크 -->
+<!-- Custom fonts for this template-->
+<link href="/resources/AdminTemplate/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 <!--Alert 디자인 라이브러리 -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
@@ -319,17 +323,19 @@ function emailCheckFunc(){
    line-height: 16px;
 }
 
+
 h5{
    text-align: center;
 }
 
 h5 span{
-   color:blue;
+   color:#b93c3c;
+   
    
 }
 
 .singup {
-   background-color: rgb(255,80,90);
+   background-color: #6E6E6E;
    color:white;
    border-radius: 5px;
    border: 0;
@@ -378,7 +384,7 @@ select{
 <!-- 입력  -->
 <div class="container">
 
-	<h5><span>회원가입 </span>페이지</h5>
+	<h5><i class="fas fa-paw" style="color :purple;"></i><span> 회원가입 </span><i class="fas fa-paw" style="color :purple;"></i></h5>
 	<hr>
 	<!-- 비밀번호 확인 해주기  -->
 	<!-- 메인화면 으로 가야하지 않나..?-->
@@ -386,8 +392,8 @@ select{
    		<!-- 아이디 중복 값 체크용 히든 밸류 -->
    		<input type="hidden" id="hiddenIdCheck"/>
    		<h6><label>아이디<span id="red">(필수)</span><br>
-      		<input type="text" placeholder="아이디" name="userid" id="userid" class="username_input" required style="height:30px; width: 380px" />
-      		<button type ="button" value="ID중복확인" id="idCheckbutton" class="id_Button" onclick="idCheck()">ID중복확인</button>
+      		<input type="text" placeholder="아이디" name="userid" id="userid" class="username_input" required style="height:30px; width: 360px" />
+      		<button type ="button" value="ID중복확인" id="idCheckbutton" class="id_Button" onclick="idCheck()"><i class="fa fa-search"></i>ID중복확인</button>
       		</label><div id="id_check"></div><div id="id_check2"></div>
       	</h6>
  
@@ -479,7 +485,7 @@ select{
   	<div id="emailcheckbox">
 		<h6>이메일인증
 			<input type="text"  name="useremailcheck" id="useremailcheck" maxlength="4" style="height:30px; width: 200px" />
-			<button type ="button" class="id_Button" id="emailCheck" onclick="emailCheckFunc()">인증 확인</button>
+			<button type ="button" class="id_Button" id="emailCheck" onclick="emailCheckFunc()"><i class="far fa-check-circle"></i>인증 확인</button>
 			<div id="email_check"></div>
 	
 		</h6>
