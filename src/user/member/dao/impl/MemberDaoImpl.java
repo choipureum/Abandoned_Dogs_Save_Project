@@ -396,6 +396,53 @@ public class MemberDaoImpl implements MemberDao{
 		
 		conn =JDBCTemplate.getConnection(); //DB 연결
 		
+<<<<<<< HEAD
+//		//수행할 SQL
+//		String sql = "";
+//		sql += "SELECT * FROM (";
+//		sql += "    SELECT rownum rnum, B.* FROM (";
+//		sql += "        SELECT";
+//		sql += "            qnano, qnatitle, qnacontent,"; 
+//		sql += "            qnahit, qnadate, qnawriter";
+//		sql += "        FROM qna";
+//		sql += "        ORDER BY qnano DESC";
+//		sql += "    ) B";
+//		sql += "    ORDER BY rnum";
+//		sql += " ) BOARD";
+//		sql += " WHERE rnum BETWEEN ? AND ?";
+		
+//		   String sql = " ";
+//	       sql +=  "	select * from (select rownum rnum, e.* from"; 
+//	       sql +=  "	(";
+//	       sql +=  "	select"; 
+//	       sql +=  "	a.dogno, a.dogname,a.dogkind,a.doggender, a.dogNeu, a.dogDate, a.dogImg, a.shelterNo, a.dogEndDate,";
+//	       sql +=  "	b.dog_fileNo, b.dog_org_FILE_NAME,b.dog_stored_FILE_NAME,b.dog_FILE_SIZE,b.dog_DEL_GB,";
+//	       sql +=  "	c.userid,c.adoptsw,c.applysw";
+//	       sql +=  "	from";
+//	       sql +=  "	dog a, dog_file b, userlike c";
+//	       sql +=  "	where a.dogno = b.dogno";
+//		   sql +=  "	and   a.dogno = c.dogno order by a.dogno";
+//	       sql +=  "	) e"; 
+//	       sql +=  "	order by rnum )"; 
+//	       sql +=  "	WHERE rnum BETWEEN ? AND ?";
+		  
+//		String sql = " ";
+//	       sql +=  "	select * from (select rownum rnum, e.* from"; 
+//	       sql +=  "	(";
+//	       sql +=  "	select"; 
+//	       sql +=  "	a.dogno, a.dogname,a.dogkind,a.doggender, a.dogNeu, a.dogDate, a.dogImg, a.shelterNo, a.dogEndDate,";
+//	       sql +=  "	b.dog_fileNo, b.dog_org_FILE_NAME,b.dog_stored_FILE_NAME,b.dog_FILE_SIZE,b.dog_DEL_GB,";
+//	       sql +=  "	c.userid,c.adoptsw,c.applysw";
+//	       sql +=  "	from";
+//	       sql +=  "	dog a, dog_file b, userlike c";
+//	       sql +=  "	where a.dogno = b.dogno";
+//		   sql +=  "	and   a.dogno = c.dogno order by a.dogno";
+//	       sql +=  "	) e"; 
+//	       sql +=  "	order by rnum )"; 
+//	       sql +=  "	WHERE rnum BETWEEN ? AND ?";
+		
+=======
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 		
 		String sql = "";
 		sql += "  select * from (select rownum rnum, e.* from";
@@ -413,9 +460,7 @@ public class MemberDaoImpl implements MemberDao{
 		try {
 			//SQL 수행 객체
 			ps = conn.prepareStatement(sql);
-			
-			
-			
+
 			ps.setInt(1, paging.getStartNo());
 			ps.setInt(2, paging.getEndNo());
 			
@@ -706,6 +751,83 @@ public class MemberDaoImpl implements MemberDao{
 		return d;
 		}
 	
+	@Override
+		public void DeleteDogMiss(String userid) {
+			conn = JDBCTemplate.getConnection();
+			String sql="delete from qna where userid=? ";
+			try {
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, userid);
+				ps.executeUpdate();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(ps);
+			}
+			
+	}
 	
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	
+	
+<<<<<<< HEAD
+	@Override
+			public void DeleteQna(String userid) {
+			conn = JDBCTemplate.getConnection();
+				String sql="delete from dog_miss where userid=? ";
+				try {
+					ps=conn.prepareStatement(sql);
+					ps.setString(1, userid);
+					ps.executeUpdate();
+					
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}finally {
+					JDBCTemplate.close(ps);
+				}
+		
+			}
+	@Override
+		public void DeleteQna_File(String userid) {
+		conn = JDBCTemplate.getConnection();
+		String sql="delete from qna_file where userid=? ";
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, userid);
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(ps);
+		}
+		}
+@Override
+	public void DeleteDogMiss_File(String userid) {
+	conn = JDBCTemplate.getConnection();
+	String sql="delete from dog_miss_file where userid=? ";
+	try {
+		ps=conn.prepareStatement(sql);
+		ps.setString(1, userid);
+		ps.executeUpdate();
+		
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}finally {
+		JDBCTemplate.close(ps);
+	}
+	}
+=======
+	
+	
+	
+	
+>>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
+>>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
 
 }

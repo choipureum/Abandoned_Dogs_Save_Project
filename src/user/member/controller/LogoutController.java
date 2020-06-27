@@ -23,7 +23,7 @@ public class LogoutController extends HttpServlet {
 	   //로그인 화면으로
 	   //원래는 메인 화면으로 리다이렉트
 	   
-	   resp.sendRedirect("/login/login");
+	   resp.sendRedirect("/main");
 	}
    
 
