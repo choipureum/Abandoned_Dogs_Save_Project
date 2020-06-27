@@ -56,6 +56,7 @@ table td {
                		  <th>내용</th>
                		  <th>작성일</th>
                		  <th>작성자</th>  
+               		  <th>답변여부</th>
                     </tr>
                   </thead>
                	  <tbody>               	  	           
@@ -71,6 +72,17 @@ table td {
 			              	<td>${m.qnaContent}</td>	
 			              	<td>${m.qnaDate }</td>
 			                <td>${m.qnaWriter }</td>
+			                <td>			          
+			                <c:set var="name" value="${m.delsw }" />			               
+			                	<c:choose>
+								    <c:when test="${name eq 'Y'}">
+								        <span style="color:green">답변완료</span>
+								    </c:when>								    
+								    <c:otherwise>
+								      <span style="color:red">답변대기중</sapn>
+								    </c:otherwise>
+								</c:choose>						
+							</td>
 			            </tr>   
 			            </c:forEach>      
                	  </tbody>                	                	                           	  	  

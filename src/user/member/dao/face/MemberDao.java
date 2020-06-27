@@ -110,6 +110,7 @@ public interface MemberDao {
     */
    public void memberDelete(String userid);
 
+
    /**
     * 
     * 
@@ -119,7 +120,7 @@ public interface MemberDao {
     */
    public int modifyMypageNotAdd(MemberDTO member);
 
-   
+
    /*
     *리스트.jsp에서 체크된 리스트의 dog 파일을 삭제하는 기능 
     */
@@ -140,5 +141,6 @@ public interface MemberDao {
     * 리스트.jsp에서 체크된 리스트의 userlike를 삭제하는 기능 
     */
    public void deleteUserlikeList(String names);
+
    
 }
