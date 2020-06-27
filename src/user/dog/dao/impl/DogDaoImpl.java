@@ -297,11 +297,9 @@ public class DogDaoImpl implements DogDao{
 			ps= conn.prepareStatement(sql);
 			
 			ps.setString(1, userlike.getUserid());
-<<<<<<< HEAD
 			ps.setString(2, userlike.getAdoptsw());
 			ps.setInt(3, userlike.getApplysw());
 			ps.setInt(4, userlike.getDogno());
-=======
 			ps.setInt(2, userlike.getDogno());
 			
 			
@@ -311,11 +309,7 @@ public class DogDaoImpl implements DogDao{
 			}else {
 				ps.setString(3, "Y");
 			}
-			
-			
-			
-			
->>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
+	
 			ps.executeUpdate();
 			
 		} catch (SQLException e) {

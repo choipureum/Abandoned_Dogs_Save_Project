@@ -401,7 +401,8 @@ public class MemberDaoImpl implements MemberDao{
 //		sql += " ) BOARD";
 //		sql += " WHERE rnum BETWEEN ? AND ?";
 		
-		   String sql = " ";
+		  
+		String sql = " ";
 	       sql +=  "	select * from (select rownum rnum, e.* from"; 
 	       sql +=  "	(";
 	       sql +=  "	select"; 

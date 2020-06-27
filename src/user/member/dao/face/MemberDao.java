@@ -110,9 +110,6 @@ public interface MemberDao {
     */
    public void memberDelete(String userid);
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
    /**
     * 
     * 
@@ -122,12 +119,6 @@ public interface MemberDao {
     */
    public int modifyMypageNotAdd(MemberDTO member);
 
-=======
-<<<<<<< HEAD
- 
-=======
-   
->>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
    /*
     *리스트.jsp에서 체크된 리스트의 dog 파일을 삭제하는 기능 
     */
@@ -150,6 +141,5 @@ public interface MemberDao {
    public void deleteUserlikeList(String names);
    
    
->>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
    
 }

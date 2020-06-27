@@ -6,35 +6,34 @@
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
  <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
  
- <script type="text/javascript"src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-
-    
+  
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
 <!-- Bootstrap 3.3.2 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>    
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
-<script type="text/javascript">
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script> 
+<script>
 $(document).ready(function() {
 	// 선택체크 삭제
 	$("#btnDelete").click(function() {
 		// 선택된 체크박스
 		var $checkboxes = $("input:checkbox[name='checkRow']:checked");
 		
-			
-
 	
-	
-		
 		// 체크된 대상들을 map으로 만들고 map을 문자열로 만들기
 		var map = $checkboxes.map(function() {
 			return $(this).val();
 		});
 		var names = map.get().join(",");
 	
-		
 	
-		
 		
 		// 전송 폼
 		var $form = $("<form>")
@@ -73,16 +72,14 @@ function checkAll() {
 	}
 }
 </script>
+<script type="text/javascript">
 
-    
-    
-    
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
+
+
+
+
+
+</script>
 <body>
 <div class="container">
 
