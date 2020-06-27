@@ -55,7 +55,6 @@ public class MypageLikeListController extends HttpServlet {
 		Paging paging = memberService.getPaging(request , userid);
 			 
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//찜목록
 		//paging객체의 totalcount로 pagig객체 생성하여 반환 
 		//Paging paging = memberService.getPaging(request);

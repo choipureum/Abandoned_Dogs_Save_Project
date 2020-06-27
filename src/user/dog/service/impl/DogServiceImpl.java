@@ -147,8 +147,8 @@ public class DogServiceImpl implements DogService{
 			if(param!=null && !"".equals(param)) {
 				dogno = Integer.parseInt(param);
 			}
-			// 로그인한 아이디
 			
+			// 로그인한 아이디
 			String userid = (String) req.getSession().getAttribute("userid");
 			
 			UserLike userlike = new UserLike();
@@ -171,6 +171,17 @@ public class DogServiceImpl implements DogService{
 			}
 			return true;
 			
+		}
+
+		@Override
+		public UserLike selectUserLike(HttpServletRequest req) {
+			UserLike userlike= dogDao.selectUserLike(req); 
+		      
+		     
+			
+			
+			
+			return userlike;
 		}
 		
 		

@@ -396,50 +396,6 @@ public class MemberDaoImpl implements MemberDao{
 		
 		conn =JDBCTemplate.getConnection(); //DB 연결
 		
-//		//수행할 SQL
-//		String sql = "";
-//		sql += "SELECT * FROM (";
-//		sql += "    SELECT rownum rnum, B.* FROM (";
-//		sql += "        SELECT";
-//		sql += "            qnano, qnatitle, qnacontent,"; 
-//		sql += "            qnahit, qnadate, qnawriter";
-//		sql += "        FROM qna";
-//		sql += "        ORDER BY qnano DESC";
-//		sql += "    ) B";
-//		sql += "    ORDER BY rnum";
-//		sql += " ) BOARD";
-//		sql += " WHERE rnum BETWEEN ? AND ?";
-		
-//		   String sql = " ";
-//	       sql +=  "	select * from (select rownum rnum, e.* from"; 
-//	       sql +=  "	(";
-//	       sql +=  "	select"; 
-//	       sql +=  "	a.dogno, a.dogname,a.dogkind,a.doggender, a.dogNeu, a.dogDate, a.dogImg, a.shelterNo, a.dogEndDate,";
-//	       sql +=  "	b.dog_fileNo, b.dog_org_FILE_NAME,b.dog_stored_FILE_NAME,b.dog_FILE_SIZE,b.dog_DEL_GB,";
-//	       sql +=  "	c.userid,c.adoptsw,c.applysw";
-//	       sql +=  "	from";
-//	       sql +=  "	dog a, dog_file b, userlike c";
-//	       sql +=  "	where a.dogno = b.dogno";
-//		   sql +=  "	and   a.dogno = c.dogno order by a.dogno";
-//	       sql +=  "	) e"; 
-//	       sql +=  "	order by rnum )"; 
-//	       sql +=  "	WHERE rnum BETWEEN ? AND ?";
-		  
-		String sql = " ";
-	       sql +=  "	select * from (select rownum rnum, e.* from"; 
-	       sql +=  "	(";
-	       sql +=  "	select"; 
-	       sql +=  "	a.dogno, a.dogname,a.dogkind,a.doggender, a.dogNeu, a.dogDate, a.dogImg, a.shelterNo, a.dogEndDate,";
-	       sql +=  "	b.dog_fileNo, b.dog_org_FILE_NAME,b.dog_stored_FILE_NAME,b.dog_FILE_SIZE,b.dog_DEL_GB,";
-	       sql +=  "	c.userid,c.adoptsw,c.applysw";
-	       sql +=  "	from";
-	       sql +=  "	dog a, dog_file b, userlike c";
-	       sql +=  "	where a.dogno = b.dogno";
-		   sql +=  "	and   a.dogno = c.dogno order by a.dogno";
-	       sql +=  "	) e"; 
-	       sql +=  "	order by rnum )"; 
-	       sql +=  "	WHERE rnum BETWEEN ? AND ?";
-		
 		
 		String sql = "";
 		sql += "  select * from (select rownum rnum, e.* from";

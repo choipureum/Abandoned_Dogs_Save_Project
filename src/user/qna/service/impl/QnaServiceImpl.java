@@ -43,7 +43,7 @@ public class QnaServiceImpl implements QnaService {
 
 	@Override
 	//paging객체를 전달받아 시작과 끝을 정하고 검색어로 조건문을 주었다 
-	public List getList(Paging paging) {
+	public List<QNA> getList(Paging paging) {
 		return boardDao.selectAll(paging);
 	}
 
@@ -58,9 +58,6 @@ public class QnaServiceImpl implements QnaService {
 			curPage = Integer.parseInt(param);
 		}
 
-		
-
-		
 		//검색어
 		String search = (String)req.getParameter("search");
 

@@ -72,20 +72,22 @@ $(document).ready(function() {
 		  
 		  
 		
-		  if($("input:checkbox[name='checkRow']:checked").length==1){
+		  	if($("input:checkbox[name='checkRow']:checked").length==1){
 			
 			  
 			var a = $("input:checkbox[name='checkRow']:checked").val();
+			
+			
 			 
-			console.log(a);
+			
 			var httpRequest = new XMLHttpRequest();
 			httpRequest.onreadystatechange = function() {
 				if (httpRequest.readyState == XMLHttpRequest.DONE && httpRequest.status == 200 ) {
-					if($("#text").val() = a){		
+						
+					document.getElementById("text").innerHTML = httpRequest.responseText;
+						 
 					
-						$("#text").innerHTML = httpRequest.responseText;
 					
-					}
 				}
 			};
 				
@@ -197,7 +199,7 @@ var arr =new Array;
 	<td>${list.dogEndDate}</td>
 	
 	<c:if test="${list.applysw eq 0}">
-	<td><span id="text" value="${list.dogNo }"></span></td>
+	<td></td>
 	</c:if>
 	<c:if test="${list.applysw eq 1}">
 	<c:set value="1" var="reject"/>
