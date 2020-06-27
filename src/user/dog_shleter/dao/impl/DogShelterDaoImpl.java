@@ -17,8 +17,6 @@ import util.Paging;
 
 public class DogShelterDaoImpl implements DogShelterDao {
 
-	private static final String SQL_SELECT_BY_DOGNAME = null;
-	private static final String SQL_SELECT_BY_DOGKIND = null;
 	private Connection conn = null; // DB연결 객체
 	private PreparedStatement ps = null; // SQL수행 객체
 	private ResultSet rs = null; // SQL조회 결과 객체
@@ -229,26 +227,6 @@ public class DogShelterDaoImpl implements DogShelterDao {
 		return cnt;
 	}
 
-	@Override
-	public List<Dog_Data> dogSearchList(int category, String keyword, Paging paging) {
-		List<Dog_Data> list = new ArrayList<>();
-		
-		conn = JDBCTemplate.getConnection(); // DB연결
-		
-		try {
-			conn = ps.getConnection();
-			sql = new StringBuffer();
-			
-			if(col.equals("none")) {
-				sql.app
-			}
-		
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return list;
-	}
+
 
 }

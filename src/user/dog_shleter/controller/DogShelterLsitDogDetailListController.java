@@ -79,23 +79,6 @@ public class DogShelterLsitDogDetailListController extends HttpServlet {
 
 	}
 
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	
-		Paging paging = dogShelterService.getPaging(req);
-		
-		int category = Integer.parseInt(req.getParameter("searchCategory"));
-		String keyword = req.getParameter("searchKeyword");
-		
-		List<Dog_Data> slist = dogShelterService.select(category, keyword, paging);
-		
-		req.setAttribute("dogList", slist);
-		
-		// VIEW 지정 응답
-		req.getRequestDispatcher("/WEB-INF/views/user/dogShelter/dogSearch.jsp").forward(req, resp);
-
-	
-	}
 
 
 

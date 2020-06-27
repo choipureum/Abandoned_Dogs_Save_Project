@@ -45,7 +45,6 @@ public interface DogShelterService {
 	 */
 	public Paging getPaging(HttpServletRequest req);
 
-	public List<Dog_Data> select(int category, String keyword, Paging paging);
 
 	
 
