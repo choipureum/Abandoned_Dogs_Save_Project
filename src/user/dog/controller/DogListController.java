@@ -11,11 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import user.dog.dto.Dog_Data;
+import user.dog.dto.UserLike;
 import user.dog.service.face.DogService;
 import user.dog.service.impl.DogServiceImpl;
 import util.Paging;
-
-@WebServlet("/dog/list")
+import java.util.*
+;@WebServlet("/dog/list")
 public class DogListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -26,11 +27,12 @@ public class DogListController extends HttpServlet {
 		@Override
 		protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 			
+			
+			
 			//요청파라미터를 전달하여 Paging 객체 생성하기
 			Paging paging = dogService.getPaging(req);
 			req.setAttribute("paging", paging);
-
-			//VIEW 지정 및 응답 - forward
+				//VIEW 지정 및 응답 - forward
 			req.getRequestDispatcher("/WEB-INF/views/user/dog/view.jsp").forward(req, resp);		
 			
 			

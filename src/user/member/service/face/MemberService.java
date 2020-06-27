@@ -86,7 +86,8 @@ public interface MemberService {
     * 
     *
     * */
-   public Paging getPaging(HttpServletRequest req);
+   //public Paging getPaging(HttpServletRequest req);
+   public Paging getPaging(HttpServletRequest req ,String userid);
    
    
    //startno과 endno을 정해서 paging객체 생성 

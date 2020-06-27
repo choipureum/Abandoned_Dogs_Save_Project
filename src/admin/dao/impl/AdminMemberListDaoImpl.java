@@ -1095,10 +1095,11 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 			sql += "   dogno, dog_fileno, dog_org_file_name, dog_stored_file_name, dog_file_size, dog_del_gb";
 			sql += "   FROM dog_file ";
 			sql +="    )R ";
-			sql +="    where B.dogno = R.dogno ";
+			sql +="    where B.dogno = R.dogno and dogno=?";
 			Dog_Data d= new Dog_Data();
 	    	try {
 				ps=conn.prepareStatement(sql.toString());
+				ps.setInt(1, dogno);
 				rs=ps.executeQuery();
 							
 				Date today = new Date();

@@ -3,6 +3,7 @@ package user.member.dao.face;
 
 import java.util.List;
 
+import user.dog.dto.Dog_Data;
 import user.dog.dto.UserLike;
 import user.member.dto.MemberAddDTO;
 import user.member.dto.MemberDTO;
@@ -77,7 +78,7 @@ public interface MemberDao {
     * 
     * 
     * */
-   public int selectCntAll();
+   public int selectCntAll(String userid);
    
    
    
@@ -110,9 +111,7 @@ public interface MemberDao {
     */
    public void memberDelete(String userid);
 
-<<<<<<< HEAD
- 
-=======
+
    
    /*
     *리스트.jsp에서 체크된 리스트의 dog 파일을 삭제하는 기능 
@@ -134,8 +133,20 @@ public interface MemberDao {
     * 리스트.jsp에서 체크된 리스트의 userlike를 삭제하는 기능 
     */
    public void deleteUserlikeList(String names);
->>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
-   
-   
+
+   /**
+    * id를 기준으로 userlike 출력
+    * @param userid
+    * @return
+    */
+   public List<UserLike> LikeSelectByid(String userid);
+   /**
+    * 
+    * dogno을 통한 dog데이터 출력
+    * 
+    * @param dogno
+    * @return
+    */
+   public Dog_Data dogSelectBydogno(int dogno);
    
 }
