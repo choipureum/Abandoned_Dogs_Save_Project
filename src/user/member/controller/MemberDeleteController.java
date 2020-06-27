@@ -11,14 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 import user.member.service.face.MemberService;
 import user.member.service.impl.MemberServiceImpl;
 
-/**
- * Servlet implementation class MemberDeleteController
- */
 @WebServlet("/member/delete")
 public class MemberDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	MemberService memberService = new MemberServiceImpl();
+	
 	
 	
 	@Override
@@ -30,6 +28,8 @@ public class MemberDeleteController extends HttpServlet {
 		//탈퇴하기
 		memberService.memberDelete(userid);
 		
+		resp.sendRedirect("/logout/logout");
+
 	}
 
 }
