@@ -71,15 +71,14 @@ public interface MemberService {
     */
    public int findpw(String username, String userid, String useremail);
 
+   
    /**
     * userpw set 용도 userid같은지 확인
     * @param userpw
     * @param userid
     */
    public void changepassword(String userpw, String userid);
-   
-   
-   
+ 
    /*
     * 
     * 페이징 객체 생성 
@@ -114,7 +113,18 @@ public interface MemberService {
     * @param userid
     */
    public void memberDelete(String userid);
+   
+   
+   
+   /*
+    * list에서 선택된 목록을 삭제시키는 기능//dog,file,userlike 데베에서 전부다 지워야 한다 
+    */
+   public void memberListDelete(String names);
 
+   public int modifyMypageNotAdd(MemberDTO member);
+
+
+   
 
 }
 

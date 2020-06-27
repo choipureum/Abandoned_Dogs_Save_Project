@@ -56,21 +56,33 @@ table td {
                		  <th>내용</th>
                		  <th>작성일</th>
                		  <th>작성자</th>  
+               		  <th>답변여부</th>
                     </tr>
                   </thead>
                	  <tbody>               	  	           
       				  	  	           
       					<c:forEach items="${qnaList }" var="m">      					
-			            <tr class="member_row" onclick="location.href='/admin/dashboard'">									           
+			            <tr class="member_row" onclick="location.href='/admin/qnaDetail?qnano=${m.qnaNO}'">									           
 			            	<td onclick='event.cancelBubble=true;'> 
 			            		<div style="padding:0 0 0 9px">               	
 			           			<input type="checkbox" id="list_chk" class="list_chk"  data-qna="${m.qnaNO }"  />           	                                                			
 								</div></td> 
 			                <td>${m.qnaNO }</td>			                
-			               	<td id="qnatitle">${m.qnaTitle }</td>				               	
-			              	<td id="qnacontent">${m.qnaContent}</td>	
+			               	<td>${m.qnaTitle }</td>				               	
+			              	<td>${m.qnaContent}</td>	
 			              	<td>${m.qnaDate }</td>
 			                <td>${m.qnaWriter }</td>
+			                <td>			          
+			                <c:set var="name" value="${m.delsw }" />			               
+			                	<c:choose>
+								    <c:when test="${name eq 'Y'}">
+								        <span style="color:green">답변완료</span>
+								    </c:when>								    
+								    <c:otherwise>
+								      <span style="color:red">답변대기중</sapn>
+								    </c:otherwise>
+								</c:choose>						
+							</td>
 			            </tr>   
 			            </c:forEach>      
                	  </tbody>                	                	                           	  	  

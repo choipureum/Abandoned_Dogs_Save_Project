@@ -159,7 +159,14 @@ public class AdminMemberListServiceImpl implements AdminMemberListService{
 							} catch (UnsupportedEncodingException e) {
 								e.printStackTrace();
 							}	
-						}// 쉘터 추가?
+						}
+						else if("shelter".equals(key)) {
+							try {
+								dog.setShelterno(Integer.parseInt( item.getString("UTF-8")) );
+							} catch (UnsupportedEncodingException e) {
+								e.printStackTrace();
+							}	
+						}
 						
 					} // if( item.isFormField() ) end - 폼필드 확인
 					
@@ -219,8 +226,8 @@ public class AdminMemberListServiceImpl implements AdminMemberListService{
 				}
 	}
 	@Override
-	public List<DogClaimDTO> dogClaimSelectAll(HashMap<String, Object> listOpt, Paging paging) {				
-		return adminMemberListDao.dogClaimSelectAll(listOpt,paging);
+	public List<DogClaimDTO> dogClaimSelectAll() {				
+		return adminMemberListDao.dogClaimSelectAll();
 	}
 	
 	/**

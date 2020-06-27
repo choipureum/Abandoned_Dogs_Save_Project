@@ -8,15 +8,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import admin.dto.DogClaimDTO;
 import user.dog.dto.DogDTO;
 import user.dog.dto.Dog_File_DTO;
 import user.dog.dto.UserLike;
 import user.dog.service.face.DogService;
 import user.dog.service.impl.DogServiceImpl;
 
-/**
- * Servlet implementation class DogDetailController
- */
 @WebServlet("/dog/detailView")
 public class DogDetailController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -34,17 +32,13 @@ public class DogDetailController extends HttpServlet {
 			//상세보기 결과 조회
 			DogDTO detailDog = dogService.view(dogno);
 			
-			//첨부파일 정보 VIEW에 전달
+			//파일 정보 VIEW에 전달
 			Dog_File_DTO dogFile = dogService.viewFile(detailDog);
-			
-			
-			
-			
-			
+
+//			System.out.println("detail : "+detailDog);
+//			System.out.println("detailFile" +dogFile);
 			
 			req.setAttribute("dogFile", dogFile);
-			
-			
 			
 			//조회결과 MODEL값 전달
 			req.setAttribute("detailDog", detailDog);
@@ -58,15 +52,19 @@ public class DogDetailController extends HttpServlet {
 		@Override
 		protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 			
-			dogService.insertUserLike(req);
-			
-			dogService.insertDogClaim(req);
-				// 값 넣어주기
+			//전달파라미터 얻기 - dogno
+			DogDTO dogno = dogService.getDogno(req);
 			
 			
 			
 			
-			resp.sendRedirect("/dog/list");
+			
+			
+			
+			
+			
+			
+			
 			
 		}
 		

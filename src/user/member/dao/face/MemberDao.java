@@ -3,6 +3,7 @@ package user.member.dao.face;
 
 import java.util.List;
 
+import user.dog.dto.UserLike;
 import user.member.dto.MemberAddDTO;
 import user.member.dto.MemberDTO;
 import util.Paging;
@@ -110,6 +111,36 @@ public interface MemberDao {
    public void memberDelete(String userid);
 
 
+   /**
+    * 
+    * 
+    * 
+    * @param member
+    * @return
+    */
+   public int modifyMypageNotAdd(MemberDTO member);
+
+
+   /*
+    *리스트.jsp에서 체크된 리스트의 dog 파일을 삭제하는 기능 
+    */
+   public void deleteMemberFileList(String names);
+   
+   
+   
+   /*
+    * 
+    * 리스트.jsp에서 체크된 리스트의 dog리스트를 삭제하는 기능 
+    * 
+    * */
+   public void deleteMemberList(String names);
+   
+   
+   
+   /*
+    * 리스트.jsp에서 체크된 리스트의 userlike를 삭제하는 기능 
+    */
+   public void deleteUserlikeList(String names);
 
    
 }

@@ -23,6 +23,22 @@
  .filebox .upload-thumb-wrap {  display: inline-block; width: 54px; padding: 2px; vertical-align: middle; border: 1px solid #ddd; border-radius: 5px; background-color: #fff; }  
  /* 추가될 이미지 */ 
  .filebox .upload-display img {  display: block; max-width: 100%; width: 100% \9; height: auto; } 
+ 
+
+
+select {
+  width: 200px;
+  padding: .8em .5em;
+  font-family: inherit;
+  background: url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg) no-repeat 95% 50%;  
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: 1px solid #999;
+  border-radius: 0px;
+}
+
+
 </style>
   	<c:import url="/WEB-INF/views/admin/util/Header.jsp"></c:import>
         <!-- Begin Page Content -->
@@ -96,6 +112,27 @@
 						            <label>&nbsp;&nbsp;Neutered</label>
 						        </div>
 						    </div></li>
+                   	 </ul>
+                    </nav>
+                      <!-- 보호소 -->
+                  <nav class="navbar navbar-expand  mb-4">                
+                    <a class="navbar-brand">보호소 위치</a>                   
+                    <ul class="navbar-nav ml-center">
+                     	<li>
+                     		<select name="shelter" id="shelter"class="text-gray-700"> 
+	                     		<option selected="selected" value="0">보호소 선택</option> 
+	                     		<option value="1">대전동물보호소</option> 
+	                     		<option value="2">충주유기견보호소</option> 
+	                     		<option value="3">울산유기동물보호센터</option> 
+	                     		<option value="4">부산동물보호센터</option> 
+	                     		<option value="5">동해시유기견보호소</option> 
+	                     		<option value="6">광주동물보호소</option> 
+	                     		<option value="7">시흥엔젤홍유기견보호소</option> 
+	                     		<option value="8">아산시유기동물보호소</option>
+	                     		<option value="9">보령유기견보호소</option> 
+	                     		<option value="10">용인시동물보호센터</option>  
+                     		</select>     	                	
+                     	</li>
                    	 </ul>
                     </nav>
                     <!-- 사진 -->
@@ -247,7 +284,15 @@ $(document).ready(function(){
 						  return false;								
 				});
 			      return false;
-			   }		
+			   }		 
+		   if($("#shelter").val()==0){
+			   swal({								  
+					  text: "보호소를 선택해주세요"
+					}).then(function() {															
+						  return false;								
+				});
+			      return false;
+			   }	
 		   //성별 둘중에 하나라도 체크시 넘어감
 		  if(!$('input[name="genderCheck"]').is(":checked")){
 			  swal({								  

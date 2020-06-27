@@ -6,6 +6,8 @@
 <meta charset="UTF-8">
 <title>아이디찾기</title>
 
+<!--Alert 디자인 라이브러리 -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <!-- 자바스크립트 -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
@@ -25,9 +27,17 @@ function idFind(event){
 	
 	
 	if($("#username").val()==""){
-		alert("이름을 입력하세요");
+// 		alert("이름을 입력하세요");
+		swal({
+			title: "이름을 입력하세요!",
+			icon:"error"
+		});
 	} else if($("#useremail").val()==""){
-		alert("이메일을 입력하세요");
+// 		alert("이메일을 입력하세요");
+		swal({
+			title: "이메일을 입력하세요!",
+			icon:"error"
+		});
 	} 
 
 // 	//배열에 유저정보 삽입

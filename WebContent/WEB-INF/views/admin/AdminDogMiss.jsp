@@ -53,8 +53,9 @@ input[type="checkbox"]{width: 20px;height: 20px;cursor: pointer;}
                     </tr>
                   </thead>
                	  <tbody>               	  	           
-      				  	  	           
-      					<c:forEach items="${missList }" var="m">      					
+      				  	  	           <% int cnt=0; %>
+      					<c:forEach items="${missList }" var="m">    
+      					<%cnt++; %>  					
 			            <tr class="member_row">									           
 			            	<td onclick='event.cancelBubble=true;'> 
 			            		<div style="padding:0 0 0 8px">               	
@@ -68,7 +69,13 @@ input[type="checkbox"]{width: 20px;height: 20px;cursor: pointer;}
 			                <td>${m.missKind }</td>			                          
 			            </tr>   
 			            </c:forEach>      
-               	  </tbody>                	                	                           	  	  
+               	  </tbody>         
+               	   <tfoot>
+               	   		<tr>				    
+					        <th colspan="2" style="text-align:right;white-space:nowrap;">TOTAL : </th>
+					        <th colspan="5" style="text-align:left;white-space:nowrap;"> <%=cnt %> &nbsp;마리</th>
+					  </tr>             	  
+               	  </tfoot>       	                	                           	  	  
                 </table>
                       
               </div>

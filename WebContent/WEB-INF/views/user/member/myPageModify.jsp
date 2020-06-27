@@ -11,6 +11,12 @@
 <head>
 <meta charset="UTF-8">
 <title>마이페이지 수정</title>
+
+<!-- Custom fonts for this template-->
+  <link href="/resources/AdminTemplate/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  
+<!-- 글씨체 -->
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 <!--Alert 디자인 라이브러리 -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!-- 다음 주소 api -->
@@ -235,12 +241,13 @@ h2 span {
 }
 /* 수정하기 */
 .modify {
-	background-color: #7DBCBE;
-	color: white;
+	background-color: #fed136;
+	color: black;
 	border-radius: 5px;
 	border: 0;
 	padding: 10px 160px;
 	cursor: pointer;
+	font-size:14px;
 }
 
 .open {
@@ -250,6 +257,7 @@ h2 span {
 	border: 0;
 	padding: 10px 160px;
 	cursor: pointer;
+	font-size:14px;
 }
 
 .btn_btn {
@@ -295,13 +303,13 @@ select {
 /* 처음이름 */
 .label {
 	color: red;
-	font-size: 13px;
+	font-size: 15px;
 }
 
-.tit_36 {
-	font-size: 20px;
-	font-weight: bold;
-}
+/* .tit_36 { */
+/* 	font-size: 20px; */
+/* 	font-weight: bold; */
+/* } */
 
 
 h1 {
@@ -312,7 +320,14 @@ h1 {
 .popup_text {
 	padding: 20px;
 	align-content: center;
+	color : #aaaaaa	;
+	overflow: auto;
 }
+::-webkit-scrollbar{width:2px;}
+::-webkit-scrollbar-track{background-color: white;}
+::-webkit-scrollbar-thumb{background-color: #969696;border-radius: 5px;}
+::-webkit-scrollbar-thumb:hover{background: #969696;}
+
 
 .popupwithdraw {
 	all: unset;
@@ -370,13 +385,22 @@ h1 {
 	padding: 30px 0 0;
 }
 
+/* 글씨체 */
+p {
+	font-family: 'Do Hyeon', sans-serif;
+	font-size: 30px;
+}
+
+p.a {
+    font-size: 18px;
+}
 </style>
 </head>
 <body>
 <!-- 입력  -->
 <div class="container">
 
-   <p class="tit_36">회원정보 변경<span class="label">(필수는 꼭 해주세요!)</span></p>
+   <p class="tit_36">회원정보 변경 <span class="label">(필수는 꼭 해주세요!)</span></p>
    <hr>
    <form action="/mypage/modify" method="post" id="myForm">
    
@@ -483,14 +507,15 @@ h1 {
 			<h6>주소<span id="red">(필수)</span>
 			<div>기존 주소 : ${member.useraddress }</div>
 				<div class="form-group">                   
-					<input class="form-control"  placeholder="우편번호" name="mem_oaddress" id="mem_oaddress" type="text" readonly="readonly" required style=" height:28px; width: 100px">
+					<input class="form-control" placeholder="우편번호" name="mem_oaddress" id="mem_oaddress" type="text" readonly="readonly" required style=" height:28px; width: 100px">
     				<button type="button" class="btn-default" onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button>                               
 				</div>
 
 				<div class="form-group">
     				<input type="text" class="form-control"  placeholder="도로명 주소" name="mem_address" id="mem_address" required style="height:30px; width: 270px" readonly="readonly" />
-   	 				<input type="text" class="form-control" placeholder="상세주소" name="mem_detailaddress" id="mem_detailaddress" required style="height:30px; width: 240px"/>
+   	 				<input type="text" class="form-control" placeholder="상세주소" value= " " name="mem_detailaddress" id="mem_detailaddress" required style="height:30px; width: 240px"/>
 				</div>
+				
 			</h6>	
 
 		</tr>
@@ -504,22 +529,24 @@ h1 {
 	
 	<div class="second" style="float:right;">
 		<button type="button" id="open" value="탈퇴하기" class="open">탈퇴하기</button>
+			
 			<div class="popup">
-			<h2>탈퇴하기</h2>
-				<div class="con">
-					<table class="type1">
+				<h2 style="font-weight: bold;">탈퇴하기</h2>
+					<div class="con">
+<!-- 						<table class="type1"> -->
+							<div class="popup_text" style="border: 1px solid #BDBDBD; padding: 10px; height: 150px;">
+								 <p class="a">다솜을 이용해 주셔서 감사합니다.<br>	
+								* 탈퇴 후에는 아이디와 예약내역 등의 데이터 복구가 불가능합니다.<br>
+								* 탈퇴 후에는 등록된 게시물 삭제가 불가능합니다. <br>
+								* 탈퇴하기 버튼을 누르면 바로 탈퇴가 됩니다<br><br>
+								* 신중히 눌러주세요<br></p>
+							</div>
 
-						<div class="popup_text" style="border: 1px solid gold; padding: 10px; height: 150px;">
-							 다솜을 이용해 주셔서 감사합니다.<br>	
-							* 탈퇴 후에는 아이디와 예약내역 등의 데이터 복구가 불가능합니다.<br>
-							* 탈퇴 후에는 등록된 게시물 삭제가 불가능합니다. <br>
-							* 탈퇴하기 버튼을 누르면 바로 탈퇴가 됩니다<br><br>
-							* 신중히 눌러주세요 <br>
-						</div>
-					</table>
-				</div>
+<!-- 						</table> -->
+					</div>
 				<div class="txt_center">
 <!-- 				<a href="#a" class="btn_type1">상담신청</a> -->
+
 					<button type="button" class="popupwithdraw" onclick="withDraw()">탈퇴하기</button>
 				</div>
 			<a href="#a" class="close">닫기</a>

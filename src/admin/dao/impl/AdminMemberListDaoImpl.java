@@ -18,9 +18,11 @@ import admin.dto.DogClaimDTO;
 import user.dog.dto.DogDTO;
 import user.dog.dto.Dog_Data;
 import user.dog.dto.Dog_File_DTO;
+import user.dog.dto.UserLike;
 import user.dogmiss.dto.DogMissAdd;
 import user.member.dto.MemberDTO;
 import user.qna.dto.QNA;
+import user.qna.dto.Qna_Reply;
 import util.JDBCTemplate;
 
 public class AdminMemberListDaoImpl implements AdminMemberListDao{
@@ -121,7 +123,7 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 			    	member.setUseremail(rs.getString("userEmail"));
 			    	member.setUserbirth(rs.getString("userBirth"));
 			    	member.setUseraddress(rs.getString("userAddress"));	
-			    	member.setUsergrade(rs.getInt("userGrade"));
+			    	member.setUsergrade(rs.getString("userGrade"));
 			    	member.setUserregdate(rs.getDate("userRegDate"));
 			    	list.add(member);
 		    	}
@@ -251,7 +253,7 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 			    	member.setUseremail(rs.getString("userEmail"));
 			    	member.setUserbirth(rs.getString("userBirth"));
 			    	member.setUseraddress(rs.getString("userAddress"));	
-			    	member.setUsergrade(rs.getInt("userGrade"));
+			    	member.setUsergrade(rs.getString("userGrade"));
 			    	member.setUserregdate(rs.getDate("userRegDate"));
 				}								
 			} catch (SQLException e) {
@@ -284,7 +286,7 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 			    	member.setUseremail(rs.getString("userEmail"));
 			    	member.setUserbirth(rs.getString("userBirth"));
 			    	member.setUseraddress(rs.getString("userAddress"));	
-			    	member.setUsergrade(rs.getInt("userGrade"));
+			    	member.setUsergrade(rs.getString("userGrade"));
 			    	member.setUserregdate(rs.getDate("userRegDate"));
 			    	list.add(member);			    						
 				}
@@ -414,21 +416,22 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 	    public void insertDog(DogDTO dog) {
 	    	conn = JDBCTemplate.getConnection();
 	    	
-	    	String sql = "Insert into dog(dogno, dogname, dogkind, doggender, dogneu, shelterno) values(?, ?,?,?,?,1)";
+	    	String sql = "Insert into dog(dogno, dogname, dogkind, doggender, dogneu, shelterno) values(?, ?,?,?,?,?)";
 	    	
 	    	try {
 				ps=conn.prepareStatement(sql);
 				ps.setInt(1, dog.getDogno());
 				ps.setString(2, dog.getDogname());
 				ps.setString(3, dog.getDogkind());
-				ps.setString(4, dog.getDoggender());
+				ps.setString(4, dog.getDoggender());				
 				//null이면 N으로 넣고 아니면 Y처리
 				if(dog.getDogneu()==null) {
 					ps.setString(5, "N");
 				}
 				else {
 					ps.setString(5, "Y");
-				}				
+				}
+				ps.setInt(6, dog.getShelterno());
 				ps.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -464,7 +467,7 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 			}
 	    }
 	    @Override
-	    public List <DogClaimDTO> dogClaimSelectAll(HashMap<String,Object> listOpt,Paging paging) {
+	    public List <DogClaimDTO> dogClaimSelectAll() {
 	    	
 	    	List <DogClaimDTO> list = new ArrayList<>();
 	    	
@@ -472,19 +475,11 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 	    	sql = new StringBuffer();
 	    	 
 	    	
-	    	sql.append("SELECT * FROM (");      
-	    	sql.append(" SELECT rownum rnum, B.* FROM (");
-	    	sql.append(" SELECT");
-	    	sql.append(" *");
-	    	sql.append(" FROM dog_claim");	  
-	    	sql.append(" order by dogRegDate)B");
-	    	sql.append(" )dog_claim");
-	    	sql.append(" WHERE rnum BETWEEN ? AND ?");	
+	    	sql.append(" select * from dog_claim order by dogregdate");
 	    	
 	    	try {
 				ps=conn.prepareStatement(sql.toString());
-				ps.setInt(1, paging.getStartNo());
-		    	ps.setInt(2, paging.getEndNo());		
+			
 				rs= ps.executeQuery();
 				
 				Date today = new Date();
@@ -803,6 +798,7 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 					qna.setQnaHit( rs.getInt("qnahit"));
 					qna.setQnaDate( rs.getDate("qnadate") );					
 					qna.setQnaWriter( rs.getString("qnawriter") );
+					qna.setDelsw( rs.getString("delsw") );
 				
 					//리스트에 결과값 저장
 					qnaList.add(qna);
@@ -1042,7 +1038,211 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 	    	
 	    return res;
 	    }
-}
+	    @Override
+	    public List<UserLike> AdoptSelectById(String  userid) {
+	    	List<UserLike> list= new ArrayList<>();
+	    	conn = JDBCTemplate.getConnection();
+	    	sql = new StringBuffer();
+	    	sql.append(" select * from userlike where userid=? and adoptsw='Y'");
+	    	try {
+				ps=conn.prepareStatement(sql.toString());
+				ps.setString(1, userid);
+				rs= ps.executeQuery();
+				
+				while(rs.next()) {
+					UserLike p = new UserLike();
+					p.setDogno(rs.getInt("dogno"));
+					p.setApplysw(rs.getInt("Applysw"));
+					list.add(p);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				JDBCTemplate.close(ps);
+				JDBCTemplate.close(rs);
+			}	   	
+	    	return list;
+	    }
+	    
+	    
+	    
+	    @Override
+	    public List<UserLike> SelectById(String userid) {
+	    	List<UserLike> list= new ArrayList<>();
+	    	conn = JDBCTemplate.getConnection();
+	    	sql = new StringBuffer();
+	    	sql.append(" select * from userlike where userid=? and adoptsw= 'N'");
+	    	try {
+				ps=conn.prepareStatement(sql.toString());
+				ps.setString(1, userid);
+				rs= ps.executeQuery();
+				
+				while(rs.next()) {
+					UserLike p = new UserLike();
+					p.setDogno(rs.getInt("dogno"));
+					p.setApplysw(rs.getInt("Applysw"));
+					list.add(p);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				JDBCTemplate.close(ps);
+				JDBCTemplate.close(rs);
+			}   	
+	    	return list;
+	    }
+	    @Override
+	    public Dog_Data selectByDogno(int dogno) {
+	    	conn= JDBCTemplate.getConnection();
+	    	String sql = ""; 
+			sql += "SELECT * FROM (SELECT dogno, dogname, dogkind, doggender, dogneu, dogdate, shelterno, dogimg";
+			sql += "		FROM dog";
+			sql += "		ORDER BY dogdate";
+			sql += "	) B, ";
+			sql += "   (SELECT";
+			sql += "   dogno, dog_fileno, dog_org_file_name, dog_stored_file_name, dog_file_size, dog_del_gb";
+			sql += "   FROM dog_file ";
+			sql +="    )R ";
+			sql +="    where B.dogno = R.dogno ";
+			Dog_Data d= new Dog_Data();
+	    	try {
+				ps=conn.prepareStatement(sql.toString());
+				rs=ps.executeQuery();
+							
+				Date today = new Date();
+				while(rs.next()) {
+					d.setDogno(dogno);
+					d.setDogname(rs.getString("dogname"));
+					d.setDogkind( rs.getString("dogkind") );
+					d.setDoggender( rs.getString("doggender") );
+					d.setDogneu( rs.getString("dogneu") );
+					d.setDogdate( rs.getDate("dogdate") );
+					d.setDogimg( rs.getString("dogimg") );
+					d.setShelterno( rs.getInt("shelterno") );
+					//공고일 구하기 남은 일수
+				  	long diffDay=0;		    
+				    //두날짜 사이의 시간 차이(ms)를 하루 동안의 ms(24시*60분*60초*1000밀리초) 로 나눈다.
+					diffDay = (today.getTime() - d.getDogdate().getTime()) / (24*60*60*1000);
+					diffDay= 10-diffDay;							
+				    d.setDogenddate(diffDay);
+					
+					
+					d.setDog_fileno( rs.getInt("dog_fileno") );				
+					d.setDog_org_file_name( rs.getString("dog_org_file_name") );
+					d.setDog_stored_file_name( rs.getString("dog_stored_file_name") );
+					d.setDog_file_size( rs.getDouble("dog_file_size") );
+					d.setDog_del_gb( rs.getString("dog_del_gb") );
+	
+				}
+			
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(ps);
+				JDBCTemplate.close(rs);
+			}
+	    	return d;
+	    }
+	    @Override
+	    public QNA QnaSelectByqnano(int qnano) {
+	    	
+	    	conn= JDBCTemplate.getConnection();
+	    	sql= new StringBuffer();
+	    	QNA qna = new QNA();
+	    	sql.append("select * from qna where qnano=?");
+	    	
+	    	try {
+				ps= conn.prepareStatement(sql.toString());
+				ps.setInt(1, qnano);
+				rs=ps.executeQuery();
+				
+				while(rs.next()) {
+					qna.setQnaNO(qnano);
+					qna.setQnaTitle(rs.getString("qnaTitle"));
+					qna.setQnaContent(rs.getString("qnaContent"));
+					qna.setQnaDate(rs.getDate("qnaDate"));
+					qna.setQnaWriter(rs.getString("qnaWriter"));
+
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(ps);
+				JDBCTemplate.close(rs);
+			}
+    	
+	    	return qna;
+	    }
+	    @Override
+	    public void InsertQnaReply(int qnano, String title,String content) {
+	    	conn= JDBCTemplate.getConnection();
+	    	sql= new StringBuffer();
+	    	Qna_Reply ref = new Qna_Reply();
+	    	sql.append("insert into qna_reply(ref_title,ref_content,ref_date,qnano) values(?,?,sysdate,?) ");
+	    	
+	    	try {
+				ps= conn.prepareStatement(sql.toString());
+				ps.setString(1, title);
+				ps.setString(2, content);
+				ps.setInt(3, qnano);
+				ps.executeUpdate();			
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(ps);
+			}    		    	
+	    }
+	    
+	    @Override
+	    public void UpdateDelsw(int qnano) {
+	    	conn= JDBCTemplate.getConnection();
+	    	sql= new StringBuffer();
+	    	Qna_Reply ref = new Qna_Reply();
+	    	sql.append("update qna set delsw='Y' where qnano=? ");
+	    	
+	    	try {
+				ps= conn.prepareStatement(sql.toString());		
+				ps.setInt(1, qnano);
+				ps.executeUpdate();			
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(ps);
+			}    		    	
+	    }
+	    @Override
+	    public Qna_Reply QnaRefSelect(int qnano) {
+	    	conn= JDBCTemplate.getConnection();
+	    	sql= new StringBuffer();
+	    	Qna_Reply qnaRef = new Qna_Reply();
+	    	sql.append("select * from qna_reply where qnano=?");
+	    	
+	    	try {
+				ps= conn.prepareStatement(sql.toString());
+				ps.setInt(1, qnano);
+				rs=ps.executeQuery();
+				
+				while(rs.next()) {
+					qnaRef.setQnano(qnano);
+					qnaRef.setRef_title(rs.getString("ref_title"));
+					qnaRef.setRef_content(rs.getString("ref_content"));
+					qnaRef.setRef_date(rs.getDate("ref_date"));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(ps);
+				JDBCTemplate.close(rs);
+			}
+    	
+	    	return qnaRef;
+	    	
+	        	
+	    }
+	    }
+
 
 
 

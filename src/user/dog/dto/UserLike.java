@@ -8,7 +8,7 @@ public class UserLike {
 	private String adoptsw;
 	private int applysw;
 	private int dogno;
-	
+
 	
 	public int getApplysw() {
 		return applysw;
@@ -16,6 +16,7 @@ public class UserLike {
 	public void setApplysw(int applysw) {
 		this.applysw = applysw;
 	}
+
 	public String getUserid() {
 		return userid;
 	}
@@ -28,6 +29,7 @@ public class UserLike {
 	public void setAdoptsw(String adoptsw) {
 		this.adoptsw = adoptsw;
 	}
+
 	public int getDogno() {
 		return dogno;
 	}
@@ -41,16 +43,6 @@ public class UserLike {
 	}
 	
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 }

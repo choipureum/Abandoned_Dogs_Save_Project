@@ -56,32 +56,37 @@ public interface DogDao {
 
 
 
-	
+	/**
+	 * userlike 정보 삽입
+	 * @param userlike
+	 */
 	public void insertUserLike(UserLike userlike);
 
 
 
 
-
+	/**
+	 * dogclaim에 
+	 * @param claim
+	 */
 	public void insertDogClaim(DogClaimDTO claim);
 
 
 
-//	public void insertUserLike(DogDTO dog);
+
+	public void deleteUserLike(UserLike userlike);
 
 
 
 
-
-//	public void insertUserLike(UserLike userlike);
-
+	public void deleteDogClaim(DogClaimDTO dogclaim);
 
 
 
 
-//	public void insertUserLike(HttpServletRequest req);
-	
-	
+	public int selectCntUserLike(UserLike userlike);
+
+
 	
 	
 }
