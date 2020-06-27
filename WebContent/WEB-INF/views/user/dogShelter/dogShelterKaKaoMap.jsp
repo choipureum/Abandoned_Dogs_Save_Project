@@ -1,73 +1,70 @@
+<%@page import="user.dog.dto.Dog_Data"%>
 <%@page import="user.dog_shleter.dto.Dog_Shelter"%>
 <%@page import="javax.annotation.PostConstruct"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>`
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<%
-	List<Dog_Shelter> dogList = (List) request.getAttribute("list");
-%>
 
+<%	List<Dog_Shelter> dogList = (List) request.getAttribute("list");%>
+	
+	
+<!-- 헤더 임포트 -->
+<c:import url="/WEB-INF/views/user/util/header/Header.jsp"></c:import>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/resources/js/httpRequest.js"></script>
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
 
 <script type="text/javascript" src="/resources/js/httpRequest.js"></script>
-
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<style type="text/css">
+.dogshelterlist {
+	text-decoration: none;
+}
+</style>
 <script type="text/javascript">
-// window.onload = function() {
 
-// 	// button#btnAction 태그에 click 이벤트 리스너 등록하기
-// 	btnAction.onclick = function() {
-// // 		console.log("btnAction clicked")
-		
-// 		//AJAX요청 보내기
-// 		sendRequest("POST", "/dogshelter/list", "", callback);
-		
-// 	}
-	
-// };
+$(document).ready(function() {
 
-//AJAX 응답 처리 콜백함수
-function callback() {
-	
-	if( httpRequest.readyState == 4 ) { //XHR DONE.
-		if( httpRequest.status == 200 ) { //HTTP OK.
-			console.log("정상적인 AJAX 요청/응답 완료")
-			
-			//결과 처리 함수 호출
-			printData();
-			
-		} else {
-			console.log("AJAX 요청/응답 실패")
-			
+$(document).on("click", ".dogshelterlist", function() {
+	console.log($(this).children("a").attr("href"))
+
+	$.ajax({
+		type: "get"
+		, url: $(this).children("a").attr("href")
+		, dataType: "html"
+		, success: function(h) {
+			console.log("succ");
+			console.log(h);
+			$("#container").html(h)
 		}
-	}
+		, error: function() {
+			console.log("err")
+		}
+	})
 	
-}
+	return false;
+})
 
-//응답 결과 처리 함수
-function printData() {
-	console.log("printData called")
+})
 
-	console.log("--- responseText ---");
-	console.log(httpRequest.responseText);
-	
-	result.innerHTML = httpRequest.responseText;
-}
 </script>
+
 
 </head>
 <body>
-<%-- 	<%@ include file="./dog_Shelter_gnb.jsp" %> --%>
 
-	<div id="map" style="width: 1000px; height: 700px;"></div>
+	<div style="position: relative;">
+		<div id="map" style="width: 125%%; height: 920px;"></div>
+		<div id="container"
+			style="z-index: 9999; position: absolute; display: inline-block; width: 30%; height: 37%; left: 50px; bottom: 50px"></div>
+	</div>
+
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5645296e24208ec4f20113a550ae0767&libraries=services,clusterer,drawing"></script>
 
@@ -136,85 +133,72 @@ function printData() {
 
 		}
 	
-		
-		
-	
 		<%for (int i = 0; i < dogList.size(); i++) {%>
 		 
 		// 마커를 표시할 위치와 내용을 가지고 있는 객체 배열 
 		var marker = new kakao.maps.Marker({
-			position : new kakao.maps.LatLng(<%=dogList.get(i).getShelterlat()%>,<%=dogList.get(i).getShelterlon()%>),		
+			position : new kakao.maps.LatLng('<%=dogList.get(i).getShelterlat()%>','<%=dogList.get(i).getShelterlon()%>'),		
 			map: map,
 			clickable : true
 		});
 						
-// 	    });
+
 		//띄울 인포윈도우 정의
 // 		var iwContent = 
 <%--  			<%=dogList.get(i).getSheltername()%>  --%>
 <%--  			<%=dogList.get(i).getShelteraddress()%>  --%>
-//  			 // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-//   			iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
+		//// 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+		//iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
 
-//  	 // 마커에 표시할 인포윈도우를 생성합니다 
-		var infowindow = new kakao.maps.InfoWindow({
-      		content : '<div><%=dogList.get(i).getSheltername()%><br><button id="btnAction">상세보기</button></div>',
-      		iwRemoveable : true
-		})
-  		
-<%--       		content : '<div><%=dogList.get(i).getSheltername()%><br><%=dogList.get(i).getShelteraddress()%><br><%=dogList.get(i).getSheltertel()%></div>', --%>
-
-
-		// 마커 Listener 이벤트 등록 
-		
-		// 마커에 클릭이벤트를 등록합니다
-		kakao.maps.event.addListener(marker, 'click', function() {
-      			// 마커 위에 인포윈도우를 표시합니다
-      			infowindow.open(map, marker);  	
-		});
-
-		
+		// 마커에 표시할 인포윈도우를 생성합니다 
+			var infowindow = new kakao.maps.InfoWindow({
+			content : '<div class="dogshelterlist">'+
+			'	<a href="/dog_shelter/detail?shelterno='+
+					'<%=dogList.get(i).getShelterno()%>">'+
+					'<%=dogList.get(i).getSheltername()%>'+
+					'</div>'
+			});
+	
+	
 		// 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
 	    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
 	    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
-// 	    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
-	    kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+// 	    kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+	    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
 	  
+		// 마커에 클릭이벤트를 등록합니다
+      	// 마커 위에 인포윈도우를 표시합니다
+		kakao.maps.event.addListener(marker, 'click', makeOverListener(map, marker, infowindow));
+		
+		
 		<%}%>
 
-	
 		
 	// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
 	function makeOverListener(map, marker, infowindow) {
 	    return function() {
-	        infowindow.open(map, marker);
+	    	infowindow.open(map, marker);
 	    };
 	}
 
 	// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
 	function makeOutListener(infowindow) {
 	    return function() {
-	        infowindow.close();
+	       setTimeout(function() {
+	    	infowindow.close();		
+			},3000);
 	    };
 	};
 
-
-		    // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
-		    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
-		    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
-// 		    kakao.maps.event.addListener(marker, 'click', function(e) {
-<%-- 		    	aa('<%=dogList.get(i).getSheltername() %>');	 --%>
-<%-- 				bb('<%=dogList.get(i).getShelteraddress() %>');	 --%>
-<%-- 				cc('<%=dogList.get(i).getSheltertel() %>');	 --%>
-// 		    });
-// 		    kakao.maps.event.addListener(marker, 'mouseout', function(e) {
-				
-// 			});
-		
-
-
-		
+	
 	</script>
+
+
+	<div id="search"></div>
+	<div id="dog"></div>
+	<div id="showplus">
+		<button>더보기</button>
+	</div>
 
 </body>
 </html>

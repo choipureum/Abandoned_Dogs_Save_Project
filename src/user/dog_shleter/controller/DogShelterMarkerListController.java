@@ -17,8 +17,8 @@ import user.dog_shleter.service.impl.DogShelterServiceImpl;
 /**
  * Servlet implementation class DogShelter
  */
-@WebServlet("/dogshelter/list")
-public class DogShelterListView extends HttpServlet {
+@WebServlet("/dog_shelter/list")
+public class DogShelterMarkerListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	//Dog_Shelter 객체 생성
@@ -40,7 +40,7 @@ public class DogShelterListView extends HttpServlet {
 		req.setAttribute("list", shelterList);
 		
 		// JSP를 VIEW로 지정하고 응답으로 사용하기 - 포워딩
-		req.getRequestDispatcher("/WEB-INF/views/user/dogShelter/list.jsp")
+		req.getRequestDispatcher("/WEB-INF/views/user/dogShelter/dogShelterKaKaoMap.jsp")
 			.forward(req, resp);
 		
 	}

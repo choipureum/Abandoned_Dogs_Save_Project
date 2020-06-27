@@ -6,39 +6,123 @@
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
  <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
  
- <script type="text/javascript"src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-
-    
+<<<<<<< HEAD
+ 
+<script type="text/javascript"
+src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+ 
+ 
+ <!-- Bootstrap 3.3.2 -->
+=======
+  
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
 <!-- Bootstrap 3.3.2 -->
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>    
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<<<<<<< HEAD
+ 
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript"src="https://code.jquery.com/jquery-2.2.4.min.js"></script>   
 
-<script type="text/javascript">
+=======
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script> 
+<script>
 $(document).ready(function() {
+	
+	
+	$("#rejectBtn").click(function(){				
+		alert('입양신청은 한마리만 가능합니다');		
+	});
+	
+	
+	$("#adoptBtn").click(function(){
+		
+		
+		if($("input:checkbox[name='checkRow']:checked").length>1 ){
+			  
+			  // 선택 모두 해제
+			  //chk_All_Del();
+			  
+			  alert('입양신청은 한마리만 선택가능합니다');		
+			  
+			  return;
+		  };
+		  
+		  //없을때 불가
+		  if($("input:checkbox[name='checkRow']:checked").length==0){
+			  
+			  
+			  alert('입양신청은 한마리 선택하셔야 합니다');		
+			  return;
+		  };
+		  
+		  
+		
+		  if($("input:checkbox[name='checkRow']:checked").length==1){
+			
+			  
+			var a = $("input:checkbox[name='checkRow']:checked").val();
+			 
+			console.log(a);
+			var httpRequest = new XMLHttpRequest();
+			httpRequest.onreadystatechange = function() {
+				if (httpRequest.readyState == XMLHttpRequest.DONE && httpRequest.status == 200 ) {
+					if($("#text").val() = a){		
+					
+						$("#text").innerHTML = httpRequest.responseText;
+					
+					}
+				}
+			};
+				
+				// GET 방식으로 요청을 보내면서 데이터를 동시에 전달함.
+				httpRequest.open("GET", "/ajax/like_01.jsp",  true);
+				httpRequest.send();
+			
+		  
+		 };
+		
+		
+	});
+			     	
 	// 선택체크 삭제
 	$("#btnDelete").click(function() {
 		// 선택된 체크박스
 		var $checkboxes = $("input:checkbox[name='checkRow']:checked");
-		
-			
+<<<<<<< HEAD
 
-	
-	
+=======
 		
+	
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 		// 체크된 대상들을 map으로 만들고 map을 문자열로 만들기
 		var map = $checkboxes.map(function() {
 			return $(this).val();
 		});
 		var names = map.get().join(",");
 	
-		
+<<<<<<< HEAD
+=======
 	
 		
-		
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 		// 전송 폼
 		var $form = $("<form>")
-			.attr("action", "/miss/delete")
+			.attr("action", "/like/delete")
 			.attr("method", "post")
 			.append(
 				$("<input>")
@@ -50,7 +134,14 @@ $(document).ready(function() {
 		$form.submit();
 	
 	});
-});
+	
+		
+		
+	});<%--document end --%>
+	
+
+
+
 
 //전체 체크/해제
 function checkAll() {
@@ -73,16 +164,19 @@ function checkAll() {
 	}
 }
 </script>
+<script type="text/javascript">
+<<<<<<< HEAD
+var arr =new Array;
+=======
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 
-    
-    
-    
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
+
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
+</script>
 <body>
 <div class="container">
 
@@ -100,46 +194,50 @@ function checkAll() {
 	<th>엔드데이트</th>
 	<th>입양신청 상태</th>
 </tr>
+
 <c:forEach items="${list}" var="list">
-<input type="hidden" name="userid" value="${list.userid }">
 <tr>
-	<td><input type="checkbox" name="checkRow" value="${list.dogno }" /></td>
+	<td><input type="checkbox" name="checkRow" value="${list.dogNo }" /></td>
 	<td><img style="width:30px; "id="img" src="/upload/${list.dog_stored_FILE_NAME }" alt="" /></td>
 	<td>${list.dogKind}</td>
 	<td>${list.dogGender}</td>
 	<td>${list.dogEndDate}</td>
 	
 	<c:if test="${list.applysw eq 0}">
-	<td>입양신청가능합니다</td>
+	<td><span id="text" value="${list.dogNo }"></span></td>
 	</c:if>
 	<c:if test="${list.applysw eq 1}">
-	<td>입양신청대기중 입니다</td>
+	<c:set value="1" var="reject"/>
+	<td>입양신청대기중입니다</td>
 	</c:if>
 	<c:if test="${list.applysw eq 2}">
-	<td>거절되었습니다</td>
+	<td>입양신청이 거절 되었습니다</td>
 	</c:if>
+	
 </tr>
 </c:forEach>
-
 </table>
 	
-
-
 <div >
-	<button id="adoptCheck" class="btn btn-primary">입양신청</button>
+	<c:choose> 
+		<c:when test="${reject eq 1}" >
+			<button id="rejectBtn" class="btn btn-primary">입양신청</button>
+		</c:when>
+		<c:otherwise >
+			<button id="adoptBtn" class="btn btn-primary">입양신청</button>
+		</c:otherwise>
+	</c:choose>
 </div>
-
 <div>
 	<button id="btnDelete" class="btn btn-warning pull-left">삭제</button>
 </div>
 
+<button onclick="ApplySubmit()"></button>
 
 <div id="paging">
 	<c:import url="/commons/paging.jsp" />
 </div>
 
 </div><!-- .container -->
-
-
 </body>
 </html>

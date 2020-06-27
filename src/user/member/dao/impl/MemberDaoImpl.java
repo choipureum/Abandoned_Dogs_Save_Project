@@ -1,14 +1,14 @@
 package user.member.dao.impl;
 
 import java.sql.Connection;
-
-import java.sql.Date;
+import java.util.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import user.dog.dto.Dog_Data;
 import user.dog.dto.UserLike;
 import user.member.dao.face.MemberDao;
 import user.member.dto.MemberAddDTO;
@@ -341,15 +341,24 @@ public class MemberDaoImpl implements MemberDao{
    
    //paging객체를 생성하기 위한 총 totalCount를 반환하는 메소드//dog, dogfile, userlike를 join 할 것이므로
    //dog의 전체 totalCount를 가져와도 상관이 없을거다
-   public int selectCntAll() {
+   		public int selectCntAll(String userid) {
 		
 		conn = JDBCTemplate.getConnection(); //DB 연결
 		
 		//수행할 SQL
+//		String sql = "";
+//		sql += " SELECT ";
+//		sql += " count(*)";
+//		sql += " FROM dog";
+		
+		
 		String sql = "";
-		sql += " SELECT ";
-		sql += " count(*)";
-		sql += " FROM dog";
+		sql += "  SELECT o.*, c.userid, p.dog_fileno";
+		sql += "  FROM dog o";
+		sql += "  LEFT OUTER JOIN userlike c ON o.dogno = c.dogno";
+		sql += "  LEFT OUTER JOIN dog_file p ON o.dogno = p.dogno";
+		sql += "  WHERE";
+		sql += "  c.userid = 'member04'";
 
 		//최종 결과 변수
 		int cnt = 0;
@@ -376,7 +385,7 @@ public class MemberDaoImpl implements MemberDao{
 				e.printStackTrace();
 			}
 		}
-		System.out.println("cnt:"+cnt);
+		
 		//최종 결과 반환
 		return cnt;
 	}//selectCntAll end
@@ -401,7 +410,24 @@ public class MemberDaoImpl implements MemberDao{
 //		sql += " ) BOARD";
 //		sql += " WHERE rnum BETWEEN ? AND ?";
 		
-		   String sql = " ";
+<<<<<<< HEAD
+//		   String sql = " ";
+//	       sql +=  "	select * from (select rownum rnum, e.* from"; 
+//	       sql +=  "	(";
+//	       sql +=  "	select"; 
+//	       sql +=  "	a.dogno, a.dogname,a.dogkind,a.doggender, a.dogNeu, a.dogDate, a.dogImg, a.shelterNo, a.dogEndDate,";
+//	       sql +=  "	b.dog_fileNo, b.dog_org_FILE_NAME,b.dog_stored_FILE_NAME,b.dog_FILE_SIZE,b.dog_DEL_GB,";
+//	       sql +=  "	c.userid,c.adoptsw,c.applysw";
+//	       sql +=  "	from";
+//	       sql +=  "	dog a, dog_file b, userlike c";
+//	       sql +=  "	where a.dogno = b.dogno";
+//		   sql +=  "	and   a.dogno = c.dogno order by a.dogno";
+//	       sql +=  "	) e"; 
+//	       sql +=  "	order by rnum )"; 
+//	       sql +=  "	WHERE rnum BETWEEN ? AND ?";
+=======
+		  
+		String sql = " ";
 	       sql +=  "	select * from (select rownum rnum, e.* from"; 
 	       sql +=  "	(";
 	       sql +=  "	select"; 
@@ -415,7 +441,18 @@ public class MemberDaoImpl implements MemberDao{
 	       sql +=  "	) e"; 
 	       sql +=  "	order by rnum )"; 
 	       sql +=  "	WHERE rnum BETWEEN ? AND ?";
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 		
+		
+		String sql = "";
+		sql += "  select * from (select rownum rnum, e.* from";
+		sql += "  (SELECT o.*, p.dog_fileNo, p.dog_org_FILE_NAME, p.dog_stored_FILE_NAME, p.dog_FILE_SIZE, p.dog_DEL_GB, c.applysw, c.adoptsw, c.userid ";
+		sql += "  FROM dog o";
+		sql += "  LEFT OUTER JOIN userlike c ON o.dogno = c.dogno";
+		sql += "  LEFT OUTER JOIN dog_file p ON o.dogno = p.dogno";
+		sql += "  WHERE";
+		sql += "  c.userid = 'member04') e order by rnum)" ;
+		sql += "  WHERE rnum BETWEEN ? AND ?";
 		
 	
 		
@@ -437,7 +474,7 @@ public class MemberDaoImpl implements MemberDao{
 			//SQL 수행 및 결과 저장
 			rs = ps.executeQuery();
 			
-			System.out.println("rr");
+			
 			
 			//SQL 수행 결과 처리
 			while( rs.next() ) {
@@ -641,14 +678,93 @@ public class MemberDaoImpl implements MemberDao{
 		 
 		 
 	 }//deleteUserlikeList end
-	   
+	   @Override
+		public List<UserLike> LikeSelectByid(String userid) {
+			List<UserLike> list = new ArrayList<>();
+		   conn = JDBCTemplate.getConnection();
+			StringBuffer sql = new StringBuffer();
+			sql.append("Select * From userlike where userid=? ");
+						
+			
+			try {
+				ps=conn.prepareStatement(sql.toString());
+				ps.setString(1, userid);
+				rs=ps.executeQuery();
+				
+				while(rs.next()) {
+					UserLike like = new UserLike();
+					like.setDogno(rs.getInt("dogno"));
+					like.setUserid(userid);
+					like.setAdoptsw(rs.getString("adoptsw"));
+					like.setApplysw(rs.getInt("applysw"));
+					list.add(like);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+	  		   
+		   return list;
+		}
+	
+	
+	@Override
+	public Dog_Data dogSelectBydogno(int dogno) {
+		conn = JDBCTemplate.getConnection();
+		String sql="";    	 
+		sql += "SELECT * FROM (SELECT dogno, dogname, dogkind, doggender, dogneu, dogdate, shelterno, dogimg";
+		sql += "		FROM dog";
+		sql += "		ORDER BY dogdate";
+		sql += "	) B, ";
+		sql += "   (SELECT";
+		sql += "   dogno, dog_fileno, dog_org_file_name, dog_stored_file_name, dog_file_size, dog_del_gb";
+		sql += "   FROM dog_file ";
+		sql +="    )R ";
+		sql +="    where B.dogno = R.dogno ";
+		sql+= " and R.dogno=?";
+		Dog_Data d= new Dog_Data();
+		Date today= new Date();
+		
+		try {
+			ps= conn.prepareStatement(sql);
+			ps.setInt(1, dogno);
+			rs=ps.executeQuery();
+			
+			while(rs.next()) {
+				d.setDogno(rs.getInt("dogno"));
+				d.setDogname(rs.getString("dogname"));
+				d.setDogkind( rs.getString("dogkind") );
+				d.setDoggender( rs.getString("doggender") );
+				d.setDogneu( rs.getString("dogneu") );
+				d.setDogdate( rs.getDate("dogdate") );
+				d.setDogimg( rs.getString("dogimg") );
+				d.setShelterno( rs.getInt("shelterno") );
+				//공고일 구하기 남은 일수
+			  	long diffDay=0;		    
+			    //두날짜 사이의 시간 차이(ms)를 하루 동안의 ms(24시*60분*60초*1000밀리초) 로 나눈다.
+				diffDay = (today.getTime() - d.getDogdate().getTime()) / (24*60*60*1000);
+				diffDay= 10-diffDay;							
+			    d.setDogenddate(diffDay);			
+				d.setDog_fileno( rs.getInt("dog_fileno") );				
+				d.setDog_org_file_name( rs.getString("dog_org_file_name") );
+				d.setDog_stored_file_name( rs.getString("dog_stored_file_name") );
+				d.setDog_file_size( rs.getDouble("dog_file_size") );
+				d.setDog_del_gb( rs.getString("dog_del_gb") );			
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return d;
+		}
 	
 	
 	
 	
 	
+<<<<<<< HEAD
+=======
 	
 	
 	
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 
 }

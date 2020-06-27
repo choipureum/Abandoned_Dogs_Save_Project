@@ -1,2 +1,4 @@
 eclipse.preferences.version=1
 encoding//WebContent/WEB-INF/views/admin/MemberTable.jsp=UTF-8
+encoding//WebContent/WEB-INF/views/main.jsp=UTF-8
+encoding//WebContent/WEB-INF/views/user/util/footer.jsp=UTF-8
