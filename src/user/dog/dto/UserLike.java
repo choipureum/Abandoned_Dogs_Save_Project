@@ -10,12 +10,6 @@ public class UserLike {
 	private int dogno;
 
 	
-	public int getApplysw() {
-		return applysw;
-	}
-	public void setApplysw(int applysw) {
-		this.applysw = applysw;
-	}
 
 	public String getUserid() {
 		return userid;
