@@ -707,14 +707,5 @@ public class MemberDaoImpl implements MemberDao{
 		}
 	
 	
-<<<<<<< HEAD
-=======
-	
-	
-	
-	
-	
-	
->>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
 
 }
