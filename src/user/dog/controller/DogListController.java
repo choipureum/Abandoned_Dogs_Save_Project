@@ -15,8 +15,8 @@ import user.dog.dto.UserLike;
 import user.dog.service.face.DogService;
 import user.dog.service.impl.DogServiceImpl;
 import util.Paging;
-import java.util.*
-;@WebServlet("/dog/list")
+
+@WebServlet("/dog/list")
 public class DogListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -26,6 +26,12 @@ public class DogListController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+//		//로그인 되어있지 않으면 리다이렉트 
+//		if( req.getSession().getAttribute("login") == null ) {
+//			resp.sendRedirect("/dog/list");
+//			return;
+//		}
+		
 		// 요청파라미터를 전달하여 Paging 객체 생성하기
 		Paging paging = dogService.getPaging(req);
 		req.setAttribute("paging", paging);
@@ -41,32 +47,33 @@ public class DogListController extends HttpServlet {
 		// 요청파라미터를 전달하여 Paging 객체 생성하기
 		Paging paging = dogService.getPaging(req);
 		
-<<<<<<< HEAD
-		@Override
-		protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-			
-			
-			
-			//요청파라미터를 전달하여 Paging 객체 생성하기
-			Paging paging = dogService.getPaging(req);
-			req.setAttribute("paging", paging);
-				//VIEW 지정 및 응답 - forward
-			req.getRequestDispatcher("/WEB-INF/views/user/dog/view.jsp").forward(req, resp);		
-			
-			
-=======
 		// Dog_Data 리스트 가져오기
 		List<Dog_Data> dogList = dogService.getList(paging);
 
 		for (Iterator iterator = dogList.iterator(); iterator.hasNext();) {
 			Dog_Data dog_Data = (Dog_Data) iterator.next();
 //				System.out.println("TEST  :  "+dog_Data);
->>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 		}
 
+//==================================================================================		
+		
+		
+		
+		
+		UserLike userlike = dogService.getUserLike(req);
 
+		
+		// userlike의 유저 아이디가 null 아니라면 model 값 전달
+		if( req.getSession().getAttribute(userlike.getUserid()) != null  ) {
+			req.setAttribute("userid", userlike.getUserid());
+		}
+		
+		System.out.println("userid : "+userlike.getUserid());
+		
+//		dogService.insertUserLike(req);
+//		dogService.deleteUserLike(userlike);
+		
 //			//담아두기 정보 얻기
-//			UserLike userlike = dogService.getUserLike(req);
 //			
 //			//담아두기 정보 토글
 //			boolean result = dogService.UserLike(userlike);

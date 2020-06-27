@@ -275,7 +275,7 @@ public class DogDaoImpl implements DogDao{
 	
 		String sql = "";
 		sql += "INSERT INTO userlike(userid,adoptsw,applysw,dogno)";
-		sql += " VALUES ( ?,?,?,?)";
+		sql += " VALUES ( ?,N,?,?)";
 		
 		try {
 			ps= conn.prepareStatement(sql);
@@ -283,18 +283,7 @@ public class DogDaoImpl implements DogDao{
 			ps.setString(2, userlike.getAdoptsw());
 			ps.setInt(3, userlike.getApplysw());
 			ps.setInt(4, userlike.getDogno());
-			ps.setInt(2, userlike.getDogno());
-			
-			
-			if(userlike.getAdoptsw()==null) {
-				ps.setString(3, "N");
-				
-			}else {
-				ps.setString(3, "Y");
-			}
-	
 
-			
 			ps.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -302,40 +291,7 @@ public class DogDaoImpl implements DogDao{
 		}	finally {
 			JDBCTemplate.close(ps);
 		}
-		
-		
 	}
-
-
-	@Override
-	public void insertDogClaim(DogClaimDTO claim) {
-		//DB연결 객체
-		conn = JDBCTemplate.getConnection();
-		
-		String sql = "";
-		sql += "INSERT INTO dog_claim(dogno,dogname,dogkind,doggender,dogneu,dogshelter,userid)";
-		sql += " VALUES ( ?,?,?,?,?,?,?)";
-		
-		try {
-			ps= conn.prepareStatement(sql);
-			
-			ps.setInt(1, claim.getDogno());
-			ps.setString(2, claim.getDogname());
-			ps.setString(3, claim.getDogkind());
-			ps.setString(4, claim.getDoggender());
-			ps.setString(5, claim.getDogneu());
-			ps.setInt(6, claim.getDogshelter());
-			ps.setDate(7, claim.getDogregdate());
-			ps.setString(8, claim.getUserid());
-			ps.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			JDBCTemplate.close(ps);
-		}
-		
-	}
-
 
 	@Override
 	public void deleteUserLike(UserLike userlike) {
@@ -353,26 +309,6 @@ public class DogDaoImpl implements DogDao{
 		} finally {
 			JDBCTemplate.close(ps);
 		}
-	}
-
-	@Override
-	public void deleteDogClaim(DogClaimDTO dogclaim) {
-		conn = JDBCTemplate.getConnection();
-		
-		//SQL구문
-		String sql = "DELETE FROM DOGCLAIM WHERE USERID=? ";
-		
-		try {
-			ps= conn.prepareStatement(sql);
-			ps.setString(1, dogclaim.getUserid());
-			ps.executeUpdate();
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			JDBCTemplate.close(ps);
-		}
-		
 	}
 
 	@Override
@@ -408,6 +344,122 @@ public class DogDaoImpl implements DogDao{
 		
 		return cnt;
 	}
-
-
+	@Override
+	public void insertDogClaim(DogClaimDTO claim) {
+		//DB연결 객체
+		conn = JDBCTemplate.getConnection();
+		
+		String sql = "";
+		sql += "INSERT INTO dog_claim(dogno,dogname,dogkind,doggender,dogneu,dogshelter,userid)";
+		sql += " VALUES ( ?,?,?,?,?,?,?)";
+		
+		try {
+			ps= conn.prepareStatement(sql);
+			
+			ps.setInt(1, claim.getDogno());
+			ps.setString(2, claim.getDogname());
+			ps.setString(3, claim.getDogkind());
+			ps.setString(4, claim.getDoggender());
+			ps.setString(5, claim.getDogneu());
+			ps.setInt(6, claim.getDogshelter());
+			ps.setDate(7, claim.getDogregdate());
+			ps.setString(8, claim.getUserid());
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
 	}
+	
+	@Override
+	public void deleteDogClaim(DogClaimDTO dogclaim) {
+		conn = JDBCTemplate.getConnection();
+		
+		//SQL구문
+		String sql = "DELETE FROM DOGCLAIM WHERE USERID=? ";
+		
+		try {
+			ps= conn.prepareStatement(sql);
+			ps.setString(1, dogclaim.getUserid());
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(ps);
+		}
+		
+	}
+
+
+	@Override
+	public UserLike selectUserLike(HttpServletRequest req) {
+		//DB연결 객체
+		conn = JDBCTemplate.getConnection();
+		
+		
+		String sql = "SELECT * FROM USERLIKE ";
+		
+		UserLike userlike = null;
+		
+		
+		try {
+			ps = conn.prepareStatement(sql); //SQL수행 객체
+			
+			ps.setInt(1, userlike.getDogno());
+			
+			
+			rs = ps.executeQuery(); //SQL 수행 및 결과집합 저장
+		
+			//조회 결과 처리
+			while(rs.next()) {
+				userlike = new UserLike(); //결과값 저장 객체
+				
+				userlike.setDogno(rs.getInt("dogno"));
+				userlike.setUserid(rs.getString("userid"));
+				userlike.setAdoptsw(rs.getString("adoptsw"));
+				userlike.setApplysw(rs.getInt("applysw"));
+				
+				
+				//결과값 한 행 처리
+				
+			
+			}	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+			JDBCTemplate.close(rs);
+		}
+		
+		
+		
+		return userlike;
+	}
+
+	
+	
+	
+	
+	
+	
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
