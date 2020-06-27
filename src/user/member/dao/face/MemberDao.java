@@ -111,6 +111,11 @@ public interface MemberDao {
     */
    public void memberDelete(String userid);
 
+<<<<<<< HEAD
+=======
+
+   
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
    /**
     * 
     * 
@@ -156,6 +161,7 @@ public interface MemberDao {
     */
    public Dog_Data dogSelectBydogno(int dogno);
    
+<<<<<<< HEAD
    /**
     * 탈퇴하기를 위한 userid qna, dogmiss 삭제
     * @param userid
@@ -165,4 +171,6 @@ public interface MemberDao {
    	public void DeleteDogMiss(String userid);
    	public void DeleteDogMiss_File(String userid);
    
+=======
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 }

@@ -396,6 +396,7 @@ public class MemberDaoImpl implements MemberDao{
 		
 		conn =JDBCTemplate.getConnection(); //DB 연결
 		
+<<<<<<< HEAD
 //		//수행할 SQL
 //		String sql = "";
 //		sql += "SELECT * FROM (";
@@ -440,6 +441,8 @@ public class MemberDaoImpl implements MemberDao{
 //	       sql +=  "	order by rnum )"; 
 //	       sql +=  "	WHERE rnum BETWEEN ? AND ?";
 		
+=======
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 		
 		String sql = "";
 		sql += "  select * from (select rownum rnum, e.* from";
@@ -450,10 +453,7 @@ public class MemberDaoImpl implements MemberDao{
 		sql += "  WHERE";
 		sql += "  c.userid = 'member04') e order by rnum)" ;
 		sql += "  WHERE rnum BETWEEN ? AND ?";
-		
-	
-		
-		
+
 		
 		List<MemberAddDTO> list = new ArrayList();
 		
@@ -701,7 +701,7 @@ public class MemberDaoImpl implements MemberDao{
 		   return list;
 		}
 	
-	
+	  
 	@Override
 	public Dog_Data dogSelectBydogno(int dogno) {
 		conn = JDBCTemplate.getConnection();
@@ -768,8 +768,11 @@ public class MemberDaoImpl implements MemberDao{
 			
 	}
 	
+<<<<<<< HEAD
+=======
 	
 	
+<<<<<<< HEAD
 	@Override
 			public void DeleteQna(String userid) {
 			conn = JDBCTemplate.getConnection();
@@ -816,5 +819,12 @@ public class MemberDaoImpl implements MemberDao{
 		JDBCTemplate.close(ps);
 	}
 	}
+=======
+	
+	
+	
+	
+>>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 
 }

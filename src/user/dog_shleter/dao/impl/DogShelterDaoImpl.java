@@ -1,3 +1,4 @@
+
 package user.dog_shleter.dao.impl;
 
 import java.sql.Connection;
@@ -17,6 +18,8 @@ import util.Paging;
 
 public class DogShelterDaoImpl implements DogShelterDao {
 
+	private static final String SQL_SELECT_BY_DOGNAME = null;
+	private static final String SQL_SELECT_BY_DOGKIND = null;
 	private Connection conn = null; // DB연결 객체
 	private PreparedStatement ps = null; // SQL수행 객체
 	private ResultSet rs = null; // SQL조회 결과 객체
@@ -110,7 +113,6 @@ public class DogShelterDaoImpl implements DogShelterDao {
 		// DB연결 객체
 		conn = JDBCTemplate.getConnection();
 
-		
 		// SQL 작성
 		// SQL 작성
 		String sql = "";
@@ -228,5 +230,24 @@ public class DogShelterDaoImpl implements DogShelterDao {
 		return cnt;
 	}
 
+<<<<<<< HEAD
+=======
+	@Override
+	public List<Dog_Data> dogSearchList(int category, String keyword, Paging paging) {
+		List<Dog_Data> list = new ArrayList<>();
+		
+		conn = JDBCTemplate.getConnection(); // DB연결
+		
+		try {
+			conn = ps.getConnection();
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 
 }

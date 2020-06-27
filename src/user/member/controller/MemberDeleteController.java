@@ -18,6 +18,7 @@ public class MemberDeleteController extends HttpServlet {
 	MemberService memberService = new MemberServiceImpl();
 	
 	
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
