@@ -52,7 +52,7 @@ public class DogDaoImpl implements DogDao{
 		sql += "            )R";
 		sql += "            WHERE od = 1";
 		sql += "        ) DF_RES";
-		sql += "        WHERE D.dogno = DF_RES.dogno";
+		sql += "        WHERE D.dogno = DF_RES.dogno(+)";
 		sql += "        ORDER BY dogno DESC";
 		sql += "    ) R";
 		sql += " ) RES";
@@ -104,7 +104,7 @@ public class DogDaoImpl implements DogDao{
 				
 				//리스트에 결과값 저장
 				dogList.add(d);
-				System.out.println("121212"+dogList);
+//				System.out.println("121212"+dogList);
 			}
 			
 		} catch (SQLException e) {
@@ -290,13 +290,18 @@ public class DogDaoImpl implements DogDao{
 		conn = JDBCTemplate.getConnection();
 	
 		String sql = "";
-		sql += "INSERT INTO userlike(userid, dogno)";
-		sql += " VALUES ( ?,?)";
+		sql += "INSERT INTO userlike(userid,adoptsw,applysw,dogno)";
+		sql += " VALUES ( ?,?,?,?)";
 		
 		try {
 			ps= conn.prepareStatement(sql);
 			
 			ps.setString(1, userlike.getUserid());
+<<<<<<< HEAD
+			ps.setString(2, userlike.getAdoptsw());
+			ps.setInt(3, userlike.getApplysw());
+			ps.setInt(4, userlike.getDogno());
+=======
 			ps.setInt(2, userlike.getDogno());
 			
 			
@@ -310,6 +315,7 @@ public class DogDaoImpl implements DogDao{
 			
 			
 			
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 			ps.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -339,6 +345,9 @@ public class DogDaoImpl implements DogDao{
 		try {
 			ps= conn.prepareStatement(sql);
 			
+			
+			
+			
 			ps.setInt(1, claim.getDogno());
 			ps.setString(2, claim.getDogname());
 			ps.setString(3, claim.getDogkind());
@@ -362,45 +371,113 @@ public class DogDaoImpl implements DogDao{
 	}
 
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-//	@Override
-//	public void insertUserLike(HttpServletRequest req) {
+	@Override
+	public void deleteUserLike(UserLike userlike) {
 		//DB연결 객체
-//		conn = JDBCTemplate.getConnection();
-//		
-//		// 
-//		
-//		//다음 게시글 번호 조회 쿼리
-//		String sql = "";
-//		sql += "INSERT INTO userlike(userid, adoptsw, dogno)";
-//		sql += " VALUES ( ?,?,?)";
-//		
-//		try {
-//			//DB작업
-//			ps = conn.prepareStatement(sql);
-//			
-//			
-//			ps.executeUpdate();
-//			
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			JDBCTemplate.close(ps);
-//		}
-//		
+		conn = JDBCTemplate.getConnection();
 		
-		
-//	}
+		//SQL구문
+		String sql = "DELETE FROM USERLIKE WHERE dogno=? ";
 		
 		
 		
+		try {
+			ps= conn.prepareStatement(sql);
+			
+			ps.setInt(1, userlike.getDogno());
+			
+			ps.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		
+				
+		
+	}
+
+
+	@Override
+	public void deleteDogClaim(DogClaimDTO dogclaim) {
+		conn = JDBCTemplate.getConnection();
+		
+		//SQL구문
+		String sql = "DELETE FROM DOGCLAIM WHERE USERID=? ";
+		
+		try {
+			ps= conn.prepareStatement(sql);
+			
+			ps.setString(1, dogclaim.getUserid());
+			
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(ps);
+		}
+		
+	}
+
+
+	@Override
+	public int selectCntUserLike(UserLike userlike) {
+		String sql ="";
+		sql += "SELECT count(*) FROM userlike";
+		sql += " WHERE dogno = ?";
+		sql += " 	AND userid = ?";
+		sql += " 	 AND adoptsw = ?";
+		sql += " 	  AND applysw = ?";
+		
+		
+		
+		
+		int cnt = -1;
+		
+		try {
+			//DB작업
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, userlike.getDogno());
+			ps.setString(2, userlike.getUserid());
+			ps.setString(3, userlike.getAdoptsw());
+			ps.setInt(4, userlike.getApplysw());
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				
+				cnt = rs.getInt(1);
+			}
+			
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	finally {
+			JDBCTemplate.close(ps);
+			JDBCTemplate.close(rs);
+			
+		}
+		
+		return cnt;
+	}
+
+
+	
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
 		
 	}

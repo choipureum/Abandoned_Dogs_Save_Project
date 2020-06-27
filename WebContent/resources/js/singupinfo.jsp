@@ -5,6 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>약관동의</title>
+<!--Alert 디자인 라이브러리 -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
 <!-- 자바스크립트 -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <!-- 모두체크 누르면 다 체크 -->
@@ -33,7 +37,14 @@ function singup(){
 			$(location).attr("href","/singup/singup");
 		}
 	}
-	else{ alert("약관을 모두 동의해주세요!");}
+	else{ 
+// 		alert("약관을 모두 동의해주세요!");
+		swal({
+			title: "약관을 모두 동의해주세요!",
+			icon:"error"
+		});
+	
+	}
 
 	
 }

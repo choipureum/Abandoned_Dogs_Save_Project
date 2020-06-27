@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import admin.dto.DogClaimDTO;
 import user.dog.dto.DogDTO;
 import user.dog.dto.Dog_File_DTO;
 import user.dog.dto.UserLike;
@@ -34,11 +35,12 @@ public class DogDetailController extends HttpServlet {
 			//상세보기 결과 조회
 			DogDTO detailDog = dogService.view(dogno);
 			
-			//첨부파일 정보 VIEW에 전달
+			//파일 정보 VIEW에 전달
 			Dog_File_DTO dogFile = dogService.viewFile(detailDog);
 			
 			
-			
+			System.out.println("detail : "+detailDog);
+			System.out.println("detailFile" +dogFile);
 			
 			
 			
@@ -58,15 +60,23 @@ public class DogDetailController extends HttpServlet {
 		@Override
 		protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 			
-			dogService.insertUserLike(req);
 			
-			dogService.insertDogClaim(req);
-				// 값 넣어주기
+				// 값 넣어주기 , 도그 클레임 인서트 할려면 , 담아두기 여부 , 담아두기 안되어있으면 userlike 인서트 
+			// userlike인서트 되어있으면 userlike의 adoptsw 1
+			
+			//전달파라미터 얻기 - dogno
+			DogDTO dogno = dogService.getDogno(req);
+			
+			DogClaimDTO dogclaim = null;
+			
+			
+			dogService.deleteDogClaim(dogclaim);
 			
 			
 			
 			
-			resp.sendRedirect("/dog/list");
+			
+//			resp.sendRedirect("/dog/list");
 			
 		}
 		

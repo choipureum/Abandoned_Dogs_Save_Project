@@ -509,6 +509,33 @@ public class MemberDaoImpl implements MemberDao{
 	}
 	   return result;   
    }
+   
+   @Override
+   public int modifyMypageNotAdd(MemberDTO member) {
+	
+	   conn= JDBCTemplate.getConnection();
+	   
+	   String sql = "update member set userpw=?, usertel=?,  userbirth=?, useremail=? where userid=?";
+	   int result = 0 ;
+	   
+	   try {
+		ps=conn.prepareStatement(sql);
+		
+		ps.setString(1, member.getUserpw());
+		ps.setString(2, member.getUsertel());
+		ps.setString(3, member.getUserbirth());
+		ps.setString(4, member.getUseremail());
+		ps.setString(5, member.getUserid());
+		
+		result = ps.executeUpdate();
+		
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally {
+		JDBCTemplate.close(ps);
+	}
+	   return result;   
+   }
 
    //탈퇴버튼 멤버 삭제
    @Override

@@ -1,21 +1,29 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%--한글 인코딩 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@page import="user.dog.dto.Dog_Data"%>
 <%@page import="java.util.List"%>
 <%List<Dog_Data> list = (List)request.getAttribute("dogList");  %>
+
+
 <!DOCTYPE HTML>
 
 <html>
 	<head>
-		<title>Full Motion</title>
+		<title>가족 찾기</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="/resources/UserBoardTemplate/assets/css/main.css" /><!--  -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 		
-<style type="text/css">
+
+
+
+<style type="text/css">/* 리스트 css */
 #doglist {
 	display: grid;
 
@@ -51,8 +59,22 @@ transform:scale(1.04);
 border-bottom: none;
 }
 
-</style>		
+</style>
+<style type="text/css">/* 담아두기 버튼 css */
+.fa-heart-o {
+  color: red;
+  cursor: pointer;
+}
+
+.fa-heart {
+  color: red;
+  cursor: pointer;
+}
+
+</style>			
 </head>
+
+
 <body id="top">
 <section id="banner" data-video="images/banner">
 	<div class="inner">
@@ -63,31 +85,72 @@ border-bottom: none;
 		<a href="#main" class="more">Learn More</a>
 	</div>
 </section>
+
+
+
+
+
+
+
+<!-- 자바스크립트 -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+   $("#heart").click(function(){
+      if($("#heart").hasClass("liked")){
+         $("#heart").html('<i class="fa fa-heart-o" aria-hidden="true"></i>');
+         $("#heart").removeClass("liked");
+      }else{
+         $("#heart").html('<i class="fa fa-heart" aria-hidden="true"></i>');
+         $("#heart").addClass("liked");
+      }
+   });
+});
+</script>
+
+
+
+
+
+
+
+
 <div id="doglist"></div>
-<div id="showplus"><button>더보기</button></div>
+<div id="showplus"><!-- <button id="btnUserLike">더보기</button> --></div>
+
+
+
 <!-- Scripts -->
-			<script src="/resources/UserBoardTemplate/assets/js/jquery.min.js"></script>
-			<script src="/resources/UserBoardTemplate/assets/js/jquery.scrolly.min.js"></script>
-			<script src="/resources/UserBoardTemplate/assets/js/jquery.poptrox.min.js"></script>
-			<script src="/resources/UserBoardTemplate/assets/js/skel.min.js"></script>
-			<script src="/resources/UserBoardTemplate/assets/js/util.js"></script>
-			<script src="/resources/UserBoardTemplate/assets/js/main.js"></script>
+<script src="/resources/UserBoardTemplate/assets/js/jquery.min.js"></script>
+<script src="/resources/UserBoardTemplate/assets/js/jquery.scrolly.min.js"></script>
+<script src="/resources/UserBoardTemplate/assets/js/jquery.poptrox.min.js"></script>
+<script src="/resources/UserBoardTemplate/assets/js/skel.min.js"></script>
+<script src="/resources/UserBoardTemplate/assets/js/util.js"></script>
+<script src="/resources/UserBoardTemplate/assets/js/main.js"></script>
+
+
+
 
 
 <script type="text/javascript">
-var curPage = 1;
-$(document).ready(function() {
+
+var page = 1;
+
+$(window).scroll(function(){
 	
-	loadlist();
-	
-	$("#showplus").click(function() {
-		
-		if( curPage > '${paging.totalPage }' ) {
-			return false;
+	if($(window).scrollTop() == $(document).height() - $(window).height()){
+		if('${paging.totalPage }' >= page  ) {
+// 		console.log(page);
+			$("body").append(loadlist())
 		}
 		
-		loadlist();
-	})
+// 		loadlist();
+		
+		
+	}
+	
+	
 	
 })
 
@@ -96,7 +159,7 @@ function loadlist() {
 		type:"post"
 		, url: "/dog/list"
 		, data: {
-			curPage: curPage++
+			curPage: page++
 		}
 		, dataType: "html"
 		, success: function(h) {
@@ -107,8 +170,17 @@ function loadlist() {
 			console.log("AJAX error")
 		}
 	})
-}
+}	
+
 </script>
+
+
+
+
+
 
 	</body>
 </html>
+
+
+
