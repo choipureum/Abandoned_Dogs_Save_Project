@@ -111,8 +111,6 @@ public interface MemberDao {
     */
    public void memberDelete(String userid);
 
-
-   
    /**
     * 
     * 
@@ -157,5 +155,14 @@ public interface MemberDao {
     * @return
     */
    public Dog_Data dogSelectBydogno(int dogno);
+   
+   /**
+    * 탈퇴하기를 위한 userid qna, dogmiss 삭제
+    * @param userid
+    */
+   public void DeleteQna_File(String userid);
+   	public void DeleteQna(String userid);
+   	public void DeleteDogMiss(String userid);
+   	public void DeleteDogMiss_File(String userid);
    
 }

@@ -10,7 +10,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	swal({
-		icon:"success",
+		icon:"${icon }",
 		text: "${msg }",
 		title : "${title }",
 		button:["확인"]

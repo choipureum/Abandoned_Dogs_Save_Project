@@ -28,7 +28,7 @@ public interface QnaService {
 	 * @param Paging - 페이징 정보
 	 * @return List - 게시글 목록
 	 */
-	public List getList(Paging paging);
+	public List <QNA>getList(Paging paging);
 	
 	/**
 	 * 요청파라미터 curPage를 파싱한다

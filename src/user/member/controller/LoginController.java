@@ -45,18 +45,22 @@ public class LoginController extends HttpServlet {
 		   
 		   //세션 정보 저장하기
 		   HttpSession session = req.getSession();
+		   
 		   session.setAttribute("login", login);
 		   session.setAttribute("userid", member.getUserid());
 		   session.setAttribute("userpw", member.getUserpw());
 
-		   resp.sendRedirect("/mypage/main");
+		   resp.sendRedirect("/main");
 	   } else {
 		   
-		   resp.sendRedirect("/login/login");
+		   //로그인 실패
+//		   req.getRequestDispatcher("/WEB-INF/views/main.jsp").forward(req, resp);
+		   resp.sendRedirect("/logout/fail");
 	   }
 	   
 //	   //메인 리다이렉트
-//	   resp.sendRedirect("/");
+//	   resp.sendRedirect("/main");
+//	   req.getRequestDispatcher("/WEB-INF/views/main.jsp").forward(req, resp);
 	
    }
 

@@ -71,6 +71,7 @@ public class MyPageModify extends HttpServlet {
 		}
 
 ////      swal
+		req.setAttribute("icon", "success");
       req.setAttribute("msg", "개인정보를 수정했습니다");
       req.setAttribute("title", "개인정보 수정완료 ");
       req.setAttribute("url", "/mypage/main");

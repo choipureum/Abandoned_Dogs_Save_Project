@@ -155,11 +155,7 @@ a:hover{
 <body>
 
 <!-- 비로그인상태 -->
-<c:if test="${empty login }">
-
-</c:if>
-
-
+<%--  <c:if test="${empty login }">  --%>
 <a href = "#a" class="open">로그인</a>
 
 <div class="popup">
@@ -203,11 +199,17 @@ a:hover{
 </div>
 
 <div class="dim"></div>
+<%-- </c:if> --%>
 
-<!-- 로그인 되어있는 상태 -->
+
+
+
+<!-- <!-- 로그인 되어있는 상태 --> -->
 <%-- <c:if test="${not empty login }"> --%>
 <!-- <input type ="button" value="로그아웃" onclick="location.href='/logout/logout'" /> -->
 
 <%-- </c:if> --%>
+
+
 </body>
 </html>
