@@ -230,8 +230,6 @@ public class DogShelterDaoImpl implements DogShelterDao {
 		return cnt;
 	}
 
-<<<<<<< HEAD
-=======
 	@Override
 	public List<Dog_Data> dogSearchList(int category, String keyword, Paging paging) {
 		List<Dog_Data> list = new ArrayList<>();
@@ -249,6 +247,5 @@ public class DogShelterDaoImpl implements DogShelterDao {
 		
 		return list;
 	}
->>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 
 }
