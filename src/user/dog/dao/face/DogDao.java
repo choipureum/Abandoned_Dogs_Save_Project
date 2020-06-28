@@ -92,6 +92,18 @@ public interface DogDao {
 	public UserLike selectUserLike(HttpServletRequest req);
 
 
+
+
+
+
+	/**
+	 * 유기견 마이페이지 담아두기
+	 * @param userLike
+	 * @return
+	 */
+	public List<UserLike> selectUserList(UserLike userLike);
+
+
 	
 	
 }

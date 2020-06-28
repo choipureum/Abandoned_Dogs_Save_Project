@@ -10,34 +10,10 @@
 <!-- 모델 값 가져오기 -->
 <%DogDTO detailDog = (DogDTO) request.getAttribute("detailDog");  %>
 <%Dog_File_DTO dogFile = (Dog_File_DTO) request.getAttribute("dogFile");  %>
-
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="/resources/UserBoardTemplate/assets/css/main.css" />
 		
-		<!-- Scripts -->
-			<script src="/resources/UserBoardTemplate/assets/js/jquery.min.js"></script>
-			<script src="/resources/UserBoardTemplate/assets/js/jquery.scrolly.min.js"></script>
-			<script src="/resources/UserBoardTemplate/assets/js/jquery.poptrox.min.js"></script>
-			<script src="/resources/UserBoardTemplate/assets/js/skel.min.js"></script>
-			<script src="/resources/UserBoardTemplate/assets/js/util.js"></script>
-			<script src="/resources/UserBoardTemplate/assets/js/main.js"></script>
-		
-
-<script type="text/javascript">
-
-
-
-
-
-</script>
-</head>
-<body>
+<c:import url="/WEB-INF/views/user/util/header.jsp"></c:import>		
 <div class="box" >
 		<h3>입양신청</h3>
 	<img src="/upload/${dogFile.dog_stored_file_name }" style="width:500px;"/>
@@ -50,12 +26,10 @@
 			<button onclick=>입양신청</button>
 		</div>
 </div>
+<c:import url="/WEB-INF/views/user/util/footer.jsp"></c:import>
 
 
 
 
 
 
-
-</body>
-</html>

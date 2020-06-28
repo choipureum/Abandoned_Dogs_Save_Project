@@ -11,19 +11,14 @@
 <%List<Dog_Data> list = (List)request.getAttribute("dogList");  %>
 
 
-<!DOCTYPE HTML>
-
-<html>
-   <head>
-      <title>가족 찾기</title>
-      <meta charset="utf-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
 <!--       부트스트랩 -->
-      <link rel="stylesheet" href="/resources/UserBoardTemplate/assets/css/main.css" /><!--  -->
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/resources/UserBoardTemplate/assets/css/main.css" />
       
 
 
+      <link rel="stylesheet" href="/resources/UserBoardTemplate/assets/css/main.css" /><!--  -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+ 	     
 <!-- 스타일 css -->
 <style type="text/css">
 #doglist {
@@ -31,33 +26,60 @@
 
    grid-template-columns: 1fr 1fr 1fr;
     row-gap: 10px;
-    column-gap: 100px;
+    column-gap: 50px;
+	width:80em;
 
-
-    width: 1000px;
     margin: 0 auto;
-    margin-top : 20px;
+    margin-top : 100px;
     
 }
+.inner{
+background-color: white;
+}
+.inner li{
+font-size: 16px;
+color : black;
+list-style: none;
+
+
+}
+.inner ul{
+
+
+}
+
+
+
 
 body{
 background: white;
 }
 
 
+}
+
 .box {
-background: skyblue;
+width:320px;
+height: 440px;
+
 }
 .box a img {
-   width: 200px;
+   width: 100%;
    height: 200px;
+   
+   
 }
 .box a img:hover{
-transform:scale(1.04);
+transform:scale(1.1);
+transition:2s;
 }
 
 .box a{
 border-bottom: none;
+}
+
+#banner{
+padding:none;
 }
 
 </style>
@@ -75,120 +97,25 @@ border-bottom: none;
 }
 
 </style>         
-</head>
+
+<c:import url="/WEB-INF/views/user/util/header.jsp"></c:import>		
 
 
-<body id="top">
-<section id="banner" data-video="images/banner">
-   <div class="inner">
-      <header>
-         <h1>가족찾기</h1>
-      
-      </header>
-      <a href="#main" class="more">Learn More</a>
-   </div>
-</section>
-
-
-
-<!-- 자바스크립트 -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-
-<script type="text/javascript">
-$(document).ready(function(){
-	
-function deleteUserLike(){
-	
-	var userid = null;
-	userid.push(userid);
-	
-	
-	
-	$.ajax({
-	  type:"post"
-	      , url: "/dog/list"
-	      , data: {
-			"userid":userid,
-	      }
-	      , success: function(h) {
-	         console.log("AJAX success")
-	         deleteUserLike();
-	      }
-	      , error: function() {
-	         console.log("AJAX error")
-	      }
-	})
-}
-
-	
-function insertUserLike(){
-	
-	$.ajax({
-		type:"post"
-		      , url: "/dog/list"
-		      , data: {
-		    	  
-		      }
-		      , success: function(h) {
-		         console.log("AJAX success")
-		         
-		      }
-		      , error: function() {
-		         console.log("AJAX error")
-		      }
-	})
-}	
-	
-})
-
-
-
-</script>
-
-<!-- 하트버튼 자바스크립트 -->
-<script type="text/javascript">
-
-$(document).ready(function(){
-   
-   $(".heartDog > .fa").click(function(){
-      var dogno=$("i[class=fa]").attr("data-dogno");
-      var userid=$("i[class-fa]").attr("data-userid");
-      
-      if($("i[class=fa-heart-o]")){
-       deleteUserLike();
-      }
-      else{
-        insertUserLike();
-      }
-      
-      
-      
-      
-      
-      if($("#'${dog.dogno }'").hasClass("liked")){
-         $("#'${dog.dogno }'").html('<i class="fa fa-heart-o" aria-hidden="true"></i>');
-         $("#'${dog.dogno }'").removeClass("liked");
-      }else{
-         $("#'${dog.dogno }'").html('<i class="fa fa-heart" aria-hidden="true"></i>');
-         $("#'${dog.dogno }'").addClass("liked");
-      }
-   });
-});
-</script>
-
-
+<!-- Banner -->
+			<section id="banner">
+			
+				<div class="content">
+					<h1>Fine Family with Dog</h1>
+					<p>아이들에게 따뜻한 손길을 내밀어 주세요 </p>
+				
+				</div>
+			</section>
 
 <div id="doglist"></div>
 <div id="showplus"></div>
+<c:import url="/WEB-INF/views/user/util/footer.jsp"></c:import>
 
 
-<!-- Scripts -->
-<script src="/resources/UserBoardTemplate/assets/js/jquery.min.js"></script>
-<script src="/resources/UserBoardTemplate/assets/js/jquery.scrolly.min.js"></script>
-<script src="/resources/UserBoardTemplate/assets/js/jquery.poptrox.min.js"></script>
-<script src="/resources/UserBoardTemplate/assets/js/skel.min.js"></script>
-<script src="/resources/UserBoardTemplate/assets/js/util.js"></script>
-<script src="/resources/UserBoardTemplate/assets/js/main.js"></script>
 
 
 
@@ -218,6 +145,7 @@ function loadlist() {
       }
       , dataType: "html"
       , success: function(h) {
+    	  
          console.log("AJAX success")
          $("#doglist").html( $("#doglist").html() + h )
       }
@@ -229,7 +157,5 @@ function loadlist() {
 </script>
 
 
-</body>
-</html>
 
 

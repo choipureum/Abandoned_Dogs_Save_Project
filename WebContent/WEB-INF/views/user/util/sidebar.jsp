@@ -1,9 +1,24 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+	
+<style type="text/css">
+#floatMenu {
+	position: absolute;
+    width: 10%;
+    height: 200px;
+    right: 0;
+    top: 280px;
+    color: #fff;
+    z-index: 9999999;
+}
 
-<link rel="stylesheet" type="text/css" href="../css/style.css">
-
+/* 테이블 logo 영역 */
+.floatCenter {
+	padding: 0px 35px;
+	list-style-type: none;
+}
+</style>
 
 <script type="text/javascript"
 src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
