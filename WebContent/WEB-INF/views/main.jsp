@@ -278,15 +278,15 @@ div>img{
 				</div>
 			</section>
 			<!-- five -->
-			<section id="five" class="wrapper style1 special">
-			<h2><i class="fas fa-paw"></i>&nbsp;&nbsp;등록된 유기견을 입양해주세요!</h2>
+			<section id="five" class="wrapper style1 special" style="background:white">
+			<h2 style="color:#F08080"><i class="fas fa-paw"></i>&nbsp;&nbsp;등록된 유기견을 입양해주세요!</h2>
 			<br><br>
 				<div class="dogslider">
 				<c:forEach items="${dogDataList }" var="m"> 
 					  <div>
-					 	<h3> <a href="#">이름 : ${m.dogname }</a></h3>					 	  
+					 	<h3> <a href="#" style="color:#696969">이름 : ${m.dogname }</a></h3>					 	  
 			              <img  id="img" src="/upload/${ m.dog_stored_file_name }" alt="" />			               
-			               <h4><span style="color:#87CEEB;font-size:1.4em;">${m.dogenddate }</span> 일 뒤 안락사 예정입니다</h4>
+			               <h4 style="color:#696969"><span style="color:#87CEEB;font-size:1.4em;">${m.dogenddate }</span> 일 뒤 안락사 예정입니다</h4>
 			               </div>
 				</c:forEach> 
 				</div>

@@ -72,7 +72,8 @@
                   </form>
                   
                   <div class="text-center">
-                    <a class="small" href="/resources/js/AdminForgotPw.jsp">비밀번호 찾기</a>
+                    <a class="small" href="/resources/js/AdminForgotPw.jsp">비밀번호 찾기&nbsp;&nbsp;&nbsp;</a>
+                     <a class="small" href="/main">메인화면</a>
                   </div>
                 
                 </div>
