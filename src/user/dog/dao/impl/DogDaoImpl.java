@@ -400,7 +400,7 @@ public class DogDaoImpl implements DogDao{
 		conn = JDBCTemplate.getConnection();
 		
 		
-		String sql = "SELECT * FROM USERLIKE ";
+		String sql = "SELECT * FROM USERLIKE where userid=? ";
 		
 		UserLike userlike = null;
 		
@@ -408,7 +408,7 @@ public class DogDaoImpl implements DogDao{
 		try {
 			ps = conn.prepareStatement(sql); //SQL수행 객체
 			
-			ps.setInt(1, userlike.getDogno());
+			ps.setString(1, userlike.getUserid());
 			
 			
 			rs = ps.executeQuery(); //SQL 수행 및 결과집합 저장
@@ -434,12 +434,48 @@ public class DogDaoImpl implements DogDao{
 			JDBCTemplate.close(rs);
 		}
 		
-		
-		
 		return userlike;
 	}
 
-	
+
+
+
+	@Override
+	public List<UserLike> selectUserList(UserLike userLike) {
+
+		conn = JDBCTemplate.getConnection(); //DB 연결
+		
+		String sql = "";
+		sql += "  SELECT o.*, c.userid, p.dog_fileno";
+		sql += "  FROM dog o";
+		sql += "  LEFT OUTER JOIN userlike c ON o.dogno = c.dogno";
+		sql += "  LEFT OUTER JOIN dog_file p ON o.dogno = p.dogno";
+		sql += "  WHERE";
+		sql += "  c.userid = 'member01'";
+		List<UserLike> userlike = new ArrayList<>();
+		
+		try {
+			ps = conn.prepareStatement(sql); //SQL수행 객체			
+			rs = ps.executeQuery(); //SQL 수행 및 결과집합 저장
+		
+			//조회 결과 처리
+			while(rs.next()) {
+				UserLike l= new UserLike();			
+				l.setDogno(rs.getInt("dogno"));
+				l.setUserid(rs.getString("userid"));
+				l.setAdoptsw(rs.getString("adoptsw"));
+				l.setApplysw(rs.getInt("applysw"));
+				userlike.add(l);
+				//결과값 한 행 처리
+			}	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+			JDBCTemplate.close(rs);
+		}
+		return userlike;
+	}
 	
 	
 	

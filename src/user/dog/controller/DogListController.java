@@ -56,19 +56,16 @@ public class DogListController extends HttpServlet {
 		}
 
 //==================================================================================		
-		
-		
-		
-		
-		UserLike userlike = dogService.getUserLike(req);
+
+//		UserLike userlike = dogService.getUserLike(req);
 
 		
-		// userlike의 유저 아이디가 null 아니라면 model 값 전달
-		if( req.getSession().getAttribute(userlike.getUserid()) != null  ) {
-			req.setAttribute("userid", userlike.getUserid());
-		}
+//		// userlike의 유저 아이디가 null 아니라면 model 값 전달
+//		if( req.getSession().getAttribute(userlike.getUserid()) != null  ) {
+//			req.setAttribute("userid", userlike.getUserid());
+//		}
 		
-		System.out.println("userid : "+userlike.getUserid());
+//		System.out.println("userid : "+userlike.getUserid());
 		
 //		dogService.insertUserLike(req);
 //		dogService.deleteUserLike(userlike);

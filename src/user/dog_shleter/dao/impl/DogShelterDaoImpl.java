@@ -237,12 +237,8 @@ public class DogShelterDaoImpl implements DogShelterDao {
 		
 		try {
 			conn = ps.getConnection();
-			sql = new StringBuffer();
-			
-			if(col.equals("none")) {
-				sql.app
-			}
 		
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
