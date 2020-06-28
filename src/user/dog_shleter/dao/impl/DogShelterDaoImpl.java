@@ -230,6 +230,14 @@ public class DogShelterDaoImpl implements DogShelterDao {
 		return cnt;
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
+>>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
 	@Override
 	public List<Dog_Data> dogSearchList(int category, String keyword, Paging paging) {
 		List<Dog_Data> list = new ArrayList<>();
@@ -239,6 +247,7 @@ public class DogShelterDaoImpl implements DogShelterDao {
 		try {
 			conn = ps.getConnection();
 		
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -246,5 +255,12 @@ public class DogShelterDaoImpl implements DogShelterDao {
 		
 		return list;
 	}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
+>>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
 
 }

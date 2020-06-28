@@ -9,6 +9,7 @@ public class UserLike {
 	private int applysw;
 	private int dogno;
 	
+	
 	public int getApplysw() {
 		return applysw;
 	}

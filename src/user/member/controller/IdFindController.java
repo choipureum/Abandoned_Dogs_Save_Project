@@ -18,6 +18,7 @@ import user.member.service.impl.MemberServiceImpl;
 public class IdFindController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
+	
 	//서비스 객체 생성
 	private MemberService memberService= new MemberServiceImpl();
 	@Override

@@ -1,8 +1,24 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+	
+<style type="text/css">
+#floatMenu {
+	position: absolute;
+    width: 10%;
+    height: 200px;
+    right: 0;
+    top: 280px;
+    color: #fff;
+    z-index: 9999999;
+}
 
-<link rel="stylesheet" href="/resources/UserTemplate/assets/css/main.css" />  
+/* 테이블 logo 영역 */
+.floatCenter {
+	padding: 0px 35px;
+	list-style-type: none;
+}
+</style>
 
 <script type="text/javascript"
 src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
@@ -33,7 +49,7 @@ $(document).ready(function() {
 
 </script>
 
-<div id="floatMenu" >
+<div id="floatMenu">
 <ul class="floatCenter">
 	<li><a href="#"><img alt="top" src="../resources/s_logo01.png"> </a></li>
 	<li><a href="#"><img alt="상담문의" src="../resources/s_logo02.png"> </a></li>
