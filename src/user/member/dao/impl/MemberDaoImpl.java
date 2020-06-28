@@ -746,6 +746,10 @@ public class MemberDaoImpl implements MemberDao{
 		return d;
 		}
 	
+	/**
+	 * userid를 통해서 회원 삭제 
+	 * deletedogmiss / deleteqna / DeleteQna_File /DeleteDogMiss_File
+	 */
 	@Override
 		public void DeleteDogMiss(String userid) {
 			conn = JDBCTemplate.getConnection();

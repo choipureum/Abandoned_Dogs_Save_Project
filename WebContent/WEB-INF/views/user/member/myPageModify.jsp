@@ -291,6 +291,7 @@ h1 {
 ::-webkit-scrollbar-thumb:hover{background: #969696;}
 
 
+
 .popupwithdraw {
 	all: unset;
 	background-color: black;
