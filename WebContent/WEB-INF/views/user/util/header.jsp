@@ -47,12 +47,15 @@
 			<nav id="menu">
 				<ul class="links">
 					<li><a href="/main">홈</a></li>
+					<c:if test="${not empty login }">
+						<li><a href="/mypage/main">마이페이지</a></li>
+					</c:if>
 					<li><a href="generic.html">가족찾기</a></li>
 					<li><a href="elements.html">분실견</a></li>
 					<li><a href="elements.html">보호소 지도찾기</a></li>
 					<li><a href="elements.html">QNA</a></li>
 				</ul>
-				<ul class="actions vertical">
-					<li><a href="#" class="button fit">Login</a></li>
-				</ul>
+<!-- 				<ul class="actions vertical"> -->
+<!-- 					<li><a href="#" class="button fit">Login</a></li> -->
+<!-- 				</ul> -->
 			</nav>

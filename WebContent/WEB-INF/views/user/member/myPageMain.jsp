@@ -80,7 +80,7 @@ $(document).ready(function() {
       </div>
       <div class="col-lg-6">
         <a class="portfolio-item" href="#!">
-          <div class="caption">
+          <div class="caption" onclick="DogOut();">
             <div class="caption-content">
               <div class="h2">분양 받은 강아지</div>
               <p class="mb-0">분양 받은 강아지를 확인 할 수 있습니다!</p>
@@ -115,6 +115,10 @@ function Move(sw){
 	
 		location.href="/mypage/modify";
 
+}
+
+function DogOut(){
+	location.href="/mypage/outdog";
 }
 
 </script>
