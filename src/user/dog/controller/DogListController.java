@@ -36,6 +36,8 @@ public class DogListController extends HttpServlet {
 		req.getRequestDispatcher("/WEB-INF/views/user/dog/view.jsp").forward(req, resp);
 	}
 
+	
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -43,6 +45,7 @@ public class DogListController extends HttpServlet {
 		Paging paging = dogService.getPaging(req);		
 			
 		// Dog_Data 리스트 가져오기
+//		Paging paging = dogService.getPaging(req);
 		List<Dog_Data> dogList = dogService.getList(paging);
 
 		for (Iterator iterator = dogList.iterator(); iterator.hasNext();) {

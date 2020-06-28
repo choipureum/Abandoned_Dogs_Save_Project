@@ -35,7 +35,7 @@
 					</c:if>
 					<c:if test="${not empty login }">
 <!-- 					<a href="#" class ="button alt open">LogOut</a> -->
-						<%=session.getAttribute("userid") %> 님 환영합니다!
+						<%=session.getAttribute("userid") %> 님 환영합니다!&nbsp;&nbsp;&nbsp;
 					<input type ="button" value="Logout" class="button alt open" onclick="location.href='/logout/logout'" />
 					</c:if>
 				</nav>
