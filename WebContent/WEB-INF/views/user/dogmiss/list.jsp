@@ -7,16 +7,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 
-<!-- Bootstrap 3.3.2 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-
-
-
 <%List <DogMissAdd> list = (List)request.getAttribute("missList");  %>
 
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Full Motion</title>
+		
 <!-- jQuery 2.2.4 -->
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
 
@@ -27,24 +24,18 @@ $(document).ready(function() {
 	$("#write").click(function() {
 		location.href="/miss/write";
 	});
-	
-	
+		
 	//검색 버틀 클릭하면 리스트 controller로 검색어를 파라미터로 전달 하게된다 
 	$("#btnSearch").click(function() {
 		location.href="/miss/list?search="+$("#search").val()+"&search2="+$("#search2").val();
 		
 	});
-	
-	
-	
-	
-	
 });
 </script>
-
-
-<!DOCTYPE HTML>
-<style>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="/resources/UserBoardTemplate/assets/css/main.css" /><!--  -->
+		<style>
 
 #write{
 	margin-top: 30px;
@@ -125,15 +116,7 @@ $(document).ready(function() {
     transform:scale(1.2);
 }
 
-</style>
-
-
-<html>
-	<head>
-		<title>Full Motion</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="/resources/UserBoardTemplate/assets/css/main.css" /><!--  -->
+</style>		
 	</head>
 	<body id="top">
 
@@ -148,10 +131,7 @@ $(document).ready(function() {
 						<a href="#main" class="more">Learn More</a>
 					</div>
 				</section>
-				
-				
-				
-					
+	
 				<!-- 검색 keyword를 전달하는 sql문  google에서 따온 코드 
 				<form action="board-search" method="get">
     				<select name="searchCategory">
@@ -176,10 +156,7 @@ $(document).ready(function() {
 				<button id="btnSearch" class="btn">검색</button>
 				</div>
 				<button id="write">신고하기</button>
-			
-				
-				
-				
+		
 				
 				<!--  이곳이 원본이다 
 				<div class="form-inline text-center" id="serch">
@@ -188,11 +165,7 @@ $(document).ready(function() {
 					<button id="write" >신고하기</button>
 				</div>
 				 -->
-			
-			
-			
-			
-			
+
 			<!-- Main -->
 				<div id="main">
 					<div class="inner">

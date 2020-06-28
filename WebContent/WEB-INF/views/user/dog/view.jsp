@@ -9,16 +9,7 @@
 <%@page import="java.util.List"%>
 
 <%List<Dog_Data> list = (List)request.getAttribute("dogList");  %>
-
-
-<!--       부트스트랩 -->
-<link rel="stylesheet" href="/resources/UserBoardTemplate/assets/css/main.css" />
-      
-
-
-      <link rel="stylesheet" href="/resources/UserBoardTemplate/assets/css/main.css" /><!--  -->
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
- 	     
+     
 <!-- 스타일 css -->
 <style type="text/css">
 #doglist {
@@ -106,7 +97,7 @@ padding:none;
 			
 				<div class="content">
 					<h1>Fine Family with Dog</h1>
-					<p>아이들에게 따뜻한 손길을 내밀어 주세요 </p>
+					<p>유기견 입양 </p>
 				
 				</div>
 			</section>
@@ -114,11 +105,6 @@ padding:none;
 <div id="doglist"></div>
 <div id="showplus"></div>
 <c:import url="/WEB-INF/views/user/util/footer.jsp"></c:import>
-
-
-
-
-
 
 <!-- 무한스크롤 -->
 <script type="text/javascript">
@@ -134,7 +120,7 @@ $(window).scroll(function(){
       }      
 //       loadlist();
    }
-})
+});
 
 function loadlist() {
    $.ajax({

@@ -18,13 +18,12 @@
       <li>중성화여부 ${dog.dogneu }</li>
       <li>공고일 ${dog.dogdate }</li>
      
-<!-- 하트버튼 -->
-     <a class="heartDog" href="#" onclick ="checkHeart(${dog.dogno});">
+	<!-- 하트버튼 -->
+     <a class="heartDog" href="#">
      <i class="fa fa-heart-o" aria-hidden="true" data-dogno="${dog.dogno }" data-userid="${userlike.userid }"></i></a>                 
     </ul>
-      <span class="heartDog"><i class="fa fa-heart-o" aria-hidden="true" data-dogno="${dog.dogno }" data-userid="${userlike.userid }"></i> </span><!-- id 부분 dog no으로 가져오기  -->
-
-
+      <span class="heartDog"><i class="fa fa-heart-o" aria-hidden="true" data-dogno="${dog.dogno }" data-userid="${userlike.userid }"></i> </span>
+      <!-- id 부분 dog no으로 가져오기  -->
    </div>
 </div>
 </c:forEach>
