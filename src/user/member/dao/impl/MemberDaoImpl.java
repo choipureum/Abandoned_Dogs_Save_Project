@@ -395,6 +395,16 @@ public class MemberDaoImpl implements MemberDao{
 		public List<MemberAddDTO> selectAll(Paging paging) {
 		
 		conn =JDBCTemplate.getConnection(); //DB 연결
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+		
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
+>>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 //		//수행할 SQL
 //		String sql = "";
 //		sql += "SELECT * FROM (";
@@ -439,6 +449,16 @@ public class MemberDaoImpl implements MemberDao{
 //	       sql +=  "	order by rnum )"; 
 //	       sql +=  "	WHERE rnum BETWEEN ? AND ?";
 		
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+		
+=======
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
+>>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 		String sql = "";
 		sql += "  select * from (select rownum rnum, e.* from";
 		sql += "  (SELECT o.*, p.dog_fileNo, p.dog_org_FILE_NAME, p.dog_stored_FILE_NAME, p.dog_FILE_SIZE, p.dog_DEL_GB, c.applysw, c.adoptsw, c.userid ";
@@ -766,7 +786,10 @@ public class MemberDaoImpl implements MemberDao{
 			}
 			
 	}
+<<<<<<< HEAD
+=======
 	
+>>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
 	@Override
 			public void DeleteQna(String userid) {
 			conn = JDBCTemplate.getConnection();
@@ -813,7 +836,25 @@ public class MemberDaoImpl implements MemberDao{
 		JDBCTemplate.close(ps);
 	}
 	}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 	
+<<<<<<< HEAD
 
+=======
+	
+	
+<<<<<<< HEAD
+=======
+	
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
+>>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 
 }
