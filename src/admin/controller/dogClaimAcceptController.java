@@ -14,6 +14,7 @@ import admin.dao.face.AdminMemberListDao;
 import admin.dao.impl.AdminMemberListDaoImpl;
 import admin.service.face.AdminMemberListService;
 import admin.service.impl.AdminMemberListServiceImpl;
+import user.dog.dto.Dog_Data;
 
 @WebServlet("/admin/dogClaimAccept")
 public class dogClaimAcceptController extends HttpServlet {
@@ -39,7 +40,11 @@ public class dogClaimAcceptController extends HttpServlet {
 			//승인 완료
 			int dogno = adminMemberListDao.dognoBydogClaim(e);
 			//입양신청 dogno같은 유저 라이크 모조리 apply sw=2
-			adminMemberListDao.dogClaimUpdateApplySw(e, dogno);			
+			adminMemberListDao.dogClaimUpdateApplySw(e, dogno);	
+			//유저 아이디를 통해 dogout테이블에 삽입
+			Dog_Data dog = new Dog_Data();
+			dog= adminMemberListDao.selectByDogno(dogno);	
+			adminMemberListDao.insertDogout(dog,e);			
 			cnt+=adminMemberListDao.dogClaimBydogno(dogno);			
 		}
 		

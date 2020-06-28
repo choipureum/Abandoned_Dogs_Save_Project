@@ -2,6 +2,7 @@ package user.dog.controller;
 
 import java.io.IOException;
 
+
 import java.util.Iterator;
 import java.util.List;
 
@@ -16,8 +17,9 @@ import user.dog.dto.UserLike;
 import user.dog.service.face.DogService;
 import user.dog.service.impl.DogServiceImpl;
 import util.Paging;
-import java.util.*
-;@WebServlet("/dog/list")
+import java.util.*;
+
+@WebServlet("/dog/list")
 public class DogListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -36,12 +38,22 @@ public class DogListController extends HttpServlet {
 		req.getRequestDispatcher("/WEB-INF/views/user/dog/view.jsp").forward(req, resp);
 	}
 
+	
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		// 요청파라미터를 전달하여 Paging 객체 생성하기
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		Paging paging = dogService.getPaging(req);		
+			
+>>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 		// Dog_Data 리스트 가져오기
-		Paging paging = dogService.getPaging(req);
+//		Paging paging = dogService.getPaging(req);
 		List<Dog_Data> dogList = dogService.getList(paging);
 
 		for (Iterator iterator = dogList.iterator(); iterator.hasNext();) {

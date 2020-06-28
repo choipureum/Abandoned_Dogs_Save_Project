@@ -1242,6 +1242,28 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 	    	
 	        	
 	    }
+	    @Override
+	    public void insertDogout(Dog_Data dog,String userid) {
+	    	conn= JDBCTemplate.getConnection();
+	    	sql= new StringBuffer();
+	    	Qna_Reply qnaRef = new Qna_Reply();
+	    	sql.append(" insert into dogout(dogno,userid,dogname,dogkind,doggender,dog_stored_file_name) values(?,?,?,?,?)");
+	    	
+	    	try {
+				ps= conn.prepareStatement(sql.toString());
+				ps.setInt(1, dog.getDogno());
+				ps.setString(2, userid);
+				ps.setString(3, dog.getDogname());
+				ps.setString(4, dog.getDogkind());
+				ps.setString(5, dog.getDoggender());				
+				ps.setString(6, dog.getDog_stored_file_name());
+				ps.executeUpdate();				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(ps);
+			}   
+	    }
 	    }
 
 

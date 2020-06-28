@@ -3,7 +3,10 @@
     
 <%@ include file="./header.jsp" %>
 
-<%@ include file="./sidebar.jsp" %>
+<<<<<<< HEAD
+=======
+<%-- <%@ include file="./sidebar.jsp" %> --%>
+>>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
 
 <%@ include file="./section.jsp" %>
 

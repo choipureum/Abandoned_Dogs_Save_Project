@@ -7,8 +7,8 @@
 	position: absolute;
     width: 10%;
     height: 200px;
-    right: 0;
-    top: 280px;
+    right: 20px;
+    top: 500px;
     color: #fff;
     z-index: 9999999;
 }
@@ -22,6 +22,21 @@
 
 <script type="text/javascript"
 src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script>
+  window.kakaoAsyncInit = function() {
+    Kakao.Channel.createChatButton({
+      container: '#kakao-talk-channel-chat-button',
+    });
+  };
+
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = '//developers.kakao.com/sdk/js/kakao.plusfriend.min.js';
+    fjs.parentNode.insertBefore(js, fjs);
+  })(document, 'script', 'kakao-js-sdk');
+</script>
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -51,7 +66,16 @@ $(document).ready(function() {
 
 <div id="floatMenu">
 <ul class="floatCenter">
-	<li><a href="#"><img alt="top" src="../resources/s_logo01.png"> </a></li>
-	<li><a href="#"><img alt="상담문의" src="../resources/s_logo02.png"> </a></li>
+	<li style="text-align:center;"><a href="/main"><img src="/resources/home.png" style="width:50px;height:50px; padding:0 0 0 0;"></a></li>	
+	<li><div
+		  id="kakao-talk-channel-chat-button"
+		  data-channel-public-id="_xcLqmC"
+		  data-title="consult"
+		  data-size="small"
+		  data-color="yellow"
+		  data-shape="pc"
+		  data-support-multiple-densities="true"
+		></div> <br><br></li>
+	<li><a href="#"> </a></li>
 </ul>
 </div>

@@ -313,11 +313,9 @@ div>img{
 				      <input type="submit" value="로그인" class="login"/>	
 				   
 				     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 	  			   
-				  	 <input type="button" class="singup" value="회원가입" onclick="location.href='/resources/js/singupinfo.jsp'" />
-						
-					</form>
-				
-				<!-- 	아이디비밀번호 찾기 -->
+				  	 <input type="button" class="singup" value="회원가입" onclick="location.href='/resources/js/singupinfo.jsp'" />						
+					</form>				
+					<!-- 	아이디비밀번호 찾기 -->
 					<a href="/id/find" class="found">아이디</a>
 					<a href="/pw/find" class="found">비밀번호찾기</a>&nbsp;&nbsp;&nbsp;
 					<a href="/admin" class="found">관리자 로그인</a>

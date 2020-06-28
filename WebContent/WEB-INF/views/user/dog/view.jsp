@@ -9,25 +9,16 @@
 <%@page import="java.util.List"%>
 
 <%List<Dog_Data> list = (List)request.getAttribute("dogList");  %>
-
-
-<!--       부트스트랩 -->
-<link rel="stylesheet" href="/resources/UserBoardTemplate/assets/css/main.css" />
-      
-
-
-      <link rel="stylesheet" href="/resources/UserBoardTemplate/assets/css/main.css" /><!--  -->
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
- 	     
+     
 <!-- 스타일 css -->
 <style type="text/css">
 #doglist {
    display: grid;
 
-   grid-template-columns: 1fr 1fr 1fr;
+   grid-template-columns: 1fr 1fr 1fr 1fr;
     row-gap: 10px;
-    column-gap: 50px;
-	width:80em;
+    column-gap: 30px;
+	width:85em;
 
     margin: 0 auto;
     margin-top : 100px;
@@ -35,16 +26,16 @@
 }
 .inner{
 background-color: white;
+text-align: center;
+margin-top : 20px;
 }
 .inner li{
 font-size: 16px;
 color : black;
 list-style: none;
-
-
+font-family: 'Arita-dotum-Medium'; 
 }
-.inner ul{
-
+.inner ul li{
 
 }
 
@@ -65,12 +56,12 @@ height: 440px;
 }
 .box a img {
    width: 100%;
-   height: 200px;
+   height: 350px;
    
    
 }
 .box a img:hover{
-transform:scale(1.1);
+transform:scale(1.05);
 transition:2s;
 }
 
@@ -106,7 +97,7 @@ padding:none;
 			
 				<div class="content">
 					<h1>Fine Family with Dog</h1>
-					<p>아이들에게 따뜻한 손길을 내밀어 주세요 </p>
+					<p>유기견 입양 </p>
 				
 				</div>
 			</section>
@@ -115,26 +106,21 @@ padding:none;
 <div id="showplus"></div>
 <c:import url="/WEB-INF/views/user/util/footer.jsp"></c:import>
 
-
-
-
-
-
 <!-- 무한스크롤 -->
 <script type="text/javascript">
 
-var page = 1;
+var page = 0;
 
 $(window).scroll(function(){
    
-   if($(window).scrollTop() == $(document).height() - $(window).height()){
+   if($(window).scrollTop() >= $(document).height() - $(window).height()){
       if('${paging.totalPage }' >= page  ) {
 //       console.log(page);
          $("body").append(loadlist())
       }      
 //       loadlist();
    }
-})
+});
 
 function loadlist() {
    $.ajax({
