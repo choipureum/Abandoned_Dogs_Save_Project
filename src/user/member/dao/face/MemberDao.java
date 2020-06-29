@@ -167,7 +167,7 @@ public interface MemberDao {
    	public void DeleteDogMiss_File(String userid);
 
    	/**
-   	 * mypage,입양받은 강아지 하는곳
+   	 * 마이페이지 분양받은 강아지
    	 * @param userid
    	 * @return
    	 */
@@ -192,5 +192,3 @@ public interface MemberDao {
 	
    
 }
-
-

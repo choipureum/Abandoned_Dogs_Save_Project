@@ -1,16 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<%@ page import="admin.dto.Dogout"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>   
 
-
-<!-- 헤더임포트 -->
+<!-- 헤더 입포트 -->
 <c:import url="/main/header"></c:import>
+<c:import url="/WEB-INF/views/user/util/sidebar.jsp"></c:import>
+
 <!--Alert 디자인 라이브러리 -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
 
 <script type="text/javascript">
 
@@ -98,38 +96,20 @@ th{
 			<tbody>
 				<tr>
 					<td style="text-align:center; margin:0 auto;">
-					<img  id="img" src="/upload/${ dogout.dog_stored_file_name }" alt="" style="width:100px;height:70px"/></td>			                
+			        <img  id="img" src="/upload/${ dogout.dog_stored_file_name }" alt="" style="width:100px;height:70px"/></td>			                
 			        <td>${dogout.dogname }</td>	
-			        <td>${dogout.dogkind }</td>
-			        <td>${dogout.doggender }</td>	
+			        <td>${dogout.dogkind }</td>	
+			        <td>${dogout.doggender }</td>
 			        <td>${dogout.outdate }</td>
-				</tr>		
-		
+
 			</tbody>
+
 		</table>	
 	</div>
 </div>
 
 
 </body>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <c:import url="/WEB-INF/views/user/util/footer.jsp"></c:import>
 
 

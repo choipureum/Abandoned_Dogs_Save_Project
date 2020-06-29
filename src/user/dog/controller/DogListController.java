@@ -3,6 +3,7 @@ package user.dog.controller;
 import java.io.IOException;
 
 
+
 import java.util.Iterator;
 import java.util.List;
 
@@ -37,13 +38,30 @@ public class DogListController extends HttpServlet {
 		// VIEW 지정 및 응답 - forward
 		req.getRequestDispatcher("/WEB-INF/views/user/dog/view.jsp").forward(req, resp);
 	}
+<<<<<<< HEAD
+=======
+
+	
+>>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		// 요청파라미터를 전달하여 Paging 객체 생성하기
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
 		Paging paging = dogService.getPaging(req);		
 			
+<<<<<<< HEAD
+=======
+=======
+
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
+		// Dog_Data 리스트 가져오기
+//		Paging paging = dogService.getPaging(req);
+>>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
 		List<Dog_Data> dogList = dogService.getList(paging);
 
 		for (Iterator iterator = dogList.iterator(); iterator.hasNext();) {
@@ -51,6 +69,29 @@ public class DogListController extends HttpServlet {
 //				System.out.println("TEST  :  "+dog_Data);
 		}
 
+
+//		UserLike userlike = dogService.getUserLike(req);
+		
+//		// userlike의 유저 아이디가 null 아니라면 model 값 전달
+//		if( req.getSession().getAttribute(userlike.getUserid()) != null  ) {
+//			req.setAttribute("userid", userlike.getUserid());
+//		}
+		
+//		System.out.println("userid : "+userlike.getUserid());
+		
+//		dogService.insertUserLike(req);
+//		dogService.deleteUserLike(userlike);
+		
+//			//담아두기 정보 얻기
+//			UserLike userlike = dogService.getUserLike(req);
+//			
+//			//담아두기 정보 토글
+//			boolean result = dogService.UserLike(userlike);
+//			System.out.println(userlike);
+//			System.out.println(result);
+
+		// 결과 JSon응답
+//			resp.getWriter().println("{\"result\" :" + result);
 
 //			//페이징계산결과 MODEL값 전달
 		req.setAttribute("paging", paging);

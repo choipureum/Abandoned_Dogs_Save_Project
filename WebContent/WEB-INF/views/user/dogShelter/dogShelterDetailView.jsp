@@ -20,10 +20,10 @@
 	row-gap: 10px;
 	column-gap: 100px;
 	width: 1000px;
-/* 	margin: 0 auto; */
+	margin: 0 auto;
 	margin-top: 30px;
 	/* 	top: 420px; */
-	/* 	pos`ition: relative; */
+	position: relative;
 }
 
 .w3-display-left {
@@ -31,20 +31,20 @@ font-size: 15px;
 }
 </style>
 <script type="text/javascript">
-$(document).on("click", ".w3-container", function () {
 	var curPage = 1;
 	$(window).scroll(function(){
 		   
 		   if($(window).scrollTop() == $(document).height() - $(window).height()){
 		      if('${paging.totalPage }' >= page  ) {
 //		       console.log(page);
-		         $("body").append(loadlist())
+		         $("#dog").append(loadlist())
 		      }      
 //		       loadlist();
 		   }
 		})
 
 
+$(document).on("click", ".w3-container", function () {
 			console.log($(this).children("a").attr("href"))
 
 			$.ajax({
@@ -58,8 +58,8 @@ $(document).on("click", ".w3-container", function () {
 				success : function(h) {
 					console.log("succ");
 					console.log(h);
-					$("#dog").html(h)
-					
+					 $("#dog").html(h)
+						
 				},
 				error : function() {
 					console.log("err")
@@ -85,13 +85,13 @@ $(document).on("click", ".w3-container", function () {
 <!-- 헤더 임포트 -->
 <%-- <c:import url="/WEB-INF/views/user/util/header.jsp"></c:import> --%>
 
-<div class="w3-display-left w3-padding w3-col l6 m8" style="width: 100%; height: 600px">
+<div class="w3-display-left w3-padding w3-col l6 m8" style="width:481px; height: 600px">
 	<div class="w3-container w3-red">
 		<h2>
 			<label><i class="fa fa-bed w3-margin-right"></i><label><%=l.getSheltername()%></label></label> 
 		</h2>
 	</div>
-	<div class="w3-container w3-white w3-padding-16" style="height: 252px;">
+	<div class="w3-container w3-white w3-padding-16" style="height: 221px; width: 450px">
 		<div class="w3-row-padding" style="margin: 0 -16px;">
 			<div class="w3-half" style="width: 62%">
 				<label><i class="fa fa-calendar-o"></i><%=l.getSheltername()%></label>

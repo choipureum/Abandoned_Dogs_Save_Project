@@ -205,7 +205,6 @@ public class MemberServiceImpl implements MemberService{
   	 
 	@Override
 	public Dogout myPageDogOut(String userid) {
-		
 		return memberDao.myPageDogOut(userid);
 		
 	}

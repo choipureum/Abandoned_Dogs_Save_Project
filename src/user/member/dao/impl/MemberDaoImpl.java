@@ -155,7 +155,6 @@ public class MemberDaoImpl implements MemberDao{
 			
 			result.setUserid(rs.getString("userid"));
 			result.setUserpw(rs.getString("userpw"));
-			result.setUsergrade(rs.getString("usergrade"));
 			
 		}
 	} catch (SQLException e) {
@@ -822,32 +821,41 @@ public class MemberDaoImpl implements MemberDao{
 	public Dogout myPageDogOut(String userid) {
 	
 		conn=JDBCTemplate.getConnection();
-
+		
 		String sql= "select * from dogout where userid=?";
 		
-		Dogout result =null;
+		Dogout result = null;
 
 		   
 		try {
+			
 			ps=conn.prepareStatement(sql);
 			
 			ps.setString(1, userid);
 			
 			rs=ps.executeQuery(); //결과 집합
 			
+<<<<<<< HEAD
 			while(rs.next()) {				
+=======
+			while(rs.next()) {
+				
+				result=new Dogout();
+				
+				result.setUserid(userid);
+>>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
 				result.setDogname(rs.getString("dogname"));
 				result.setDogkind(rs.getString("dogkind"));
 				result.setDoggender(rs.getString("doggender"));
 				result.setOutdate(rs.getDate("outdate"));
 				result.setDog_stored_file_name(rs.getString("dog_stored_file_name"));
-				
+
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
+			
 			//DB객체 닫기
 			JDBCTemplate.close(rs);
 			JDBCTemplate.close(ps);

@@ -11,7 +11,7 @@ public class DogDTO {
 	private Date dogdate;
 	private String dogimg;
 	private int shelterno;
-	private long dogenddate;
+	private int dogenddate;
 	public int getDogno() {
 		return dogno;
 	}
@@ -66,10 +66,10 @@ public class DogDTO {
 		return shelterno;
 	}
 	
-	public long getDogenddate() {
+	public int getDogenddate() {
 		return dogenddate;
 	}
-	public void setDogenddate(long dogenddate) {
+	public void setDogenddate(int dogenddate) {
 		this.dogenddate = dogenddate;
 	}
 	public void setShelterno(int shelterno) {

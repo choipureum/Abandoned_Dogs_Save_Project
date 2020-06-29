@@ -2,16 +2,17 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<!-- Bootstrap 3.3.2 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
 
 <script type="text/javascript"
 src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-<!DOCTYPE html>
-<html>
+
+<div>
+	<c:import url="/WEB-INF/views/user/util/header.jsp" />
+</div>
+
+<script type="text/javascript"
+src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
 <!-- 스마트 에디터 라이브러리 추가 -->
 <script type="text/javascript"
  src="/resources/se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
@@ -37,15 +38,13 @@ $(document).ready(function() {
 </script>
 
 <style type="text/css">
-#content {
-	width: 98%;
+.text-center{
+	padding:150px;
+	
 }
+
 </style>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+
 
 <div class="container">
 
@@ -77,7 +76,7 @@ $(document).ready(function() {
 </div>
 </div>
 
-</body>
+
 <!-- 스마트 에디터를 생성하는 코드 -->
 <!-- 스마트 에디터의 스킨을 입히는 코드 -->
 <script type="text/javascript">
@@ -94,6 +93,10 @@ nhn.husky.EZCreator.createInIFrame({
 	}
 });
 
+
+
+
+
 //<form>의 submit이 수행되면 스마트에디터의 내용이 <textarea>에 적용됨
 function submitContents(elClickedObj) {
 	// 에디터의 내용이 textarea에 적용된다.
@@ -104,4 +107,10 @@ function submitContents(elClickedObj) {
 	} catch (e) { }
 }
 </script>
-</html>
+
+<div id="foot">
+	<c:import url="/WEB-INF/views/user/util/footer.jsp" />
+</div>
+
+
+

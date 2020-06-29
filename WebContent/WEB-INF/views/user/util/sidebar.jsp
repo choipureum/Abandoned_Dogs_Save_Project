@@ -8,7 +8,7 @@
     width: 10%;
     height: 200px;
     right: 20px;
-    top: 600px;
+    top: 500px;
     color: #fff;
     z-index: 9999999;
 }
@@ -66,6 +66,7 @@ $(document).ready(function() {
 
 <div id="floatMenu">
 <ul class="floatCenter">
+	<li style="text-align:center;"><a href="/main"><img src="/resources/home.png" style="width:50px;height:50px; padding:0 0 0 0;"></a></li>	
 	<li><div
 		  id="kakao-talk-channel-chat-button"
 		  data-channel-public-id="_xcLqmC"
@@ -75,6 +76,6 @@ $(document).ready(function() {
 		  data-shape="pc"
 		  data-support-multiple-densities="true"
 		></div> <br><br></li>
-	
+	<li><a href="#"> </a></li>
 </ul>
 </div>
