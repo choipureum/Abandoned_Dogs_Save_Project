@@ -191,10 +191,6 @@ a.badge-danger:focus, a.badge-danger.focus {
 					<c:if test="${not empty login }">
 						<li><a href="/mypage/main">마이페이지</a></li>
 					</c:if>
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
 					<li><a href="/dog/list">가족찾기</a></li>
 					<li><a href="/miss/list">분실견</a></li>
 					<li><a href="/dog_shelter/list">보호소 지도찾기</a></li>

@@ -14,7 +14,6 @@
 <style type="text/css">
 #doglist {
    display: grid;
-
    grid-template-columns: 1fr 1fr 1fr 1fr;
     row-gap: 10px;
     column-gap: 30px;
@@ -75,39 +74,24 @@ padding:none;
 
 </style>
 
-<!-- 담아두기css -->
-<style type="text/css">
-.fa-heart-o {
-  color: red;
-  cursor: pointer;
-}
-
-.fa-heart {
-  color: red;
-  cursor: pointer;
-}
-
-</style>         
-
-<c:import url="/WEB-INF/views/user/util/header.jsp"></c:import>		
+<c:import url="/main/header"></c:import>		
 
 <!-- Banner -->
-			<section id="banner">
-			
+			<section id="banner">			
 				<div class="content">
 					<h1>Fine Family with Dog</h1>
 					<p>유기견 입양 </p>
-				
+					<ul class="actions">
+						<li><a href="#one" class="button scrolly">갱얼쥐 입양</a></li>
+					</ul>
 				</div>
 			</section>
-
 <div id="doglist"></div>
 <div id="showplus"></div>
 <c:import url="/WEB-INF/views/user/util/footer.jsp"></c:import>
 
 <!-- 무한스크롤 -->
 <script type="text/javascript">
-
 var page = 0;
 
 $(window).scroll(function(){
@@ -120,7 +104,6 @@ $(window).scroll(function(){
 //       loadlist();
    }
 });
-
 function loadlist() {
    $.ajax({
       type:"post"

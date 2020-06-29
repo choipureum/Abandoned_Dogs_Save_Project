@@ -155,6 +155,7 @@ public class MemberDaoImpl implements MemberDao{
 			
 			result.setUserid(rs.getString("userid"));
 			result.setUserpw(rs.getString("userpw"));
+			result.setUsergrade(rs.getString("usergrade"));
 			
 		}
 	} catch (SQLException e) {
@@ -199,6 +200,7 @@ public class MemberDaoImpl implements MemberDao{
 			result.setUseraddress(rs.getString("useraddress"));
 			result.setUsergrade(rs.getString("usergrade"));
 			result.setUserregdate(rs.getDate("userregdate"));
+			result.setUsergrade(rs.getString("usergrade"));
 			
 		}
 	} catch (SQLException e) {
@@ -835,15 +837,11 @@ public class MemberDaoImpl implements MemberDao{
 			
 			rs=ps.executeQuery(); //결과 집합
 			
-<<<<<<< HEAD
 			while(rs.next()) {				
-=======
-			while(rs.next()) {
 				
 				result=new Dogout();
 				
 				result.setUserid(userid);
->>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
 				result.setDogname(rs.getString("dogname"));
 				result.setDogkind(rs.getString("dogkind"));
 				result.setDoggender(rs.getString("doggender"));

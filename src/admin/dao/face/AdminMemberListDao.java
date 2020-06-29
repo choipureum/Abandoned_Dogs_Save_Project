@@ -304,6 +304,10 @@ public interface AdminMemberListDao {
 	    */
 	   public Qna_Reply QnaRefSelect(int qnano);
 	   
+	   /*
+	    * dog와 userid를 통한 dogout 기능
+	    */
+	   public void insertDogout(Dog_Data dog,String userid);
 	   
 	   
 }		

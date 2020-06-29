@@ -66,7 +66,6 @@ $(document).ready(function() {
 
 <div id="floatMenu">
 <ul class="floatCenter">
-	<li style="text-align:center;"><a href="/main"><img src="/resources/home.png" style="width:50px;height:50px; padding:0 0 0 0;"></a></li>	
 	<li><div
 		  id="kakao-talk-channel-chat-button"
 		  data-channel-public-id="_xcLqmC"

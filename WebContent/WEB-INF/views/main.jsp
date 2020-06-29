@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>   
 
 
-<c:import url="/WEB-INF/views/user/util/header.jsp"></c:import>
+<c:import url="/main/header"></c:import>
 <c:import url="/WEB-INF/views/user/util/sidebar.jsp"></c:import>
 		
 <script type="text/javascript">
