@@ -6,14 +6,20 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&family=Noto+Serif+KR:wght@700&display=swap" rel="stylesheet">
 <!-- Bootstrap 3.3.2 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="/resources/UserBoardTemplate/assets/css/main.css" /><!--  -->
 
+
+<div>
+	<c:import url="/WEB-INF/views/user/util/header.jsp" />
+</div>
 
 <%List <DogMissAdd> list = (List)request.getAttribute("missList");  %>
 
@@ -43,12 +49,12 @@ $(document).ready(function() {
 </script>
 
 
-<!DOCTYPE HTML>
+
 <style>
 
 #write{
 	margin-top: 30px;
-    margin-left: 1220px;
+   margin-left:1160px;
 }
 #img{
 	height:290px;
@@ -58,12 +64,14 @@ $(document).ready(function() {
 	height:150px;
 }
 
-.inner1{
-	position:absolute;
+ .inner1{ 
+ 	position:absolute; 
 	
-	left:120px;	
+ 	left:120px;
+ 	
+ 	font-size:	 
 	
-}
+ } 
 #search2{
 	display:inline;
 
@@ -73,27 +81,29 @@ $(document).ready(function() {
 }
 
 	
-.inner2{
-	position:absolute;
+ .inner2{ 
+ 	position:absolute; 
 	
-	left:120px;
-	top:340px;
-}
-.inner3{
-	position:absolute;
+	left:120px; 
+	top:340px; 
+} 
+ .inner3{ 
+ 	position:absolute; 
 	
-	left:120px;
-	top:370px;
-}
-.inner4{
-	position:absolute;
+ 	left:120px; 
+ 	top:370px; 
+ } 
+ .inner4{ 
+ 	position:absolute; 
 	
-	left:120px;
-	top:400px;
-}
+ 	left:120px; 
+ 	top:400px; 
+ } 
 
 .box{
 	position:relative;
+	background: #e0e0e61a;;
+	border-style: solid 0.5px #9b8f8f;
 }
 
 #dd{
@@ -102,6 +112,9 @@ $(document).ready(function() {
 
 }
 
+#main .inner{
+width:85%;
+}
 
 .box{ overflow: hidden; }
 
@@ -122,32 +135,21 @@ $(document).ready(function() {
     -moz-transform:scale(1.2);
     -ms-transform:scale(1.2);   
     -o-transform:scale(1.2);
-    transform:scale(1.2);
+    transform:scale(1.1);
+}
+
+.inner{
+	font-family: 'Noto Sans KR', sans-serif;
+font-family: 'Noto Serif KR', serif;
 }
 
 </style>
 
 
-<html>
-	<head>
-		<title>Full Motion</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="/resources/UserBoardTemplate/assets/css/main.css" /><!--  -->
-	</head>
-	<body id="top">
 
-			<!-- Banner -->			
-				<section id="banner" data-video="images/banner">
-					<div class="inner">
-						<header>
-							<h1>Full Motion</h1>
-							<p>A responsive video gallery template with a functional lightbox<br />
-							designed by <a href="https://templated.co/">Templated</a> and released under the Creative Commons License.</p>
-						</header>
-						<a href="#main" class="more">Learn More</a>
-					</div>
-				</section>
+	
+		
+				
 				
 				
 				
@@ -203,7 +205,7 @@ $(document).ready(function() {
 							<div class="box">
 								<a href="/miss/view?missno=<%=list.get(i).getMissNO()%>" class="image fit"><img id="img" src="/upload/<%=list.get(i).getMiss_stored_FILE_NAME() %>" alt="" /></a>
 								<div class="inner" id="like">
-									<div class="inner1"><h4 style="text-color:red;"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>&nbsp;제목&nbsp;:&nbsp;&nbsp;<%=list.get(i).getMissTitle()%></h4></div>
+									<div class="inner1" ><h4 style="text-color:red; text-align: center;"><%=list.get(i).getMissTitle()%></h4></div>
 									<div class="inner2">분실장소&nbsp;:&nbsp;&nbsp;<%=list.get(i).getMissLoc()%></div>
 									<div class="inner3">분실날짜&nbsp;:&nbsp;&nbsp;<%=list.get(i).getMissDate()%></div>
 									<div class="inner4">품종&nbsp;:&nbsp;&nbsp;<%=list.get(i).getMissKind()%></div>
@@ -224,27 +226,12 @@ $(document).ready(function() {
 				<div id="paging">
 						<c:import url="/WEB-INF/views/user/dogmiss/paging.jsp" />
 				</div>
-			<!-- Footer -->
+			
 				
-				<footer id="footer">
-					<div class="inner">
-						    <address class="addr">
-     							   상호명:다솜 │ 대표:4조 │ 개인정보관리자:4조
-      						</address>
-      						<p class="copy">Copyright 2020-2020 by 다솜. All rights reserved.</p>
-
-						<ul class="icons">
-							<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-							<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-							<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-							<li><a href="#" class="icon fa-envelope"><span class="label">Email</span></a></li>
-						</ul>
-						
-					</div>
-				</footer>
+			
 					
 
-		<!-- Scripts -->
+			<!-- Scripts -->
 			<script src="/reources/UserBoardTemplate/assets/js/jquery.min.js"></script>
 			<script src="/reources/UserBoardTemplate/assets/js/jquery.scrolly.min.js"></script>
 			<script src="/reources/UserBoardTemplate/assets/js/jquery.poptrox.min.js"></script>
@@ -252,5 +239,4 @@ $(document).ready(function() {
 			<script src="/reources/UserBoardTemplate/assets/js/util.js"></script>
 			<script src="/reources/UserBoardTemplate/assets/js/main.js"></script>
 
-	</body>
-</html>
+<c:import url="/WEB-INF/views/user/util/footer.jsp" />

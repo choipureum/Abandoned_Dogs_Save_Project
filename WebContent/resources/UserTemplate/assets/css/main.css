@@ -2038,7 +2038,7 @@
 
 	.box {
 		border-radius: 4px;
-		border: solid 1px #dee1e3;
+		border: solid 0.5px #9b8f8f;
 		margin-bottom: 2em;
 		overflow: hidden;
 	}

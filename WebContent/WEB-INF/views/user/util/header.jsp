@@ -22,7 +22,7 @@
 		<script src="/resources/UserTemplate/assets/js/util.js"></script>
 		<script src="/resources/UserTemplate/assets/js/main.js"></script>
 		</head>   
-    <body>
+    <body  id="top">
 		<!-- Header -->
 			<header id="header">
 				<nav class="left">

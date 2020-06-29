@@ -3,6 +3,7 @@ package user.dogmiss.service.impl;
 import java.io.File;
 
 
+
 import java.io.UnsupportedEncodingException;
 import java.util.Iterator;
 import java.util.List;
@@ -15,12 +16,16 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import user.dogmiss.dao.face.CommentDao;
 import user.dogmiss.dao.face.DogMissDao;
+import user.dogmiss.dao.impl.CommentDaoImpl;
 import user.dogmiss.dao.impl.DogMissDaoImpl;
+import user.dogmiss.dto.Comment;
 import user.dogmiss.dto.DogMiss;
 import user.dogmiss.dto.DogMissAdd;
 import user.dogmiss.dto.DogMissFile;
 import user.dogmiss.service.face.DogMissService;
+
 import util.Paging;
 
 
@@ -31,6 +36,7 @@ public class DogMissServiceImpl implements DogMissService {
 
 	private DogMissDao dogMissDao = new DogMissDaoImpl();
 	
+	private CommentDao commentDao = new CommentDaoImpl();
 	//public List<DogMiss> getList() {
 		
 		
@@ -563,5 +569,66 @@ public class DogMissServiceImpl implements DogMissService {
 			
 		//	return dogMissDao.joinList(missList);
 		//};
+		
+		
+		
+		
+		
+		
+
+		//전달받은 파라미터를 comment객체에 저장하고 객체 반환 
+		public Comment getComment(HttpServletRequest request) {
+			
+			
+			try {
+				
+				request.setCharacterEncoding("UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			
+			String missNo = (String)request.getParameter("missNo");
+			String writer = (String)request.getParameter("writer");
+			String content = (String)request.getParameter("content");
+			
+			Comment comment = new Comment();
+			comment.setMissNo( Integer.parseInt(missNo) );
+			comment.setMiss_writer(writer);
+			comment.setMiss_content(content);
+			
+			return comment;
+			
+			
+			}//getComment end
+		
+
+		//전달받은 comment객체를통해 db에 데이터 저장 
+		public void insertComment(Comment comment) {
+			
+			commentDao.insertComment(comment);
+			
+		}
+		
+		
+		@Override
+		//댓글에서 받은 qnaNo을 통해서 qnaNO에 해당하는 대글리스트를 받아와 전달하는 역할 
+		public List<Comment> getCommentList(DogMiss viewBoard) {
+			return commentDao.selectComment(viewBoard);
+			
+			
+			
+		}//end
+		
+		//댓글  삭제기능
+		public boolean deleteComment(Comment comment) {
+			commentDao.deleteComment(comment); 
+			
+			if( commentDao.countComment(comment) > 0 ) {
+				return false;
+			} else {
+				return true;
+			}
+		}
+		
 
   }
