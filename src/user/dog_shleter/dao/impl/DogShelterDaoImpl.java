@@ -230,7 +230,6 @@ public class DogShelterDaoImpl implements DogShelterDao {
 		return cnt;
 	}
 
-
 	@Override
 	public List<Dog_Data> dogSearchList(int category, String keyword, Paging paging) {
 		List<Dog_Data> list = new ArrayList<>();
@@ -248,6 +247,5 @@ public class DogShelterDaoImpl implements DogShelterDao {
 		
 		return list;
 	}
-
 
 }
