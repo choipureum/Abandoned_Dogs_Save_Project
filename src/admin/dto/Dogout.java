@@ -8,6 +8,7 @@ public class Dogout {
 	private String dogkind;
 	private String doggender;
 	private String userid;
+	private String dog_stored_file_name;
 	private Date outdate; //입양날짜
 	public int getDogno() {
 		return dogno;
@@ -39,6 +40,12 @@ public class Dogout {
 	public void setUserid(String userid) {
 		this.userid = userid;
 	}
+	public String getDog_stored_file_name() {
+		return dog_stored_file_name;
+	}
+	public void setDog_stored_file_name(String dog_stored_file_name) {
+		this.dog_stored_file_name = dog_stored_file_name;
+	}
 	public Date getOutdate() {
 		return outdate;
 	}
@@ -48,8 +55,11 @@ public class Dogout {
 	@Override
 	public String toString() {
 		return "Dogout [dogno=" + dogno + ", dogname=" + dogname + ", dogkind=" + dogkind + ", doggender=" + doggender
-				+ ", userid=" + userid + ", outdate=" + outdate + "]";
+				+ ", userid=" + userid + ", dog_stored_file_name=" + dog_stored_file_name + ", outdate=" + outdate
+				+ "]";
 	}
+	
+	
 	
 	
 	
