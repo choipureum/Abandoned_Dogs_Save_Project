@@ -3,6 +3,7 @@ package user.dog.controller;
 import java.io.IOException;
 
 
+
 import java.util.Iterator;
 import java.util.List;
 
@@ -44,9 +45,6 @@ public class DogListController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		// 요청파라미터를 전달하여 Paging 객체 생성하기
-
-		Paging paging = dogService.getPaging(req);		
-			
 
 		// Dog_Data 리스트 가져오기
 //		Paging paging = dogService.getPaging(req);

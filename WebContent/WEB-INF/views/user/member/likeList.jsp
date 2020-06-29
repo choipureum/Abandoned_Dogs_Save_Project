@@ -187,15 +187,8 @@ function checkAll() {
  <tbody>
  <c:forEach items="${list }" var="list" varStatus="status">
 <tr>
-
-
-	<td><input type="checkbox" name="checkRow" id="${status.index}"  value=""/><label for="${status.index}" ></label></td>
+	<td><input type="checkbox" name="checkRow" id="${status.index}" /><label for="${status.index}" ></label></td>
 	<td><img style="width:30px; "id="img" src="/upload/${list.dog_stored_FILE_NAME}" alt="" /></td>
-
-	<td><input type="checkbox" name="checkRow" value="${list.dogNo }" /></td>
-	
-	<td><img style="width:30px;"id="img" src="/upload/${list.dog_stored_FILE_NAME }" alt="" /> </td>
-
 	<td>${list.dogKind}</td>
 	<td>${list.dogGender}</td>
 	<td>${list.dogEndDate}</td>
@@ -210,9 +203,10 @@ function checkAll() {
 	<c:if test="${list.applysw eq 2}">
 	<td>입양신청이 거절 되었습니다</td>
 	</c:if>
+	
 </tr>
 </c:forEach>
-<tbody>
+</tbody>
 </table>
 </div>	
 <div class="btn" style="padding: 80px;">

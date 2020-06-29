@@ -189,11 +189,16 @@ a.badge-danger:focus, a.badge-danger.focus {
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 >>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 >>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 					<c:if test="${not empty login }">
 						<li><a href="/mypage/main">마이페이지</a></li>
 					</c:if>
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
@@ -206,6 +211,7 @@ a.badge-danger:focus, a.badge-danger.focus {
 =======
 >>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 >>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 					<li><a href="/dog/list">가족찾기</a></li>
 					<li><a href="/miss/list">분실견</a></li>
 					<li><a href="/dog_shelter/list">보호소 지도찾기</a></li>
@@ -214,9 +220,12 @@ a.badge-danger:focus, a.badge-danger.focus {
 =======
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
+=======
 >>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 >>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 >>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 				</ul>
 <!-- 				<ul class="actions vertical"> -->
 <!-- 					<li><a href="#" class="button fit">Login</a></li> -->
