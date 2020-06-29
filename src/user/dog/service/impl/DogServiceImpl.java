@@ -19,11 +19,6 @@ public class DogServiceImpl implements DogService{
 	//DogDao 객체 생성
 		private DogDao dogDao = new DogDaoImpl();
 		
-		
-		
-		
-		
-		//ok
 		@Override
 		public Paging getPaging(HttpServletRequest req) {
 			
@@ -183,6 +178,22 @@ public class DogServiceImpl implements DogService{
 			
 			return userlike;
 		}
+
+		@Override
+		public List<UserLike> listUserLike(UserLike userLike) {
+			
+			List<UserLike> userLikeList = dogDao.selectUserList(userLike);
+			
+			
+			return userLikeList;
+		}
+
+//		@Override
+//		public List<UserLike> listUserLike(UserLike userLike) {
+//			return dogDao.listUserLike(userLike);
+//		}
+
+		
 		
 		
 		

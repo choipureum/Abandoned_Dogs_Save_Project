@@ -106,6 +106,9 @@ public interface DogService {
 	
 
 	public UserLike selectUserLike(HttpServletRequest req);
+
+
+	public List<UserLike> listUserLike(UserLike userLike);
 	
 	
 }

@@ -5,23 +5,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-
-<%	List<Dog_Shelter> dogList = (List) request.getAttribute("list");%>
-	
-	
-<!-- <!-- 헤더 임포트 --> -->
-<%-- <c:import url="/WEB-INF/views/user/util/header/Header.jsp"></c:import> --%>
-
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-
-<script type="text/javascript" src="/resources/js/httpRequest.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="/resources/js/httpRequest.js"></script>
+	
+<%	List<Dog_Shelter> dogList = (List) request.getAttribute("list");%>
+	
+
+	
 <style type="text/css">
 .dogshelterlist {
 	text-decoration: none;
@@ -54,16 +45,28 @@ $(document).on("click", ".dogshelterlist", function() {
 })
 
 </script>
+	<!-- 헤더 임포트 -->
+	<c:import url="/WEB-INF/views/user/util/header.jsp"></c:import>
+	<c:import url="/WEB-INF/views/user/util/sidebar.jsp"></c:import>
+		<!-- Banner -->
+			<section id="banner">			
+				<div class="content">
+					<h1>For Dog, For Human</h1>
+					<p>DaSom은 언제나 유기견들과 함께합니다 </p>
+					<ul class="actions">
+						<li><a href="#one" class="button scrolly">DaSom 알아보기</a></li>
+					</ul>
+				</div>
+			</section>
 
-
-</head>
-<body>
-
-	<div style="position: relative;">
-		<div id="map" style="width: 125%%; height: 920px;"></div>
+	<div style="position: relative; left: 20%;">
+		<div id="map" style="width: 1200px; height: 900px;  "></div>
 		<div id="container"
-			style="z-index: 9999; position: absolute; display: inline-block; width: 30%; height: 37%; left: 50px; bottom: 50px"></div>
+			style="z-index: 9999; position: absolute; display: inline-block; width: 30%; height: 8%; left: -15px; bottom: 18px;"></div>
 	</div>
+	<!-- Ajax 영역  -->
+	<div id="dog"></div>
+<!-- 	<div id="showplus"><button>더보기</button></div> -->
 
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5645296e24208ec4f20113a550ae0767&libraries=services,clusterer,drawing"></script>
@@ -72,7 +75,7 @@ $(document).on("click", ".dogshelterlist", function() {
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = {
 			center : new kakao.maps.LatLng(37.56682, 126.97865), // 지도의 중심좌표
-			level : 8, // 지도의 확대 레벨
+			level : 12, // 지도의 확대 레벨
 			mapTypeId : kakao.maps.MapTypeId.ROADMAP
 		// 지도종류
 		};
@@ -84,7 +87,7 @@ $(document).on("click", ".dogshelterlist", function() {
         var clusterer = new daum.maps.MarkerClusterer({
             map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
             averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
-            minLevel: 15 // 클러스터 할 최소 지도 레벨 
+            minLevel: 10 // 클러스터 할 최소 지도 레벨 
         });
         
 		 
@@ -163,7 +166,7 @@ $(document).on("click", ".dogshelterlist", function() {
 		
 		// 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
 	    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
-	    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+	    // for문에서 클로6저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
 // 	    kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
 	    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
 	  
@@ -190,17 +193,14 @@ $(document).on("click", ".dogshelterlist", function() {
 			},3000);
 	    };
 	};
-
 	
 	</script>
 
 
 
-	<!-- Ajax 영역  -->
-	<div id="dog"></div>
-	<div id="showplus">
-		<button>더보기</button>
-	</div>
 
-</body>
-</html>
+
+	<c:import url="/WEB-INF/views/user/util/footer.jsp"></c:import>
+
+
+	

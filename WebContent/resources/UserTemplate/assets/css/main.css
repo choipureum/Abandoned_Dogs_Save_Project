@@ -3210,3 +3210,21 @@
 				}
 
 		}
+		/* sidebar 영역 */
+
+#floatMenu {
+	position: absolute;
+    width: 10%;
+    height: 200px;
+    right: 0;
+    top: 280px;
+    color: #fff;
+    z-index: 999999999;
+}
+
+/* 테이블 logo 영역 */
+.floatCenter {
+	padding: 0px 35px;
+	list-style-type: none;
+}
+		

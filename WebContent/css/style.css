@@ -121,7 +121,7 @@ header .gnb .gnb_group .gnb_box .gnb_title:hover {
     right: 0;
     top: 280px;
     color: #fff;
-    z-index: -9999;
+    z-index: 99999999;
 }
 
 /* 테이블 logo 영역 */

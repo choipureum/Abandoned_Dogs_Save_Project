@@ -5,6 +5,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%List <DogMissAdd> list = (List)request.getAttribute("missList");  %>
 
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&family=Noto+Serif+KR:wght@700&display=swap" rel="stylesheet">
 <!-- Bootstrap 3.3.2 -->
@@ -21,8 +22,14 @@
 	<c:import url="/WEB-INF/views/user/util/header.jsp" />
 </div>
 
-<%List <DogMissAdd> list = (List)request.getAttribute("missList");  %>
 
+
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Full Motion</title>
+		
 <!-- jQuery 2.2.4 -->
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
 
@@ -33,24 +40,22 @@ $(document).ready(function() {
 	$("#write").click(function() {
 		location.href="/miss/write";
 	});
-	
-	
+		
 	//검색 버틀 클릭하면 리스트 controller로 검색어를 파라미터로 전달 하게된다 
 	$("#btnSearch").click(function() {
 		location.href="/miss/list?search="+$("#search").val()+"&search2="+$("#search2").val();
 		
 	});
-	
-	
-	
-	
-	
 });
 </script>
 
 
 
+
 <style>
+
+		
+
 
 #write{
 	margin-top: 30px;
@@ -143,7 +148,14 @@ width:85%;
 font-family: 'Noto Serif KR', serif;
 }
 
+
 </style>
+
+
+
+	
+	</head>
+	<body id="top">
 
 
 
@@ -154,6 +166,20 @@ font-family: 'Noto Serif KR', serif;
 				
 				
 					
+
+			<!-- Banner -->			
+				<section id="banner" data-video="images/banner">
+					<div class="inner">
+						<header>
+							<h1>Full Motion</h1>
+							<p>A responsive video gallery template with a functional lightbox<br />
+							designed by <a href="https://templated.co/">Templated</a> and released under the Creative Commons License.</p>
+						</header>
+						<a href="#main" class="more">Learn More</a>
+					</div>
+				</section>
+	
+
 				<!-- 검색 keyword를 전달하는 sql문  google에서 따온 코드 
 				<form action="board-search" method="get">
     				<select name="searchCategory">
@@ -178,23 +204,10 @@ font-family: 'Noto Serif KR', serif;
 				<button id="btnSearch" class="btn">검색</button>
 				</div>
 				<button id="write">신고하기</button>
-			
+		
 				
-				
-				
-				
-				<!--  이곳이 원본이다 
-				<div class="form-inline text-center" id="serch">
-					<input class="form-control" type="text" id="search" placeholder="품종으로  검색"/>
-					<button id="btnSearch" class="btn" >검색</button>&nbsp;&nbsp;
-					<button id="write" >신고하기</button>
-				</div>
-				 -->
 			
-			
-			
-			
-			
+
 			<!-- Main -->
 				<div id="main">
 					<div class="inner">

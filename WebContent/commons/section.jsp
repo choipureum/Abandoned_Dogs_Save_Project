@@ -22,8 +22,7 @@
 	    	autoHover: true
 	    });
     	//공고일 슬라이더
-    	$('.dogslider').bxSlider({
-    		
+    	$('.dogslider').bxSlider({   		
     		minSlides: 1,
     		maxSlides: 6,
     		slideWidth:255,

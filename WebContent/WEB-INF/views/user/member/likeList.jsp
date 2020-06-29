@@ -5,13 +5,14 @@
     
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
  <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
- 
+  <% List<MemberAddDTO> list = (List)request.getAttribute("list"); %>
+
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
  
  <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
- <% List<MemberAddDTO> list = (List)request.getAttribute("list"); %>
+
  <c:import url="/WEB-INF/views/user/util/header.jsp" />
 
 <style>
@@ -32,7 +33,18 @@ body{
 	
 }
 </style>
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script> 
+
+
+ 
+
+
+
+
+
+  
+
+
+
 
 <script>
 $(document).ready(function() {
@@ -63,10 +75,12 @@ $(document).ready(function() {
 			  alert('입양신청은 한마리 선택하셔야 합니다');		
 			  return;
 		  };
+		  	
+		  if($("input:checkbox[name='checkRow']:checked").length==1){
 		  
 		  
 		
-		  	if($("input:checkbox[name='checkRow']:checked").length==1){
+		  	
 			
 			  
 			var checkbox = $("input:checkbox[name='checkRow']:checked");
@@ -101,19 +115,11 @@ $(document).ready(function() {
 	$("#btnDelete").click(function() {
 		// 선택된 체크박스
 		var $checkboxes = $("input:checkbox[name='checkRow']:checked");
-
-		
-	
-
 		// 체크된 대상들을 map으로 만들고 map을 문자열로 만들기
 		var map = $checkboxes.map(function() {
 			return $(this).val();
 		});
 		var names = map.get().join(",");
-	
-
-	
-
 		// 전송 폼
 		var $form = $("<form>")
 			.attr("action", "/like/delete")
@@ -133,9 +139,6 @@ $(document).ready(function() {
 		
 	});<%--document end --%>
 	
-
-
-
 
 //전체 체크/해제
 function checkAll() {
@@ -158,16 +161,7 @@ function checkAll() {
 	}
 }
 </script>
-<script type="text/javascript">
 
-var arr =new Array;
-
-
-
-
-
-
-</script>
 
 <div class="container">
 <br>
@@ -194,8 +188,14 @@ var arr =new Array;
  <c:forEach items="${list }" var="list" varStatus="status">
 <tr>
 
+
 	<td><input type="checkbox" name="checkRow" id="${status.index}"  value=""/><label for="${status.index}" ></label></td>
 	<td><img style="width:30px; "id="img" src="/upload/${list.dog_stored_FILE_NAME}" alt="" /></td>
+
+	<td><input type="checkbox" name="checkRow" value="${list.dogNo }" /></td>
+	
+	<td><img style="width:30px;"id="img" src="/upload/${list.dog_stored_FILE_NAME }" alt="" /> </td>
+
 	<td>${list.dogKind}</td>
 	<td>${list.dogGender}</td>
 	<td>${list.dogEndDate}</td>
@@ -236,4 +236,8 @@ var arr =new Array;
 
 </div><!-- .container -->
 
+
 	<c:import url="/WEB-INF/views/user/util/footer.jsp" />
+
+
+

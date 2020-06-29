@@ -43,6 +43,7 @@ public class ChangePwController extends HttpServlet {
 		memberService.changepassword(userpw, userid);
 		
 ////      swal
+		req.setAttribute("icon", "success");
 		req.setAttribute("msg", "다시 로그인해주세요!");
 		req.setAttribute("title", "비밀번호가 성공적으로 바뀌었습니다 ");
 		req.setAttribute("url", "/login/login");

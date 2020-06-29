@@ -239,6 +239,7 @@ public class DogShelterDaoImpl implements DogShelterDao {
 		try {
 			conn = ps.getConnection();
 		
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
