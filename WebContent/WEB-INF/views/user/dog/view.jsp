@@ -14,12 +14,10 @@
 <style type="text/css">
 #doglist {
    display: grid;
-
    grid-template-columns: 1fr 1fr 1fr 1fr;
     row-gap: 10px;
     column-gap: 30px;
 	width:85em;
-
     margin: 0 auto;
     margin-top : 100px;
     
@@ -39,16 +37,10 @@ font-family: 'Arita-dotum-Medium';
 
 }
 
-
-
-
 body{
 background: white;
 }
-
-
 }
-
 .box {
 width:320px;
 height: 440px;
@@ -89,18 +81,19 @@ padding:none;
 
 </style>         
 
-<c:import url="/WEB-INF/views/user/util/header.jsp"></c:import>		
+<c:import url="/main/header"></c:import>	
 
 
 <!-- Banner -->
-			<section id="banner">
-			
+			<section id="banner">			
 				<div class="content">
 					<h1>Fine Family with Dog</h1>
 					<p>유기견 입양 </p>
-				
+					<ul class="actions">
+						<li><a href="#doglist" class="button scrolly">갱얼쥐입양</a></li>
+					</ul>
 				</div>
-			</section>
+			</section>			
 
 <div id="doglist"></div>
 <div id="showplus"></div>
@@ -130,9 +123,7 @@ function loadlist() {
          curPage: page++
       }
       , dataType: "html"
-      , success: function(h) {
-    	  
-         console.log("AJAX success")
+      , success: function(h) {  	  
          $("#doglist").html( $("#doglist").html() + h )
       }
       , error: function() {

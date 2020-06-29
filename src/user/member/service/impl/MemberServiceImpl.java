@@ -6,7 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-
+import admin.dto.Dogout;
 import user.member.dao.face.MemberDao;
 import user.member.dao.impl.MemberDaoImpl;
 import user.member.dto.MemberAddDTO;
@@ -202,6 +202,13 @@ public class MemberServiceImpl implements MemberService{
   	 public void memberAddDelete(String names) {
   		memberDao.deleteMemberList(names);
   	 }
+  	 
+	@Override
+	public Dogout myPageDogOut(String userid) {
+		
+		return memberDao.myPageDogOut(userid);
+		
+	}
 
 
 }

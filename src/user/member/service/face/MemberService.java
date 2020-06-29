@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import admin.dto.Dogout;
 import user.member.dto.MemberAddDTO;
 import user.member.dto.MemberDTO;
 import util.Paging;
@@ -129,6 +130,15 @@ public interface MemberService {
    public void memberAddDelete(String names);
 
    public int modifyMypageNotAdd(MemberDTO member);
+
+   
+   /**
+    * select userid  를 통해서 dogout 문  select
+    * 
+    * @param userid
+    * @return
+    */
+   public Dogout myPageDogOut(String userid);
 
 
    

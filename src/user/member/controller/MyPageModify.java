@@ -56,13 +56,13 @@ public class MyPageModify extends HttpServlet {
 		if(member.getUseraddress().trim().length()<3) {
 			res= memberService.modifyMypageNotAdd(member);
 			
-			
 		}
 		else {
 			res = memberService.modifyMypage(member);
 		}
 		
 		System.out.println(member.getUseraddress().trim());
+		
 		
 		if(res>0) {
 			req.setAttribute("res", res);

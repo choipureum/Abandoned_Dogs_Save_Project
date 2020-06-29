@@ -31,13 +31,14 @@ font-size: 15px;
 }
 </style>
 <script type="text/javascript">
+$(document).ready(function() {
 	var curPage = 1;
 	$(window).scroll(function(){
 		   
 		   if($(window).scrollTop() == $(document).height() - $(window).height()){
 		      if('${paging.totalPage }' >= page  ) {
 //		       console.log(page);
-		         $("#dog").append(loadlist())
+		         $("body").append(loadlist())
 		      }      
 //		       loadlist();
 		   }
@@ -71,7 +72,7 @@ $(document).on("click", ".w3-container", function () {
 
 
 	
-
+})
 
 	</script>
 	

@@ -51,16 +51,16 @@ $(document).on("click", ".dogshelterlist", function() {
 		<!-- Banner -->
 			<section id="banner">			
 				<div class="content">
-					<h1>For Dog, For Human</h1>
-					<p>DaSom은 언제나 유기견들과 함께합니다 </p>
+					<h1>Organic dog shelter</h1>
+					<p>유기견 보호소</p>
 					<ul class="actions">
-						<li><a href="#one" class="button scrolly">DaSom 알아보기</a></li>
+						<li><a href="#one" class="button scrolly">지도로 알아보기</a></li>
 					</ul>
 				</div>
 			</section>
 
-	<div style="position: relative; left: 20%;">
-		<div id="map" style="width: 1200px; height: 900px;  "></div>
+	<div style="position: relative; left: 10%;">
+		<div id="map" style="width: 80%; height: 900px;  "></div>
 		<div id="container"
 			style="z-index: 9999; position: absolute; display: inline-block; width: 30%; height: 8%; left: -15px; bottom: 18px;"></div>
 	</div>
@@ -100,7 +100,7 @@ $(document).on("click", ".dogshelterlist", function() {
 				lon = position.coords.longitude; // 경도
 
 				var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-				message = '<div style="padding:3px;">현재위치</div>'; // 인포윈도우에 표시될 내용입니다
+				message = '<div style="padding:6px;">현재위치</div>'; // 인포윈도우에 표시될 내용입니다
 
 				// 마커와 인포윈도우를 표시합니다
 				displayMarker(locPosition, message);
@@ -153,9 +153,9 @@ $(document).on("click", ".dogshelterlist", function() {
 		//// 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 		//iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
 
-		// 마커에 표시할 인포윈도우를 생성합니다 
+			// 마커에 표시할 인포윈도우를 생성합니다 
 			var infowindow = new kakao.maps.InfoWindow({
-			content : '<div class="dogshelterlist">'+
+			content : '<div class="dogshelterlist" >'+
 			'	<a href="/dog_shelter/detail?shelterno='+
 					'<%=dogList.get(i).getShelterno()%>">'+
 					'<%=dogList.get(i).getSheltername()%>'+
