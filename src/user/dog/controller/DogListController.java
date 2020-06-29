@@ -37,12 +37,28 @@ public class DogListController extends HttpServlet {
 		// VIEW 지정 및 응답 - forward
 		req.getRequestDispatcher("/WEB-INF/views/user/dog/view.jsp").forward(req, resp);
 	}
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		// 요청파라미터를 전달하여 Paging 객체 생성하기
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		Paging paging = dogService.getPaging(req);		
+			
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
+>>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
 		// Dog_Data 리스트 가져오기
+<<<<<<< HEAD
+=======
+//		Paging paging = dogService.getPaging(req);
+>>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
 		Paging paging = dogService.getPaging(req);
 		List<Dog_Data> dogList = dogService.getList(paging);
 
