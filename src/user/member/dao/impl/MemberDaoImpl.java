@@ -155,6 +155,7 @@ public class MemberDaoImpl implements MemberDao{
 			
 			result.setUserid(rs.getString("userid"));
 			result.setUserpw(rs.getString("userpw"));
+			result.setUsergrade(rs.getString("usergrade"));
 			
 		}
 	} catch (SQLException e) {
