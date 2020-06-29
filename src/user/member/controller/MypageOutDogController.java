@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import admin.dto.Dogout;
-import user.member.dto.MemberDTO;
 import user.member.service.face.MemberService;
 import user.member.service.impl.MemberServiceImpl;
 
@@ -31,11 +30,10 @@ public class MypageOutDogController extends HttpServlet {
 		
 
 		//아이디 잘 가져오나 확인~
-		System.out.println(userid);
 
 		Dogout dogout = memberService.myPageDogOut(userid);
-		System.out.println(dogout);
 		
+		req.setAttribute("dogout", dogout);
 		//포워딩
 		req.getRequestDispatcher("/WEB-INF/views/user/member/myPageOutDog.jsp").forward(req, resp);
 	
