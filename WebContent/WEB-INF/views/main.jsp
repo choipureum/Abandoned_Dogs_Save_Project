@@ -143,6 +143,8 @@ div>img{
 	width: 100%; height: 100%; 
 	background:rgba(0,0,0,0.5);
 }
+
+
 </style>
 <link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -151,7 +153,7 @@ div>img{
 		<!-- Banner -->
 			<section id="banner">			
 				<div class="content">
-					<h1>For Dog, For Human</h1>
+					<h1> <span class="light">For Dog, For Human</span></h1>
 					<p>DaSom은 언제나 유기견들과 함께합니다 </p>
 					<ul class="actions">
 						<li><a href="#one" class="button scrolly">DaSom 알아보기</a></li>

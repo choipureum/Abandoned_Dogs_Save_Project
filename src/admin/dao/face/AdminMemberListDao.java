@@ -1,5 +1,7 @@
 package admin.dao.face;
 import java.util.*;
+
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -302,14 +304,10 @@ public interface AdminMemberListDao {
 	    */
 	   public Qna_Reply QnaRefSelect(int qnano);
 	   
-	   /**
-	    *  userid 와 dogno을 통한 입양목록 삽입
-	    * 
-	    * 
-	    * @param userid
-	    * @param dogno
+	   /*
+	    * dog와 userid를 통한 dogout 기능
 	    */
-	   public void insertDogout(Dog_Data dog,String userid );
+	   public void insertDogout(Dog_Data dog,String userid);
 	   
 	   
 }		

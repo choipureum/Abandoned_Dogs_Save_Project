@@ -166,12 +166,30 @@ public interface MemberDao {
    	public void DeleteDogMiss(String userid);
    	public void DeleteDogMiss_File(String userid);
 
-   	/**
-   	 * mypage,입양받은 강아지 하는곳
+ /* 
+   	 * 마이페이지 분양받은 강아지
    	 * @param userid
    	 * @return
    	 */
 	public Dogout myPageDogOut(String userid);
+	
+	/**
+	 * 유저라이크에 개정보 삽입
+	 * 
+	 * 
+	 * @param userid
+	 * @param dogno
+	 */
+	public void InsertUserlike(String userid, int dogno);
+	/**
+	 * 유저라이크 삭제
+	 * 
+	 * @param userid
+	 * @param dogno
+	 */
+	public void DeleteUserlike(String userid, int dogno);
+	
+	
    
 }
 

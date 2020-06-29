@@ -124,7 +124,7 @@ public class QnaDaoImpl implements QnaDao {
 					board.setQnaDate( rs.getDate("qnaDate") );
 					board.setQnaWriter( rs.getString("qnawriter") );
 					board.setDelsw(rs.getString("delsw"));
-				list.add(board);
+					list.add(board);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -274,7 +274,7 @@ public class QnaDaoImpl implements QnaDao {
 		sql += "	, qnacontent";
 		sql += "	, qnahit";
 		sql += "	, qnadate";
-		sql += "	, qnawriter";
+		sql += "	, qnawriter,delsw";
 		sql += " FROM qna B";
 		sql += " WHERE qnano = ?";
 	
@@ -293,6 +293,7 @@ public class QnaDaoImpl implements QnaDao {
 				viewBoard.setQnaHit( rs.getInt("qnahit") );
 				viewBoard.setQnaDate( rs.getDate("qnadate") );
 				viewBoard.setQnaWriter( rs.getString("qnawriter") );
+				viewBoard.setDelsw( rs.getString("delsw") );
 				
 				
 			}
@@ -321,8 +322,8 @@ public class QnaDaoImpl implements QnaDao {
 
 		//다음 게시글 번호 조회 쿼리
 		String sql = "";
-		sql += "INSERT INTO qna(qnano,qnatitle,qnacontent,qnahit,qnadate,qnawriter) ";
-		sql += " VALUES (?, ?, ?, 0, sysdate,?)";
+		sql += "INSERT INTO qna(qnano,qnatitle,qnacontent,qnahit,qnadate,qnawriter,delsw) ";
+		sql += " VALUES (?, ?, ?, 0, sysdate,?,?)";
 		
 		try {
 			//DB작업
@@ -331,6 +332,7 @@ public class QnaDaoImpl implements QnaDao {
 			ps.setString(2, board.getQnaTitle());
 			ps.setString(3, board.getQnaContent());
 			ps.setString(4, board.getQnaWriter());
+			ps.setString(5, board.getDelsw());
 
 			ps.executeUpdate();
 			

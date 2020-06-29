@@ -5,31 +5,47 @@
     
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
  <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
- 
-<script type="text/javascript"
-src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
- 
- 
- <!-- Bootstrap 3.3.2 -->
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<!-- Bootstrap 3.3.2 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<script type="text/javascript"src="https://code.jquery.com/jquery-2.2.4.min.js"></script>   
+  <% List<MemberAddDTO> list = (List)request.getAttribute("list"); %>
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script> 
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+ 
+ <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+ <c:import url="/WEB-INF/views/user/util/header.jsp" />
+
+<style>
+#adoptBtn{
+	margine-left:10px;
+}
+#rejectBtn{
+	margine-left:10px;
+}
+.btn{
+	
+}
+
+br{
+	margin-left:10px;
+}
+body{
+	
+}
+</style>
+
+
+ 
+
+
+
+
+
+  
+
+
+
+
 <script>
 $(document).ready(function() {
 	
@@ -41,7 +57,6 @@ $(document).ready(function() {
 	
 	$("#adoptBtn").click(function(){
 		
-		
 		if($("input:checkbox[name='checkRow']:checked").length>1 ){
 			  
 			  // 선택 모두 해제
@@ -49,9 +64,7 @@ $(document).ready(function() {
 			  
 			  $("input:checkbox[name='checkRow']:checked").prop('checked', false) ;
 
-
-			  alert('입양신청은 한마리만 선택가능합니다');		
-			  
+			  alert('입양신청은 한마리만 선택가능합니다');					  
 			  return;
 		  };
 		  
@@ -67,19 +80,21 @@ $(document).ready(function() {
 		  
 		  
 		
-		  	if($("input:checkbox[name='checkRow']:checked").length==1){
+		  	
 			
 			  
-			var a = $("input:checkbox[name='checkRow']:checked").val();
+			var checkbox = $("input:checkbox[name='checkRow']:checked");
 			
-			
+			var tr = checkbox.parent().parent()
+			var td =  tr.eq(6)
+
 			 
 			
 			var httpRequest = new XMLHttpRequest();
 			httpRequest.onreadystatechange = function() {
 				if (httpRequest.readyState == XMLHttpRequest.DONE && httpRequest.status == 200 ) {
 						
-					document.getElementById("text").innerHTML = httpRequest.responseText;
+					td.innerHTML = httpRequest.responseText;
 						 
 					
 					
@@ -146,23 +161,21 @@ function checkAll() {
 	}
 }
 </script>
-<script type="text/javascript">
 
-var arr =new Array;
 
-<c:import url="/WEB-INF/views/user/util/header.jsp"></c:import>
-
-</script>
-<body>
 <div class="container">
+<br>
+<h5>찜 게 시 판</h5>
+<h2>찜목록</h2>
+<br>
 
-<h1>찜목록</h1>
 <hr>
-
-<table class="table table-hover table-condensed table-striped">
+<div class="table-wrapper">
+<table >
+<thead>
 <tr class="info">
 	<th>
-		<input type="checkbox" id="checkAll" onclick="checkAll();" />
+		<input type="checkbox" id="checkAll" onclick="checkAll();"/><label for="checkAll"></label>
 	</th>
 	<th >이미지</th>
 	<th >견종</th>
@@ -170,12 +183,12 @@ var arr =new Array;
 	<th>엔드데이트</th>
 	<th>입양신청 상태</th>
 </tr>
-
-<c:forEach items="${list}" var="list">
+</thead>
+ <tbody>
+ <c:forEach items="${list }" var="list" varStatus="status">
 <tr>
-	<td><input type="checkbox" name="checkRow" value="${list.dogNo }" /></td>
-	
-	<td><img style="width:30px;"id="img" src="/upload/${list.dog_stored_FILE_NAME }" alt="" /> </td>
+	<td><input type="checkbox" name="checkRow" id="${status.index}" /><label for="${status.index}" ></label></td>
+	<td><img style="width:30px; "id="img" src="/upload/${list.dog_stored_FILE_NAME}" alt="" /></td>
 	<td>${list.dogKind}</td>
 	<td>${list.dogGender}</td>
 	<td>${list.dogEndDate}</td>
@@ -193,27 +206,32 @@ var arr =new Array;
 	
 </tr>
 </c:forEach>
+</tbody>
 </table>
-	
-<div >
+</div>	
+<div class="btn" style="padding: 80px;">
+	<button id="btnDelete" >삭제</button>
 	<c:choose> 
 		<c:when test="${reject eq 1}" >
-			<button id="rejectBtn" class="btn btn-primary">입양신청</button>
+			<button id="rejectBtn" >입양신청</button>
 		</c:when>
 		<c:otherwise >
-			<button id="adoptBtn" class="btn btn-primary">입양신청</button>
+			<button id="adoptBtn" >입양신청</button>
 		</c:otherwise>
 	</c:choose>
 </div>
-<div>
-	<button id="btnDelete" class="btn btn-warning pull-left">삭제</button>
-</div>
 
-<button onclick="ApplySubmit()"></button>
+
+
 
 <div id="paging">
 	<c:import url="/commons/paging.jsp" />
 </div>
 
 </div><!-- .container -->
-	<c:import url="/WEB-INF/views/user/util/footer.jsp"></c:import>
+
+
+	<c:import url="/WEB-INF/views/user/util/footer.jsp" />
+
+
+

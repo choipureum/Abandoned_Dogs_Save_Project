@@ -857,4 +857,21 @@ public class MemberDaoImpl implements MemberDao{
 
 	}
 
+@Override
+public void InsertUserlike(String userid, int dogno) {
+	// TODO Auto-generated method stub
+	
+}
+
+@Override
+public void DeleteUserlike(String userid, int dogno) {
+	// TODO Auto-generated method stub
+	
+}
+
+	
+	
+	
+
+
 }

@@ -6,6 +6,10 @@
 
 
 <c:import url="/main/header"></c:import>
+<c:import url="/WEB-INF/views/user/util/header.jsp"></c:import>
+<c:import url="/WEB-INF/views/user/util/sidebar.jsp"></c:import>
+
+
 <!--Alert 디자인 라이브러리 -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
@@ -189,7 +193,7 @@ function withDraw(){
 		if(Yes){
 			$.post("/member/delete",{"userid":userid},function(res){
 				swal({
-					icon:"success",
+					icon:"success",		
 					text: "탈퇴되었습니다"
 				});
 				location.href="/main";

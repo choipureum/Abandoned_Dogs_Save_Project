@@ -6,6 +6,15 @@
     pageEncoding="UTF-8"%>
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
+
+<% DogMiss view = (DogMiss)request.getAttribute("view");%>
+<%DogMissFile file = (DogMissFile)request.getAttribute("missFile"); %>
+
+<div>
+	<c:import url="/WEB-INF/views/user/util/header.jsp" />
+</div>
 
 <!-- Bootstrap 3.3.2 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -16,8 +25,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 
 
-<% DogMiss view = (DogMiss)request.getAttribute("view");%>
-<%DogMissFile file = (DogMissFile)request.getAttribute("missFile"); %>
 
 <!-- jQuery 2.2.4 -->
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
@@ -116,7 +123,9 @@ td {
 	font-size:40px;
 	color: yellow;
 }
-
+.text-right{
+	padding:50px;
+}
 </style>
 
 
@@ -138,33 +147,73 @@ $(document).ready(function() {
 		$(location).attr("href", "/miss/delete?missno=<%=view.getMissNO() %>");
 	});
 	
+	
+	
+	
+
+	// 댓글 입력
+	$("#btnCommInsert").click(function() {
+	
+		
+		$form = $("<form>").attr({
+			action: "/comment/insert",
+			method: "post"
+		}).append(
+			$("<input>").attr({
+				type:"hidden",
+				name:"missNo",
+				value:"${view.missNO }"
+			})
+		).append(
+			$("<input>").attr({
+				type:"hidden",
+				name:"writer",
+				value:"${view.missWriter }"
+			})
+		).append(
+			$("<textarea>")
+				.attr("name", "content")
+				.css("display", "none")
+				.text($("#content").val())
+		);
+		$(document.body).append($form);
+		$form.submit();
+		
+	});
+	
 });
+
+//댓글 삭제
+function deleteComment(qna_rno) {
+	$.ajax({
+		type: "post"
+		, url: "/comment/delete"
+		, dataType: "json"
+		, data: {
+			qna_rno: qna_rno
+		}
+		, success: function(data){
+			if(data.success) {
+				
+				$("[data-commentno='"+miss_rno+"']").remove();
+				
+			} else {
+				alert("댓글 삭제 실패");
+			}
+		}
+		, error: function() {
+			console.log("error");
+		}
+	});
+}
 </script>
 
 
 
-<!DOCTYPE HTML>
 
-<html>
-	<head>
-		<title>Full Motion</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="/resources/UserBoardTemplate/assets/css/main.css" /><!--  -->
-	</head>
-	<body id="top">
 
-			<!-- Banner -->			
-				<section id="banner" data-video="images/banner">
-					<div class="inner">
-						<header>
-							<h1>Full Motion</h1>
-							<p>A responsive video gallery template with a functional lightbox<br />
-							designed by <a href="https://templated.co/">Templated</a> and released under the Creative Commons License.</p>
-						</header>
-						<a href="#main" class="more">Learn More</a>
-					</div>
-				</section>
+
+		
 
 			<!-- Main -->
 				<div id="main">
@@ -174,7 +223,7 @@ $(document).ready(function() {
 					<div class="tit">이  분실견을 찾아 주세요</div>
 					<div class="titt">지나가는 개 다시보자 지나친 개 다시보자 마주친 개 다시보자</div><br>
 		
-<div class="wrapper">					
+			<div class="wrapper">					
 	<div class="view"><img  class="img" src ="/upload/<%=file.getMiss_stored_FILE_NAME()%>"/></div>
 		<div class="view" id="area">					
 		
@@ -216,27 +265,59 @@ $(document).ready(function() {
 
 	</div>
 </div>
+
+
+<div>
+
+<hr>
+
+
+
+
+<!-- 댓글 입력 -->
+<div class="form-inline text-center">
+	<input type="text" size="10" class="form-control" id="writer" value="${view.missWriter }" readonly="readonly"/>
+	<textarea rows="2" cols="60" class="form-control" id="content"></textarea>
+	<button id="btnCommInsert" class="btn">입력</button>
+</div>	<!-- 댓글 입력 end -->
+
+
+<!-- 댓글 리스트 -->
+<table class="table table-striped table-hover table-condensed">
+<thead>
+<tr>
+	<th style="width: 5%;">번호</th>
+	<th style="width: 10%;">작성자</th>
+	<th style="width: 50%;">댓글</th>
+	<th style="width: 20%;">작성일</th>
+	<th style="width: 5%;"></th>
+</tr>
+</thead>
+<tbody id="commentBody">
+<c:forEach items="${commentList }" var="comment">
+<tr data-commentno="${comment.miss_rno }">
+	<td>${comment.miss_rno }</td>
+	<td>${comment.miss_writer }</td><!-- 닉네임으로 해도 좋음 -->
+	<td>${comment.miss_content }</td>
+	<td><fmt:formatDate value="${comment.miss_date }" pattern="yy-MM-dd hh:mm:ss" /></td>
+	<td>
+		
+		<button class="btn btn-default btn-xs" onclick="deleteComment(${comment.miss_rno });">삭제</button>
+		
+	</td>
+	
+</tr>
+</c:forEach>
+</tbody>
+</table>	<!-- 댓글 리스트 end -->
+
+</div>	<!-- 댓글 처리 end -->
 				
 				
 				
 			<!-- Footer -->
 				
-				<footer id="footer">
-					<div class="inner">
-						    <address class="addr">
-     							   상호명:다솜 │ 대표:4조 │ 개인정보관리자:4조
-      						</address>
-      						<p class="copy">Copyright 2020-2020 by 다솜. All rights reserved.</p>
-
-						<ul class="icons">
-							<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-							<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-							<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-							<li><a href="#" class="icon fa-envelope"><span class="label">Email</span></a></li>
-						</ul>
-						
-					</div>
-				</footer>
+		
 					
 
 		<!-- Scripts -->
@@ -247,5 +328,4 @@ $(document).ready(function() {
 			<script src="/resources/UserBoardTemplate/assets/js/util.js"></script>
 			<script src="/resources/UserBoardTemplate/assets/js/main.js"></script>
 
-	</body>
-</html>
+<c:import url="/WEB-INF/views/user/util/footer.jsp" />

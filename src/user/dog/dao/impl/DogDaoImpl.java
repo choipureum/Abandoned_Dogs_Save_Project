@@ -68,7 +68,7 @@ public class DogDaoImpl implements DogDao{
 			ps.setInt(2, paging.getEndNo());	//페이징 게시글 끝 번호
 			
 			rs = ps.executeQuery(); //SQL 수행 및 결과집합 저장
-			
+			Date today = new Date();
 			//조회 결과 처리
 			while(rs.next()) {
 				Dog_Data d = new Dog_Data(); //결과값 저장 객체
@@ -93,7 +93,12 @@ public class DogDaoImpl implements DogDao{
 				d.setDog_stored_file_name(rs.getString("dog_stored_file_name"));
 				d.setDog_file_size(rs.getInt("dog_file_size"));
 				d.setDog_del_gb(rs.getString("dog_del_gb"));
-				
+				//공고일 구하기 남은 일수
+			  	long diffDay=0;		    
+			    //두날짜 사이의 시간 차이(ms)를 하루 동안의 ms(24시*60분*60초*1000밀리초) 로 나눈다.
+				diffDay = (today.getTime() - d.getDogdate().getTime()) / (24*60*60*1000);
+				diffDay= 10-diffDay;
+			    d.setDogenddate(diffDay);
 				//리스트에 결과값 저장
 				dogList.add(d);
 //				System.out.println("121212"+dogList);

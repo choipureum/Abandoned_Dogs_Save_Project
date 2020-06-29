@@ -2,6 +2,7 @@ package user.qna.controller;
 
 import java.io.IOException;
 
+
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -9,7 +10,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 
 import user.qna.dto.QNA;
 
@@ -41,28 +41,14 @@ public class QnaViewController extends HttpServlet {
 		
 		
 		
-		//첨부파일 전달//파라미터 boardno이 있는 객체에 해당하는 파일 가져 옮
+		//첨부파일 전달//파라미터 qnano이 있는 객체에 해당하는 파일 가져 옮
 		QnaFile boardFile = boardService.viewFile(viewBoard);
 		
 		req.setAttribute("boardFile", boardFile);
 		
 		
 		
-		
-		//닉네임 전달
-		//req.setAttribute("nick", boardService.getNick(viewBoard));
-		
-		
-		
-		
-		//추천 상태 전달
-		//Recommend recommend = new Recommend();
-		//recommend.setBoardno(viewBoard.getBoardno()); //게시글 번호
-		//recommend.setUserid((String)req.getSession().getAttribute("userid")); //로그인한 아이디
-		
-		//boolean isRecommend = boardService.isRecommend(recommend);
-		//req.setAttribute("isRecommend", isRecommend);
-		
+	
 		
 		
 		
