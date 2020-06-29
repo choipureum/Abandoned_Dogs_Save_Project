@@ -112,7 +112,7 @@ a.badge-danger:focus, a.badge-danger.focus {
 		</style>
 					
 		</head>   
-    <body>
+    <body  id="top">
 		<!-- Header -->
 			<header id="header">
 				<nav class="left">

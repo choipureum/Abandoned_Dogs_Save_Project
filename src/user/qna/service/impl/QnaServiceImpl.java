@@ -2,6 +2,7 @@ package user.qna.service.impl;
 
 import java.io.File;
 
+
 import java.io.UnsupportedEncodingException;
 import java.util.Iterator;
 import java.util.List;
@@ -17,7 +18,6 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 
 import user.qna.dao.face.QnaDao;
-
 
 import user.qna.dao.impl.QnaDaoImpl;
 
@@ -35,6 +35,8 @@ public class QnaServiceImpl implements QnaService {
 
 	private QnaDao boardDao = new QnaDaoImpl();
 	//private RecommendDao recommendDao = new RecommendDaoImpl();
+	
+	
 	
 	
 //	public List getList() {
@@ -400,13 +402,6 @@ public class QnaServiceImpl implements QnaService {
 	
 	
 
-	
-	
-	
-
-	
-	
-	
 
 	
 }
