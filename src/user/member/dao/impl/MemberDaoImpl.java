@@ -835,8 +835,7 @@ public class MemberDaoImpl implements MemberDao{
 			
 			rs=ps.executeQuery(); //결과 집합
 			
-			while(rs.next()) {
-				
+			while(rs.next()) {				
 				result.setDogname(rs.getString("dogname"));
 				result.setDogkind(rs.getString("dogkind"));
 				result.setDoggender(rs.getString("doggender"));
@@ -856,5 +855,41 @@ public class MemberDaoImpl implements MemberDao{
 		   return result;
 
 	}
+	
+	@Override
+		public void DeleteUserlike(String userid, int dogno) {
+			conn = JDBCTemplate.getConnection();
+			String sql="delete from userlike where userid=? and dogno=? ";
+			try {
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, userid);
+				ps.setInt(2, dogno);
+				ps.executeUpdate();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(ps);
+			}
+		}
+	
+	@Override
+		public void InsertUserlike(String userid, int dogno) {
+			conn = JDBCTemplate.getConnection();
+			String sql="insert into userlike(userid,dogno,adoptsw,applysw) values(?,?,'N',0); ";
+			System.out.println(userid);
+			System.out.println(dogno);
+			try {
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, userid);
+				ps.setInt(2, dogno);
+				ps.executeUpdate();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(ps);
+			}
+		}
 
 }

@@ -183,8 +183,7 @@ function chk_confirm(){
 					 
 		 $("input[class='dog_chk']:checked").each(function(){
 			 checkArr.push($(this).attr("data-memberid"));
-			 });	
-		 
+			 });			 
 		window.open("/admin/claimUpdate?userid="+ checkArr.join(","),"","width=700,height=600,left=350,right=150,scrollbars=no");
 			
 		}	

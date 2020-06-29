@@ -83,7 +83,6 @@ padding:none;
 
 <c:import url="/main/header"></c:import>	
 
-
 <!-- Banner -->
 			<section id="banner">			
 				<div class="content">
