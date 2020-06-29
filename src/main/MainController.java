@@ -36,18 +36,15 @@ public class MainController extends HttpServlet {
 		List<Dog_Data> list = new ArrayList<>();
 		list= adminMemberListDao.dogDataSelectAll();
 		req.setAttribute("dogDataList", list);
-
+		
 		req.getRequestDispatcher("/WEB-INF/views/main.jsp").forward(req, resp);
-	}
-	
-	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	
-	
+		
 	
 	
 	}
+	
+	
+	
 }
 	
 

@@ -12,23 +12,18 @@
 <div class="box">                                                      
    <a href="/dog/detailView?dogno=${dog.dogno }"><img src="/upload/${dog.dog_stored_file_name }" alt="없음"  /></a>
    <div class="inner">
+   <br>
    <ul>
-      <li>${dog.dogname }</li>
+   
+      <li>이름 ${dog.dogname }</li>
       <li>성별 ${dog.doggender }</li>
       <li>중성화여부 ${dog.dogneu }</li>
-      <li>공고일 ${dog.dogdate }</li>		
+      <li>공고일 ${dog.dogdate }</li>
      
 	<!-- 하트버튼 -->
-     <a class="heartDog" href="#">
-     <i class="fa fa-heart-o" aria-hidden="true" data-dogno="${dog.dogno }" data-userid="${userlike.userid }"></i></a>                 
     </ul>
-<<<<<<< HEAD
       <span class="heartDog"><i class="fa fa-heart-o" aria-hidden="true" data-dogno="${dog.dogno }" data-userid="${userlike.userid }"></i> </span>
       <!-- id 부분 dog no으로 가져오기  -->
-=======
-
-
->>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
    </div>
 </div>
 </c:forEach>

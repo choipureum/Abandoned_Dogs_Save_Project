@@ -89,7 +89,7 @@ padding:none;
 
 </style>         
 
-<c:import url="/WEB-INF/views/user/util/header.jsp"></c:import>		
+<c:import url="/main/header"></c:import>	
 
 
 <!-- Banner -->
