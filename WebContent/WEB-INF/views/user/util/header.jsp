@@ -132,7 +132,7 @@ a.badge-danger:focus, a.badge-danger.focus {
 				<a class="nav-link dropdown-toggle" onclick="toggle();"href="#" id="envelope" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-envelope fa-fw" ></i>               
                 <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">5</span>
+                <span class="badge badge-danger badge-counter">${dogcnt }+</span>
               </a>
               <div  id="dd-item" class="table-wrapper"style="line-height:15px;display:none;width:400px;height:370px;border:3px solid #FA8072;border-radius: 20px;position:absolute;background:white;top:80px;right:130px;padding:10px">            	          		
 	             	<h4 style="margin:30px;"><i class="fas fa-paw fa-fw" style="color:#FF6347"></i>&nbsp;MY DOG 현황 </h4>				
@@ -184,13 +184,48 @@ a.badge-danger:focus, a.badge-danger.focus {
 			<nav id="menu">
 				<ul class="links">
 					<li><a href="/main">홈</a></li>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
+>>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 					<c:if test="${not empty login }">
 						<li><a href="/mypage/main">마이페이지</a></li>
 					</c:if>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+=======
+					<li><a href="generic.html">가족찾기</a></li>
+					<li><a href="elements.html">분실견</a></li>
+					<li><a href="elements.html">보호소 지도찾기</a></li>
+					<li><a href="elements.html">QNA</a></li>
+=======
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
+>>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 					<li><a href="/dog/list">가족찾기</a></li>
 					<li><a href="/miss/list">분실견</a></li>
 					<li><a href="/dog_shelter/list">보호소 지도찾기</a></li>
 					<li><a href="/qna/list">QNA</a></li>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
+>>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 				</ul>
 <!-- 				<ul class="actions vertical"> -->
 <!-- 					<li><a href="#" class="button fit">Login</a></li> -->

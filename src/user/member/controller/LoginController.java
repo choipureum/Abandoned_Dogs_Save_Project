@@ -49,7 +49,7 @@ public class LoginController extends HttpServlet {
 		   session.setAttribute("login", login);
 		   session.setAttribute("userid", member.getUserid());
 		   session.setAttribute("userpw", member.getUserpw());
-		   session.setAttribute("usergrade", member.getUsergrade());
+
 		   resp.sendRedirect("/main");
 	   } else {
 		   

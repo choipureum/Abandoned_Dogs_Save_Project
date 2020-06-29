@@ -10,16 +10,6 @@
 						<li><span class="icon fa-map-marker"></span> <a href="#">KH 정보교육원 DaSom 길 123번지</a></li>
 					</ul>
 				</div>
-				<div class="6u$ 12u$(small)">
-				<ul class="icons">
-					<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-					<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-					<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-					<li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
-					<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
-					<li><a href="#" class="icon fa-tumblr"><span class="label">Tumblr</span></a></li>
-				</ul>
-				</div>
 				<div class="copyright">
 					Copyright &copy; DaSom KH Fighting
 				</div>

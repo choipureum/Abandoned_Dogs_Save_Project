@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import admin.dto.Dogout;
 import user.dog.dto.Dog_Data;
 import user.dog.dto.UserLike;
 import user.member.dao.face.MemberDao;
@@ -155,7 +154,6 @@ public class MemberDaoImpl implements MemberDao{
 			
 			result.setUserid(rs.getString("userid"));
 			result.setUserpw(rs.getString("userpw"));
-			result.setUsergrade(rs.getString("usergrade"));
 			
 		}
 	} catch (SQLException e) {
@@ -815,6 +813,7 @@ public class MemberDaoImpl implements MemberDao{
 	}
 	}
 
+<<<<<<< HEAD
 
 	
 //	@SuppressWarnings("null")
@@ -861,4 +860,6 @@ public class MemberDaoImpl implements MemberDao{
 
 	}
 
+=======
+>>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
 }

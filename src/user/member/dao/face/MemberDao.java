@@ -3,7 +3,6 @@ package user.member.dao.face;
 
 import java.util.List;
 
-import admin.dto.Dogout;
 import user.dog.dto.Dog_Data;
 import user.dog.dto.UserLike;
 import user.member.dto.MemberAddDTO;
@@ -165,14 +164,5 @@ public interface MemberDao {
    	public void DeleteQna(String userid);
    	public void DeleteDogMiss(String userid);
    	public void DeleteDogMiss_File(String userid);
-
-   	/**
-   	 * mypage,입양받은 강아지 하는곳
-   	 * @param userid
-   	 * @return
-   	 */
-	public Dogout myPageDogOut(String userid);
    
 }
-
-

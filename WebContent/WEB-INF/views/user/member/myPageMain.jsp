@@ -3,8 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>   
 
-<c:import url="/main/header"></c:import>
 
+<c:import url="/WEB-INF/views/user/util/header.jsp"></c:import>
 <!--Alert 디자인 라이브러리 -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
@@ -37,18 +37,6 @@ $(document).ready(function() {
 
 </head>
 <body>
-
-		<!-- Banner -->
-			<section id="banner">			
-				<div class="content">
-					<h1>For Dog, For Human</h1>
-					<p>M y P a g e </p>
-<!-- 					<ul class="actions"> -->
-<!-- 						<li><a href="#one" class="button scrolly">DaSom 알아보기</a></li> -->
-<!-- 					</ul> -->
-				</div>
-			</section>
-
 
 <!-- Portfolio -->
 <section class="content-section" id="portfolio">
