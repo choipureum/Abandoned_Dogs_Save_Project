@@ -48,11 +48,21 @@ $(document).on("click", ".dogshelterlist", function() {
 	<!-- 헤더 임포트 -->
 	<c:import url="/WEB-INF/views/user/util/header.jsp"></c:import>
 	<c:import url="/WEB-INF/views/user/util/sidebar.jsp"></c:import>
+		<!-- Banner -->
+			<section id="banner">			
+				<div class="content">
+					<h1>For Dog, For Human</h1>
+					<p>DaSom은 언제나 유기견들과 함께합니다 </p>
+					<ul class="actions">
+						<li><a href="#one" class="button scrolly">DaSom 알아보기</a></li>
+					</ul>
+				</div>
+			</section>
 
-	<div style="position: relative;">
-		<div id="map" style="width: 100%; height: 990px;"></div>
+	<div style="position: relative; left: 20%;">
+		<div id="map" style="width: 1200px; height: 900px;  "></div>
 		<div id="container"
-			style="z-index: 9999; position: absolute; display: inline-block; width: 30%; height: 37%; left: 50px; bottom: 50px"></div>
+			style="z-index: 9999; position: absolute; display: inline-block; width: 30%; height: 8%; left: -15px; bottom: 18px;"></div>
 	</div>
 	<!-- Ajax 영역  -->
 	<div id="dog"></div>

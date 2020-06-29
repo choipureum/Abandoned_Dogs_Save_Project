@@ -249,4 +249,5 @@ public class DogShelterDaoImpl implements DogShelterDao {
 		return list;
 	}
 
+
 }
