@@ -22,15 +22,13 @@
      <a class="heartDog" href="#">
      <i class="fa fa-heart-o" aria-hidden="true" data-dogno="${dog.dogno }" data-userid="${userlike.userid }"></i></a>                 
     </ul>
-<<<<<<< HEAD
       <span class="heartDog"><i class="fa fa-heart-o" aria-hidden="true" data-dogno="${dog.dogno }" data-userid="${userlike.userid }"></i> </span>
       <!-- id 부분 dog no으로 가져오기  -->
-=======
 
 
->>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
    </div>
 </div>
+
 </c:forEach>
 <script>
 

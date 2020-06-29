@@ -5,6 +5,9 @@
 
 
 <c:import url="/WEB-INF/views/user/util/header.jsp"></c:import>
+<c:import url="/WEB-INF/views/user/util/sidebar.jsp"></c:import>
+
+
 <!--Alert 디자인 라이브러리 -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
