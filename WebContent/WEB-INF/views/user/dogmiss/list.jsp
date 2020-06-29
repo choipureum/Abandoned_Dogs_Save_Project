@@ -18,18 +18,10 @@
 		<link rel="stylesheet" href="/resources/UserBoardTemplate/assets/css/main.css" /><!--  -->
 
 
-<div>
+
 	<c:import url="/WEB-INF/views/user/util/header.jsp" />
-</div>
 
 
-
-
-<!DOCTYPE HTML>
-<html>
-	<head>
-		<title>Full Motion</title>
-		
 <!-- jQuery 2.2.4 -->
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
 
@@ -158,15 +150,6 @@ font-family: 'Noto Serif KR', serif;
 	<body id="top">
 
 
-
-	
-		
-				
-				
-				
-				
-					
-
 			<!-- Banner -->			
 				<section id="banner" data-video="images/banner">
 					<div class="inner">
@@ -232,24 +215,17 @@ font-family: 'Noto Serif KR', serif;
 				</div>
 				
 				<!-- 여기가 글쓰기 장소  -->
-				
-				
-			
-				
+
 				<div id="paging">
 						<c:import url="/WEB-INF/views/user/dogmiss/paging.jsp" />
 				</div>
-			
-				
-			
-					
 
 			<!-- Scripts -->
-			<script src="/reources/UserBoardTemplate/assets/js/jquery.min.js"></script>
-			<script src="/reources/UserBoardTemplate/assets/js/jquery.scrolly.min.js"></script>
-			<script src="/reources/UserBoardTemplate/assets/js/jquery.poptrox.min.js"></script>
-			<script src="/reources/UserBoardTemplate/assets/js/skel.min.js"></script>
-			<script src="/reources/UserBoardTemplate/assets/js/util.js"></script>
-			<script src="/reources/UserBoardTemplate/assets/js/main.js"></script>
+<!-- <script src="/reources/UserBoardTemplate/assets/js/jquery.min.js"></script> -->
+<!-- <script src="/reources/UserBoardTemplate/assets/js/jquery.scrolly.min.js"></script> -->
+<!-- <script src="/reources/UserBoardTemplate/assets/js/jquery.poptrox.min.js"></script> -->
+<!-- <script src="/reources/UserBoardTemplate/assets/js/skel.min.js"></script> -->
+<!-- <script src="/reources/UserBoardTemplate/assets/js/util.js"></script> -->
+<!-- <script src="/reources/UserBoardTemplate/assets/js/main.js"></script> -->
 
 <c:import url="/WEB-INF/views/user/util/footer.jsp" />

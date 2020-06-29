@@ -131,13 +131,14 @@ public interface MemberService {
 
    public int modifyMypageNotAdd(MemberDTO member);
 
+   
    /**
-    * 마이페이지 분양받은 강아지 보여주기
+    * select userid  를 통해서 dogout 문  select
+    * 
     * @param userid
     * @return
     */
    public Dogout myPageDogOut(String userid);
-
 
 
    

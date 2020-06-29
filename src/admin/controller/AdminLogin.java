@@ -24,6 +24,7 @@ public class AdminLogin extends HttpServlet {
 		
 		String userid=req.getParameter("userid");
 		String userpw= req.getParameter("userpw");
+		String usergrade = req.getParameter("usergrade");
 		String json = "";
 		int result=1;
 		
@@ -33,7 +34,7 @@ public class AdminLogin extends HttpServlet {
 				HttpSession session = req.getSession();
 				session.setAttribute("login", true);
 				session.setAttribute("userid",userid);
-				session.setAttribute("userpw", userpw);
+				session.setAttribute("userpw", userpw);			
 				result=0;				
 			}
 			else {

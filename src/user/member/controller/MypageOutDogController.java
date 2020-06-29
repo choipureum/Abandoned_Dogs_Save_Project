@@ -8,14 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 import admin.dto.Dogout;
+
 import user.member.service.face.MemberService;
 import user.member.service.impl.MemberServiceImpl;
 
-/**
- * Servlet implementation class MypageOutDogController
- */
 @WebServlet("/mypage/outdog")
 public class MypageOutDogController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -26,17 +23,20 @@ public class MypageOutDogController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		
 		String userid=(String)req.getSession().getAttribute("userid");
 		
 
 		//아이디 잘 가져오나 확인~
-
-		Dogout dogout = memberService.myPageDogOut(userid);
+		System.out.println(userid);
+		Dogout dogout = memberService.myPageDogOut(userid);	
 		System.out.println(dogout);
-		
+
 		req.setAttribute("dogout", dogout);
 		//포워딩
 		req.getRequestDispatcher("/WEB-INF/views/user/member/myPageOutDog.jsp").forward(req, resp);
+	
 	}
+	
 
 }

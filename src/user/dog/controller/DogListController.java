@@ -40,45 +40,19 @@ public class DogListController extends HttpServlet {
 	}
 
 	
-	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		// 요청파라미터를 전달하여 Paging 객체 생성하기
-		Paging paging = dogService.getPaging(req);		
 			
 		// Dog_Data 리스트 가져오기
-//		Paging paging = dogService.getPaging(req);
+		Paging paging = dogService.getPaging(req);
 		List<Dog_Data> dogList = dogService.getList(paging);
 
 		for (Iterator iterator = dogList.iterator(); iterator.hasNext();) {
 			Dog_Data dog_Data = (Dog_Data) iterator.next();
 //				System.out.println("TEST  :  "+dog_Data);
 		}
-
-
-//		UserLike userlike = dogService.getUserLike(req);
-		
-//		// userlike의 유저 아이디가 null 아니라면 model 값 전달
-//		if( req.getSession().getAttribute(userlike.getUserid()) != null  ) {
-//			req.setAttribute("userid", userlike.getUserid());
-//		}
-		
-//		System.out.println("userid : "+userlike.getUserid());
-		
-//		dogService.insertUserLike(req);
-//		dogService.deleteUserLike(userlike);
-		
-//			//담아두기 정보 얻기
-//			UserLike userlike = dogService.getUserLike(req);
-//			
-//			//담아두기 정보 토글
-//			boolean result = dogService.UserLike(userlike);
-//			System.out.println(userlike);
-//			System.out.println(result);
-
-		// 결과 JSon응답
-//			resp.getWriter().println("{\"result\" :" + result);
 
 //			//페이징계산결과 MODEL값 전달
 		req.setAttribute("paging", paging);

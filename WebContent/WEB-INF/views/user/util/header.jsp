@@ -18,12 +18,16 @@
 		 <link href="/resources/AdminTemplate/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 		 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link rel="stylesheet" href="/resources/UserTemplate/assets/css/main.css" />  
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css" />
 		<!-- Scripts -->			
 		<script src="/resources/UserTemplate/assets/js/jquery.min.js"></script>
 		<script src="/resources/UserTemplate/assets/js/jquery.scrolly.min.js"></script>
 		<script src="/resources/UserTemplate/assets/js/skel.min.js"></script>
 		<script src="/resources/UserTemplate/assets/js/util.js"></script>
-		<script src="/resources/UserTemplate/assets/js/main.js"></script>	
+		<script src="/resources/UserTemplate/assets/js/main.js"></script>
+		
+			<!--Alert 디자인 라이브러리 -->
+   	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>	
 <script>
 function toggle(){	
 		$("#dd-item").fadeToggle();		
@@ -126,7 +130,7 @@ a.badge-danger:focus, a.badge-danger.focus {
 					</c:if>
 					<c:if test="${not empty login }">
 			
-				<span style="color:#FF6347">[<%=session.getAttribute("usergrade") %>] :: </span> <%=session.getAttribute("userid") %> 님 환영합니다!&nbsp;&nbsp;&nbsp;
+				<span style="color:#FF6347">[<%=session.getAttribute("usergrade") %>] :: </span><%=session.getAttribute("userid") %> 님 환영합니다!&nbsp;&nbsp;&nbsp;
 				
 				<!-- 알람 버튼 -->				
 				<a class="nav-link dropdown-toggle" onclick="toggle();"href="#" id="envelope" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -184,10 +188,10 @@ a.badge-danger:focus, a.badge-danger.focus {
 			<nav id="menu">
 				<ul class="links">
 					<li><a href="/main">홈</a></li>
+
 					<c:if test="${not empty login }">
 						<li><a href="/mypage/main">마이페이지</a></li>
 					</c:if>
-
 					<li><a href="/dog/list">가족찾기</a></li>
 					<li><a href="/miss/list">분실견</a></li>
 					<li><a href="/dog_shelter/list">보호소 지도찾기</a></li>
