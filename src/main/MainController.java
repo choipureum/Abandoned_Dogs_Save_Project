@@ -36,7 +36,7 @@ public class MainController extends HttpServlet {
 		List<Dog_Data> list = new ArrayList<>();
 		list= adminMemberListDao.dogDataSelectAll();
 		req.setAttribute("dogDataList", list);
-
+			
 		req.getRequestDispatcher("/WEB-INF/views/main.jsp").forward(req, resp);
 	}
 	

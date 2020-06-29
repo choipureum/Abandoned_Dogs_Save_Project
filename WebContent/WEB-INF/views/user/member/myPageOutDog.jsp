@@ -101,7 +101,6 @@ th{
 			        <td>${dogout.dogkind }</td>	
 			        <td>${dogout.doggender }</td>
 			        <td>${dogout.outdate }</td>
-
 			</tbody>
 
 		</table>	

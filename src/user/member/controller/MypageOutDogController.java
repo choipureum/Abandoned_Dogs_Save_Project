@@ -33,6 +33,7 @@ public class MypageOutDogController extends HttpServlet {
 
 		Dogout dogout = memberService.myPageDogOut(userid);
 		System.out.println(dogout);
+		
 		req.setAttribute("dogout", dogout);
 		//포워딩
 		req.getRequestDispatcher("/WEB-INF/views/user/member/myPageOutDog.jsp").forward(req, resp);
