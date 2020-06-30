@@ -15,7 +15,7 @@
               <div class="input-group-append">
                 <button class="btn bg-primary" type="button">
                   <i class="fas fa-search fa-sm"></i>
-                </button>              </div>
+                </button> </div>
             </div>
           </form>
 
@@ -55,7 +55,7 @@
                   	입양신청 알람
                 </h6>
                <c:forEach items="${doglist }" var="d" end="3">
-                <a class="dropdown-item d-flex align-items-center" href="/admin/memberView?userid=${d.userid }'">
+                <a class="dropdown-item d-flex align-items-center" href="/admin/memberView?userid=${d.userid }">
                   <div class="mr-3">
                     <div class="icon-circle bg-warning">
                       <i class="fas fa-clock text-white"></i>
@@ -82,7 +82,7 @@
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="/main">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Main
                 </a>

@@ -46,15 +46,23 @@ public class MyPageModify extends HttpServlet {
 
 		
 //      파라미터 저장 - service 이용
-		MemberDTO member = memberService.getParam(req);
-   
-      
+		MemberDTO member = memberService.getParam(req);		     
 		String userid=req.getParameter("userid");
 		
 //		userid 확인
 //		System.out.println("modify userid" + userid);
+		int res=0;
+		// 주소값 판단
+		if(member.getUseraddress().trim().length()<3) {
+			res= memberService.modifyMypageNotAdd(member);
+			
+		}
+		else {
+			res = memberService.modifyMypage(member);
+		}
 		
-		int res = memberService.modifyMypage(member);
+		System.out.println(member.getUseraddress().trim());
+		
 		
 		if(res>0) {
 			req.setAttribute("res", res);
@@ -63,6 +71,7 @@ public class MyPageModify extends HttpServlet {
 		}
 
 ////      swal
+		req.setAttribute("icon", "success");
       req.setAttribute("msg", "개인정보를 수정했습니다");
       req.setAttribute("title", "개인정보 수정완료 ");
       req.setAttribute("url", "/mypage/main");

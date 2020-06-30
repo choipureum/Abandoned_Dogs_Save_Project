@@ -1,24 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>마이페이지 메인</title>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>   
+
+<c:import url="/main/header"></c:import>
+
+<c:import url="/main/header"></c:import>
+<c:import url="/WEB-INF/views/user/util/sidebar.jsp"></c:import>
+
+
+<!--Alert 디자인 라이브러리 -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 
 <!-- 부트스트랩 임포트 -->
 <!-- Bootstrap Core CSS -->
 <link href="/resources/mypageTemplate/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <!-- Custom Fonts -->
-<link href="/resources/mypageTemplate/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-<link href="/resources/mypageTemplate/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+<!-- <link href="/resources/mypageTemplate/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"> -->
+<!-- <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css"> -->
+<!-- <link href="/resources/mypageTemplate/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet"> -->
+
 <!-- Custom CSS -->
 <link href="/resources/mypageTemplate/css/stylish-portfolio.min.css" rel="stylesheet">
-
-
-<!-- jQuery 2.2.4 -->
-<script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
 
 
 <script>
@@ -37,6 +41,18 @@ $(document).ready(function() {
 
 </head>
 <body>
+
+		<!-- Banner -->
+			<section id="banner">			
+				<div class="content">
+					<h1>For Dog, For Human</h1>
+					<p>M y P a g e </p>
+<!-- 					<ul class="actions"> -->
+<!-- 						<li><a href="#one" class="button scrolly">DaSom 알아보기</a></li> -->
+<!-- 					</ul> -->
+				</div>
+			</section>
+
 
 <!-- Portfolio -->
 <section class="content-section" id="portfolio">
@@ -81,7 +97,7 @@ $(document).ready(function() {
       </div>
       <div class="col-lg-6">
         <a class="portfolio-item" href="#!">
-          <div class="caption">
+          <div class="caption" onclick="DogOut();">
             <div class="caption-content">
               <div class="h2">분양 받은 강아지</div>
               <p class="mb-0">분양 받은 강아지를 확인 할 수 있습니다!</p>
@@ -118,11 +134,13 @@ function Move(sw){
 
 }
 
+function DogOut(){
+	location.href="/mypage/outdog";
+}
+
 </script>
 
-</html>
-
-
+<c:import url="/WEB-INF/views/user/util/footer.jsp"></c:import>
 
 
 

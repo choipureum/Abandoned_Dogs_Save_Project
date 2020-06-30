@@ -24,16 +24,17 @@ public class AdminLogin extends HttpServlet {
 		
 		String userid=req.getParameter("userid");
 		String userpw= req.getParameter("userpw");
+		String usergrade = req.getParameter("usergrade");
 		String json = "";
 		int result=1;
 		
-		if(userid.equals("poo1994@hanmail.net")) {											
+		if(userid.equals("pooreumsunny@gmail.com")) {											
 			if(userpw.equals("chl58004180")) {
 				//세션 정보 저장하기
 				HttpSession session = req.getSession();
 				session.setAttribute("login", true);
 				session.setAttribute("userid",userid);
-				session.setAttribute("userpw", userpw);
+				session.setAttribute("userpw", userpw);			
 				result=0;				
 			}
 			else {

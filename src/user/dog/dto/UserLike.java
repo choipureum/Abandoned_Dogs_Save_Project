@@ -28,6 +28,7 @@ public class UserLike {
 	public void setAdoptsw(String adoptsw) {
 		this.adoptsw = adoptsw;
 	}
+
 	public int getDogno() {
 		return dogno;
 	}
@@ -41,16 +42,6 @@ public class UserLike {
 	}
 	
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 }

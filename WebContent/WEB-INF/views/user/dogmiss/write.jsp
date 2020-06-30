@@ -13,6 +13,7 @@
 
 
 
+
 <!DOCTYPE HTML>
 
 <html>
@@ -70,8 +71,8 @@ $(document).ready(function() {
 		<form action="/miss/write" method="post" enctype="multipart/form-data" >
 			<table class="table table-condensed">
 				<tr>
-					<th>제목</th>
-					<td><input type="text" name="title"></td>
+					<th >제목</th>
+					<td><input class="font" type="text" name="title"></td>
 				</tr>
 				<tr>
 					<th>작성자</th>

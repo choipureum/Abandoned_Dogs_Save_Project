@@ -1,12 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>회원가입</title>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>  
+
+<c:import url="/main/header"></c:import>
+
 <!--Alert 디자인 라이브러리 -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+<!-- Custom fonts for this template-->
+<link href="/resources/AdminTemplate/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
 <!-- 다음 주소 api -->
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -315,70 +319,75 @@ function emailCheckFunc(){
 }
 .container{
    width:500px;
-   margin :40px auto;
+    margin :40px auto; 
    line-height: 16px;
 }
+
 
 h5{
    text-align: center;
 }
 
 h5 span{
-   color:blue;
-   
+   color:#b93c3c;  
 }
 
 .singup {
-   background-color: rgb(255,80,90);
-   color:white;
-   border-radius: 5px;
-   border: 0;
-   padding: 10px 224px;
-   
-}
-.btn-default{
-   background-color: rgb(220,220,220);
-   color:black;
-   border-radius: 2px;
-   border: 0;
-   padding: 6px 20px;
+
+	padding-right: 200px;
 
 }
+
+
 .id_Button{
-   background-color: rgb(220,220,220);
+    background-color: rgb(220,220,220); 
    color:black;
-   border-radius: 2px;
+
    border: 0;
-   padding: 6px 20px;
+
 
 }
-input {
-    border: 1px solid lightgray;
-    border-radius: 3px;
-    border: 1px solid lightgray;
-    border-radius: 3px;
-    border-bottom: teal 1px solid;
-    border-left: medium none;
-    border-right: medium none;
-    border-top: medium none;
-	font-size:12px;
-}
+ input { 
+    border: 1px solid lightgray; 
+     border-radius: 3px; 
+     border: 1px solid lightgray; 
+     border-radius: 3px; 
+     border-bottom: teal 1px solid; 
+    border-left: medium none; 
+     border-right: medium none; 
+     border-top: medium none; 
+ 	font-size:12px; 
+ } 
 
 #red{
    color:red;
 }
 
-select{
-   height:35px; 
-   width: 100px;
-}
+   select{   
+	
+     width: 100px;  
+   }   
+  
+
 </style>
 </head>
 <body>
+
+			<section id="banner">			
+				<div class="content">
+					<h1> <span class="light">회 원 가 입</span></h1>
+					<p>모 두 환 영 합 니 다</p>
+					<ul class="actions">
+<!-- 						<li><a href="#one" class="button scrolly">DaSom 알아보기</a></li> -->
+					</ul>
+				</div>
+			</section>
+
+
 <!-- 입력  -->
 <div class="container">
 
-	<h5><span>회원가입 </span>페이지</h5>
+	<h5><i class="fas fa-paw" style="color :purple;"></i><span> 회원가입 </span><i class="fas fa-paw" style="color :purple;"></i></h5>
 	<hr>
 	<!-- 비밀번호 확인 해주기  -->
 	<!-- 메인화면 으로 가야하지 않나..?-->
@@ -386,36 +395,36 @@ select{
    		<!-- 아이디 중복 값 체크용 히든 밸류 -->
    		<input type="hidden" id="hiddenIdCheck"/>
    		<h6><label>아이디<span id="red">(필수)</span><br>
-      		<input type="text" placeholder="아이디" name="userid" id="userid" class="username_input" required style="height:30px; width: 380px" />
-      		<button type ="button" value="ID중복확인" id="idCheckbutton" class="id_Button" onclick="idCheck()">ID중복확인</button>
+      		<input type="text" placeholder="아이디" name="userid" id="userid" class="username_input" required style="display:inline-block; width: 300px" />
+      		<button type ="button" value="ID중복확인" "id="idCheckbutton" class="id_Button" onclick="idCheck()"><i class="fa fa-search"></i> ID중복확인</button>
       		</label><div id="id_check"></div><div id="id_check2"></div>
       	</h6>
  
  
    		<h6><label>비밀번호<span id="red">(필수)</span>
-      		<input type="password" placeholder="비밀번호" name="userpw" id="userpw" class="pw" required style="height:30px; width: 495px"/></label>
+      		<input type="password" placeholder="비밀번호" name="userpw" id="userpw" class="pw" required style="width: 495px"/></label>
   			<div id="pw_check"></div>
   		</h6>
   
    		<h6><label>비밀번호확인<span id="red">(필수)</span>
-      		<input type="password" placeholder="비밀번호확인" name="userpw_ck" id="userpw_ck" class="pw" required style="height:30px; width: 495px"/></label>
+      		<input type="password" placeholder="비밀번호확인" name="userpw_ck" id="userpw_ck" class="pw" required style="width: 495px"/></label>
    			<div id="pw_check2"></div>
    		</h6>
    
    		<h6><label>이름<span id="red">(필수)</span>
-      		<input type="text" placeholder="이름" name="username" id="username" required style="height:30px; width: 495px"/></label>
+      		<input type="text" placeholder="이름" name="username" id="username" required style="width: 495px"/></label>
       		<div id="name_check"></div>
       	</h6>
       
   		<h6><label>핸드폰<span id="red">(필수)</span>
-      		<input type="tel" placeholder="- 없이 숫자만 써주세요(숫자11자리)" name="usertel" maxlength="11" id="usertel" required style="height:30px; width: 495px"/></label>
+      		<input type="tel" placeholder="- 없이 숫자만 써주세요(숫자11자리)" name="usertel" maxlength="11" id="usertel" required style="width: 495px;height: 45px;"/></label>
       	</h6>
   
   
   		<h6><label>생년월일<span id="red">(필수)</span><br>
-     		<input type="text" name="userbirth_yy" id="userbirth_yy" maxlength="4" placeholder="년(4자)" size="10" required style="height:30px">
+     		<input type="text" name="userbirth_yy" id="userbirth_yy" maxlength="4" placeholder="년(4자)" size="10" style="float:left;width:200px; display:inline-block;">
 			<!-- 생년월일 월 -->
-      		<select name="userbirth_mm" >
+      		<select name="userbirth_mm" style="float:left; height: 42px;" >
          		<option value="">월</option>
          		<option value="01">1</option>
          		<option value="02">2</option>
@@ -431,7 +440,7 @@ select{
          		<option value="12">12</option>   
       		</select>
 			<!-- 생년월일 일 -->
-      		<select name="userbirth_dd" >
+      		<select name="userbirth_dd" style="float:left;height: 42px;" >
         		<option value="">일</option>
          		<option value="01">1</option>
          		<option value="02">2</option>
@@ -467,9 +476,9 @@ select{
 
       		</select>
      		<div id="year_check"></div></label></h6>
-
+		<br><br><br>
    		<h6><label >이메일<span id="red">(필수)</span><br>
-      		<input type="email" placeholder="이메일" name="useremail" id="useremail" required style="height:30px; width: 380px"/>
+      		<input type="email" placeholder="이메일" name="useremail" id="useremail" required style="display:inline-block; width: 300px"/>
       		<button type ="button" value="이메일인증" class="id_Button" onclick="email()">이메일인증</button>
       		</label>
       	</h6>
@@ -478,8 +487,8 @@ select{
   	
   	<div id="emailcheckbox">
 		<h6>이메일인증
-			<input type="text"  name="useremailcheck" id="useremailcheck" maxlength="4" style="height:30px; width: 200px" />
-			<button type ="button" class="id_Button" id="emailCheck" onclick="emailCheckFunc()">인증 확인</button>
+			<input type="text"  name="useremailcheck" id="useremailcheck" maxlength="4" style="display:inline-block; width: 230px" />
+			<button type ="button" class="id_Button" id="emailCheck" onclick="emailCheckFunc()" style="display:inline-block;" ><i class="far fa-check-circle"></i>인증 확인</button>
 			<div id="email_check"></div>
 	
 		</h6>
@@ -488,19 +497,20 @@ select{
 	<h6>주소<span id="red">(필수)</span>
 		
 		<div class="form-group">                   
-			<input class="form-control"  placeholder="우편번호" name="mem_oaddress" id="mem_oaddress" type="text" readonly="readonly" required style=" height:28px; width: 100px">
-    		<button type="button" class="btn-default" onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button>                               
+			<input class="form-control"  placeholder="우편번호" name="mem_oaddress" id="mem_oaddress" type="text" readonly="readonly" required style="display:inline-block; width: 100px">
+    		<button type="button" class="id_Button" onclick="execPostCode();" style="display:inline-block;"><i class="fa fa-search"></i> 우편번호 찾기</button>                               
 		</div>
 
 		<div class="form-group">
-    		<input type="text" class="form-control"  placeholder="도로명 주소" name="mem_address" id="mem_address" required style="height:30px; width: 254px" readonly="readonly" />
-   	 		<input type="text" class="form-control" placeholder="상세주소" name="mem_detailaddress" id="mem_detailaddress" required style="height:30px; width: 230px"/>
+    		<input type="text" class="form-control"  placeholder="도로명 주소" name="mem_address" id="mem_address" required style="width: 254px" readonly="readonly" />
+   	 		<input type="text" class="form-control" placeholder="상세주소" name="mem_detailaddress" id="mem_detailaddress" required style="display:inline-block; width: 200px"/>
 		</div>
 	</h6>
 	
-	<hr>
-	<input type="submit" value="가입하기" class="singup"/><br>
+	<hr><div style="margin:0 auto;text-align:center;">
+		<input type="submit" value="가입하기" class="singup"/><br>
+		</div>
    </form>
 </div>
-</body>
-</html>
+		<c:import url="/WEB-INF/views/user/util/footer.jsp"></c:import>
+		

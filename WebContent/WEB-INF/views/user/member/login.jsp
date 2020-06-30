@@ -2,11 +2,16 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>login jsp</title>
+
+<!-- Custom fonts for this template-->
+  <link href="/resources/AdminTemplate/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <!-- 자바스크립트 -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
@@ -39,11 +44,11 @@ h3 {
 }
 
 h3 span{
-   color:blue;
+   color:#ff9364;
 }
 /* 로그인버튼 */
 .login {
-   background-color: rgb(255,80,90);
+   background-color: #6E6E6E;
    color:white;
    border-radius: 5px;
    border: 0;
@@ -53,7 +58,7 @@ h3 span{
 /* 회원가입버튼 */
 .singup {
 
-   background-color: rgb(255,80,90);
+   background-color:#6E6E6E;
    color:white;
    border-radius: 5px;
    border: 0;
@@ -150,11 +155,7 @@ a:hover{
 <body>
 
 <!-- 비로그인상태 -->
-<c:if test="${empty login }">
-
-</c:if>
-
-
+<%--  <c:if test="${empty login }">  --%>
 <a href = "#a" class="open">로그인</a>
 
 <div class="popup">
@@ -198,11 +199,17 @@ a:hover{
 </div>
 
 <div class="dim"></div>
+<%-- </c:if> --%>
 
-<!-- 로그인 되어있는 상태 -->
+
+
+
+<!-- <!-- 로그인 되어있는 상태 --> -->
 <%-- <c:if test="${not empty login }"> --%>
 <!-- <input type ="button" value="로그아웃" onclick="location.href='/logout/logout'" /> -->
 
 <%-- </c:if> --%>
+
+
 </body>
 </html>

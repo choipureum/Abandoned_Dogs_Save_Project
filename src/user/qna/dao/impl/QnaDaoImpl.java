@@ -83,7 +83,7 @@ public class QnaDaoImpl implements QnaDao {
 	
 	
 	//paging객체를 전달받아 rnum을 생성하고 시작과 끝을 정함//where조건으로 검색어를 넣어서 반환 
-	public List selectAll(Paging paging) {
+	public List<QNA> selectAll(Paging paging) {
 		
 		conn =JDBCTemplate.getConnection(); //DB 연결
 		
@@ -93,7 +93,7 @@ public class QnaDaoImpl implements QnaDao {
 		sql += "    SELECT rownum rnum, B.* FROM (";
 		sql += "        SELECT";
 		sql += "            qnano, qnatitle, qnacontent,"; 
-		sql += "            qnahit, qnadate, qnawriter";
+		sql += "            qnahit, qnadate, qnawriter,delsw";
 		sql += "        FROM qna";
 		sql += "		WHERE qnatitle LIKE '%'||?||'%'"; 
 		sql += "        ORDER BY qnano DESC";
@@ -102,35 +102,30 @@ public class QnaDaoImpl implements QnaDao {
 		sql += " ) BOARD";
 		sql += " WHERE rnum BETWEEN ? AND ?";
 		
-		
 		//최종 결과를 저장할 List
-		List list = new ArrayList();
-		
+		List<QNA> list = new ArrayList<>();
+	
 		try {
 			//SQL 수행 객체
-			ps = conn.prepareStatement(sql);
-			
+			ps = conn.prepareStatement(sql);			
 			ps.setString(1, paging.getSearch());
 			ps.setInt(2, paging.getStartNo());
 			ps.setInt(3, paging.getEndNo());
 			
 			//SQL 수행 및 결과 저장
 			rs = ps.executeQuery();
-			
 			//SQL 수행 결과 처리
 			while( rs.next() ) {
-				QNA board = new QNA();
-				
-				board.setQnaNO( rs.getInt("qnano") );
-				board.setQnaTitle( rs.getString("qnatitle") );
-				board.setQnaContent( rs.getString("qnacontent") );
-				board.setQnaHit( rs.getInt("qnahit") );
-				board.setQnaDate( rs.getDate("qnaDate") );
-				board.setQnaWriter( rs.getString("qnawriter") );
-				
-				list.add(board);
+				QNA board = new QNA();			
+					board.setQnaNO( rs.getInt("qnano") );
+					board.setQnaTitle( rs.getString("qnatitle") );
+					board.setQnaContent( rs.getString("qnacontent") );
+					board.setQnaHit( rs.getInt("qnahit") );
+					board.setQnaDate( rs.getDate("qnaDate") );
+					board.setQnaWriter( rs.getString("qnawriter") );
+					board.setDelsw(rs.getString("delsw"));
+					list.add(board);
 			}
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -140,8 +135,7 @@ public class QnaDaoImpl implements QnaDao {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		}
-		
+		}	
 		//최종 결과 반환
 		return list;
 	}//end
@@ -280,7 +274,7 @@ public class QnaDaoImpl implements QnaDao {
 		sql += "	, qnacontent";
 		sql += "	, qnahit";
 		sql += "	, qnadate";
-		sql += "	, qnawriter";
+		sql += "	, qnawriter,delsw";
 		sql += " FROM qna B";
 		sql += " WHERE qnano = ?";
 	
@@ -299,6 +293,7 @@ public class QnaDaoImpl implements QnaDao {
 				viewBoard.setQnaHit( rs.getInt("qnahit") );
 				viewBoard.setQnaDate( rs.getDate("qnadate") );
 				viewBoard.setQnaWriter( rs.getString("qnawriter") );
+				viewBoard.setDelsw( rs.getString("delsw") );
 				
 				
 			}
@@ -327,8 +322,8 @@ public class QnaDaoImpl implements QnaDao {
 
 		//다음 게시글 번호 조회 쿼리
 		String sql = "";
-		sql += "INSERT INTO qna(qnano,qnatitle,qnacontent,qnahit,qnadate,qnawriter) ";
-		sql += " VALUES (?, ?, ?, 0, sysdate,?)";
+		sql += "INSERT INTO qna(qnano,qnatitle,qnacontent,qnahit,qnadate,qnawriter,delsw) ";
+		sql += " VALUES (?, ?, ?, 0, sysdate,?,?)";
 		
 		try {
 			//DB작업
@@ -337,6 +332,7 @@ public class QnaDaoImpl implements QnaDao {
 			ps.setString(2, board.getQnaTitle());
 			ps.setString(3, board.getQnaContent());
 			ps.setString(4, board.getQnaWriter());
+			ps.setString(5, board.getDelsw());
 
 			ps.executeUpdate();
 			

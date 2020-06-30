@@ -30,11 +30,9 @@ public class AdminQnaController extends HttpServlet {
 	
 		req.setAttribute("qnaList", list);
 		req.getRequestDispatcher("/WEB-INF/views/admin/AdminQna.jsp").forward(req, resp);
-		
-	
+
 	}
 	
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	}
+
 
 }

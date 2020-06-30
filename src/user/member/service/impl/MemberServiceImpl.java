@@ -6,7 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-
+import admin.dto.Dogout;
 import user.member.dao.face.MemberDao;
 import user.member.dao.impl.MemberDaoImpl;
 import user.member.dto.MemberAddDTO;
@@ -130,7 +130,7 @@ public class MemberServiceImpl implements MemberService{
    }
    
    //Paging객체 생성
-   	public Paging getPaging(HttpServletRequest req) {
+   	public Paging getPaging(HttpServletRequest req ,String userid) {
 		
 		//요청파라미터 curPage를 파싱한다
 		String param = req.getParameter("curPage");
@@ -139,16 +139,20 @@ public class MemberServiceImpl implements MemberService{
 			curPage = Integer.parseInt(param);
 		}
 		//Board TB와 curPage 값을 이용한 Paging 객체를 생성하고 반환
-				int totalCount = memberDao.selectCntAll();
+
+		int totalCount = memberDao.selectCntAll(userid);
 				
-				// Paging 객체 생성 // 한페이지에 기본적으로 보여주는 게시글수는 10으로 지정 
-				Paging paging = new Paging(totalCount, curPage);
+		// Paging 객체 생성 // 한페이지에 기본적으로 보여주는 게시글수는 10으로 지정 
+		Paging paging = new Paging(totalCount, curPage);
 				
 				
 				
-				//curpage와 검색어로 totalcount를 세어서 만든 paging객체를 반환
-				return paging;
-			}//end
+			//curpage와 검색어로 totalcount를 세어서 만든 paging객체를 반환
+			return paging;
+		}//end
+   	
+
+
    //전체 멤버 조회 - 마이페이지 
    @Override
    public MemberDTO getMemberInfo(MemberDTO member) {
@@ -167,29 +171,43 @@ public class MemberServiceImpl implements MemberService{
    
    @Override
    public void memberDelete(String userid) {
-	   
+	   //qna 지우기
+	   memberDao.DeleteDogMiss(userid);
+	   //dog miss 지우기
+	   memberDao.DeleteQna(userid);
 	   memberDao.memberDelete(userid);
-	   
-	   
+	    
    }
-
-		
-
-		
-		
-		
-		
-		
-   	
-   	
-   	
+   
+   
    	//paging객체를 전달받아 시작과 끝을 정했다
-  	public List<MemberAddDTO> getList(Paging paging) {
+  	public List<MemberAddDTO> getList(Paging paging) { 		
   		return memberDao.selectAll(paging);
   	}
-	
-   
-   
+  	
+	@Override
+	public int modifyMypageNotAdd(MemberDTO member) {
+		// TODO Auto-generated method stub
+		return memberDao.modifyMypageNotAdd(member);
+	}
+	  
+  	//리스트에서 체크된 값을 dog/file/userlike에서 다 지우는 역할  
+  	public void memberListDelete(String names) {
+  		
+  		memberDao.deleteMemberFileList(names);
+		memberDao.deleteUserlikeList(names);
+		
+	}
+  	
+  	 public void memberAddDelete(String names) {
+  		memberDao.deleteMemberList(names);
+  	 }
+  	 
+	@Override
+	public Dogout myPageDogOut(String userid) {
+		return memberDao.myPageDogOut(userid);
+		
+	}
 
 
 }

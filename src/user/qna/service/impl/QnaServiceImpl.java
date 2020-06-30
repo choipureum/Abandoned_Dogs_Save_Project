@@ -2,6 +2,7 @@ package user.qna.service.impl;
 
 import java.io.File;
 
+
 import java.io.UnsupportedEncodingException;
 import java.util.Iterator;
 import java.util.List;
@@ -17,7 +18,6 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 
 import user.qna.dao.face.QnaDao;
-
 
 import user.qna.dao.impl.QnaDaoImpl;
 
@@ -37,13 +37,15 @@ public class QnaServiceImpl implements QnaService {
 	//private RecommendDao recommendDao = new RecommendDaoImpl();
 	
 	
+	
+	
 //	public List getList() {
 //		return boardDao.selectAll();
 //	}
 
 	@Override
 	//paging객체를 전달받아 시작과 끝을 정하고 검색어로 조건문을 주었다 
-	public List getList(Paging paging) {
+	public List<QNA> getList(Paging paging) {
 		return boardDao.selectAll(paging);
 	}
 
@@ -58,9 +60,6 @@ public class QnaServiceImpl implements QnaService {
 			curPage = Integer.parseInt(param);
 		}
 
-		
-
-		
 		//검색어
 		String search = (String)req.getParameter("search");
 
@@ -403,13 +402,6 @@ public class QnaServiceImpl implements QnaService {
 	
 	
 
-	
-	
-	
-
-	
-	
-	
 
 	
 }

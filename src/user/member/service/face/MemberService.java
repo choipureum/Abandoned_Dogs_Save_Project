@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import admin.dto.Dogout;
 import user.member.dto.MemberAddDTO;
 import user.member.dto.MemberDTO;
 import util.Paging;
@@ -71,22 +72,22 @@ public interface MemberService {
     */
    public int findpw(String username, String userid, String useremail);
 
+   
    /**
     * userpw set 용도 userid같은지 확인
     * @param userpw
     * @param userid
     */
    public void changepassword(String userpw, String userid);
-   
-   
-   
+ 
    /*
     * 
     * 페이징 객체 생성 
     * 
     *
     * */
-   public Paging getPaging(HttpServletRequest req);
+   //public Paging getPaging(HttpServletRequest req);
+   public Paging getPaging(HttpServletRequest req ,String userid);
    
    
    //startno과 endno을 정해서 paging객체 생성 
@@ -114,7 +115,33 @@ public interface MemberService {
     * @param userid
     */
    public void memberDelete(String userid);
+   
+   
+   
+   /*
+    * list에서 선택된 목록을 삭제시키는 기능//file,userlike 데베에서 지운다
+    */
+   public void memberListDelete(String names);
+   
+   
+   /*
+    * list에서 선택된 목록을 삭제시키는 기능//dog 데베에서 지운다
+    * */
+   public void memberAddDelete(String names);
 
+   public int modifyMypageNotAdd(MemberDTO member);
+
+   
+   /**
+    * select userid  를 통해서 dogout 문  select
+    * 
+    * @param userid
+    * @return
+    */
+   public Dogout myPageDogOut(String userid);
+
+
+   
 
 }
 

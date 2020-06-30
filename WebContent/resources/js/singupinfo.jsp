@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>약관동의</title>
-<!-- 자바스크립트 -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>  
+
+<c:import url="/WEB-INF/views/user/util/header.jsp"></c:import>
+<!--Alert 디자인 라이브러리 -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 <!-- 모두체크 누르면 다 체크 -->
 <script type="text/javascript">
 
@@ -25,7 +25,6 @@ function agree(){
 <!-- 체크 확인 -->
 <script type="text/javascript">
 
-
 function singup(){
 	if($("input[type='checkbox'][id='chk1_chk']").is(":checked")){
 		
@@ -33,7 +32,14 @@ function singup(){
 			$(location).attr("href","/singup/singup");
 		}
 	}
-	else{ alert("약관을 모두 동의해주세요!");}
+	else{ 
+// 		alert("약관을 모두 동의해주세요!");
+		swal({
+			title: "약관을 모두 동의해주세요!",
+			icon:"error"
+		});
+	
+	}
 
 	
 }
@@ -48,14 +54,24 @@ function singup(){
    margin :40px auto;
    line-height: 16px;
 }
-.btnagree{
-   background-color: rgb(255,80,90);
-   color:white;
-   border-radius: 5px;
-   border: 0;
-   padding: 10px 95px;
+ .btnagree{ 
+/*     background-color: rgb(255,80,90);  */
+    color:white; 
+    border-radius: 5px; 
+    border: 0; 
+/*     padding: 10px 95px;  */
+	margin: auto !important;
    
-}
+ } 
+  .btnagree2{ 
+/*     background-color: rgb(255,80,90);  */
+    color:white; 
+    border-radius: 5px; 
+    border: 0; 
+/*     padding: 10px 95px;  */
+	float:right;
+   
+ } 
 
 h5{
    text-align: center;
@@ -82,6 +98,16 @@ input[type="checkbox"]:checked + label:before { border: 7px solid #666; text-ali
 </style>
 </head>
 <body>
+			<section id="banner">			
+				<div class="content">
+					<h1> <span class="light">회 원 가 입</span></h1>
+					<p>개인정보동의</p>
+					<ul class="actions">
+<!-- 						<li><a href="#one" class="button scrolly">DaSom 알아보기</a></li> -->
+					</ul>
+				</div>
+			</section>
+
 
 <div class="container">
 	<h5><span>약관 동의  </span>페이지</h5>
@@ -98,7 +124,7 @@ input[type="checkbox"]:checked + label:before { border: 7px solid #666; text-ali
     	잠시 시간을 내시어 주의 깊게 살펴봐 주시기 바랍니다.
     	</div>
 	</div>
-
+<br><br>
 
 <div class="article">
     <h4 class="article__title">회원으로 가입하시면 다솜 서비스를 이용할 수 있습니다.</h4>
@@ -114,10 +140,11 @@ input[type="checkbox"]:checked + label:before { border: 7px solid #666; text-ali
 
 </div>
     </div>
-<br><br>
+<br>
 <hr>
 <button type="button" class="btnagree" id="check_all" onclick="agree()">모두 동의</button>
-<button type="button" class="btnagree" onclick="singup()">회원가입</button>
+<button type="button" class="btnagree2" onclick="singup()">회원가입</button>
 </div>
-</body>
-</html>
+
+		<c:import url="/WEB-INF/views/user/util/footer.jsp"></c:import>
+		

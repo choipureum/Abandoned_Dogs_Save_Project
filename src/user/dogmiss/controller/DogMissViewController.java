@@ -1,12 +1,15 @@
 package user.dogmiss.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import user.dogmiss.dto.Comment;
 import user.dogmiss.dto.DogMiss;
 import user.dogmiss.dto.DogMissFile;
 import user.dogmiss.service.face.DogMissService;
@@ -41,6 +44,14 @@ public class DogMissViewController extends HttpServlet {
 						
 				//조회결과 MODEL값 전달
 				request.setAttribute("view", view);
+				
+				
+				//댓글 리스트 전달
+				
+				List<Comment> commentList = missService.getCommentList(view);
+				request.setAttribute("commentList", commentList);
+				
+				
 						
 				
 				

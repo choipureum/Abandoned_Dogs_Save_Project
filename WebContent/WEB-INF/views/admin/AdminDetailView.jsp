@@ -15,7 +15,7 @@ td{
 }
 /*회원메뉴 3개 그리드 너비, 테이블 조정*/
 .fixed{
-	width:400px;	
+	width:380px;	
 	word-break:break-all;
 	padding:20px;
 }
@@ -27,6 +27,16 @@ td{
 	width:400px;	
 	word-break:break-all;
 	padding:11px 11px 11px 60px;	
+}
+#Content1{
+ 	overflow-y: auto;
+
+
+}
+#Content2{
+ 	overflow-y: auto;
+ 	
+
 }
 </style>
 
@@ -137,6 +147,16 @@ td{
                 			<div class="card-body">
                   				<span class="font-weight-bold text-gray-800">찜한 강아지 목록</span>
                   				<hr style="width:100%">
+                  				  
+				                  <br>
+				                  <!-- 반복문 찜한 강아지 목록하기 -->
+				                   <div id="Content1" >
+				                   <c:forEach items="${MyLikeDog }" var="d">
+				                   <label for="${d.dogno }">  
+				                    <img class="img-profile rounded-circle"src="/upload/${ d.dog_stored_file_name }" style="width:30px;height:30px;">                  
+				                    <a class="navbar-brand" href="#" id="${d.dogno }"> &nbsp;&nbsp;${d.dogno } 번</a></label><br>
+				                    </c:forEach>                            
+				                  </div> 	
                 			</div>
                 			</div>
                 		</td>	
@@ -146,6 +166,15 @@ td{
                 			<div class="card-body">
                   				<span class="font-weight-bold text-gray-800">입양받은 강아지</span>
                   				<hr style="width:100%">
+                  				<br>
+                  				<!-- 반복문 찜한 강아지 목록하기 -->
+				                   <div id="Content2" >
+				                   <c:forEach items="${MyDog }" var="m">
+				                   <label for="${m.dogno }">
+				                   <img class="img-profile rounded-circle"src="/upload/${m.dog_stored_file_name }" style="width:30px;height:30px;">                    
+				                    <a class="navbar-brand" href="#" id="${m.dogno }"> &nbsp;&nbsp;${m.dogno } 번</a></label><br>
+				                    </c:forEach>                            
+				                  </div> 	
                 			</div>
                 			</div>
                 		</td>  
@@ -154,7 +183,7 @@ td{
     				 </table>
               			</div>
                 </div>
-                 <!-- 메일 보내기 폼 메소드(히든) --> 
+               <!-- 메일 보내기 폼 메소드(히든) --> 
 				<form id="MailPostForm" action="/resources/js/AdminMailForm.jsp" method="post" target="MailForm">
 						<input type="hidden" id="Email" name="Email"/>	
 				</form> 				        
@@ -185,7 +214,7 @@ function memberDelete(){
 		buttons:["아니요","회원 삭제"]
 		
 	}).then((Yes)=>{	
-	
+	if(Yes){
 		var checkArr = new Array;		
 		checkArr.push("${user.userid}");
 		 $.post("/admin/delete",{"member_chk":checkArr},function(res){
@@ -196,8 +225,8 @@ function memberDelete(){
 					 location.href ="/admin/memberlist";								
 			});
 						 
-		 });
-	})
+		 }) 
+	} })
 }
  <%--메일 보내기 sendmail 메소드--%> 
  function sendmail(){	

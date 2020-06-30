@@ -1,16 +1,26 @@
 <%@page import="user.member.dto.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>   
+
+
+<c:import url="/main/header"></c:import>
+<c:import url="/WEB-INF/views/user/util/header.jsp"></c:import>
+<c:import url="/WEB-INF/views/user/util/sidebar.jsp"></c:import>
+
+
+<!--Alert 디자인 라이브러리 -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>마이페이지 수정</title>
+<!-- Custom fonts for this template-->
+<link href="/resources/AdminTemplate/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  
+<!-- 글씨체 -->
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 <!--Alert 디자인 라이브러리 -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!-- 다음 주소 api -->
@@ -62,10 +72,6 @@ function execPostCode() {
 
 </script>
 <!-- 다음 주소 api끝 -->
-
-
-<!-- 자바스크립트 -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 
 <!--생년월일 기본값 가져오기 -->
 <script type="text/javascript">
@@ -187,10 +193,10 @@ function withDraw(){
 		if(Yes){
 			$.post("/member/delete",{"userid":userid},function(res){
 				swal({
-					icon:"success",
-					text: "탈퇴되었습니다",
+					icon:"success",		
+					text: "탈퇴되었습니다"
 				});
-				location.href="/login/login";
+				location.href="/main";
 			})									
 		}			
 	});
@@ -222,8 +228,8 @@ $(document).ready(function(){
 
 .container {
 	width: 800px;
-	margin: 40px auto;
-	line-height: 16px;
+/* 	margin: 40px auto; */
+/* 	line-height: 16px; */
 }
 
 h2 {
@@ -233,45 +239,15 @@ h2 {
 h2 span {
 	color: blue;
 }
-/* 수정하기 */
-.modify {
-	background-color: #7DBCBE;
-	color: white;
-	border-radius: 5px;
-	border: 0;
-	padding: 10px 160px;
-	cursor: pointer;
-}
 
-.open {
-	background-color: black;
-	color: white;
-	border-radius: 5px;
-	border: 0;
-	padding: 10px 160px;
-	cursor: pointer;
-}
-
-.btn_btn {
-	margin: auto;
-	width: 50%;
-}
 
 .btn-default {
 	background-color: rgb(220, 220, 220);
 	color: black;
-	border-radius: 2px;
-	border: 0;
-	padding: 6px 20px;
+
 }
 
-.id_Button {
-	background-color: rgb(220, 220, 220);
-	color: black;
-	border-radius: 2px;
-	border: 0;
-	padding: 6px 20px;
-}
+
 
 input {
 	border: 1px solid lightgray;
@@ -287,21 +263,19 @@ input {
 	color: red;
 }
 
-select {
-	height: 35px;
-	width: 100px;
-}
+ select { 	height: 35px; 
+ 	width: 100px; 
+ } 
 
 /* 처음이름 */
 .label {
 	color: red;
-	font-size: 13px;
+	font-size: 15px;
 }
 
-.tit_36 {
-	font-size: 20px;
-	font-weight: bold;
-}
+ .tit_36 { 	font-size: 20px; 
+ 	font-weight: bold; 
+ } 
 
 
 h1 {
@@ -312,7 +286,15 @@ h1 {
 .popup_text {
 	padding: 20px;
 	align-content: center;
+	color : #aaaaaa	;
+	overflow: auto;
 }
+::-webkit-scrollbar{width:2px;}
+::-webkit-scrollbar-track{background-color: white;}
+::-webkit-scrollbar-thumb{background-color: #969696;border-radius: 5px;}
+::-webkit-scrollbar-thumb:hover{background: #969696;}
+
+
 
 .popupwithdraw {
 	all: unset;
@@ -370,37 +352,67 @@ h1 {
 	padding: 30px 0 0;
 }
 
+/*글씨체*/
+ p { */
+/*  	font-family: 'Do Hyeon', sans-serif; */ */
+ 	font-size: 30px; 
+ } 
+
+/* p.a { */
+/*     font-size: 18px; */
+/* } */
 </style>
 </head>
 <body>
+
+
+
+		<!-- Banner -->
+			<section id="banner">			
+				<div class="content">
+					<h1> <span class="light">개인 정보 변경</span></h1>
+					<p>개인정보를 변경 할 수 있습니당! </p>
+					<ul class="actions">
+<!-- 						<li><a href="#one" class="button scrolly">DaSom 알아보기</a></li> -->
+					</ul>
+				</div>
+			</section>
+
+
+
+
+
+
+
+
+
 <!-- 입력  -->
 <div class="container">
 
-   <p class="tit_36">회원정보 변경<span class="label">(필수는 꼭 해주세요!)</span></p>
+   <p class="tit_36">회원정보 변경 <span class="label">(필수는 꼭 해주세요!)</span></p>
    <hr>
    <form action="/mypage/modify" method="post" id="myForm">
-   
 	<table>
 		<tr>
 			<td>
 				<h6><label>아이디<br>
-				<input type="text" name="userid" id="userid"readonly="readonly" style="height:30px; width: 385px" value="${member.userid }"/></h6>
+				<input type="text" name="userid" id="userid"readonly="readonly" style="width: 385px" value="${member.userid }"/></h6>
 			</td>
 			<td>
     			<h6><label>이름<br>
-    			<input type="text" placeholder="이름" name="username" id="username" readonly="readonly" class="underline" required style="height:30px; width: 385px" value="${member.username }"/></label></h6>
+    			<input type="text" placeholder="이름" name="username" id="username" readonly="readonly" class="underline" required style="width: 385px" value="${member.username }"/></label></h6>
 			</td>
 		</tr>
 
 		<tr>	
 			<td>
 				<h6><label>비밀번호<span id="red">(확인하기 위해 무조건 입력하셔야 합니다)</span>
-				<input type="password" placeholder="비밀번호" name="userpw" id="userpw" required style="height:30px; width: 385px"/></label>
+				<input type="password" placeholder="비밀번호" name="userpw" id="userpw" required style=" width: 385px"/></label>
 				<div id="pw_check"></div></h6>
 			</td>
   			<td>
 				<h6><label>비밀번호확인<span id="red">(필수)</span>
-				<input type="password" placeholder="비밀번호확인" name="userpw_ck" id="userpw_ck" required style="height:30px; width: 385px"/></label>
+				<input type="password" placeholder="비밀번호확인" name="userpw_ck" id="userpw_ck" required style="width: 385px"/></label>
 				<div id="pw_check2"></div></h6>
    			</td>
 		</tr>
@@ -408,14 +420,14 @@ h1 {
 		<tr>
 			<td>
   				<h6><label>핸드폰<span id="red">( - 표시 없이 11자리로만 써주세요!)</span>
-    			<input type="tel" placeholder="- 없이 숫자만 써주세요(숫자11자리)" class="underline" name="usertel" maxlength="11" id="usertel" required style="height:30px; width: 385px" value="${member.usertel }"/></label></h6>
+    			<input type="tel" placeholder="- 없이 숫자만 써주세요(숫자11자리)" class="underline" name="usertel" maxlength="11" id="usertel" required style="height: 43px; width: 385px" value="${member.usertel }"/></label></h6>
 			</td>
 	
 			<td>
    				<h6><label>생년월일<span id="red">(필수)</span><br>
-        		<input type="text" name="userbirth_yy" id="userbirth_yy" maxlength="4" placeholder="년(4자)" size="10" required style="height:30px"  value="${fn:substring(member.userbirth,0,4) }">
+        		<input type="text" name="userbirth_yy" id="userbirth_yy" maxlength="4" placeholder="년(4자)" size="10" style="float:left;width:150px; display:inline-block;"  value="${fn:substring(member.userbirth,0,4) }">
 				<!--  	생년월일 월 -->
-      			<select name="userbirth_mm">
+      			<select name="userbirth_mm" style="float:left; height: 42px;">
          			<option value="">월</option>
          			<option value="01">1</option>
          			<option value="02">2</option>
@@ -431,7 +443,7 @@ h1 {
          			<option value="12">12</option>   
       			</select>
 			<!--   		생년월일 일 -->
-      			<select name="userbirth_dd">
+      			<select name="userbirth_dd" style="float:left; height: 42px;">
          			<option value="">일</option>
          			<option value="01">1</option>
          			<option value="02">2</option>
@@ -476,59 +488,65 @@ h1 {
 	<table>	
 		<tr>	
  	  		<h6><label >이메일<br>
-      		<input type="email" placeholder="이메일"  class="underline" name="useremail" id="useremail" readonly="readonly" required style="height:30px; width: 385px" value="${member.useremail }" />
+      		<input type="email" placeholder="이메일"  class="underline" name="useremail" id="useremail" readonly="readonly" required style="width: 385px" value="${member.useremail }" />
 		</tr>
 
 		<tr>
 			<h6>주소<span id="red">(필수)</span>
 			<div>기존 주소 : ${member.useraddress }</div>
 				<div class="form-group">                   
-					<input class="form-control"  placeholder="우편번호" name="mem_oaddress" id="mem_oaddress" type="text" readonly="readonly" required style=" height:28px; width: 100px">
+					<input class="form-control" placeholder="우편번호" name="mem_oaddress" id="mem_oaddress" type="text" readonly="readonly" required style="display:inline-block; width: 100px">
     				<button type="button" class="btn-default" onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button>                               
 				</div>
 
 				<div class="form-group">
-    				<input type="text" class="form-control"  placeholder="도로명 주소" name="mem_address" id="mem_address" required style="height:30px; width: 270px" readonly="readonly" />
-   	 				<input type="text" class="form-control" placeholder="상세주소" name="mem_detailaddress" id="mem_detailaddress" required style="height:30px; width: 240px"/>
+    				<input type="text" class="form-control"  placeholder="도로명 주소" name="mem_address" id="mem_address" required style="display:inline-block;width: 270px" readonly="readonly" />
+   	 				<input type="text" class="form-control" placeholder="상세주소" value= " " name="mem_detailaddress" id="mem_detailaddress" required style="display:inline-block; width: 240px"/>
 				</div>
+				
 			</h6>	
 
 		</tr>
 	</table>
 	
 	<hr>
-	
-	<div class="first" style="float:left;">
-		<input type="submit" value="수정하기" class="modify" />
+<div style="margin:0 auto;text-align:center;">	
+	<div class="first" style="display: inline-block;">
+		<input type="submit" value="수정하기" class="modify" style="height: 48px;"/>
 	</div>
 	
-	<div class="second" style="float:right;">
+	<div class="second" style="display: inline-block;">
 		<button type="button" id="open" value="탈퇴하기" class="open">탈퇴하기</button>
+			
 			<div class="popup">
-			<h2>탈퇴하기</h2>
-				<div class="con">
-					<table class="type1">
+				<h2 style="font-weight: bold;">탈퇴하기</h2>
+					<div class="con">
+<!-- 						<table class="type1"> -->
+							<div class="popup_text" style="border: 1px solid #BDBDBD; padding: 10px; height: 150px;">
+								 <p class="a">다솜을 이용해 주셔서 감사합니다.<br>	
+								* 탈퇴 후에는 아이디와 예약내역 등의 데이터 복구가 불가능합니다.<br>
+								* 탈퇴 후에는 등록된 게시물 삭제가 불가능합니다. <br>
+								* 탈퇴하기 버튼을 누르면 바로 탈퇴가 됩니다<br><br>
+								* 신중히 눌러주세요<br></p>
+							</div>
 
-						<div class="popup_text" style="border: 1px solid gold; padding: 10px; height: 150px;">
-							 다솜을 이용해 주셔서 감사합니다.<br>	
-							* 탈퇴 후에는 아이디와 예약내역 등의 데이터 복구가 불가능합니다.<br>
-							* 탈퇴 후에는 등록된 게시물 삭제가 불가능합니다. <br>
-							* 탈퇴하기 버튼을 누르면 바로 탈퇴가 됩니다<br><br>
-							* 신중히 눌러주세요 <br>
-						</div>
-					</table>
-				</div>
+<!-- 						</table> -->
+					</div>
 				<div class="txt_center">
 <!-- 				<a href="#a" class="btn_type1">상담신청</a> -->
+
 					<button type="button" class="popupwithdraw" onclick="withDraw()">탈퇴하기</button>
 				</div>
 			<a href="#a" class="close">닫기</a>
 			</div>
 		<div class="dim"></div>
 	</div>
-
+</div>
 	</form>
 
 </div>
-</body>
-</html>
+
+<c:import url="/WEB-INF/views/user/util/footer.jsp"></c:import>
+
+
+

@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -39,7 +40,7 @@ public class DogDaoImpl implements DogDao{
 		sql += "    SELECT rownum rnum, R.* FROM (";
 		sql += "        SELECT ";
 		sql += "            D.dogno, dogname, dogkind, doggender";
-		sql += "            , dogneu, dogdate, dogimg, shelterno";
+		sql += "            , dogneu, dogdate, dogimg, shelterno,dogenddate";
 		sql += "            , dog_fileno, dog_org_file_name, dog_stored_file_name, dog_file_size, dog_del_gb";
 		sql += "        FROM dog D, (";
 		sql += "            SELECT";
@@ -52,37 +53,22 @@ public class DogDaoImpl implements DogDao{
 		sql += "            )R";
 		sql += "            WHERE od = 1";
 		sql += "        ) DF_RES";
-		sql += "        WHERE D.dogno = DF_RES.dogno";
+		sql += "        WHERE D.dogno = DF_RES.dogno(+)";
 		sql += "        ORDER BY dogno DESC";
 		sql += "    ) R";
 		sql += " ) RES";
 		sql += " WHERE rnum BETWEEN ? and ?";
-		
-//		  sql += "select * from"; 
-//	      sql += "(SELECT * FROM (SELECT rownum rnum, B.* FROM (SELECT dogno, dogname,  dogkind, doggender, dogneu, dogdate, dogimg, shelterno";
-//	      sql += "      FROM dog";
-//	      sql += "      ORDER BY dogno DESC";
-//	      sql += "   ) B";
-//	      sql += "    ) dog";
-//	      sql += "    WHERE rnum BETWEEN ? AND ?) A ";
-//	      sql += "   (SELECT";
-//	      sql += "   dogno, dog_fileno, dog_org_file_name,dog_stored_file_name,dog_file_size,dog_del_gb";
-//	      sql += "   FROM (" ;
-//	      sql += "   SELECT DMF.* ,row_number() over( partition by dogno order by dog_fileno desc ) od  FROM dog_file DMF ";
-//	      sql +="    )R WHERE od = 1) B";
-//	      sql +="    where A.dogno = B.dogno";
-		
-		
+
 		//결과 저장할 List
 		List<Dog_Data> dogList = new ArrayList<>();
 		try {
 			ps = conn.prepareStatement(sql); //SQL수행 객체
-			
+			Date today = new Date();
 			ps.setInt(1, paging.getStartNo());	//페이징 게시글 시작 번호
 			ps.setInt(2, paging.getEndNo());	//페이징 게시글 끝 번호
 			
 			rs = ps.executeQuery(); //SQL 수행 및 결과집합 저장
-			
+			Date today = new Date();
 			//조회 결과 처리
 			while(rs.next()) {
 				Dog_Data d = new Dog_Data(); //결과값 저장 객체
@@ -96,15 +82,26 @@ public class DogDaoImpl implements DogDao{
 				d.setDogdate( rs.getDate("dogdate") );
 				d.setDogimg( rs.getString("dogimg") );
 				d.setShelterno( rs.getInt("shelterno") );
+				//공고일 구하기 남은 일수
+			  	long diffDay=0;		    
+			    //두날짜 사이의 시간 차이(ms)를 하루 동안의 ms(24시*60분*60초*1000밀리초) 로 나눈다.
+				diffDay = (today.getTime() - d.getDogdate().getTime()) / (24*60*60*1000);
+				diffDay= 10-diffDay;							
+			    d.setDogenddate(diffDay);
 				d.setDog_fileno(rs.getInt("dog_fileno"));
 				d.setDog_org_file_name(rs.getString("dog_org_file_name"));
 				d.setDog_stored_file_name(rs.getString("dog_stored_file_name"));
 				d.setDog_file_size(rs.getInt("dog_file_size"));
 				d.setDog_del_gb(rs.getString("dog_del_gb"));
-				
+				//공고일 구하기 남은 일수
+			  	long diffDay=0;		    
+			    //두날짜 사이의 시간 차이(ms)를 하루 동안의 ms(24시*60분*60초*1000밀리초) 로 나눈다.
+				diffDay = (today.getTime() - d.getDogdate().getTime()) / (24*60*60*1000);
+				diffDay= 10-diffDay;
+			    d.setDogenddate(diffDay);
 				//리스트에 결과값 저장
 				dogList.add(d);
-				System.out.println("121212"+dogList);
+//				System.out.println("121212"+dogList);
 			}
 			
 		} catch (SQLException e) {
@@ -207,7 +204,7 @@ public class DogDaoImpl implements DogDao{
 			ps.setInt(1, dogno.getDogno()); //조회할 게시글 번호 적용
 			
 			rs = ps.executeQuery(); //SQL 수행 및 결과집합 저장
-			
+			Date today = new Date();
 			//조회 결과 처리
 			while(rs.next()) {
 				dog = new DogDTO(); //결과값 저장 객체
@@ -221,6 +218,12 @@ public class DogDaoImpl implements DogDao{
 				dog.setDogdate( rs.getDate("dogdate") );
 				dog.setDogimg( rs.getString("dogimg") );
 				dog.setShelterno( rs.getInt("shelterno") );
+				//공고일 구하기 남은 일수
+			  	long diffDay=0;		    
+			    //두날짜 사이의 시간 차이(ms)를 하루 동안의 ms(24시*60분*60초*1000밀리초) 로 나눈다.
+				diffDay = (today.getTime() - dog.getDogdate().getTime()) / (24*60*60*1000);
+				diffDay= 10-diffDay;							
+			    dog.setDogenddate(diffDay);
 				
 			}
 			
@@ -283,33 +286,22 @@ public class DogDaoImpl implements DogDao{
 		
 	}
 
-
 	@Override
 	public void insertUserLike(UserLike userlike) {
 		//DB연결 객체
 		conn = JDBCTemplate.getConnection();
 	
 		String sql = "";
-		sql += "INSERT INTO userlike(userid, dogno)";
-		sql += " VALUES ( ?,?)";
+		sql += "INSERT INTO userlike(userid,adoptsw,applysw,dogno)";
+		sql += " VALUES ( ?,N,?,?)";
 		
 		try {
 			ps= conn.prepareStatement(sql);
-			
 			ps.setString(1, userlike.getUserid());
-			ps.setInt(2, userlike.getDogno());
-			
-			
-			if(userlike.getAdoptsw()==null) {
-				ps.setInt(3, "0");
-				
-			}else {
-				ps.setInt(3, "1");
-			}
-			
-			
-			
-			
+			ps.setString(2, userlike.getAdoptsw());
+			ps.setInt(3, userlike.getApplysw());
+			ps.setInt(4, userlike.getDogno());
+
 			ps.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -317,24 +309,67 @@ public class DogDaoImpl implements DogDao{
 		}	finally {
 			JDBCTemplate.close(ps);
 		}
-		
-		
 	}
 
+	@Override
+	public void deleteUserLike(UserLike userlike) {
+		//DB연결 객체
+		conn = JDBCTemplate.getConnection();
+		
+		//SQL구문
+		String sql = "DELETE FROM USERLIKE WHERE dogno=? ";
+		try {
+			ps= conn.prepareStatement(sql);
+			ps.setInt(1, userlike.getDogno());
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+	}
 
+	@Override
+	public int selectCntUserLike(UserLike userlike) {
+		String sql ="";
+		sql += "SELECT count(*) FROM userlike";
+		sql += " WHERE dogno = ?";
+		sql += " 	AND userid = ?";
+		sql += " 	 AND adoptsw = ?";
+		sql += " 	  AND applysw = ?";
+		int cnt = -1;
+		
+		try {
+			//DB작업
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, userlike.getDogno());
+			ps.setString(2, userlike.getUserid());
+			ps.setString(3, userlike.getAdoptsw());
+			ps.setInt(4, userlike.getApplysw());
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				
+				cnt = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	finally {
+			JDBCTemplate.close(ps);
+			JDBCTemplate.close(rs);
+			
+		}
+		
+		return cnt;
+	}
 	@Override
 	public void insertDogClaim(DogClaimDTO claim) {
 		//DB연결 객체
 		conn = JDBCTemplate.getConnection();
 		
-		//
-		
-		
 		String sql = "";
 		sql += "INSERT INTO dog_claim(dogno,dogname,dogkind,doggender,dogneu,dogshelter,userid)";
 		sql += " VALUES ( ?,?,?,?,?,?,?)";
-		
-		
 		
 		try {
 			ps= conn.prepareStatement(sql);
@@ -347,12 +382,7 @@ public class DogDaoImpl implements DogDao{
 			ps.setInt(6, claim.getDogshelter());
 			ps.setDate(7, claim.getDogregdate());
 			ps.setString(8, claim.getUserid());
-			
-			
-			
 			ps.executeUpdate();
-			
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -360,47 +390,130 @@ public class DogDaoImpl implements DogDao{
 		}
 		
 	}
-
-
 	
-	
-	
-	
-	
-	
-	
-	
-	
-//	@Override
-//	public void insertUserLike(HttpServletRequest req) {
-		//DB연결 객체
-//		conn = JDBCTemplate.getConnection();
-//		
-//		// 
-//		
-//		//다음 게시글 번호 조회 쿼리
-//		String sql = "";
-//		sql += "INSERT INTO userlike(userid, adoptsw, dogno)";
-//		sql += " VALUES ( ?,?,?)";
-//		
-//		try {
-//			//DB작업
-//			ps = conn.prepareStatement(sql);
-//			
-//			
-//			ps.executeUpdate();
-//			
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			JDBCTemplate.close(ps);
-//		}
-//		
+	@Override
+	public void deleteDogClaim(DogClaimDTO dogclaim) {
+		conn = JDBCTemplate.getConnection();
 		
+		//SQL구문
+		String sql = "DELETE FROM DOGCLAIM WHERE USERID=? ";
 		
-//	}
-		
-		
-		
+		try {
+			ps= conn.prepareStatement(sql);
+			ps.setString(1, dogclaim.getUserid());
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(ps);
+		}
 		
 	}
+
+
+	@Override
+	public UserLike selectUserLike(HttpServletRequest req) {
+		//DB연결 객체
+		conn = JDBCTemplate.getConnection();
+		
+		
+		String sql = "SELECT * FROM USERLIKE where userid=? ";
+		
+		UserLike userlike = null;
+		
+		
+		try {
+			ps = conn.prepareStatement(sql); //SQL수행 객체
+			
+			ps.setString(1, userlike.getUserid());
+			
+			
+			rs = ps.executeQuery(); //SQL 수행 및 결과집합 저장
+		
+			//조회 결과 처리
+			while(rs.next()) {
+				userlike = new UserLike(); //결과값 저장 객체
+				
+				userlike.setDogno(rs.getInt("dogno"));
+				userlike.setUserid(rs.getString("userid"));
+				userlike.setAdoptsw(rs.getString("adoptsw"));
+				userlike.setApplysw(rs.getInt("applysw"));
+				
+				
+				//결과값 한 행 처리
+				
+			
+			}	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+			JDBCTemplate.close(rs);
+		}
+		
+		return userlike;
+	}
+
+
+
+
+	@Override
+	public List<UserLike> selectUserList(UserLike userLike) {
+
+		conn = JDBCTemplate.getConnection(); //DB 연결
+		
+		String sql = "";
+		sql += "  SELECT o.*, c.userid, p.dog_fileno";
+		sql += "  FROM dog o";
+		sql += "  LEFT OUTER JOIN userlike c ON o.dogno = c.dogno";
+		sql += "  LEFT OUTER JOIN dog_file p ON o.dogno = p.dogno";
+		sql += "  WHERE";
+		sql += "  c.userid = 'member01'";
+		List<UserLike> userlike = new ArrayList<>();
+		
+		try {
+			ps = conn.prepareStatement(sql); //SQL수행 객체			
+			rs = ps.executeQuery(); //SQL 수행 및 결과집합 저장
+		
+			//조회 결과 처리
+			while(rs.next()) {
+				UserLike l= new UserLike();			
+				l.setDogno(rs.getInt("dogno"));
+				l.setUserid(rs.getString("userid"));
+				l.setAdoptsw(rs.getString("adoptsw"));
+				l.setApplysw(rs.getInt("applysw"));
+				userlike.add(l);
+				//결과값 한 행 처리
+			}	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+			JDBCTemplate.close(rs);
+		}
+		return userlike;
+	}
+	
+	
+	
+	
+	
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

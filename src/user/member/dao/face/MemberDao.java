@@ -3,6 +3,9 @@ package user.member.dao.face;
 
 import java.util.List;
 
+import admin.dto.Dogout;
+import user.dog.dto.Dog_Data;
+import user.dog.dto.UserLike;
 import user.member.dto.MemberAddDTO;
 import user.member.dto.MemberDTO;
 import util.Paging;
@@ -76,7 +79,7 @@ public interface MemberDao {
     * 
     * 
     * */
-   public int selectCntAll();
+   public int selectCntAll(String userid);
    
    
    
@@ -109,7 +112,92 @@ public interface MemberDao {
     */
    public void memberDelete(String userid);
 
+   /**
+    * 
+    * 
+    * 
+    * @param member
+    * @return
+    */
+   public int modifyMypageNotAdd(MemberDTO member);
 
+   /*
+    *리스트.jsp에서 체크된 리스트의 dog 파일을 삭제하는 기능 
+    */
+   public void deleteMemberFileList(String names);
+   
+   
+   
+   /*
+    * 
+    * 리스트.jsp에서 체크된 리스트의 dog리스트를 삭제하는 기능 
+    * 
+    * */
+   public void deleteMemberList(String names);
+   
+   
+   
+   /*
+    * 리스트.jsp에서 체크된 리스트의 userlike를 삭제하는 기능 
+    */
+   public void deleteUserlikeList(String names);
 
+   /**
+    * id를 기준으로 userlike 출력
+    * @param userid
+    * @return
+    */
+   public List<UserLike> LikeSelectByid(String userid);
+   /**
+    * 
+    * dogno을 통한 dog데이터 출력
+    * 
+    * @param dogno
+    * @return
+    */
+   public Dog_Data dogSelectBydogno(int dogno);
+   
+   /**
+    * 탈퇴하기를 위한 userid qna, dogmiss 삭제
+    * @param userid
+    */
+   public void DeleteQna_File(String userid);
+   	public void DeleteQna(String userid);
+   	public void DeleteDogMiss(String userid);
+   	public void DeleteDogMiss_File(String userid);
+
+ /* 
+   	 * 마이페이지 분양받은 강아지
+   	 * @param userid
+   	 * @return
+   	 */
+	public Dogout myPageDogOut(String userid);
+	
+	/**
+	 * 유저라이크에 개정보 삽입
+	 * 
+	 * 
+	 * @param userid
+	 * @param dogno
+	 */
+	public void InsertUserlike(String userid, int dogno);
+	/**
+	 * 유저라이크 삭제
+	 * 
+	 * @param userid
+	 * @param dogno
+	 */
+	public void DeleteUserlike(String userid, int dogno);
+	
+	/**
+	 * 유저라이크에 존재하는지 확인
+	 * 
+	 * @param userid
+	 * @param dogno
+	 * @return
+	 */
+	public int UserlikeCount(String userid, int dogno);
    
 }
+
+

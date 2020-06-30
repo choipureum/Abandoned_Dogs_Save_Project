@@ -11,9 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import user.member.service.face.MemberService;
 import user.member.service.impl.MemberServiceImpl;
 
-/**
- * Servlet implementation class MemberDeleteController
- */
 @WebServlet("/member/delete")
 public class MemberDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -21,16 +18,18 @@ public class MemberDeleteController extends HttpServlet {
 	MemberService memberService = new MemberServiceImpl();
 	
 	
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
 		
 		String userid=req.getParameter("userid");
-		System.out.println(userid);
+//		System.out.println(userid);
 		
 		//탈퇴하기
 		memberService.memberDelete(userid);
 		
+		resp.sendRedirect("/logout/logout");
+
 	}
 
 }

@@ -2,18 +2,19 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-
-
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+
+<c:import url="/WEB-INF/views/user/util/header.jsp" />
 
 
 
-<!DOCTYPE html>
-<html>
-<head>
+
+
 <script type="text/javascript"
 src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <!-- 스마트 에디터2 라이브러리 -->
@@ -57,14 +58,14 @@ $(document).ready(function() {
 #content {
 	width: 95%;
 }
+.text-center{
+	padding:150px;
+}
 </style>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+
 <div class="container">
 
-<h3>게시글 쓰기</h3>
+<h1>게시글 쓰기</h1>
 <hr>
 
 <div>
@@ -85,12 +86,11 @@ $(document).ready(function() {
 </div>
 
 <div class="text-center">	
-	
 	<button type="button" id="btnWrite" class="btn btn-info">작성</button>
 	<button type="button" id="btnCancel" class="btn btn-danger">취소</button>
 </div>
 </div>
-</body>
+
 <!-- 스마트 에디터 적용 코드 -->
 <!-- <textarea>태그에 스마트 에디터의 스킨을 입히는 코드 -->
 <script type="text/javascript">
@@ -102,5 +102,6 @@ nhn.husky.EZCreator.createInIFrame({
 	fCreator: "createSEditor2"
 });
 </script>
-
-</html>
+<div id="foot">
+	<c:import url="/WEB-INF/views/user/util/footer.jsp" />
+</div>
