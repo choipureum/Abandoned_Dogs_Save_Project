@@ -826,28 +826,23 @@ public class MemberDaoImpl implements MemberDao{
 		
 		String sql= "select * from dogout where userid=?";
 		
-		Dogout result = null;
+		Dogout result =null;
 
 		   
-		try {
-			
-			ps=conn.prepareStatement(sql);
-			
-			ps.setString(1, userid);
-			
+		try {			
+			ps=conn.prepareStatement(sql);			
+			ps.setString(1, userid);			
 			rs=ps.executeQuery(); //결과 집합
 			
 			while(rs.next()) {				
 				
-				result=new Dogout();
-				
+				result=new Dogout();				
 				result.setUserid(userid);
 				result.setDogname(rs.getString("dogname"));
 				result.setDogkind(rs.getString("dogkind"));
 				result.setDoggender(rs.getString("doggender"));
 				result.setOutdate(rs.getDate("outdate"));
 				result.setDog_stored_file_name(rs.getString("dog_stored_file_name"));
-
 			}
 			
 		} catch (SQLException e) {
@@ -874,17 +869,14 @@ public class MemberDaoImpl implements MemberDao{
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
-			}finally {
-				JDBCTemplate.close(ps);
-			}
 		}
+	}
 	
 	@Override
 		public void InsertUserlike(String userid, int dogno) {
 			conn = JDBCTemplate.getConnection();
-			String sql="insert into userlike(userid,dogno,adoptsw,applysw) values(?,?,'N',0); ";
-			System.out.println(userid);
-			System.out.println(dogno);
+			String sql="insert into userlike(userid,dogno,adoptsw,applysw) values(?,?,'N',0) ";
+
 			try {
 				ps=conn.prepareStatement(sql);
 				ps.setString(1, userid);
@@ -893,9 +885,29 @@ public class MemberDaoImpl implements MemberDao{
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
-			}finally {
-				JDBCTemplate.close(ps);
 			}
 		}
+	@Override
+		public int UserlikeCount(String userid, int dogno) {
+			conn= JDBCTemplate.getConnection();
+			String sql="select * from userlike where userid=? and dogno=? ";
+			int res=0;
+			
+			try {
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, userid);
+				ps.setInt(2, dogno);
+				rs= ps.executeQuery();
+				
+				if(rs.next()) {				
+				res=1;
+			}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			
+		}
+			return res;
+	}
 
 }

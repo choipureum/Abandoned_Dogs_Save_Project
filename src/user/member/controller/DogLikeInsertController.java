@@ -18,8 +18,6 @@ public class DogLikeInsertController extends HttpServlet {
 		
 		String userid =req.getParameter("userid").trim();
 		int dogno = Integer.parseInt(req.getParameter("dogno"));	
-		System.out.println(userid);
-		System.out.println(dogno);
 		memberDao.InsertUserlike(userid, dogno);		
 	}
 

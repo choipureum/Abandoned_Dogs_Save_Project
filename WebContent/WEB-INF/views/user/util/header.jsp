@@ -112,7 +112,6 @@ a.badge-danger:focus, a.badge-danger.focus {
 .align-items-center {
   align-items: center !important;
 }
-
 		</style>
 					
 		</head>   
@@ -138,11 +137,11 @@ a.badge-danger:focus, a.badge-danger.focus {
                 <!-- Counter - Alerts -->
                 <span class="badge badge-danger badge-counter">${dogcnt }+</span>
               </a>
-              <div  id="dd-item" class="table-wrapper"style="line-height:15px;display:none;width:400px;height:370px;border:3px solid #FA8072;border-radius: 20px;position:absolute;background:white;top:80px;right:130px;padding:10px">            	          		
+              <div id="dd-item" class="table-wrapper"style="line-height:15px;display:none;width:400px;height:400px;border:3px solid #FA8072;border-radius: 20px;position:absolute;background:white;top:80px;right:130px;padding:10px">            	          		
 	             	<h4 style="margin:30px;"><i class="fas fa-paw fa-fw" style="color:#FF6347"></i>&nbsp;MY DOG 현황 </h4>				
 					<table style="font-size:15px;">
 					
-				<c:forEach items="${dog_List }" var="d" end="3">     
+				<c:forEach items="${dog_List }" var="d" end="2">     
 					<tr style="vertical-align:middle;">
 						<td style="text-align:center;margin:0 auto;padding:10px 0;"><img src="/upload/${d.dog_stored_file_name }" style="width:30px; height:30px; border-radius:50px;"></td>						
 						<td >${d.dogname }</td>
@@ -161,9 +160,9 @@ a.badge-danger:focus, a.badge-danger.focus {
 							 <c:set var="p2" value="${m.dogno }" />									 	          
 			                	<c:if test="${p1 eq p2 }">	
 			                		<c:choose>
-			                			<c:when test="${m.applysw eq 0 }"><span style="color:green">신청가능</span></c:when>
-			                			<c:when test="${m.applysw eq 1 }"><span style="color:black">승인대기중</span></c:when>
-			                			<c:when test="${m.applysw eq 2 }"><span style="color:red">불허가</span></c:when>
+			                			<c:when test="${m.applysw eq 0 }"><span style="color:green">신청가능</span></c:when>			                			
+			                			<c:when test="${m.applysw eq 1 }"><span style="color:black">승인대기중</span> </c:when>
+			                			<c:when test="${m.applysw eq 2 }"><span style="color:red">불허가</span> </c:when>
 			                		</c:choose>							   								      
 								</c:if>				    		
 							</c:forEach>					

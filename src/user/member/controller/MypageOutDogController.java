@@ -28,7 +28,6 @@ public class MypageOutDogController extends HttpServlet {
 		
 		String userid=(String)req.getSession().getAttribute("userid");
 		
-
 		//아이디 잘 가져오나 확인~
 
 		Dogout dogout = memberService.myPageDogOut(userid);

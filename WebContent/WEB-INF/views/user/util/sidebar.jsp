@@ -8,7 +8,7 @@
     width: 10%;
     height: 200px;
     right: 20px;
-    top: 500px;
+    top: 600px;
     color: #fff;
     z-index: 9999999;
 }

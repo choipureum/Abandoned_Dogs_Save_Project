@@ -33,16 +33,15 @@ public class HeaderController extends HttpServlet {
       
       //동물 세부사항
       List <Dog_Data> dogList =new ArrayList<>();
+      
       for(UserLike d:userlikeList) {
          Dog_Data dog = new Dog_Data();
          dog=memberDao.dogSelectBydogno(d.getDogno());
          dogList.add(dog);
-      }
+      }   
       //id를 기준으로 유저라이크 동물 수세기
       int dogcnt = userlikeList.size();
-    
-      
-     
+       
       req.setAttribute("userlikeList", userlikeList);
       req.setAttribute("dog_List", dogList);
       req.setAttribute("dogcnt", dogcnt);

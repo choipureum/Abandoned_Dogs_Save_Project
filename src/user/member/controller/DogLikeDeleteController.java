@@ -17,8 +17,8 @@ public class DogLikeDeleteController extends HttpServlet {
 	private MemberDao memberDao = new MemberDaoImpl();	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
-		String userid =req.getParameter("userid");
-		int dogno = Integer.parseInt(req.getParameter("dogno"));		
+		String userid =req.getParameter("userid").trim();
+		int dogno = Integer.parseInt(req.getParameter("dogno").trim());		
 		memberDao.DeleteUserlike(userid, dogno);	
 
 	}

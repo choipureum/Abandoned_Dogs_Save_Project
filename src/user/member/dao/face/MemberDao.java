@@ -189,6 +189,13 @@ public interface MemberDao {
 	 */
 	public void DeleteUserlike(String userid, int dogno);
 	
-	
+	/**
+	 * 유저라이크에 존재하는지 확인
+	 * 
+	 * @param userid
+	 * @param dogno
+	 * @return
+	 */
+	public int UserlikeCount(String userid, int dogno);
    
 }

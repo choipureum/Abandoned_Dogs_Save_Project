@@ -6,10 +6,15 @@
 <%@page import="user.dog.dto.UserLike"%>
 <%UserLike userList= (UserLike)request.getAttribute("userLike");  %>
 
+<style>
+
+
+</style>
 <!-- 자바스크립트 -->
 <script>
-setInterval(toggle, 300);
-
+var element = $(".blink");
+var shown = true;
+setInterval(toggle, 500);
 function toggle() {
 
    if(shown) {
@@ -23,55 +28,65 @@ function toggle() {
 </script>
 
 <script>
-$(document).ready(function(){
-	//체크박스 클릭시 이벤트		
-	 $("input[class='doglikeChk']").change(function(){
-	        if($("input[class='doglikeChk']").is(":checked")){
-        	
-		        var dogno = $(this).attr("data-dogno");
-		        var userid = $(this).attr("data-id");
-		        		        
-		        $.post("/dog/doglikeInsert",{"dogno":dogno,"userid":userid},function(res){
-		        	 swal({				
-			   			  icon: "success",
-			   			  text: "강아지 관심목록에 추가되었습니다"
-			   			});	   
-		        })   	     	 	        	 
-	        }else{
-	        	 var dogno = $(this).attr("data-dogno");
-			     var userid = $(this).attr("data-id");
-	        	
-			     $.post("/dog/doglikeDelete",{"dogno":dogno,"userid":userid},function(res){
-			    	 swal({				
-			   			  icon: "warning",
-			   			  title: "주의",
-			   			  text: "강아지 관심목록에서 제외됩니다!"			     
-			     });	     
-	   			});
-	        }
-	    });
+$(document).ready(function(){	
 
 });
-
+// 체크박스 체크시 이벤트
+function Chkevent(dogno){
+	 var chk=document.getElementById(dogno);
+	 var userid = "${userid}";
+	 if(chk.checked==true){
+		 $.post("/dog/doglikeInsert",{"dogno":dogno,"userid":userid},function(res){		        	
+	        	swal({				
+		   			  icon: "success",
+		   			  text: "강아지 관심목록에 추가되었습니다"
+		   			});	
+	 })
+	 }
+	 else{
+		 $.post("/dog/doglikeDelete",{"dogno":dogno,"userid":userid},function(res){        	       	 
+	        	 swal({				
+		   			  icon: "info",
+		   			  title: "주의",
+		   			  text: "강아지 관심목록에서 제외됩니다!"			     
+		     });	      
+		});
+	 }
+	
+}
 </script>
 
+
 <c:forEach items="${dogList }" var="dog">
+<div class="box" id="one" style="border-radius:20px;">
    <a href="/dog/detailView?dogno=${dog.dogno }"><img src="/upload/${dog.dog_stored_file_name }" alt="없음"  /></a>
    <div class="inner" style="text-align:left">
    <br>
+
    <ul style="padding:10px;">   
-      <li style="color:#FFA07A;font-size:18px;font-weight:bold;line-height:5px;">${dog.dogname }&nbsp;&nbsp;&nbsp;&nbsp;   
+      <li style="color:#FFA07A;font-size:18px;font-weight:bold;line-height:5px;"> ${dog.dogname }&nbsp;&nbsp;&nbsp;&nbsp;   
       
-       <!-- 하트 표시 -->    
+       <!-- 하트 표시 -->         
     <div class="pretty p-image p-plain">
-        <input type="checkbox" data-dogno="${dog.dogno }" class="doglikeChk"data-id=" <%=session.getAttribute("userid")%>"/>
+    <c:set var="sw" value="N"/>  
+    <!--  채운 하트, 안채운 하트 구분 -->
+    <c:forEach items="${userlike }" var="dogno">
+    <%--값 있는 경우 체크 --%> 
+    	<c:if test="${dogno.dogno eq dog.dogno }">
+      	 	 <input type="checkbox" id="${dog.dogno }"onclick="Chkevent(${dog.dogno})" checked="checked" data-dogno="${dog.dogno }" class="doglikeChk" data-id=" <%=session.getAttribute("userid")%>"/>
+       		 <c:set var="sw" value="Y"/>
+        </c:if>
+     </c:forEach>
+     <%--값 없는경우 체크 x --%>			
+        <c:if test="${sw eq 'N' }">
+        	 <input type="checkbox" id="${dog.dogno }"  onclick="Chkevent(${dog.dogno})" data-dogno="${dog.dogno }" class="doglikeChk" data-id=" <%=session.getAttribute("userid")%>"/>
+        </c:if>
         <div class="state">
             <img class="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Love_Heart_symbol.svg/591px-Love_Heart_symbol.svg.png">
-            <label>Like</label>
+            <label for="${dog.dogno }">Like</label>
         </div>
     </div>
 
-           
       <hr>
       <li>성별 :  
 	     <c:if test="${dog.doggender eq 'M' }" >수컷 </c:if>
@@ -86,7 +101,7 @@ $(document).ready(function(){
       	
     </ul>      
 </div>
-
+</div>
 </c:forEach>
 <script>
 

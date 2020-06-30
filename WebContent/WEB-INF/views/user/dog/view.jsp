@@ -71,10 +71,36 @@ border-bottom: none;
 #banner{
 padding:none;
 }
+  .progress-container {
+            left:0;
+            width: 100%;
+            height: 0.4em;
+            margin-bottom: 0px;
+            position: fixed;
+            top: 88px;
+            overflow: hidden;
+            background-color: white;
+            content: "";
+            display: table;
+            table-layout: fixed;
+        }
+
+            .progress-bar {
+            width: 0%;
+            float: left;
+            height: 80%;
+            z-index:9999999;
+            max-width: 100%;
+            background-color:#FFA07A;
+            -webkit-transition: width .4s ease;
+            -o-transition: width .4s ease;
+            transition: width .4s ease;
+        }
 
 </style>
 
 <c:import url="/main/header"></c:import>		
+
 
 <!-- Banner -->
 			<section id="banner">			
@@ -86,13 +112,17 @@ padding:none;
 					</ul>
 				</div>
 			</section>
+			<div class="progress-container">
+        <div class="progress-bar"></div>
+    </div>
+			
 <div id="doglist"></div>
 <div id="showplus"></div>
 <c:import url="/WEB-INF/views/user/util/footer.jsp"></c:import>
 
 <!-- 무한스크롤 -->
 <script type="text/javascript">
-var page = 0;
+var page = 1;
 
 $(window).scroll(function(){
    
@@ -103,7 +133,13 @@ $(window).scroll(function(){
       }      
 //       loadlist();
    }
-});
+   var wintop = $(window).scrollTop(), docheight = $('article').height(), winheight = $(window).height();
+   console.log(wintop);
+   var totalScroll = (wintop/(docheight-winheight))*100;
+   console.log("total scroll" + totalScroll);
+   $(".progress-bar").css("width",-totalScroll+30+"%");
+   });
+
 function loadlist() {
    $.ajax({
       type:"post"
@@ -122,6 +158,7 @@ function loadlist() {
       }
    })
 }   
+
 </script>
 
 
