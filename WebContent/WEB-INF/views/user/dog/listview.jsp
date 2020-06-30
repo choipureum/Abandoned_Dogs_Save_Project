@@ -5,40 +5,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="user.dog.dto.UserLike"%>
 <%UserLike userList= (UserLike)request.getAttribute("userLike");  %>
-<<<<<<< HEAD
 
 <style>
 
 
 </style>
-=======
->>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
 <!-- 자바스크립트 -->
 <script>
 var element = $(".blink");
 var shown = true;
-<<<<<<< HEAD
-setInterval(toggle, 500);
-=======
 
 setInterval(toggle, 200);
 
-function toggle() {
-
-   if(shown) {
-       element.hide();
-       shown = false;
-   } else {
-       element.show();
-       shown = true;
-   }
-}
-<!-- 자바스크립트 -->
-
-<script>
-setInterval(toggle, 300);
-
->>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
 function toggle() {
 
    if(shown) {
@@ -55,7 +33,6 @@ function toggle() {
 $(document).ready(function(){	
 
 });
-<<<<<<< HEAD
 // 체크박스 체크시 이벤트
 function Chkevent(dogno){
 	 var chk=document.getElementById(dogno);
@@ -79,51 +56,17 @@ function Chkevent(dogno){
 	 }
 	
 }
-=======
->>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
-
->>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
 </script>
 
 
 <c:forEach items="${dogList }" var="dog">
-<<<<<<< HEAD
-<div class="box" id="one" style="border-radius:20px;">
-=======
-<<<<<<< HEAD
-<div class="box" style="border-radius:20px;">                                                      
-=======
->>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
->>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
-   <a href="/dog/detailView?dogno=${dog.dogno }"><img src="/upload/${dog.dog_stored_file_name }" alt="없음"  /></a>
+<div class="box" id="one"style="border-radius:20px;">                                                      
+   <a href="#" onclick="dogDetail(${dog.dogno })" ><img src="/upload/${dog.dog_stored_file_name }" alt="없음"  /></a>
    <div class="inner" style="text-align:left">
    <br>
 
    <ul style="padding:10px;">   
-<<<<<<< HEAD
-      <li style="color:#FFA07A;font-size:18px;font-weight:bold;line-height:5px;"> ${dog.dogname }&nbsp;&nbsp;&nbsp;&nbsp;   
-=======
-<<<<<<< HEAD
-      <li style="color:#FFA07A;font-size:18px;font-weight:bold;line-height:5px;">${dog.dogname }&nbsp;&nbsp;&nbsp;&nbsp;
-      <span class="heartDog"><i class="fa fa-heart-o" aria-hidden="true" data-dogno="${dog.dogno }" data-userid="${userlike.userid }"></i> </span></li>
-      <hr>
-      <li>성별 :  
-	     <c:if test="${dog.doggender eq 'M' }" >수컷 </c:if>
-	     <c:if test="${dog.doggender eq 'W' }">암컷</c:if>       
-      </li>
-      <li>견종 : ${dog.dogkind }</li>
-      <li>중성화여부 : 
-       <c:if test="${dog.dogneu eq 'Y'}" >Y </c:if>
-	     <c:if test="${dog.dogneu eq 'N' }">N</c:if>       
-       </li>
-      <li>공고일 남은시일 :<span class="blink" style="color:#FF4500;font-weight:bold"> ${dog.dogenddate } 일!</span></li>
-      	
-    </ul>      
-   </div>
-=======
-      <li style="color:#FFA07A;font-size:18px;font-weight:bold;line-height:5px;">${dog.dogname }&nbsp;&nbsp;&nbsp;&nbsp;   
->>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
-      
+      <li style="color:#FFA07A;font-size:18px;font-weight:bold;line-height:5px;"> ${dog.dogname }&nbsp;&nbsp;&nbsp;&nbsp;            
        <!-- 하트 표시 -->         
     <div class="pretty p-image p-plain">
     <c:set var="sw" value="N"/>  
@@ -144,8 +87,7 @@ function Chkevent(dogno){
             <label for="${dog.dogno }">Like</label>
         </div>
     </div>
-
-      <hr>
+     <hr>
       <li>성별 :  
 	     <c:if test="${dog.doggender eq 'M' }" >수컷 </c:if>
 	     <c:if test="${dog.doggender eq 'W' }">암컷</c:if>       
@@ -156,18 +98,19 @@ function Chkevent(dogno){
 	     <c:if test="${dog.dogneu eq 'N' }">N</c:if>       
        </li>
       <li>공고일 남은시일 :<span class="blink" style="color:#FF4500;font-weight:bold"> ${dog.dogenddate } 일!</span></li>
-      	
-    </ul>      
->>>>>>> branch 'master' of https://github.com/choipureum/Abandoned_Dogs_Save_Project.git
+      </ul>
+
 </div>
 </div>
 </c:forEach>
 <script>
-
-
-
-</script>
-
+        function dogDetail(dogno){                   
+            var url = "/dog/detailView?dogno="+dogno;
+            var name = "";
+            var option = "width = 1200, height = 800, top = 100, left = 100 "
+            window.open(url, name, option);
+        }
+    </script>
 
 
 

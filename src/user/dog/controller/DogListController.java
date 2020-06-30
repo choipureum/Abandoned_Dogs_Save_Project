@@ -63,7 +63,6 @@ public class DogListController extends HttpServlet {
 			Dog_Data dog_Data = (Dog_Data) iterator.next();
 //				System.out.println("TEST  :  "+dog_Data);
 		}
-<<<<<<< HEAD
 		HttpSession session = req.getSession();
 	    String userid = (String) session.getAttribute("userid");
 	      
@@ -71,10 +70,8 @@ public class DogListController extends HttpServlet {
 	    List<UserLike> userlikeList = new ArrayList<>();
 	    userlikeList=memberDao.LikeSelectByid(userid);
 	    req.setAttribute("userlike", userlikeList);
-=======
 
 //			//페이징계산결과 MODEL값 전달
->>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
 		req.setAttribute("paging", paging);
 		req.setAttribute("userid", userid);
 //			//조회결과 MODEL값 전달

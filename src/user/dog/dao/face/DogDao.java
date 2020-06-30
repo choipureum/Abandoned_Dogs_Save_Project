@@ -103,7 +103,10 @@ public interface DogDao {
 	 */
 	public List<UserLike> selectUserList(UserLike userLike);
 
+	 public void UserlikeSWUpdate(String userid, int dogno);
 
+
+	public void insertDogClaim(Dog_Data claim, String userid);
 	
 	
 }

@@ -68,7 +68,7 @@ public class DogDaoImpl implements DogDao{
 			ps.setInt(2, paging.getEndNo());	//페이징 게시글 끝 번호
 			
 			rs = ps.executeQuery(); //SQL 수행 및 결과집합 저장
-			Date today = new Date();
+			
 			//조회 결과 처리
 			while(rs.next()) {
 				Dog_Data d = new Dog_Data(); //결과값 저장 객체
@@ -93,12 +93,6 @@ public class DogDaoImpl implements DogDao{
 				d.setDog_stored_file_name(rs.getString("dog_stored_file_name"));
 				d.setDog_file_size(rs.getInt("dog_file_size"));
 				d.setDog_del_gb(rs.getString("dog_del_gb"));
-				//공고일 구하기 남은 일수
-			  	long diffDay=0;		    
-			    //두날짜 사이의 시간 차이(ms)를 하루 동안의 ms(24시*60분*60초*1000밀리초) 로 나눈다.
-				diffDay = (today.getTime() - d.getDogdate().getTime()) / (24*60*60*1000);
-				diffDay= 10-diffDay;
-			    d.setDogenddate(diffDay);
 				//리스트에 결과값 저장
 				dogList.add(d);
 //				System.out.println("121212"+dogList);
@@ -495,7 +489,52 @@ public class DogDaoImpl implements DogDao{
 		return userlike;
 	}
 	
-	
+	@Override
+	   public void insertDogClaim(Dog_Data claim,String userid) {
+	      //DB연결 객체
+	      conn = JDBCTemplate.getConnection();
+	      
+	      String sql = "";
+	      sql += "INSERT INTO dog_claim(dogno,dogname,dogkind,doggender,dogneu,dogshelter,userid,dogenddate)";
+	      sql += " VALUES ( ?,?,?,?,?,?,?,?)";
+	      
+	      try {
+	         ps= conn.prepareStatement(sql);
+	         
+	         ps.setInt(1, claim.getDogno());
+	         ps.setString(2, claim.getDogname());
+	         ps.setString(3, claim.getDogkind());
+	         ps.setString(4, claim.getDoggender());
+	         ps.setString(5, claim.getDogneu());
+	         ps.setInt(6, claim.getShelterno());
+	         ps.setString(7, userid);
+	         ps.setLong(8, claim.getDogenddate());
+	         ps.executeUpdate();
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      } finally {
+	         JDBCTemplate.close(ps);
+	      }
+	      
+	   }
+	   
+	   @Override
+	   public void UserlikeSWUpdate(String userid, int dogno) {
+	      conn = JDBCTemplate.getConnection();
+	      String sql=" update userlike set applysw=1 where userid=? and dogno=? ";
+	      
+	      try {
+	      ps= conn.prepareStatement(sql);
+	      ps.setString(1, userid);
+	      ps.setInt(2, dogno);
+	      ps.executeUpdate();
+	      
+	   } catch (SQLException e) {
+	      e.printStackTrace();
+	   }finally {
+	        JDBCTemplate.close(ps);
+	     }
+	   }
 	
 	
 	
