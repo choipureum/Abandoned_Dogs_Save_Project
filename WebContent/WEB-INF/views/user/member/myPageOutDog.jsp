@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ page import="admin.dto.Dogout"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>   
 
@@ -9,6 +11,7 @@
 
 <!--Alert 디자인 라이브러리 -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 
 <script type="text/javascript">
 
@@ -73,14 +76,23 @@ th{
 
 <body>
 
+		<!-- Banner -->
+			<section id="banner">			
+				<div class="content">
+					<h1> <span class="light">B y e D o g</span></h1>
+					<p>분양된 강아지의 목록을 확인 할 수 있습니다</p>
+					<ul class="actions">
+<!-- 						<li><a href="#one" class="button scrolly">DaSom 알아보기</a></li> -->
+					</ul>
+				</div>
+			</section>
+
 <div class="mypagedogout">
 
 <br>
-<h5>분양된 강아지의 목록을 확인 할 수 있습니당</h5>
 <h2> B y e D o g </h2>
 <br>
 <hr>
-
 	<!-- Table -->
 	<div class="table-wrapper">
 		<table style="1px solid">
@@ -96,18 +108,17 @@ th{
 			<tbody>
 				<tr>
 					<td style="text-align:center; margin:0 auto;">
-			        <img  id="img" src="/upload/${ dogout.dog_stored_file_name }" alt="" style="width:100px;height:70px"/></td>			                
+					<img  id="img" src="/upload/${ dogout.dog_stored_file_name }" alt="" style="width:100px;height:70px"/></td>			                
 			        <td>${dogout.dogname }</td>	
-			        <td>${dogout.dogkind }</td>	
-			        <td>${dogout.doggender }</td>
+			        <td>${dogout.dogkind }</td>
+			        <td>${dogout.doggender }</td>	
 			        <td>${dogout.outdate }</td>
-
+				</tr>		
+		
 			</tbody>
-
 		</table>	
 	</div>
 </div>
-
 
 </body>
 <c:import url="/WEB-INF/views/user/util/footer.jsp"></c:import>

@@ -5,6 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>   
 
 
+<c:import url="/main/header"></c:import>
 <c:import url="/WEB-INF/views/user/util/header.jsp"></c:import>
 <c:import url="/WEB-INF/views/user/util/sidebar.jsp"></c:import>
 
@@ -192,7 +193,7 @@ function withDraw(){
 		if(Yes){
 			$.post("/member/delete",{"userid":userid},function(res){
 				swal({
-					icon:"success",
+					icon:"success",		
 					text: "탈퇴되었습니다"
 				});
 				location.href="/main";
@@ -363,6 +364,28 @@ h1 {
 </style>
 </head>
 <body>
+
+
+
+		<!-- Banner -->
+			<section id="banner">			
+				<div class="content">
+					<h1> <span class="light">개인 정보 변경</span></h1>
+					<p>개인정보를 변경 할 수 있습니당! </p>
+					<ul class="actions">
+<!-- 						<li><a href="#one" class="button scrolly">DaSom 알아보기</a></li> -->
+					</ul>
+				</div>
+			</section>
+
+
+
+
+
+
+
+
+
 <!-- 입력  -->
 <div class="container">
 

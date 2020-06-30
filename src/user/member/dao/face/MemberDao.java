@@ -166,7 +166,7 @@ public interface MemberDao {
    	public void DeleteDogMiss(String userid);
    	public void DeleteDogMiss_File(String userid);
 
-   	/**
+ /* 
    	 * 마이페이지 분양받은 강아지
    	 * @param userid
    	 * @return
@@ -199,3 +199,5 @@ public interface MemberDao {
 	public int UserlikeCount(String userid, int dogno);
    
 }
+
+

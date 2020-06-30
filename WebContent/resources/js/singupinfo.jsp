@@ -98,6 +98,16 @@ input[type="checkbox"]:checked + label:before { border: 7px solid #666; text-ali
 </style>
 </head>
 <body>
+			<section id="banner">			
+				<div class="content">
+					<h1> <span class="light">회 원 가 입</span></h1>
+					<p>개인정보동의</p>
+					<ul class="actions">
+<!-- 						<li><a href="#one" class="button scrolly">DaSom 알아보기</a></li> -->
+					</ul>
+				</div>
+			</section>
+
 
 <div class="container">
 	<h5><span>약관 동의  </span>페이지</h5>

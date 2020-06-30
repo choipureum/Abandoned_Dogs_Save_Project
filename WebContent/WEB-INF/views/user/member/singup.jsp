@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>  
 
-<c:import url="/WEB-INF/views/user/util/header.jsp"></c:import>
+<c:import url="/main/header"></c:import>
 
 <!--Alert 디자인 라이브러리 -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -372,6 +372,18 @@ h5 span{
 </style>
 </head>
 <body>
+
+			<section id="banner">			
+				<div class="content">
+					<h1> <span class="light">회 원 가 입</span></h1>
+					<p>모 두 환 영 합 니 다</p>
+					<ul class="actions">
+<!-- 						<li><a href="#one" class="button scrolly">DaSom 알아보기</a></li> -->
+					</ul>
+				</div>
+			</section>
+
+
 <!-- 입력  -->
 <div class="container">
 

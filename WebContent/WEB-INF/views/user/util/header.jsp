@@ -187,6 +187,7 @@ a.badge-danger:focus, a.badge-danger.focus {
 			<nav id="menu">
 				<ul class="links">
 					<li><a href="/main">홈</a></li>
+
 					<c:if test="${not empty login }">
 						<li><a href="/mypage/main">마이페이지</a></li>
 					</c:if>

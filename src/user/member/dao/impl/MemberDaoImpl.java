@@ -200,7 +200,6 @@ public class MemberDaoImpl implements MemberDao{
 			result.setUseraddress(rs.getString("useraddress"));
 			result.setUsergrade(rs.getString("usergrade"));
 			result.setUserregdate(rs.getDate("userregdate"));
-			result.setUsergrade(rs.getString("usergrade"));
 			
 		}
 	} catch (SQLException e) {
@@ -823,32 +822,47 @@ public class MemberDaoImpl implements MemberDao{
 	public Dogout myPageDogOut(String userid) {
 	
 		conn=JDBCTemplate.getConnection();
-		
+
 		String sql= "select * from dogout where userid=?";
 		
 		Dogout result =null;
 
 		   
+<<<<<<< HEAD
 		try {			
 			ps=conn.prepareStatement(sql);			
 			ps.setString(1, userid);			
+=======
+		try {
+			ps=conn.prepareStatement(sql);
+			
+			ps.setString(1, userid);
+			
+>>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
 			rs=ps.executeQuery(); //결과 집합
 			
-			while(rs.next()) {				
+			while(rs.next()) {
 				
+<<<<<<< HEAD
 				result=new Dogout();				
 				result.setUserid(userid);
+=======
+>>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
 				result.setDogname(rs.getString("dogname"));
 				result.setDogkind(rs.getString("dogkind"));
 				result.setDoggender(rs.getString("doggender"));
 				result.setOutdate(rs.getDate("outdate"));
 				result.setDog_stored_file_name(rs.getString("dog_stored_file_name"));
+<<<<<<< HEAD
+=======
+				
+>>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
 			}
 			
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
-			
 			//DB객체 닫기
 			JDBCTemplate.close(rs);
 			JDBCTemplate.close(ps);
@@ -856,7 +870,12 @@ public class MemberDaoImpl implements MemberDao{
 		   return result;
 
 	}
+
+@Override
+public void InsertUserlike(String userid, int dogno) {
+	// TODO Auto-generated method stub
 	
+<<<<<<< HEAD
 	@Override
 		public void DeleteUserlike(String userid, int dogno) {
 			conn = JDBCTemplate.getConnection();
@@ -871,7 +890,15 @@ public class MemberDaoImpl implements MemberDao{
 				e.printStackTrace();
 		}
 	}
+=======
+}
+
+@Override
+public void DeleteUserlike(String userid, int dogno) {
+	// TODO Auto-generated method stub
+>>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
 	
+<<<<<<< HEAD
 	@Override
 		public void InsertUserlike(String userid, int dogno) {
 			conn = JDBCTemplate.getConnection();
@@ -909,5 +936,13 @@ public class MemberDaoImpl implements MemberDao{
 		}
 			return res;
 	}
+=======
+}
+
+	
+	
+	
+
+>>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
 
 }

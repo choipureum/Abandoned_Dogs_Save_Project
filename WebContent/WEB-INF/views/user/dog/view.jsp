@@ -1,75 +1,66 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%--한글 인코딩 --%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%@page import="user.dog.dto.Dog_Data"%>
 <%@page import="user.dog.dto.UserLike"%>
 <%@page import="java.util.List"%>
 
 <%List<Dog_Data> list = (List)request.getAttribute("dogList");  %>
-     
+
 <!-- 스타일 css -->
 <style type="text/css">
 #doglist {
-   display: grid;
-   grid-template-columns: 1fr 1fr 1fr 1fr;
-    row-gap: 10px;
-    column-gap: 30px;
-	width:85em;
-
-    margin: 0 auto;
-    margin-top : 100px;
-    
-}
-.inner{
-background-color: white;
-text-align: center;
-margin-top : 20px;
-}
-.inner li{
-font-size: 16px;
-color : black;
-list-style: none;
-font-family: 'Arita-dotum-Medium'; 
-}
-.inner ul li{
-
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	row-gap: 10px;
+	column-gap: 30px;
+	width: 85em;
+	margin: 0 auto;
+	margin-top: 100px;
 }
 
-
-
-
-body{
-background: white;
+.inner {
+	background-color: white;
+	text-align: center;
+	margin-top: 20px;
 }
 
-
+.inner li {
+	font-size: 16px;
+	color: black;
+	list-style: none;
+	font-family: 'Arita-dotum-Medium';
 }
 
+.inner ul li {
+	
+}
+
+body {
+	background: white;
+}
+
+}
 .box {
-width:320px;
-height: 440px;
-
+	width: 320px;
+	height: 440px;
 }
+
 .box a img {
-   width: 100%;
-   height: 350px;
-   
-   
-}
-.box a img:hover{
-transform:scale(1.05);
-transition:2s;
+	width: 100%;
+	height: 350px;
 }
 
-.box a{
-border-bottom: none;
+.box a img:hover {
+	transform: scale(1.05);
+	transition: 2s;
 }
 
-#banner{
-padding:none;
+.box a {
+	border-bottom: none;
 }
   .progress-container {
             left:0;
@@ -97,12 +88,31 @@ padding:none;
             transition: width .4s ease;
         }
 
+#banner {
+	padding: none;
+}
 </style>
 
-<c:import url="/main/header"></c:import>		
+<!-- 담아두기css -->
+<style type="text/css">
+.fa-heart-o {
+	color: red;
+	cursor: pointer;
+}
+
+.fa-heart {
+	color: red;
+	cursor: pointer;
+}
+</style>
+
+<c:import url="/main/header"></c:import>
+
+<c:import url="/main/header"></c:import>
 
 
 <!-- Banner -->
+<<<<<<< HEAD
 			<section id="banner">			
 				<div class="content">
 					<h1>Fine Family with Dog</h1>
@@ -116,6 +126,18 @@ padding:none;
         <div class="progress-bar"></div>
     </div>
 			
+=======
+<section id="banner">
+	<div class="content">
+		<h1>Fine Family with Dog</h1>
+		<p>유기견 입양</p>
+		<ul class="actions">
+			<li><a href="#doglist" class="button scrolly">갱얼쥐입양</a></li>
+		</ul>
+	</div>
+</section>
+
+>>>>>>> branch 'master' of https://github.com/choipureum/-Abandoned_Dogs_Save_Project.git
 <div id="doglist"></div>
 <div id="showplus"></div>
 <c:import url="/WEB-INF/views/user/util/footer.jsp"></c:import>
@@ -148,9 +170,7 @@ function loadlist() {
          curPage: page++
       }
       , dataType: "html"
-      , success: function(h) {
-    	  
-         console.log("AJAX success")
+      , success: function(h) {  	  
          $("#doglist").html( $("#doglist").html() + h )
       }
       , error: function() {
