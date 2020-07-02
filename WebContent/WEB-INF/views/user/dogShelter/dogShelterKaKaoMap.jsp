@@ -46,7 +46,7 @@ $(document).on("click", ".dogshelterlist", function() {
 
 </script>
 	<!-- 헤더 임포트 -->
-	<c:import url="/WEB-INF/views/user/util/header.jsp"></c:import>
+	<c:import url="/main/header"></c:import>
 	<c:import url="/WEB-INF/views/user/util/sidebar.jsp"></c:import>
 		<!-- Banner -->
 			<section id="banner">			
@@ -58,12 +58,25 @@ $(document).on("click", ".dogshelterlist", function() {
 					</ul>
 				</div>
 			</section>
+	<div>
+		<div style="margin:80px;padding:30px;border-radius:20px; border:3px solid #778899;text-align:left">
+<h3 style="color:#FFA07A">보호소를 통한 유기견 조회</h3>
 
-	<div style="position: relative; left: 10%;">
+<h4>유의사항</h4>
+<ol>
+	<li>등록된 보호소 클릭시 각종정보와 유기견 조회를 이용할 수 있는 서비스입니다.</li>
+	<li>모든 동물은 공고일 10일 이내 보호소에서 안락사 예정입니다</li>
+	<li>모든 보호소의 입양과정은 보호소에서 인도됩니다 </li>
+</ol>
+</div>		
+	</div>
+	<div style="position: relative;left:10%;border-radius:20px;" id="one">
 		<div id="map" style="width: 80%; height: 900px;  "></div>
 		<div id="container"
 			style="z-index: 9999; position: absolute; display: inline-block; width: 30%; height: 8%; left: -15px; bottom: 18px;"></div>
 	</div>
+	<br><br><br><br>	<br><br><br><br>
+	
 	<!-- Ajax 영역  -->
 	<div id="dog"></div>
 <!-- 	<div id="showplus"><button>더보기</button></div> -->
@@ -151,8 +164,8 @@ $(document).on("click", ".dogshelterlist", function() {
 <%--  			<%=dogList.get(i).getSheltername()%>  --%>
 <%--  			<%=dogList.get(i).getShelteraddress()%>  --%>
 		//// 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+	
 		//iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
-
 			// 마커에 표시할 인포윈도우를 생성합니다 
 			var infowindow = new kakao.maps.InfoWindow({
 			content : '<div class="dogshelterlist" >'+

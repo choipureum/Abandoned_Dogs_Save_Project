@@ -24,7 +24,7 @@ import user.qna.dao.impl.QnaDaoImpl;
 import user.qna.dto.QNA;
 
 import user.qna.dto.QnaFile;
-
+import user.qna.dto.Qna_Reply;
 import user.qna.service.face.QnaService;
 import util.Paging;
 
@@ -399,6 +399,14 @@ public class QnaServiceImpl implements QnaService {
 		boardDao.delete(board);
 		
 	}//end
+
+	
+	//게시글 답변 조회
+	@Override
+	public Qna_Reply Qna_ReplyDetail(int qnano) {
+
+		return boardDao.Qna_ReplySelectByNo(qnano);
+	}
 	
 	
 

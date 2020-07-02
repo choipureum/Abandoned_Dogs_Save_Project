@@ -114,7 +114,7 @@ a:hover{
  	z-index: 100;  
 
 	padding:50px 50px 50px;
-	width: 550px; height: 530px; 
+	width: 600px; height: 535px; 
 	transform: translate(-50%, -50%); 
 	box-sizing: border-box; 
 	background: #fff;
@@ -160,18 +160,18 @@ a:hover{
 
 <div class="popup">
 
-<div class="container">
+<div class="container" >
 <!--    아이디 아이콘 -->
    <div id="icons">
-      <i class="material-icons">person_outline</i>   
+      <i class="fas fa-user"></i>   
    </div>
 <!--    비밀번호ㅗ 아이콘 -->
    <div id="lock">
-      <i class="material-icons">lock_outline</i>
+      <i class="fas-fa-lock">lock_outline</i>
    </div>
       <h3><span>로그인 </span></h3>
    <hr>
-   <form action="/login/login" method="post">
+   <form action="/login/login" method="post" >
    
       <!-- 로그인 틀ㅇ -->
       <label for="userid"></label>
@@ -180,7 +180,7 @@ a:hover{
       <label for="userpw"></label>
       <input type="password" id="userpw" name="userpw"  placeholder="비밀번호" required style="height:30px; width: 380px" /><br>
       <!-- <button>로그인</button> -->
-      <input type="submit" value="로그인" class="login"/>
+      <input type="submit" value="로그인" class="login" />
    </form>
    
    <input type="button" class="singup" value="회원가입" onclick="location.href='/resources/js/singupinfo.jsp'" />

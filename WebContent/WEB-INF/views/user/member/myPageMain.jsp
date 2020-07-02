@@ -5,7 +5,6 @@
 
 <c:import url="/main/header"></c:import>
 
-<c:import url="/main/header"></c:import>
 <c:import url="/WEB-INF/views/user/util/sidebar.jsp"></c:import>
 
 
@@ -39,6 +38,32 @@ $(document).ready(function() {
 
 </script>
 
+<style type="text/css">
+
+
+.col-lg-6{
+   width:600px;
+
+/*    margin:0 auto; */
+/*    text-align:center; */
+   
+}
+
+.h2{
+   font-size: 30px;
+}
+
+.itembox {
+   text-align: center;
+}
+.itembox > div {
+   display: inline-block;
+}
+
+
+</style>
+
+
 </head>
 <body>
 
@@ -47,9 +72,9 @@ $(document).ready(function() {
 				<div class="content">
 					<h1>For Dog, For Human</h1>
 					<p>M y P a g e </p>
-<!-- 					<ul class="actions"> -->
-<!-- 						<li><a href="#one" class="button scrolly">DaSom 알아보기</a></li> -->
-<!-- 					</ul> -->
+					<ul class="actions">
+						<li><a href="#one" class="button scrolly">MyPage</a></li>
+					</ul>
 				</div>
 			</section>
 
@@ -58,10 +83,12 @@ $(document).ready(function() {
 <section class="content-section" id="portfolio">
 	<div class="container">
     <div class="content-section-heading text-center">
-        <h3 class="text-secondary mb-0">Mypage</h3>
-        <h2 class="mb-5">MyPage</h2>
+        <h3 class="text-secondary mb-0" style="text-align: center;" id="one">>Mypage</h3>
+        <h2 class="mb-5" style="text-align: center;">MyPage</h2>
     </div>
-    <div class="row no-gutters">
+
+    <!--     <div class="row no-gutters"> -->
+    <div class="itembox">
       <div class="col-lg-6">
         <a class="portfolio-item" href="#!">
           <div class="caption" onclick="Move(1);">
@@ -75,10 +102,10 @@ $(document).ready(function() {
       </div>
       <div class="col-lg-6">
         <a class="portfolio-item" href="#!">
-          <div class="caption">
+          <div class="caption" onclick="Grade();">
             <div class="caption-content">
-              <div class="h2">리뷰관리</div>
-              <p class="mb-0">작성한 리뷰를 관리 할 수 있습니다!</p>
+              <div class="h2">등급</div>
+              <p class="mb-0">다솜에서 사용하는 등급 안내입니당!</p>
              </div>
            </div>
            <img class="img-fluid" src="/resources/mypageTemplate/img/portfolio-2.jpg" alt="">
@@ -136,6 +163,11 @@ function Move(sw){
 
 function DogOut(){
 	location.href="/mypage/outdog";
+}
+
+function Grade(){
+	
+	location.href="/mypage/grade";
 }
 
 </script>

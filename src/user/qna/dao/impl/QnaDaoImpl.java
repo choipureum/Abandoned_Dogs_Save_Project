@@ -8,10 +8,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 
 import user.qna.dao.face.QnaDao;
 import user.qna.dto.QNA;
 import user.qna.dto.QnaFile;
+import user.qna.dto.Qna_Reply;
 import util.JDBCTemplate;
 import util.Paging;
 
@@ -317,13 +319,11 @@ public class QnaDaoImpl implements QnaDao {
 	@Override
 	//write.jsp로 부터 전달받은 파라미터를 저장 
 	public void insert(QNA board) {
-		
 		conn =JDBCTemplate.getConnection(); //DB 연결
-
 		//다음 게시글 번호 조회 쿼리
 		String sql = "";
 		sql += "INSERT INTO qna(qnano,qnatitle,qnacontent,qnahit,qnadate,qnawriter,delsw) ";
-		sql += " VALUES (?, ?, ?, 0, sysdate,?,?)";
+		sql += " VALUES (?, ?, ?, 0, sysdate,?,'N')";
 		
 		try {
 			//DB작업
@@ -332,8 +332,6 @@ public class QnaDaoImpl implements QnaDao {
 			ps.setString(2, board.getQnaTitle());
 			ps.setString(3, board.getQnaContent());
 			ps.setString(4, board.getQnaWriter());
-			ps.setString(5, board.getDelsw());
-
 			ps.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -673,7 +671,37 @@ public class QnaDaoImpl implements QnaDao {
 			}
 		}
 	}//end
-	
+
+	// 게시글 댓글 답변 조회
+	@Override
+	public Qna_Reply Qna_ReplySelectByNo(int qnano) {
+
+		conn = JDBCTemplate.getConnection();
+
+		String sql = "";
+		sql += "select * from qna_reply where qnano = ?";
+
+		Qna_Reply qna_Reply = new Qna_Reply();
+
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, qnano);
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				qna_Reply.setQnano(qnano);
+				qna_Reply.setRef_title(rs.getString("ref_title"));
+				qna_Reply.setRef_content(rs.getNString("ref_content"));
+				qna_Reply.setRef_date(rs.getDate("ref_date"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return qna_Reply;
+	}
+
 }
 
 	

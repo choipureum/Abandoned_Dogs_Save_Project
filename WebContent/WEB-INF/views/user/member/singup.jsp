@@ -378,7 +378,6 @@ h5 span{
 					<h1> <span class="light">회 원 가 입</span></h1>
 					<p>모 두 환 영 합 니 다</p>
 					<ul class="actions">
-<!-- 						<li><a href="#one" class="button scrolly">DaSom 알아보기</a></li> -->
 					</ul>
 				</div>
 			</section>
@@ -387,7 +386,7 @@ h5 span{
 <!-- 입력  -->
 <div class="container">
 
-	<h5><i class="fas fa-paw" style="color :purple;"></i><span> 회원가입 </span><i class="fas fa-paw" style="color :purple;"></i></h5>
+	<h5 id="one"><i class="fas fa-paw" style="color :purple;"></i><span> 회원가입 </span><i class="fas fa-paw" style="color :purple;"></i></h5>
 	<hr>
 	<!-- 비밀번호 확인 해주기  -->
 	<!-- 메인화면 으로 가야하지 않나..?-->

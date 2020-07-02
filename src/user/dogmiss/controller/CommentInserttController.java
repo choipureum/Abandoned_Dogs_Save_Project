@@ -19,12 +19,10 @@ public class CommentInserttController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
    
-			DogMissService dogMissService = new DogMissServiceImpl();
+	DogMissService dogMissService = new DogMissServiceImpl();
 	
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-
 		//doGet으로 받은 request를 doPost로 보냄 
 		doPost(request, response);
 		

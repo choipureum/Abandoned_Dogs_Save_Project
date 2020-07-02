@@ -7,91 +7,13 @@
 <c:import url="/main/header"></c:import>
 <c:import url="/WEB-INF/views/user/util/sidebar.jsp"></c:import>
 		
-<script type="text/javascript">
-$(document).ready(function(){
-	$(".open").on('click',function(){
-		$(".popup").show();
-		$(".dim").show();
-	});
-	$(".popup .close").on('click',function(){
-		$(this).parent().hide();
-		$(".dim").hide();
-	});
-
-	//공고일 슬라이더
-	$('.dogslider').bxSlider({   		
-		minSlides: 1,
-		maxSlides: 6,
-		slideWidth:300,
-		slideMargin:30,
-		speed:0.5,
-		moveSlides:1,
-		pager:false,	
-		auto: true,	
-		shrinkItems:true,
-		controls:false
-	});
-	
-});
-</script>		
+		
 <style type="text/css">
 div > img{
 	width:100px;
 	height:150px;
 }
 
-
-
-.Popup-container {
-   width:385px;
-   line-height:50px;
-   margin: 40px auto;
-
-}
-/* 로그인입니다 css */
-h3 {
-   text-align: center;
-}
-
-h3 span{
-   color:#ff9364;
-}
-/* 로그인버튼 */
-.login {
-   background-color: #6E6E6E;
-   color:white;
-   border-radius: 5px;
-   border: 0;
-   padding: 10px 172px;
-   
-}
-/* 회원가입버튼 */
-.singup {
-
-   background-color:#6E6E6E;
-   color:white;
-   border-radius: 5px;
-   border: 0;
-   padding: 10px 165px;
-   
-}
-
-/* 아이디 비밀번호 찾기 */
-.found {
-	position :relative;
-	left:25px;
-	margin: 0px 3px; 
-	text-decoration: none;
-	font-family: "돋움", dotum, "굴림", gulim, arial, helvetica, sans-serif;
-	font-size: 13px;
-}
-.found:hover{
-	text-decoration: underline;	
-}
-
-
-</style>
-<style>
 div>img{
 	width:300px;
 	height:300px;
@@ -99,53 +21,24 @@ div>img{
 }
 </style>
 
-<style type="text/css">
+<script>
+$(document).ready(function(){
+//공고일 슬라이더
+$('.dogslider').bxSlider({   		
+	minSlides: 1,
+	maxSlides: 6,
+	slideWidth:300,
+	slideMargin:30,
+	speed:0.1,
+	moveSlides:1,
+	pager:false,	
+	auto: true,	
+	shrinkItems:true,
+	controls:false
+});
+});
+</script>
 
-/* 팝업처리 */
-.popup { 
-	display: none; 
-	position: fixed; 
- 	left: 50%;  
- 	top: 50%;  
- 	z-index: 100;  
-
-	padding:50px 50px 50px;
-	width: 550px; height: 530px; 
-	transform: translate(-50%, -50%); 
-	box-sizing: border-box; 
-	background: #fff;
-}
-.popup h2 { 
-	padding: 0 0 42px; 
-	border-bottom: 3px solid #444; 
-	font-weight: normal;
-	font-size:36px; 
-	color:#222; 
-	text-align: center; 
-	line-height: 100%;
-}
-.popup .close { 
-	position: absolute; 
-	right:40px; top: 40px; width: 41px; height: 41px; 
-	background: url(/resources/mypageTemplate/img/btn-close.png) no-repeat; 
-	color:transparent;
-}
-.popup .con { 
-	padding: 20px 48px; 
-	border-bottom:1px solid #e8e8e8;
-}
-
-.dim { 
-	display: none;
-	position: fixed; 
-	left: 0; top: 0; 
-	z-index: 99; 
-	width: 100%; height: 100%; 
-	background:rgba(0,0,0,0.5);
-}
-
-
-</style>
 <link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
@@ -287,46 +180,24 @@ div>img{
 				<div class="dogslider">
 				<c:forEach items="${dogDataList }" var="m"> 
 					  <div>
-					 	<h3> <a href="#" style="color:#696969">이름 : ${m.dogname }</a></h3>					 	  
+					 	<h3> <a href="#" onclick="dogDetail(${m.dogno })" style="color:#696969">이름 : ${m.dogname }</a></h3>					 	  
 			              <img  id="img" src="/upload/${ m.dog_stored_file_name }" alt="" />			               
 			               <h4 style="color:#696969"><span style="color:#87CEEB;font-size:1.4em;">${m.dogenddate }</span> 일 뒤 안락사 예정입니다</h4>
 			               </div>
 				</c:forEach> 
 				</div>
 			</section>
+		<script>
+        function dogDetail(dogno){                   
+            var url = "/dog/detailView?dogno="+dogno;
+            var name = "";
+            var option = "width = 1200, height = 800, top = 100, left = 100 "
+            window.open(url, name, option);
+        }
+    </script>
 			
-			<%-------------로그인 버튼 팝업 --%>
-				<div class="popup">
-				
-				<div class="Popup-container">
-				      <h3><span><i class="fas fa-bone text-gray-300"></i>&nbsp;&nbsp;로그인</span></h3>
-				   <hr>
-				   <form action="/login/login" method="post">				   
-				      <!-- 로그인 틀 -->
-				     
-				      	<label for="userid"></label>
-				      	<input type="text" class="inputForm" id="userid" name="userid" placeholder="ID" required style="height:50px; width: 380px" />
-							
-				      <label for="userpw"></label>
-				      <input type="password"class="inputForm" id="userpw" name="userpw"  placeholder="PASSWORD" required style="height:50px; width: 380px" /><br>
-				      
-				      <!-- <button>로그인</button> -->
-				       &nbsp;&nbsp;&nbsp;&nbsp;
-				      <input type="submit" value="로그인" class="login"/>	
-				   
-				     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 	  			   
-				  	 <input type="button" class="singup" value="회원가입" onclick="location.href='/resources/js/singupinfo.jsp'" />						
-					</form>				
-					<!-- 	아이디비밀번호 찾기 -->
-					<a href="/id/find" class="found">아이디</a>
-					<a href="/pw/find" class="found">비밀번호찾기</a>&nbsp;&nbsp;&nbsp;
-					<a href="/admin" class="found">관리자 로그인</a>
-				
-				</div>
-				<a href="#a" class="close">닫기</a>
-				</div>
+			
 
-<div class="dim"></div>
 
 
 		<c:import url="/WEB-INF/views/user/util/footer.jsp"></c:import>

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import admin.dto.DogClaimDTO;
+import admin.dto.Dogout;
 import user.dog.dto.DogDTO;
 import user.dog.dto.Dog_Data;
 import user.dog.dto.Dog_File_DTO;
@@ -47,8 +48,8 @@ public interface DogDao {
 	 * 
 	 * @return
 	 */
-	public int selectCntAll();
-
+	//public int selectCntAll();
+	public int selectCntAll(String search, int search2);
 
 
 //	public UserLike insertUserLike(HttpServletRequest req);
@@ -107,6 +108,33 @@ public interface DogDao {
 
 
 	public void insertDogClaim(Dog_Data claim, String userid);
+	/**
+	 * 유저아이디랑 dogno을 기준으로 userlike 찾기
+	 * 
+	 * @param userid
+	 * @param dogno
+	 * @return
+	 */
+	public int userlikeChk(String userid, int dogno);	
+	/**
+	 * 
+	 * userlike에 넣으면서 신청하기
+	 * 
+	 * 
+	 * @param userid
+	 * @param dogno
+	 */
+	public void insertUserlikeApply(String userid, int dogno);
+	
+	/**
+	 * 입양신청이 진행됫는지 체크하기
+	 * 
+	 * @param userid
+	 * @param dogno
+	 * @return
+	 */
+	public int chkUseridApply(String userid, int dogno);
+	
 	
 	
 }

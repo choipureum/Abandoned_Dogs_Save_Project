@@ -44,14 +44,10 @@ public class DogShelterLsitDogDetailListController extends HttpServlet {
 		if (param != null && !"".equals(param)) {
 			shelterno = Integer.parseInt(param);
 		}
-		System.out.println("shelterno : " + shelterno);
-		System.out.println("shelternoController" + shelterno);
 
 		// 빈 DogShlter 객체 생성
 		Dog_Data dog = new Dog_Data();
 		dog.setShelterno(shelterno); // shelternno 저장
-		// TEST
-		System.out.println("Dog_Data : " + dog);
 
 		// 유기견 상세조회
 		List<Dog_Data> result = dogShelterService.dogDetail(dog, paging);
@@ -64,8 +60,6 @@ public class DogShelterLsitDogDetailListController extends HttpServlet {
 			System.out.println(dog);
 		}
 
-		// TEST
-		System.out.println("result : " + result);
 
 		// 조회된 결과 값을 VIEW에 전달하기 - request 객체 사용
 		req.setAttribute("result", result);

@@ -16,6 +16,7 @@ import user.member.dao.impl.MemberDaoImpl;
 @WebServlet("/dog/applyOK")
 public class DogApplyController extends HttpServlet {
    private static final long serialVersionUID = 1L;
+   
     private DogDao dogDao = new DogDaoImpl();
    private MemberDao memberDao = new MemberDaoImpl();
    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -23,8 +24,17 @@ public class DogApplyController extends HttpServlet {
       String userid= req.getParameter("userid");
       int dogno = Integer.parseInt(req.getParameter("dogno"));
       
-      //userlike - > applysw=1 로 업데이트
-      dogDao.UserlikeSWUpdate(userid, dogno);
+      //userlike에 있는지 체크
+      int sw=dogDao.userlikeChk(userid,dogno);
+      
+      if(sw==1) {
+    	  //있는경우
+    	   //userlike - > applysw=1 로 업데이트
+          dogDao.UserlikeSWUpdate(userid, dogno);
+      }else {
+    		//없는경우
+    	  dogDao.insertUserlikeApply(userid,dogno);
+      }       
       //dogno을 기준으로 dog정보 객체 생성
       Dog_Data dog = new Dog_Data();
       dog= memberDao. dogSelectBydogno(dogno);

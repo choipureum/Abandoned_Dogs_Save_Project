@@ -22,6 +22,7 @@ import admin.dao.impl.AdminMemberListDaoImpl;
 import admin.dto.DogClaimDTO;
 import admin.service.face.AdminMemberListService;
 import user.dog.dto.DogDTO;
+import user.dog.dto.Dog_Data;
 import user.dog.dto.Dog_File_DTO;
 import user.member.dto.MemberDTO;
 import admin.service.*;
@@ -266,6 +267,11 @@ public class AdminMemberListServiceImpl implements AdminMemberListService{
 		//userlike 해당 dogno 전부 삭제
 		adminMemberListDao.DeletedognoUserlike(dogno);
 		
+		//유저 아이디를 통해 dogout테이블에 삽입
+		Dog_Data dog = new Dog_Data();
+		dog= adminMemberListDao.selectByDogno(dogno);	
+		adminMemberListDao.insertDogout(dog,userid);	
+				
 		//dog정보 삭제
 		adminMemberListDao.dogDeleteByadmin(dogno);
 	}

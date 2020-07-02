@@ -29,6 +29,9 @@
 .w3-display-left {
 font-size: 15px;
 }
+button:hover{
+	background-color:#FA8072;
+}
 </style>
 <script type="text/javascript">
 $(document).ready(function() {
@@ -83,13 +86,11 @@ $(document).on("click", ".w3-container", function () {
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<!-- 헤더 임포트 -->
-<%-- <c:import url="/WEB-INF/views/user/util/header.jsp"></c:import> --%>
 
 <div class="w3-display-left w3-padding w3-col l6 m8" style="width:481px; height: 600px">
-	<div class="w3-container w3-red">
+	<div class="w3-container"style="background-color:#FAF0E6">
 		<h2>
-			<label><i class="fa fa-bed w3-margin-right"></i><label><%=l.getSheltername()%></label></label> 
+			<label><i class="fa fa-home w3-margin-right"></i><label><%=l.getSheltername()%></label></label> 
 		</h2>
 	</div>
 	<div class="w3-container w3-white w3-padding-16" style="height: 221px; width: 450px">
@@ -109,7 +110,7 @@ $(document).on("click", ".w3-container", function () {
 <!-- 			</div> -->
 <!-- 		</div> -->
 		<a href="/dog/details?shelterno=<%=l.getShelterno()%>" style="position: relative; left: 250px; top: -40px; ">
-			<button>유기견 조회</button>
+			<button style="padding:30px;background-color:#FFE4E1"><span style="color:#808080;font-weight:bold">유기견 조회</span></button>
 		</a>
 	</div>
 </div>

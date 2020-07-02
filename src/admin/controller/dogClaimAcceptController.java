@@ -35,16 +35,14 @@ public class dogClaimAcceptController extends HttpServlet {
 		int cnt=0;
 		for(String e:userid) {
 			id.add(e);
+			
+			int dogno = adminMemberListDao.dognoBydogClaim(e);
 			//승인 처리
 			adminMemberListService.dogClaimAccept(e);
 			//승인 완료
-			int dogno = adminMemberListDao.dognoBydogClaim(e);
 			//입양신청 dogno같은 유저 라이크 모조리 apply sw=2
 			adminMemberListDao.dogClaimUpdateApplySw(e, dogno);	
-			//유저 아이디를 통해 dogout테이블에 삽입
-			Dog_Data dog = new Dog_Data();
-			dog= adminMemberListDao.selectByDogno(dogno);	
-			adminMemberListDao.insertDogout(dog,e);			
+					
 			cnt+=adminMemberListDao.dogClaimBydogno(dogno);			
 		}
 		

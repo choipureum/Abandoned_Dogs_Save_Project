@@ -28,10 +28,28 @@
 		
 			<!--Alert 디자인 라이브러리 -->
    	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>	
+   	<script type="text/javascript">
+$(document).ready(function(){
+	$(".open").on('click',function(){
+		$(".popup").show();
+		$(".dim").show();
+	});
+	$(".popup .close").on('click',function(){
+		$(this).parent().hide();
+		$(".dim").hide();
+	});
+
+
+	
+});
+</script>
 <script>
 function toggle(){	
 		$("#dd-item").fadeToggle();		
-
+}
+function logout(){
+			location.href='/logout/logout'
+			
 }
 </script>
 		<style>
@@ -113,7 +131,102 @@ a.badge-danger:focus, a.badge-danger.focus {
   align-items: center !important;
 }
 		</style>
-					
+		
+		<style>
+		
+<style type="text/css">
+
+
+.Popup-container {
+   width:385px;
+   line-height:50px;
+   margin: 40px auto;
+
+}
+/* 로그인입니다 css */
+h3 {
+   text-align: center;
+}
+
+h3 span{
+   color:#ff9364;
+}
+/* 로그인버튼 */
+.login {
+   background-color: #6E6E6E;
+   color:white;
+   border-radius: 5px;
+   border: 0;
+   padding: 10px 172px;
+   
+}
+/* 회원가입버튼 */
+.singup {
+
+   background-color:#6E6E6E;
+   color:white;
+   border-radius: 5px;
+   border: 0;
+   padding: 10px 165px;
+   
+}
+
+/* 아이디 비밀번호 찾기 */
+.found {
+	position :relative;
+	left:25px;
+	margin: 0px 3px; 
+	text-decoration: none;
+	font-family: "돋움", dotum, "굴림", gulim, arial, helvetica, sans-serif;
+	font-size: 13px;
+}
+.found:hover{
+	text-decoration: underline;	
+}
+
+/* 팝업처리 */
+.popup { 
+	display: none; 
+	position: fixed; 
+ 	left: 50%;  
+ 	top: 50%;  
+ 	z-index: 100;  
+
+	padding:50px 50px 50px;
+	width: 550px; height: 530px; 
+	transform: translate(-50%, -50%); 
+	box-sizing: border-box; 
+	background: #fff;
+}
+.popup h2 { 
+	padding: 0 0 42px; 
+	border-bottom: 3px solid #444; 
+	font-weight: normal;
+	font-size:36px; 
+	color:#222; 
+	text-align: center; 
+	line-height: 100%;
+}
+.popup .close { 
+	position: absolute; 
+	right:40px; top: 40px; width: 41px; height: 41px; 
+	background: url(/resources/mypageTemplate/img/btn-close.png) no-repeat; 
+	color:transparent;
+}
+.popup .con { 
+	padding: 20px 48px; 
+	border-bottom:1px solid #e8e8e8;
+}
+
+.dim { 
+	display: none;
+	position: fixed; 
+	left: 0; top: 0; 
+	z-index: 99; 
+	width: 100%; height: 100%; 
+	background:rgba(0,0,0,0.5);
+}		
+		</style>			
 		</head>   
     <body  id="top">
 		<!-- Header -->
@@ -172,11 +285,11 @@ a.badge-danger:focus, a.badge-danger.focus {
 					</table>
 					
 					<hr>
-					<a href="/mypage/main">입양 페이지 이동</a>					
+					<a href="/dog/list">입양 페이지 이동</a>					
               </div>             
               &nbsp;&nbsp;&nbsp;                
               <!-- 로그아웃버튼 -->
-					<input type ="button" value="Logout" class="button alt open" onclick="location.href='/logout/logout'" />
+					<input type ="button" value="Logout" class="button alt open" onclick="logout()" />
 					</c:if>
 				</nav>
 				
@@ -200,3 +313,35 @@ a.badge-danger:focus, a.badge-danger.focus {
 <!-- 					<li><a href="#" class="button fit">Login</a></li> -->
 <!-- 				</ul> -->
 			</nav>
+			
+			
+			<%-------------로그인 버튼 팝업 --%>
+				<div class="popup">
+				
+				<div class="Popup-container" style="text-align:center">
+				      <h3><span><i class="fas fa-bone text-gray-300"></i>&nbsp;&nbsp;로그인</span></h3>
+				   <hr>
+				   <form action="/login/login" method="post">				   
+				      <!-- 로그인 틀 -->
+				     
+				      	<label for="useridHeader"></label>
+				      	<input type="text" class="inputForm" id="useridHeader" name="userid" placeholder="ID" required style="height:50px; width: 450px" />
+							
+				      <label for="userpwHeader"></label>
+				      <input type="password"class="inputForm" id="userpwHeader" name="userpw"  placeholder="PASSWORD" required style="height:50px; width: 450px" /><br>
+				      
+				      <!-- <button>로그인</button> -->
+				      <input type="submit" value="로그인" class="login"/>	
+				   
+				  	 <input type="button" class="singup" value="회원가입" onclick="location.href='/resources/js/singupinfo.jsp'" />						
+					</form>				
+					<!-- 	아이디비밀번호 찾기 -->
+					<a href="/id/find" class="found">아이디</a>
+					<a href="/pw/find" class="found">비밀번호찾기</a>&nbsp;&nbsp;&nbsp;
+					<a href="/admin" class="found">관리자 로그인</a>				
+				</div>
+				
+				<a href="#a" class="close">닫기</a>
+				</div>
+
+			<div class="dim"></div>

@@ -498,7 +498,7 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 				  	long diffDay=0;		    
 				    //두날짜 사이의 시간 차이(ms)를 하루 동안의 ms(24시*60분*60초*1000밀리초) 로 나눈다.
 					diffDay = (today.getTime() - dogClaim.getDogregdate().getTime()) / (24*60*60*1000);
-					diffDay= 10-diffDay;
+					diffDay= 9-diffDay;
 				    dogClaim.setDogenddate(diffDay);
 				    list.add(dogClaim);
 	
@@ -755,7 +755,7 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 	    	conn= JDBCTemplate.getConnection();
 	    	
 	    	sql= new StringBuffer();
-	    	sql.append(" delete from userlike where adoptsw='N' and dogno=?");	    	
+	    	sql.append(" delete from userlike where dogno=?");	    	
 	    	try {
 				ps=conn.prepareStatement(sql.toString());
 				ps.setInt(1,dogno);
@@ -1104,7 +1104,7 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 			sql += "   dogno, dog_fileno, dog_org_file_name, dog_stored_file_name, dog_file_size, dog_del_gb";
 			sql += "   FROM dog_file ";
 			sql +="    )R ";
-			sql +="    where B.dogno = R.dogno and dogno=?";
+			sql +="    where B.dogno = R.dogno and B.dogno=?";
 			Dog_Data d= new Dog_Data();
 	    	try {
 				ps=conn.prepareStatement(sql.toString());
@@ -1245,8 +1245,7 @@ public class AdminMemberListDaoImpl implements AdminMemberListDao{
 	       public void insertDogout(Dog_Data dog,String userid) {
 	          conn= JDBCTemplate.getConnection();
 	          sql= new StringBuffer();
-	          Qna_Reply qnaRef = new Qna_Reply();
-	          sql.append(" insert into dogout(dogno,userid,dogname,dogkind,doggender,dog_stored_file_name) values(?,?,?,?,?)");
+	          sql.append(" insert into dogout(dogno,userid,dogname,dogkind,doggender,dog_stored_file_name) values(?,?,?,?,?,?)");
 	          
 	          try {
 	            ps= conn.prepareStatement(sql.toString());

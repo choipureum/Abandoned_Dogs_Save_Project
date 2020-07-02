@@ -41,6 +41,5 @@ public interface DogShelterDao {
 	public int selectCntAll();
 	
 	
-	public List<Dog_Data> dogSearchList(int category, String keyword, Paging paging);
 
 }

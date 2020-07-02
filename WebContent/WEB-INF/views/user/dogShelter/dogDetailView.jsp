@@ -39,37 +39,35 @@
     transform:scale(1.2);
 }
 </style>
-
-<%-- 	<%for (int i = 0; i < dog.size(); i++) {%> --%>
-<!-- 	<div class="box"> -->
-<%-- 		<img src="/upload/<%=dog.get(i).getDog_stored_file_name() %> alt="없음" /> --%>
-<!-- 		<div class="inner"> -->
-<%-- 			<div>이름 <%=dog.get(i).getDogname() %></div> --%>
-<%-- 			<div>품종 <%=dog.get(i).getDogkind() %></div> --%>
-<%-- 			<div>성별 <%=dog.get(i).getDoggender() %></div> --%>
-<%-- 			<div>중성화여부 <%=dog.get(i).getDogneu() %></div> --%>
-<%-- 			<div>공고일 <%=dog.get(i).getDogdate() %></div> --%>
-<!-- 			<div> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 	</div> -->
-<%-- 	<% } %> --%>
+<script>
+        function dogDetail(dogno){                   
+            var url = "/dog/detailView?dogno="+dogno;
+            var name = "";
+            var option = "width = 1200, height = 800, top = 100, left = 100 "
+            window.open(url, name, option);
+        }
+    </script>
+    <c:set value="${result }" var="d"/>
+<% if(dog.size() ==0){%>
+	<h5><i class="fas fa-dog"></i>유기견이 존재하지 않습니다...</h5><br><br><br><br><br><br><br><br>
+	<%}%>
 
 
 <c:forEach items="${result }" var="dog">
 	<div class="box">
-		<img src="/upload/${dog.dog_stored_file_name }" alt="없음" />
+		<a href="#" onclick="dogDetail(${dog.dogno })" ><img src="/upload/${dog.dog_stored_file_name }" alt="없음" /></a>
 		<div class="inner">
-			<div>이름 ${dog.dogname }</div>
-			<div>품종 ${dog.dogkind }</div>
-			<div>성별 ${dog.doggender }</div>
-			<div>중성화여부 ${dog.dogneu }</div>
-			<div>공고일 ${dog.dogdate }</div>
+			<div>이름 : ${dog.dogname }</div>
+			<div>품종 : ${dog.dogkind }</div>
+			<div>성별 : ${dog.doggender }</div>
+			<div>중성화여부 : ${dog.dogneu }</div>
+			<div>공고일 :  ${dog.dogdate }</div>
 			<div>
 			</div>
 		</div>
 	</div>
 </c:forEach>
+
 
 
 

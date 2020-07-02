@@ -1,51 +1,47 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>비밀번호 찾기</title>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>  
+
+<c:import url="/main/header"></c:import>
 
 <!--Alert 디자인 라이브러리 -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-<!-- 자바스크립트 -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-
 <!-- 비밀번호 유효성 검사 -->
 <script type="text/javascript">
 $(document).ready(function(){
-	
-	//#userpassword 검증
-	var upwReg = /^[A-Za-z0-9]{6,18}$/;
-	//비밀번호 blur
-	$('#userpw').blur(function(){
-		if(upwReg.test($('#userpw').val())){
-			$('#pw_check').text('');
-			
-		} else{
-			
-			$("#pw_check").text('6자-12자 소문자, 숫자를 섞어서 입력하시오');
-			$("#pw_check").css('color','red');
-		}
-	});
-	//#userpw  #userpw_ck 일치 확인
-	$('#userpw_ck').blur(function(){
-		if($("#userpw").val() == '') {
-			$('#pw_check2').text('비밀번호를 입력하세요');
-			$('#pw_check2').css('color','green');
-			
-		} else if($('#userpw').val() != $(this).val()){		
-			$('#pw_check2').text('비밀번호가 일치하지 않습니다');
-			$('#pw_check2').css('color','red');
-		} else {
-		
-			$('#pw_check2').text('비밀번호가 일치합니다');
-			$('#pw_check2').css('color','blue');
-		} 
-	})
-	
-	
+   
+   //#userpassword 검증
+   var upwReg = /^[A-Za-z0-9]{6,18}$/;
+   //비밀번호 blur
+   $('#userpw').blur(function(){
+      if(upwReg.test($('#userpw').val())){
+         $('#pw_check').text('');
+         
+      } else{
+         
+         $("#pw_check").text('6자-12자 소문자, 숫자를 섞어서 입력하시오');
+         $("#pw_check").css('color','red');
+      }
+   });
+   //#userpw  #userpw_ck 일치 확인
+   $('#userpw_ck').blur(function(){
+      if($("#userpw").val() == '') {
+         $('#pw_check2').text('비밀번호를 입력하세요');
+         $('#pw_check2').css('color','green');
+         
+      } else if($('#userpw').val() != $(this).val()){      
+         $('#pw_check2').text('비밀번호가 일치하지 않습니다');
+         $('#pw_check2').css('color','red');
+      } else {
+      
+         $('#pw_check2').text('비밀번호가 일치합니다');
+         $('#pw_check2').css('color','blue');
+      } 
+   })
+   
+   
 })
 </script>
 
@@ -54,62 +50,58 @@ $(document).ready(function(){
 <script type="text/javascript">
 
 function pwChangeFunc(){
-	
-	var userid="${param.userid}";
-	var userpw=$("#userpw").val();
-	var userpw_ck=$("#userpw_ck").val();
-	//#userpassword 검증
-	var upwReg = /^[A-Za-z0-9]{6,18}$/;
-	
-	
-	if($("#userpw").val() != $("#userpw_ck").val()){
-		swal({
-			title: "비밀번호를 확인해주세요!!",
-			icon:"error"
-		});
-		
-		return false;
-	} 
-	else if($("#userpw").val() == ""){
-		swal({
-			title: "비밀번호를 확인해주세요!!",
-			icon:"error"
-		});
-		return false;
-	}
-	
-// 	비밀번호 정규
-	if(!upwReg.test($("#userpw").val())){
-		swal({
-			title: "비밀번호는 6에서 18자리 소문자, 숫자!",
-			icon:"error"
-		});
+   
+   var userid="${param.userid}";
+   var userpw=$("#userpw").val();
+   var userpw_ck=$("#userpw_ck").val();
+   //#userpassword 검증
+   var upwReg = /^[A-Za-z0-9]{6,18}$/;
+   
+   
+   if($("#userpw").val() != $("#userpw_ck").val()){
+      swal({
+         title: "비밀번호를 확인해주세요!!",
+         icon:"error"
+      });
+      
+      return false;
+   } 
+   else if($("#userpw").val() == ""){
+      swal({
+         title: "비밀번호를 확인해주세요!!",
+         icon:"error"
+      });
+      return false;
+   }
+   
+//    비밀번호 정규
+   if(!upwReg.test($("#userpw").val())){
+      swal({
+         title: "비밀번호는 6에서 18자리 소문자, 숫자!",
+         icon:"error"
+      });
 
-	    return false;
-	}
-	
-	
-	$.ajax({
-		type:'POST',
-		url:'/change/pw',
-		data : {
-			"userid":userid
-			, "userpw":userpw
-		},
-		success:function(res){			
-// 	if문
-			alert("비밀번호 변경이 완료되었습니다!");
-			
-// 			swal({
-// 				title: "비밀번호 변경이 완료되었습니다!",
-// 				icon:"success"
-// 			});
-// 			req.getRequestDis
-			location.href="/login/login";
-			
-		}
-		
-	})
+       return false;
+   }
+   
+   
+   $.ajax({
+      type:'POST',
+      url:'/change/pw',
+      data : {
+         "userid":userid
+         , "userpw":userpw
+      },
+      success:function(res){         
+//    if문
+         alert("비밀번호 변경이 완료되었습니다!");
+         
+
+         location.href="/main";
+         
+      }
+      
+   })
 }
 
 </script>
@@ -132,29 +124,17 @@ h5 span{
    color:blue;
    
 }
-#pwChange{
-
-   background-color: rgb(255,80,90);
-   color:white;
-   border-radius: 5px;
-   border: 0;
-   padding: 10px 200px;
-
-}
 
 input {
     border: 1px solid lightgray;
-    border-radius: 3px;
+/*     border-radius: 3px; */
 }
 
 #red{
    color:red;
 }
 
-select{
-   height:35px; 
-   width: 100px;
-}
+
 
 
 </style>
@@ -172,19 +152,21 @@ select{
    <form action="/change/pw" method="post" id="myForm">
 
    <h6><label>비밀번호<span id="red">(필수)</span>
-      <input type="password" placeholder="비밀번호" name="userpw" id="userpw" class="pw" required style="height:30px; width: 495px"/></label>
-  	<div id="pw_check"></div></h6>
+      <input type="password" placeholder="비밀번호" name="userpw" id="userpw" class="pw" required style="width: 495px"/></label>
+     <div id="pw_check"></div></h6>
   
    <h6><label>비밀번호확인<span id="red">(필수)</span>
-      <input type="password" placeholder="비밀번호확인" name="userpw_ck" id="userpw_ck" class="pw" required style="height:30px; width: 495px"/></label>
-   	<div id="pw_check2"></div></h6>
-	  
-	<hr>
-	<input type="button" value="비밀번호재설정" id="pwChange" onclick="pwChangeFunc()">
-	<hr>
+      <input type="password" placeholder="비밀번호확인" name="userpw_ck" id="userpw_ck" class="pw" required style="width: 495px"/></label>
+      <div id="pw_check2"></div></h6>
+     
+   <hr>
+   <div style="margin:0 auto;text-align:center;">
+   <input type="button" value="비밀번호재설정" id="pwChange" onclick="pwChangeFunc()" >
+   </div>
+   <hr>
 
-  	<br><br>
+     <br><br>
    </form>
 </div>
 </body>
-</html>
+<c:import url="/WEB-INF/views/user/util/footer.jsp"></c:import>

@@ -13,7 +13,7 @@
  
  <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 
- <c:import url="/WEB-INF/views/user/util/header.jsp" />
+ <c:import url="/main/header" />
 
 <style>
 #adoptBtn{
@@ -33,16 +33,6 @@ body{
 	
 }
 </style>
-
-
- 
-
-
-
-
-
-  
-
 
 
 
@@ -78,11 +68,7 @@ $(document).ready(function() {
 		  	
 		  if($("input:checkbox[name='checkRow']:checked").length==1){
 		  
-		  
-		
-		  	
-			
-			  
+	  
 			var checkbox = $("input:checkbox[name='checkRow']:checked");
 			
 			var tr = checkbox.parent().parent()
@@ -106,9 +92,7 @@ $(document).ready(function() {
 				httpRequest.send();
 			
 		  
-		 };
-		
-		
+		 };				
 	});
 			     	
 	// 선택체크 삭제
@@ -161,12 +145,21 @@ function checkAll() {
 	}
 }
 </script>
-
+<!-- Banner -->
+<section id="banner" data-video="images/banner">
+	<div class="content">
+		<h1>My Like Dogs</h1>
+		<p>내가 좋아하는 유기견</p>
+		<ul class="actions">
+			<li><a href="#one" class="button scrolly">찜목록 보기</a></li>
+		</ul>
+	</div>
+</section>
 
 <div class="container">
-<br>
-<h5>찜 게 시 판</h5>
-<h2>찜목록</h2>
+<br><br>
+<h5 id="one"  style="text-align:center">찜 게 시 판</h5>
+<h2  style="text-align:center">찜목록</h2>
 <br>
 
 <hr>
@@ -220,8 +213,6 @@ function checkAll() {
 		</c:otherwise>
 	</c:choose>
 </div>
-
-
 
 
 <div id="paging">

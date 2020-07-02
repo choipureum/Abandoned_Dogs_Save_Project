@@ -27,24 +27,20 @@ public class DogShelterDetailListController extends HttpServlet {
 		//전달파라미터 shelterno 추출
 		String param = req.getParameter("shelterno");
 		//test
-		System.out.println("param"+param);
 		
 		int shelterno = 0;
 		if(param!=null && !"".equals(param)) {
 			shelterno = Integer.parseInt(param);
 		}
-		System.out.println("shelterno : " + shelterno);
 		
 		//빈 DogShelter 객체 생성
 		Dog_Shelter dogShelter= new Dog_Shelter();
 		dogShelter.setShelterno(shelterno);//shelterno 저장
 		
-		System.out.println("shelternoController" + shelterno);
 		
 		//유기견 보호소 정보 상세 조회
 		Dog_Shelter result = dogShelterService.detail(dogShelter);
 		//test
-		System.out.println("result : "+result);
 		
 		//조회결과(MODEL) 값을 VIEW에 전달하기 - request객체 사용
 		req.setAttribute("result", result);

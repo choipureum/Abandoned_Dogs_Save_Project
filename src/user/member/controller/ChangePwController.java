@@ -46,7 +46,7 @@ public class ChangePwController extends HttpServlet {
 		req.setAttribute("icon", "success");
 		req.setAttribute("msg", "다시 로그인해주세요!");
 		req.setAttribute("title", "비밀번호가 성공적으로 바뀌었습니다 ");
-		req.setAttribute("url", "/login/login");
+		req.setAttribute("url", "/main");
       
       //view 전달
 		req.getRequestDispatcher("/WEB-INF/views/user/member/swal.jsp")

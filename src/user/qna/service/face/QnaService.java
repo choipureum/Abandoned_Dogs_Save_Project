@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import user.qna.dto.QNA;
 import user.qna.dto.QnaFile;
+import user.qna.dto.Qna_Reply;
 import util.Paging;
 
 
@@ -106,6 +107,15 @@ public interface QnaService {
 	 * @param board - 삭제할 게시글 번호를 가진 객체
 	 */
 	public void delete(QNA board);
+
+	
+	/**
+	 * qnano로 파싱하여 Qna_Reply 디테일 조회
+	 * 
+	 * @param qnano
+	 * @return
+	 */
+	public Qna_Reply Qna_ReplyDetail(int qnano);
 	
 	/**
 	 * 게시글 추천 상태 조회

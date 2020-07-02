@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>   
 
 
-<c:import url="/main/header"></c:import>
+
 <!--Alert 디자인 라이브러리 -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
@@ -157,6 +157,7 @@ function emailCheckFunc(){
    width:500px;
    margin :40px auto;
    line-height: 16px;
+   padding:0 30%;
 }
 
 /* 메인 이름 */
@@ -215,8 +216,7 @@ select{
 }
 
 </style>
-</head>
-<body>
+<c:import url="/main/header"></c:import>
 <!-- 입력  -->
 <div class="container">
 

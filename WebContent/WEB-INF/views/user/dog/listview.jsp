@@ -15,10 +15,9 @@
 var element = $(".blink");
 var shown = true;
 
-setInterval(toggle, 200);
+setInterval(toggle, 400);
 
 function toggle() {
-
    if(shown) {
        element.hide();
        shown = false;
@@ -33,6 +32,11 @@ function toggle() {
 $(document).ready(function(){	
 
 });
+
+totalPage = '${paging.totalPage }'
+
+<c:if test="${not empty login }">
+
 // 체크박스 체크시 이벤트
 function Chkevent(dogno){
 	 var chk=document.getElementById(dogno);
@@ -56,6 +60,9 @@ function Chkevent(dogno){
 	 }
 	
 }
+
+</c:if>
+
 </script>
 
 
@@ -99,7 +106,6 @@ function Chkevent(dogno){
        </li>
       <li>공고일 남은시일 :<span class="blink" style="color:#FF4500;font-weight:bold"> ${dog.dogenddate } 일!</span></li>
       </ul>
-
 </div>
 </div>
 </c:forEach>

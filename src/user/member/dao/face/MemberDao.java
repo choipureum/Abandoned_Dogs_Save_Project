@@ -198,6 +198,29 @@ public interface MemberDao {
 	 */
 	public int UserlikeCount(String userid, int dogno);
    
+	/**
+	 * userid 분양받은 강아지 List반환
+	 * 
+	 * @param userid
+	 * @return
+	 */
+	public List<Dogout> SelectAllDogout(String userid);
+	/**
+	 * dogclaim에서 dogno 출력
+	 * @param userid
+	 * @return
+	 */
+	public int SelectDognoBydogclaim(String userid);
+
+	/**
+	 *  applysw=2로 변환
+	 * 
+	 * @param userid
+	 * @param dogno
+	 */
+	public void UpdateApplySw(String userid,int dogno);
+
+
 }
 
 

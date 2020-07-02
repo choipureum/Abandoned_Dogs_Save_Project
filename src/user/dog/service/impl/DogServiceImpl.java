@@ -22,22 +22,66 @@ public class DogServiceImpl implements DogService{
 		@Override
 		public Paging getPaging(HttpServletRequest req) {
 			
-			//전달파라미터 curPage를 파싱한다
-			String param = req.getParameter("curPage");
-			int curPage = 0;
-			if( param!=null && !"".equals(param) ) {
-				curPage = Integer.parseInt(param);
-			}
-			
-			//dog 테이블의 총 데이터 수를 조회한다
-			int totalCount = dogDao.selectCntAll();
+//			//전달파라미터 curPage를 파싱한다
+//			String param = req.getParameter("curPage");
+//			int curPage = 0;
+//			if( param!=null && !"".equals(param) ) {
+//				curPage = Integer.parseInt(param);
+//			}
+//			
+//			//dog 테이블의 총 데이터 수를 조회한다
+//			int totalCount = dogDao.selectCntAll();
+//
+//			//Paging 객체 생성 - 현재 페이지(curPage), 총 게시글 수(totalCount) 활용
+//			Paging paging = new Paging(totalCount, curPage,6);
+////			Paging paging = new Paging(totalCount, curPage, 6);
+//			
+//			//Paging 객체 반환
+//			return paging;
+			   //전달파라미터 curPage를 파싱한다
+	         String param = req.getParameter("curPage");
+	         int curPage = 0;
+	         if( param!=null && !"".equals(param) ) {
+	            curPage = Integer.parseInt(param);
+	         }
+	         
+	         
+	         
+	         //검색창에 입력한 검색어 - search
+	         String search = req.getParameter("search"); 
+	         
+	         //option의 value값으로 가져온 파라미터 - search2 
+	         param = req.getParameter("search2");
+	         int search2 = 0;
+	         if( param!=null && !"".equals(param) ) {
+	            search2 = Integer.parseInt(param);
+	         }
+	         
+	         
+	         //검색어를 통한 게시글의 총 수를 조회한다 
+	         int totalCount = dogDao.selectCntAll(search, search2 );
+	         
+	         
+	         
+	         
+	         //dog 게시판의 총 게시글 수를 검색어포함으로 조회한다//검색어 이전 콛,
+	         //int totalCount = dogDao.selectCntAll();
 
-			//Paging 객체 생성 - 현재 페이지(curPage), 총 게시글 수(totalCount) 활용
-			Paging paging = new Paging(totalCount, curPage,6);
-//			Paging paging = new Paging(totalCount, curPage, 6);
+	         //Paging 객체 생성 - 현재 페이지(curPage), 총 게시글 수(totalCount) 활용해 paging객체를 생성한다 
+	         Paging paging = new Paging(totalCount, curPage,4);
+//	         Paging paging = new Paging(totalCount, curPage, 6);
+	         
+	         
+	         //검색어와 select로 가져온 value값을 paging객체에 저장한다 
+	         paging.setSearch(search);
+	         paging.setValue(search2);
+	         
+	         //Paging 객체 반환
+	         return paging;
 			
-			//Paging 객체 반환
-			return paging;
+			
+			
+			
 		}
 
 		//ok

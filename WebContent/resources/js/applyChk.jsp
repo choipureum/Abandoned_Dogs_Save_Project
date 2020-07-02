@@ -9,7 +9,6 @@
 
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css" />
-<c:import url="/main/header"></c:import>        
 <c:import url="/WEB-INF/views/user/util/header.jsp"></c:import>  
       <script src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
     
@@ -17,29 +16,35 @@
 <script>
 //입양신청 기능 구현
 function apply(){
+	
    var dogno="${param.dogno }";
    var userid="${param.userid}";
-   
-   swal({
-      icon:"warning",   
-      title:"입양신청을 하시겠습니까?",
-      text:"입양신청 답변은 수일 소요됩니다",   
-      buttons:["아니요","입양신청"]
-   }).then((Yes)=>{
-      if(Yes){
-         $.post("/dog/applyOK",{"dogno":dogno,"userid":userid},function(res){
-            swal({
-               icon:"success",   
-               text:"입양신청이 완료되었습니다!"
-            }).then(function(res){
-               location.href="/resources/js/applyThankyou.jsp";
-            })
-         });
-      }
-   });
-   
+  
+   if($("input[id='check']").is(":checked")){
+	   swal({
+		      icon:"warning",   
+		      title:"입양신청을 하시겠습니까?",
+		      text:"입양신청 답변은 수일 소요됩니다",   
+		      buttons:["아니요","입양신청"]
+		   }).then((Yes)=>{
+		      if(Yes){
+		         $.post("/dog/applyOK",{"dogno":dogno,"userid":userid},function(res){
+		            swal({
+		               icon:"success",   
+		               text:"입양신청이 완료되었습니다!"
+		            }).then(function(res){
+		               location.href="/resources/js/applayThankyou.jsp";
+		            })
+		         });
+		      }
+		   }); 
+   }else{
+	   swal({
+		      icon:"error",   
+		      text:"입양신청 주의사항에 체크해주세요",   
+		   }) 	   
+   }  
 }
-
 </script>
 <br><br>
 <div style="text-align:center; ">
@@ -87,7 +92,7 @@ function apply(){
 <br>
 
 
-<button style="font-size: 15px;" onclick="history(-1)">뒤로가기</button>
+<button style="font-size: 15px;" onclick="history.go(-1)">뒤로가기</button>
 <button style="font-size: 15px;" onclick="apply()">입양신청하기</button>
       </div>
       <form action="/WEB-INF/views/user/dog/applyChk.jsp" method="post" id="applyForm">

@@ -831,13 +831,13 @@ public class MemberDaoImpl implements MemberDao{
 		try {
 			ps=conn.prepareStatement(sql);
 			
-			ps.setString(1, userid);
-			
+			ps.setString(1, userid);			
 			rs=ps.executeQuery(); //결과 집합
 			
 			while(rs.next()) {
 				
-				result=new Dogout();				
+				result=new Dogout();	
+				
 				result.setUserid(userid);
 				result.setDogname(rs.getString("dogname"));
 				result.setDogkind(rs.getString("dogkind"));
@@ -915,9 +915,84 @@ public class MemberDaoImpl implements MemberDao{
 			return res;
 	}
 
+	@Override
+		public List<Dogout> SelectAllDogout(String userid) {
+			conn = JDBCTemplate.getConnection();
+			String sql= "select * from dogout where userid=?";
+		
+			List<Dogout>list= new ArrayList<>();
+			try {
+				ps=conn.prepareStatement(sql);
+				
+				ps.setString(1, userid);			
+				rs=ps.executeQuery(); //결과 집합
+				
+				while(rs.next()) {					
+					Dogout result=new Dogout();						
+					result.setUserid(userid);
+					result.setDogname(rs.getString("dogname"));
+					result.setDogkind(rs.getString("dogkind"));
+					result.setDoggender(rs.getString("doggender"));
+					result.setOutdate(rs.getDate("outdate"));
+					result.setDog_stored_file_name(rs.getString("dog_stored_file_name"));
+					list.add(result);
+				}				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				//DB객체 닫기
+				JDBCTemplate.close(rs);
+				JDBCTemplate.close(ps);
+			}
+			   return list;
+	
+		}
 	
 	
+	@Override
+	public int SelectDognoBydogclaim(String userid) {
+		conn= JDBCTemplate.getConnection();
+		String sql= " select dogno from dog_claim where userid=?";
+		int dogno=0;
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setString(1,userid);
+			rs=ps.executeQuery();
+			while(rs.next()) {
+				dogno=rs.getInt(1);
+			}
 	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			//DB객체 닫기
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		return dogno;
+	}
 
+	@Override
+		public void UpdateApplySw(String userid, int dogno) {
+			conn= JDBCTemplate.getConnection();
+			String sql=" update userlike set applysw=2 where userid=? and dogno=? ";
+			try {
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, userid);
+				ps.setInt(2, dogno);
+				ps.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(ps);
+			}
+		
+		}
 
 }
+
+
+
+
+
+

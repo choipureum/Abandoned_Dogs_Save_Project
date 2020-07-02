@@ -186,7 +186,6 @@ public class DogShelterDaoImpl implements DogShelterDao {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			JDBCTemplate.close(rs);
@@ -231,24 +230,6 @@ public class DogShelterDaoImpl implements DogShelterDao {
 	}
 
 
-
-	@Override
-	public List<Dog_Data> dogSearchList(int category, String keyword, Paging paging) {
-		List<Dog_Data> list = new ArrayList<>();
-		
-		conn = JDBCTemplate.getConnection(); // DB연결
-		
-		try {
-			conn = ps.getConnection();
-		
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return list;
-	}
 
 
 

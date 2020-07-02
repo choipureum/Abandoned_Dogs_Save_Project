@@ -145,7 +145,7 @@ td{
                 		<td class="fixed">                			
                 			<div class="card mb-4 py-3 border-left-info fixed-grid">
                 			<div class="card-body">
-                  				<span class="font-weight-bold text-gray-800">찜한 강아지 목록</span>
+                  				<span class="font-weight-bold text-gray-800">찜한 강아지 목록  <code>${cntLike } 마리</code></span>
                   				<hr style="width:100%">
                   				  
 				                  <br>
@@ -154,7 +154,7 @@ td{
 				                   <c:forEach items="${MyLikeDog }" var="d">
 				                   <label for="${d.dogno }">  
 				                    <img class="img-profile rounded-circle"src="/upload/${ d.dog_stored_file_name }" style="width:30px;height:30px;">                  
-				                    <a class="navbar-brand" href="#" id="${d.dogno }"> &nbsp;&nbsp;${d.dogno } 번</a></label><br>
+				                    <a class="navbar-brand" href="#" id="${d.dogno }"> &nbsp;&nbsp;${d.dogname }</a></label><br>
 				                    </c:forEach>                            
 				                  </div> 	
                 			</div>
@@ -164,7 +164,7 @@ td{
                 		<td class="fixed">               			
                 			<div class="card mb-4 py-3 border-left-warning fixed-grid">
                 			<div class="card-body">
-                  				<span class="font-weight-bold text-gray-800">입양받은 강아지</span>
+                  				<span class="font-weight-bold text-gray-800">입양받은 강아지 목록  <code> ${cntMine } 마리</code> </span>
                   				<hr style="width:100%">
                   				<br>
                   				<!-- 반복문 찜한 강아지 목록하기 -->
@@ -172,7 +172,7 @@ td{
 				                   <c:forEach items="${MyDog }" var="m">
 				                   <label for="${m.dogno }">
 				                   <img class="img-profile rounded-circle"src="/upload/${m.dog_stored_file_name }" style="width:30px;height:30px;">                    
-				                    <a class="navbar-brand" href="#" id="${m.dogno }"> &nbsp;&nbsp;${m.dogno } 번</a></label><br>
+				                    <a class="navbar-brand" href="#" id="${m.dogno }"> &nbsp;&nbsp;${m.dogname }</a></label><br>
 				                    </c:forEach>                            
 				                  </div> 	
                 			</div>

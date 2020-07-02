@@ -4,6 +4,7 @@ import java.util.List;
 
 import user.qna.dto.QNA;
 import user.qna.dto.QnaFile;
+import user.qna.dto.Qna_Reply;
 import util.Paging;
 
 
@@ -121,6 +122,13 @@ public interface QnaDao {
 	 * @param board - 삭제할 게시글번호를 담은 객체
 	 */
 	public void deleteFile(QNA board);
+
+	/**
+	 * 게시글 답변 조회
+	 * @param qnano - 파싱하여 Qna_Reply 디테일 조회 
+	 * @return qnano
+	 */
+	public Qna_Reply Qna_ReplySelectByNo(int qnano);
 
 	
 	

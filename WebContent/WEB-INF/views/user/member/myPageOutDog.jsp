@@ -95,26 +95,27 @@ th{
 <hr>
 	<!-- Table -->
 	<div class="table-wrapper">
-		<table style="1px solid">
+		<table style="white-space:nowrap;">
 			<thead>
-				<tr>
-					<th>사진</th>
+				<tr style="padding:0 0 0 20px;">
+					<th style="text-align:center">사진</th>
 					<th>이름</th>
-					<th>견종</th>
-					<th>성별</th>
-					<th>입양날짜</th>               
+					<th style="text-align:center">견종</th>
+					<th style="text-align:center">성별</th>
+					<th style="text-align:center">입양날짜</th>               
 				</tr>
 			</thead>
 			<tbody>
+			<c:forEach items="${dogout }" var="dogout">
 				<tr>
-					<td style="text-align:center; margin:0 auto;">
-					<img  id="img" src="/upload/${ dogout.dog_stored_file_name }" alt="" style="width:100px;height:70px"/></td>			                
+					<td>
+					<img  id="img" src="/upload/${ dogout.dog_stored_file_name }" alt="" style="width:100px;height:70px;border-radius:20px;"/></td>			                
 			        <td>${dogout.dogname }</td>	
 			        <td>${dogout.dogkind }</td>
 			        <td>${dogout.doggender }</td>	
 			        <td>${dogout.outdate }</td>
 				</tr>		
-		
+		</c:forEach>
 			</tbody>
 		</table>	
 	</div>
