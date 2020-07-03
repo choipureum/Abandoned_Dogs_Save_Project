@@ -66,8 +66,8 @@ Eclipse JEE-2020-03/ JDK 1.8 / CHROME / SQL DEVELOPER
 <br>
 
  <h4>사용자메인</h4>
-<img src="./img/Main.png">
+<img src="./img/Main.PNG">
  <h4>관리자 메인</h4>
-<img src="./img/AdminMain.png">
+<img src="./img/AdminMain.PNG">
 
 
