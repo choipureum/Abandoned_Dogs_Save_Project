@@ -61,6 +61,11 @@ ORACLE 11g Express Edition Release 11.2.0
 <hr>
 Eclipse JEE-2020-03/ JDK 1.8 / CHROME / SQL DEVELOPER
 
+### 프로젝트관리툴
+<hr>
+Trello를 사용한 일정관리
+Trello 주소 : https://trello.com/b/DebnHrMf/kh%EC%B5%9C%EA%B0%95%EA%B0%95%EC%95%84%EC%A7%80-4%EC%A1%B0-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%ED%8C%80
+
 ### 개발 이미지(완료)
 <hr>
 더 많은 이미지 : https://github.com/choipureum/Abandoned_Dogs_Save_Project/tree/master/img
